@@ -1,4 +1,4 @@
-import {LOGIN, LOGOUT} from './types';
+import {LOGIN, LOGOUT, SAVE_PROFILE} from './types';
 
 //Default App State - REDUX
 const initialState = {
@@ -6,6 +6,7 @@ const initialState = {
     email: "",
     userId: 0,
     loggedIn: false,
+    bio: "",
   }
   
 export default function reducer(state = initialState, action) {
@@ -22,6 +23,11 @@ export default function reducer(state = initialState, action) {
                 username: "",
                 userId: null,
                 loggedIn: false
+            }
+        case SAVE_PROFILE:
+            return { ...state,
+                username: "",
+                bio: ""
             }
         default:
             return state;

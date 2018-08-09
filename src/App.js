@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment} from 'react';
 import { connect } from 'react-redux';
 import {
   Route,
@@ -18,6 +18,7 @@ import { login } from './actions';
 import Header from './Components/Header'
 import WelcomeContainer from './Containers/WelcomeContainer'
 import HomeContainer from './Containers/HomeContainer'
+import ProfileContainer from './Containers/ProfileContainer'
 import Footer from './Components/Footer'
 
 // REDUX PROPS 
@@ -46,10 +47,16 @@ class App extends Component {
         <Header />
         {
           !!AdapterUser.getToken()
-          ? <Route
-              path="/home"
-              component={HomeContainer}
-            />
+          ? <Fragment>
+              <Route
+                path="/user/profile"
+                component={ProfileContainer}
+              />
+              <Route
+                path="/home"
+                component={HomeContainer}
+              />
+            </Fragment>
           : <Route
                 path="/"
                 component={WelcomeContainer}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter} from 'react-router-dom';
+import { withRouter, NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // ADAPTERS
@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => {
     }
   }
   
-const UserProfileBar = (props) => {
+const ProfileNavBar = (props) => {
     function handleLogout() {
         AdapterUser.deleteToken();
         props.logout();
@@ -34,7 +34,9 @@ const UserProfileBar = (props) => {
             return (
                 <div className="user-profile-bar">
                     <p>{`Welcome, ${props.username}`}</p>
-                    <button onClick={()=>handleLogout()}>Log Out</button>
+                    <button onClick={()=>handleLogout()}>Log Out</button> 
+                    <NavLink to="/home" exact>Home</NavLink>
+                    <NavLink to="/user/profile" exact>Profile</NavLink>
                 </div>
             )
         }
@@ -44,4 +46,4 @@ const UserProfileBar = (props) => {
     return toggleLogin()
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(UserProfileBar));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ProfileNavBar));

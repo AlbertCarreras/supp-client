@@ -7,7 +7,7 @@ import MessagingContainer from './MessagingContainer'
 
 const HomeContainer = () => {
     return (
-        <div className="main-container">
+        <div className="home-container">
             <FilterContainer />
             <CentralContainer />
             <MessagingContainer />

@@ -1,4 +1,4 @@
-import {LOGIN, LOGOUT} from './types';
+import {LOGIN, LOGOUT, SAVE_PROFILE} from './types';
 
 export function login(username, email, userId) {
     return {
@@ -15,5 +15,15 @@ export function login(username, email, userId) {
 export function logout() {
     return {
         type: LOGOUT,
+    }
+}
+
+export function saveProfile() {
+    return {
+        type: SAVE_PROFILE,
+        payload: {
+            username: username,
+            bio: bio,
+        }
     }
 }

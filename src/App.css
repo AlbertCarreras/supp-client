@@ -22,13 +22,18 @@
   display: flex;
 }
 
-.main-container {
+.home-container {
   display: flex;
   height: 700px;
   background-color: white;
 }
 
-.main-container > * {
+.profile-container {
+  height: 700px;
+  background-color: white;
+}
+
+.home-container > * {
   flex: 1 100%;
 }
 
