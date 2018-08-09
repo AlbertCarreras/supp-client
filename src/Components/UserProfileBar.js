@@ -11,6 +11,7 @@ import { logout } from '../actions';
 const mapStateToProps = state => {
     return {
         username: state.username.charAt(0).toUpperCase() + state.username.slice(1),
+        loggedIn: state.loggedIn,
     }
 }
 
@@ -21,19 +22,24 @@ const mapDispatchToProps = dispatch => {
   }
   
 const UserProfileBar = (props) => {
-
     function handleLogout() {
         AdapterUser.deleteToken();
         props.logout();
-        props.history.push('/login')
     }
 
-    return (
-        <div className="user-profile-bar">
-            <p>{`Welcome, ${props.username}`}</p>
-            <button onClick={()=>handleLogout()}>Log Out</button>
-        </div>
-    );
+    function toggleLogin() {
+        if (props.loggedIn) {
+            return (
+                <div className="user-profile-bar">
+                    <p>{`Welcome, ${props.username}`}</p>
+                    <button onClick={()=>handleLogout()}>Log Out</button>
+                </div>
+            )
+        }
+        return null
+    }
+
+    return toggleLogin()
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfileBar);

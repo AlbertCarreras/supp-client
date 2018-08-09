@@ -4,7 +4,6 @@ import {LOGIN, LOGOUT} from './types';
 const initialState = {
     username: "",
     userId: 0,
-    email: "",
     loggedIn: false,
   }
   

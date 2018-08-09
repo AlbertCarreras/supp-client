@@ -21,17 +21,6 @@ class Login extends Component {
     password: "",
   };
 
-  // AUTO-LOGIN functionality -if token is present in LocalStorage
-  componentDidMount(){
-    if (AdapterUser.getToken()) {
-      AdapterUser.getCurrentUser()
-      .then(json => this.props.login(json.username, json.id))
-      .catch(err => {
-        AdapterUser.deleteToken();
-      })
-    }
-  }
-
   //PROPS FUNCTIONALITY: Button handlers
   handleChange = (event) => {
     this.setState({

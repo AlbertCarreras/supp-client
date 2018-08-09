@@ -46,7 +46,6 @@
   flex: 1 2 25%; 
 }
 
-
 .app-footer {
   background-color: #5CDB95;
   height: 50px;
@@ -61,10 +60,11 @@
   text-align: left;
 }
 
-
 .overlay-box {
+
   background-color: #fff;
-  border: 1px solid #000;
+  border: 4px solid  #379683;
+  border-radius: 25px;
   text-align:center;
   height: 200px;/*height needs to be set*/
   width: 550px;
