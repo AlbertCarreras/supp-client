@@ -23,7 +23,7 @@ import Footer from './Components/Footer'
 // REDUX PROPS 
 const mapDispatchToProps = dispatch => {
   return {
-    login: (username, userId) => dispatch(login(username, userId))
+    login: (username, email, userId) => dispatch(login(username, email, userId))
   }
 }
 
@@ -33,7 +33,7 @@ class App extends Component {
   componentDidMount(){
     if (AdapterUser.getToken()) {
       AdapterUser.getCurrentUser()
-      .then(json => this.props.login(json.username, json.id))
+      .then(json => this.props.login(json.username, json.email, json.id))
       .catch(err => {
         AdapterUser.deleteToken();
       })

@@ -3,6 +3,7 @@ import {LOGIN, LOGOUT} from './types';
 //Default App State - REDUX
 const initialState = {
     username: "",
+    email: "",
     userId: 0,
     loggedIn: false,
   }
@@ -12,13 +13,14 @@ export default function reducer(state = initialState, action) {
         case LOGIN:
             return { ...state,
                 username: action.payload.username,
+                email: action.payload.email,
                 userId: action.payload.userId,
                 loggedIn: true
             }
         case LOGOUT:
             return { ...state,
                 username: "",
-                userId: 0,
+                userId: null,
                 loggedIn: false
             }
         default:

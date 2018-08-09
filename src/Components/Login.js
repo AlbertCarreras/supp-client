@@ -11,7 +11,7 @@ import { login } from '../actions';
 // REDUX PROPS 
 const mapDispatchToProps = dispatch => {
   return {
-    login: (username, userId) => dispatch(login(username, userId))
+    login: (username, email, userId) => dispatch(login(username, email, userId))
   }
 }
 
@@ -29,12 +29,12 @@ class Login extends Component {
     })
   }
 
-  handleSubmit = (event) => {
-    AdapterUser.login(event.target.value, this.state)
+  handleSubmit = () => {
+    AdapterUser.login(this.state)
       .then(json => {
         AdapterUser.setToken(json.jwt);
         AdapterUser.getCurrentUser()
-        .then(json => this.props.login(json.username, json.id));
+        .then(json => this.props.login(json.username, json.email, json.id));
         this.props.history.push('/home');
       })
   }
@@ -61,7 +61,7 @@ class Login extends Component {
           value={this.state.password}
         />
         <br/>        
-        <button type="submit" value="user_token" onClick={(event) => this.handleSubmit(event)}>Log me in!</button>
+        <button type="submit" onClick={this.handleSubmit}>Log me in!</button>
         <br/>        
         <br/>        
         <h3>New to Supp? <NavLink to="/signup" exact>Sign up!</NavLink></h3>

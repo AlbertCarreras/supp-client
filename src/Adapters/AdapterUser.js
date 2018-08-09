@@ -1,6 +1,7 @@
 export const API = 'http://localhost:3000/api/v1';
 
 class AdapterUser {
+
   static setToken(jsonToken) {
     return localStorage.setItem("token", jsonToken)
   }
@@ -32,8 +33,8 @@ class AdapterUser {
     });
   }
 
-  static login(route, loginState) {
-    return fetch(`${API}/${route}`, {
+  static login(loginState) {
+    return fetch(`${API}/user_token`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -47,6 +48,20 @@ class AdapterUser {
     .then(resp => resp.json())
   }
 
+  static signup(signupState) {
+    return fetch(`${API}/users/create`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      "user": {
+        "email": signupState.email,
+        "password": signupState.password,
+        "password_confirmation": signupState.confirmPassword,
+        "username": signupState.username
+      }})
+    })
+  }
 }
-
 export default AdapterUser;
