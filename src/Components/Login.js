@@ -1,4 +1,4 @@
-import React, { Component, Fragment} from 'react';
+import React, { Component} from 'react';
 import { connect } from 'react-redux';
 
 // ADAPTERS
@@ -14,13 +14,23 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-
 class Login extends Component {
   // keeping local state
   state = {
-    username: "",
+    email: "",
     password: "",
   };
+
+  // AUTO-LOGIN functionality -if token is present in LocalStorage
+  componentDidMount(){
+    if (AdapterUser.getToken()) {
+      AdapterUser.getCurrentUser()
+      .then(json => this.props.login(json.username, json.id))
+      .catch(err => {
+        AdapterUser.deleteToken();
+      })
+    }
+  }
 
   //PROPS FUNCTIONALITY: Button handlers
   handleChange = (event) => {
@@ -30,37 +40,34 @@ class Login extends Component {
   }
 
   handleSubmit = (event) => {
-    event.preventDefault()
     AdapterUser.login(event.target.value, this.state)
       .then(json => {
-        AdapterUser.setToken(json.token);
-        this.props.login(json.username, json.id);
+        AdapterUser.setToken(json.jwt);
+        AdapterUser.getCurrentUser()
+        .then(json => this.props.login(json.username, json.id));
       })
-   }
+  }
 
   render() {
     return (
       <div className="login">
-        <form >
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            onChange={this.handleChange}
-            value={this.state.username}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            onChange={this.handleChange}
-            value={this.state.password}
-          />
-        <button type="submit" value="sessions" onClick={(event) => this.handleSubmit(event)}>Login</button>
-        <button type="submit" value="signup" onClick={(event) => this.handleSubmit(event)}>Sign Up</button>
-        </form>
+        <label htmlFor="email">Email</label>
+        <input
+          type="text"
+          name="email"
+          placeholder="Email"
+          onChange={this.handleChange}
+          value={this.state.email}
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={this.handleChange}
+          value={this.state.password}
+        />
+        <button type="submit" value="user_token" onClick={(event) => this.handleSubmit(event)}>Login</button>
       </div>
     )
   }

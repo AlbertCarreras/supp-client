@@ -14,11 +14,11 @@ class AdapterUser {
   }
 
   static getCurrentUser() {
-    return fetch(`${API}/current_user`, {
+    return fetch(`${API}/auth`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": this.getToken()
+        "Authorization": `Bearer ${this.getToken()}`
       }
     })
     .then(resp =>
@@ -38,7 +38,11 @@ class AdapterUser {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(loginState)
+    body: JSON.stringify({
+      "auth": {
+        "email": loginState.email,
+        "password": loginState.password
+      }})
     })
     .then(resp => resp.json())
   }

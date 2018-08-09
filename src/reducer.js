@@ -3,9 +3,8 @@ import {LOGIN, LOGOUT} from './types';
 //Default App State - REDUX
 const initialState = {
     username: "",
+    userId: 0,
     email: "",
-    password: "",
-    confirm_password: "",
     loggedIn: false,
   }
   
@@ -20,7 +19,7 @@ export default function reducer(state = initialState, action) {
         case LOGOUT:
             return { ...state,
                 username: "",
-                userId: null,
+                userId: 0,
                 loggedIn: false
             }
         default:

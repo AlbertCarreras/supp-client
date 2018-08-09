@@ -9,7 +9,7 @@ export function login(username, userId) {
             loggedIn: true,
         }
     }
-  }
+}
   
 export function logout() {
     return {

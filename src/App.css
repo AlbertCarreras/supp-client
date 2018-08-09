@@ -18,6 +18,9 @@
   text-align: left;
   width: 150px;
 }
+.user-profile-bar {
+  display: flex;
+}
 
 .main-container {
   display: flex;

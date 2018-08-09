@@ -1,15 +1,32 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 //COMPONENTS
 import Login from './Login'
+import UserProfileBar from './UserProfileBar'
 
-const Header = () => {
+// REDUX PROPS 
+function mapStateToProps(state) {
+    return {
+        loggedIn: state.loggedIn,
+    }
+}
+
+const Header = (props) => {
+
+    function toggleLogin() {
+        if (props.loggedIn) {
+            return <UserProfileBar/>
+        }
+        return <Login />
+    }
+
     return (
             <div className="app-header">
                 <p className="header-logo">Supp</p>
-                <Login />
+                {toggleLogin()}
             </div>
     );
 };
 
-export default Header;
+export default connect(mapStateToProps, null)(Header);
