@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import {
+  Route,
+  withRouter
+} from "react-router-dom";
 
 //STYLING
 import './App.css';
@@ -36,22 +39,26 @@ class App extends Component {
       })
     }
   }
-  
+
   render() {
     return (
       <div className="app">
         <Header />
         {
-          !!AdapterUser.getToken() 
-            ? <HomeContainer />
-            : <WelcomeContainer />
-        }        
+          !!AdapterUser.getToken()
+          ? <Route
+              path="/home"
+              component={HomeContainer}
+            />
+          : <Route
+                path="/"
+                component={WelcomeContainer}
+            />
+        }
         <Footer />   
       </div>
     );
   }
 }
 
-// export default withRouter(App);
-
-export default connect(null, mapDispatchToProps)(withRouter(App));
+export default withRouter(connect(null, mapDispatchToProps)(App));

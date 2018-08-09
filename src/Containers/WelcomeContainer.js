@@ -1,12 +1,23 @@
 import React, {Fragment} from 'react';
+import {Route} from "react-router-dom";
+  
 
 //COMPONENTS
 import Login from './../Components/Login'
+import Signup from './../Components/Signup'
+
 const WelcomeContainer = () => {
     return (
         <Fragment>
         <div className="overlay-box">
-            <Login />
+            <Route
+                path="/login"
+                component={Login}
+              />
+            <Route
+                  path="/signup"
+                  component={Signup}
+            />
         </div>
         <div className="welcome-container">
             <div className="row"> 

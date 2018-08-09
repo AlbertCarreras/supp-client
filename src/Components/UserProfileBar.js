@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // ADAPTERS
@@ -25,6 +26,7 @@ const UserProfileBar = (props) => {
     function handleLogout() {
         AdapterUser.deleteToken();
         props.logout();
+        props.history.push('/login');
     }
 
     function toggleLogin() {
@@ -42,4 +44,4 @@ const UserProfileBar = (props) => {
     return toggleLogin()
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserProfileBar);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(UserProfileBar));

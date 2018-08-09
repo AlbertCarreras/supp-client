@@ -15,11 +15,13 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-class Login extends Component {
+class Signup extends Component {
   // keeping local state
   state = {
     email: "",
     password: "",
+    confirmPassword: "",
+
   };
 
   //PROPS FUNCTIONALITY: Button handlers
@@ -42,7 +44,8 @@ class Login extends Component {
   render() {
     return (
       <div className="login">
-        <h3 className="welcome-form">LOG IN</h3>
+        <h3>Have an account? <NavLink to="/login" exact>Log in</NavLink></h3>
+        <h3 className="welcome-form">SIGN UP</h3>
         <label htmlFor="email">Email</label>
         <input
           type="text"
@@ -50,7 +53,7 @@ class Login extends Component {
           placeholder="Email"
           onChange={this.handleChange}
           value={this.state.email}
-        /> 
+        />
         <br/>
         <label htmlFor="password">Password</label>
         <input
@@ -60,16 +63,20 @@ class Login extends Component {
           onChange={this.handleChange}
           value={this.state.password}
         />
-        <br/>        
-        <button type="submit" value="user_token" onClick={(event) => this.handleSubmit(event)}>Log me in!</button>
-        <br/>        
-        <br/>        
-        <h3>New to Supp? <NavLink to="/signup" exact>Sign up!</NavLink></h3>
-        
-        
+        <br/>
+        <label htmlFor="confirm-password">Confirm Password</label>
+        <input
+          type="password"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          onChange={this.handleChange}
+          value={this.state.password}
+        />
+        <br/>
+        <button type="submit" value="user_token" onClick={(event) => this.handleSubmit(event)}>Sign up</button>
       </div>
     )
   }
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(Login));
+export default connect(null, mapDispatchToProps)(withRouter(Signup));
