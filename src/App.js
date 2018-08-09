@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import { Route, Switch, withRouter } from 'react-router-dom';
 
 //STYLING
 import './App.css';
+
+// ADAPTERS
+import AdapterUser from './Adapters/AdapterUser';
+
 //COMPONENTS
 import Header from './Components/Header'
-import MainContainer from './Containers/MainContainer'
+import WelcomeContainer from './Containers/WelcomeContainer'
+import HomeContainer from './Containers/HomeContainer'
 import Footer from './Components/Footer'
 
 class App extends Component {
@@ -13,11 +19,15 @@ class App extends Component {
     return (
       <div className="app">
         <Header />
-        <MainContainer />
+        {
+          !!AdapterUser.getToken() 
+            ? <HomeContainer />
+            : <WelcomeContainer />
+        }        
         <Footer />   
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

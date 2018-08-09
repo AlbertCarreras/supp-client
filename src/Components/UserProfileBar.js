@@ -25,6 +25,7 @@ const UserProfileBar = (props) => {
     function handleLogout() {
         AdapterUser.deleteToken();
         props.logout();
+        props.history.push('/login')
     }
 
     return (

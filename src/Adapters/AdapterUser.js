@@ -14,7 +14,7 @@ class AdapterUser {
   }
 
   static getCurrentUser() {
-    return fetch(`${API}/auth`, {
+    return fetch(`${API}/user/auth`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
