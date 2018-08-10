@@ -1,6 +1,6 @@
 import {LOGIN, LOGOUT, SAVE_PROFILE, SAVE_PROFILE_IMAGE} from './types';
 
-export function login(username, email, userId, profileImageLink) {
+export function login(username, email, userId, profileImageLink=`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`) {
     return {
         type: LOGIN,
         payload: {

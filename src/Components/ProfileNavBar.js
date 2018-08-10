@@ -35,7 +35,10 @@ const ProfileNavBar = (props) => {
             return (
                 <div className="user-profile-bar">
                     <p>{`Welcome, ${props.username}`}</p>
-                    <img className="profile-image" src={`${props.profileImageLink}`} alt="profile" />
+                    <img 
+                        className="profile-image" 
+                        src={`${props.profileImageLink}`}
+                        alt="profile" />
                     <button onClick={()=>handleLogout()}>Log Out</button> 
                     <NavLink to="/home" exact>Home</NavLink>
                     <NavLink to="/user/profile" exact>Profile</NavLink>

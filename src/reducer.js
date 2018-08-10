@@ -7,7 +7,7 @@ const initialState = {
     userId: null,
     loggedIn: false,
     bio: "",
-    profileImageLink: "",
+    profileImageLink: undefined,
   }
   
 export default function reducer(state = initialState, action) {
