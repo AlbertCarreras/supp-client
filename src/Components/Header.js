@@ -7,7 +7,7 @@ const Header = (props) => {
 
     return (
             <div className="app-header">
-                <p className="header-logo">Supp</p>
+                <p className="header-logo animated rubberBand delay-2s">Supp</p>
                 <ProfileNavBar />
             </div>
     );
