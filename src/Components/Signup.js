@@ -17,10 +17,6 @@ const mapDispatchToProps = dispatch => {
 
 class Signup extends Component {
 
-  // const dir = '/tmp/whatever'
-  // randomFile(dir, (err, file) => {
-  // console.log(`The random file is: ${file}.`)
-  // })
   // keeping local state
   state = {
     username: "",
@@ -46,7 +42,6 @@ class Signup extends Component {
           AdapterUser.getCurrentUser()
           .then(json => this.props.login(json.username, json.email, json.id));
           this.props.history.push('/home');
-          
         })
         : console.log("error")
       )
