@@ -10,9 +10,11 @@ import './App.css';
 
 // ADAPTERS
 import AdapterUser from './Adapters/AdapterUser';
+import AdapterLocation from './Adapters/AdapterLocation';
+
 
 // ACTIONS
-import { login } from './actions';
+import { login, getCurrentGeolocation} from './actions';
 
 //COMPONENTS
 import Header from './Components/Header'
@@ -22,23 +24,46 @@ import ProfileContainer from './Containers/ProfileContainer'
 import Footer from './Components/Footer'
 
 // REDUX PROPS 
+const mapStateToProps = state => {
+  return {
+      userId: state.userId,
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
-    login: (username, email, userId, profileImageLink) => dispatch(login(username, email, userId, profileImageLink))
+    login: (username, email, userId, profileImageLink, prevGeolocationLat, prevGeolocationLon) => dispatch(login(username, email, userId, profileImageLink, prevGeolocationLat, prevGeolocationLon)),
+    getCurrentGeolocation: (userId, lat, lon) => dispatch(getCurrentGeolocation(userId,lat, lon))
   }
 }
 
 class App extends Component {
   
-  // AUTO-LOGIN functionality -if token is present in LocalStorage
+  // AUTO-LOGIN/LOCATE functionality -if token is present in LocalStorage
+  getCurrentPosition = () => {
+    if (AdapterUser.getToken() && navigator.geolocation) {
+      return navigator.geolocation.getCurrentPosition(
+        resp => {
+          this.props.getCurrentGeolocation(resp.coords.latitude, resp.coords.longitude);
+          AdapterLocation.persistCurrentGeolocation(this.props.userId, resp.coords.latitude, resp.coords.longitude);
+        }, AdapterLocation.showError)
+    }
+  }
+
   componentDidMount(){
     if (AdapterUser.getToken()) {
       AdapterUser.getCurrentUser()
-      .then(json => this.props.login(json.username, json.email, json.id, json.profile_image))
+      .then(json => this.props.login(json.username, json.email, json.id, json.profile_image, json.lat, json.lon))
       .catch(err => {
         AdapterUser.deleteToken();
       })
     }
+  }
+
+  componentDidUpdate(prevProps){
+    return this.props.userId !== prevProps.userId 
+    ? this.getCurrentPosition()
+    : null
   }
 
   render() {
@@ -68,4 +93,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

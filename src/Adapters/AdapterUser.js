@@ -75,9 +75,5 @@ class AdapterUser {
     .then(resp => resp.json())
   }
 
-  static getBrowserGeolocation(){
-    
-  }
-  
 }
 export default AdapterUser;

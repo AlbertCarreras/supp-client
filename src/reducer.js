@@ -1,4 +1,4 @@
-import {LOGIN, LOGOUT, SAVE_PROFILE, SAVE_PROFILE_IMAGE } from './types';
+import {LOGIN, LOGOUT, SAVE_PROFILE, SAVE_PROFILE_IMAGE, GET_CURRENT_GEOLOCATION} from './types';
 
 //Default App State - REDUX
 const initialState = {
@@ -8,6 +8,8 @@ const initialState = {
     loggedIn: false,
     bio: "",
     profileImageLink: undefined,
+    lat: undefined,
+    lon: undefined,
   }
   
 export default function reducer(state = initialState, action) {
@@ -18,6 +20,8 @@ export default function reducer(state = initialState, action) {
                 email: action.payload.email,
                 userId: action.payload.userId,
                 profileImageLink: action.payload.profileImageLink,
+                prevGeolocationLat: action.payload.prevGeolocationLat, 
+                prevGeolocationLon: action.payload.prevGeolocationLon,
                 loggedIn: true
             }
         case LOGOUT:
@@ -37,6 +41,11 @@ export default function reducer(state = initialState, action) {
             return { ...state,
                 profileImageLink: action.payload.profileImageLink,
             }
+        case GET_CURRENT_GEOLOCATION:
+        return { ...state,
+                lat: action.payload.lat,
+                lon: action.payload.lon,
+            }       
         default:
             return state;
     }
