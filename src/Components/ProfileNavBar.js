@@ -13,6 +13,7 @@ const mapStateToProps = state => {
     return {
         username: state.username.charAt(0).toUpperCase() + state.username.slice(1),
         loggedIn: state.loggedIn,
+        profileImageLink: state.profileImageLink,
     }
 }
 
@@ -34,6 +35,7 @@ const ProfileNavBar = (props) => {
             return (
                 <div className="user-profile-bar">
                     <p>{`Welcome, ${props.username}`}</p>
+                    <img className="profile-image" src={`${props.profileImageLink}`} alt="profile" />
                     <button onClick={()=>handleLogout()}>Log Out</button> 
                     <NavLink to="/home" exact>Home</NavLink>
                     <NavLink to="/user/profile" exact>Profile</NavLink>

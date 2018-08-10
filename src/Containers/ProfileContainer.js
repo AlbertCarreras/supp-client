@@ -1,15 +1,28 @@
 import React, { Component, Fragment } from 'react';
+import { withRouter} from 'react-router-dom';
+import { connect } from 'react-redux';
 
 // ADAPTERS
 import AdapterUser from './../Adapters/AdapterUser';
 
 // ACTIONS
 import { saveProfile } from '../actions';
+import { saveProfileImage } from '../actions';
+
 
 // REDUX PROPS 
+
+const mapStateToProps = state => {
+    return {
+        user_id: state.userId,
+        profileImageLink: state.profileImageLink
+    }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
-    saveProfile: (username, email, userId) => dispatch(saveProfile(username, email, userId))
+    saveProfile: (username, bio) => dispatch(saveProfile(username, bio)),
+    saveProfileImage: (profileImageLink) => dispatch(saveProfileImage(profileImageLink))
   }
 }
 
@@ -19,7 +32,7 @@ class ProfileContainer extends Component {
     state = {
         username: "",
         bio: "",
-        photo: ""
+        profile_image: undefined
     };
 
     //PROPS FUNCTIONALITY: Button handlers
@@ -29,28 +42,29 @@ class ProfileContainer extends Component {
         })
     }
 
+    handleUpload = (event) => {
+        this.setState({
+        [event.target.name]: event.target.files[0],
+        })
+    }
+
     handleSubmit = () => {
-        AdapterUser.signup(this.state)
-        .then(json => json.ok
-            ? AdapterUser.login(this.state)
-            .then(json => {
-            AdapterUser.setToken(json.jwt);
-            AdapterUser.getCurrentUser()
-            .then(json => this.props.login(json.username, json.email, json.id));
-            this.props.history.push('/home');
-            })
-            : console.log("error")
-        )
+        let formData = new FormData();
+        formData.append('user_id', this.props.user_id);
+        formData.append('profile_image', this.state.profile_image);
+        AdapterUser.uploadProfile(formData)
+        .then(json => this.props.saveProfileImage(json.url))
     }
 
     render() {
+        console.log(this.state)
         return (
             <Fragment>
                 <div className="profile-container">
                 <label htmlFor="email"> Username </label>
                 <input
                     type="text"
-                    name="Username"
+                    name="username"
                     placeholder="Username"
                     onChange={this.handleChange}
                     value={this.state.username}
@@ -68,8 +82,8 @@ class ProfileContainer extends Component {
                 <input
                     type="file"
                     name="profile_image"
-                    placeholder="Select a photo"
-                    onChange={this.handleChange}
+                    ref={this.fileInput}
+                    onChange={this.handleUpload}
                 />
                 <br/>
                 <button type="submit" onClick={this.handleSubmit}>Save Profile</button>            
@@ -78,4 +92,4 @@ class ProfileContainer extends Component {
         );
     }
 }
-export default connect(null, mapDispatchToProps)(withRouter(ProfileContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ProfileContainer));

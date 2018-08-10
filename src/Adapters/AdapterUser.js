@@ -63,5 +63,21 @@ class AdapterUser {
       }})
     })
   }
+
+  static uploadProfile(formData) {
+    return fetch(`${API}/users/uploadProfile`, {
+    method: 'POST',
+    headers: {
+      "Authorization": `Bearer ${this.getToken()}`
+    },
+    body: formData
+    })
+    .then(resp => resp.json())
+  }
+
+  static getBrowserGeolocation(){
+    
+  }
+  
 }
 export default AdapterUser;
