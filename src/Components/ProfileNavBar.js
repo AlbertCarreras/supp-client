@@ -33,16 +33,22 @@ const ProfileNavBar = (props) => {
     function toggleLogin() {
         if (props.loggedIn) {
             return (
-                <div className="user-profile-bar">
-                    <p>{`Welcome, ${props.username}`}</p>
+                <div className="dropdown user-profile-bar">
                     <img 
                         className="profile-image" 
                         src={`${props.profileImageLink}`}
-                        alt="profile" />
-                    <button onClick={()=>handleLogout()}>Log Out</button> 
-                    <NavLink to="/home" exact>Home</NavLink>
-                    <NavLink to="/user/profile" exact>Profile</NavLink>
+                        alt="profile" 
+                    />
+                    <div className="dropdown-content">
+                        <div className="dropdown-item">
+                            <p>{props.username}</p>
+                        </div>
+                        <NavLink to="/home" exact>Home</NavLink>
+                        <NavLink to="/user/profile" exact>Profile</NavLink>
+                        <button className="logout-btn" onClick={()=>handleLogout()}>Log Out</button> 
+                    </div>
                 </div>
+                    
             )
         }
         return null
