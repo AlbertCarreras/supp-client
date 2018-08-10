@@ -49,7 +49,7 @@ class Signup extends Component {
 
   render() {
     return (
-      <div className="login">
+      <div className="overlay-box signup">
         <h3>Have an account? <NavLink to="/login" exact>Log in</NavLink></h3>
         <h3 className="welcome-form">SIGN UP</h3>
         <label htmlFor="username"> Username </label>
@@ -89,6 +89,12 @@ class Signup extends Component {
         />
         <br/>
         <button type="submit" onClick={this.handleSubmit}>Sign up</button>
+        <div>
+          <h3 className="signup-message">Find people around you</h3>
+          <h3 className="signup-message">Who love what you love</h3>
+          <h3 className="signup-message signup-message-connect">Connect!</h3>
+          <h3 className="signup-message">Make new friends</h3>
+        </div>
       </div>
     )
   }

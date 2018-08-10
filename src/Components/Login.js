@@ -41,7 +41,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="login">
+      <div className="overlay-box login">
         <h3 className="welcome-form">LOG IN</h3>
         <label htmlFor="email">Email</label>
         <input
