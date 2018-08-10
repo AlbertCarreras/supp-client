@@ -1,4 +1,4 @@
-import {LOGIN, LOGOUT, SAVE_PROFILE, SAVE_PROFILE_IMAGE, GET_CURRENT_GEOLOCATION} from './types';
+import {LOGIN, LOGOUT, SAVE_PROFILE, SAVE_PROFILE_IMAGE, GET_CURRENT_GEOLOCATION, GET_CLOSEST_USERS} from './types';
 
 export function login(username, email, userId, profileImageLink=`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`, prevGeolocationLat, prevGeolocationLon) {
     return {
@@ -46,6 +46,15 @@ export function getCurrentGeolocation(lat, lon) {
         payload: {
             lat: lat,
             lon: lon,
+        }
+    }
+}
+
+export function getClosestUsers(closestUsers) {
+    return {
+        type: GET_CLOSEST_USERS,
+        payload: {
+            closestUsers: closestUsers,
         }
     }
 }

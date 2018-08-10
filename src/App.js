@@ -11,10 +11,11 @@ import './App.css';
 // ADAPTERS
 import AdapterUser from './Adapters/AdapterUser';
 import AdapterLocation from './Adapters/AdapterLocation';
+import AdapterUsers from './Adapters/AdapterUsers';
 
 
 // ACTIONS
-import { login, getCurrentGeolocation} from './actions';
+import { login, getCurrentGeolocation, getClosestUsers} from './actions';
 
 //COMPONENTS
 import Header from './Components/Header'
@@ -27,13 +28,15 @@ import Footer from './Components/Footer'
 const mapStateToProps = state => {
   return {
       userId: state.userId,
+      closestUsers: state.closestUsers,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     login: (username, email, userId, profileImageLink, prevGeolocationLat, prevGeolocationLon) => dispatch(login(username, email, userId, profileImageLink, prevGeolocationLat, prevGeolocationLon)),
-    getCurrentGeolocation: (userId, lat, lon) => dispatch(getCurrentGeolocation(userId,lat, lon))
+    getCurrentGeolocation: (userId, lat, lon) => dispatch(getCurrentGeolocation(userId,lat, lon)),
+    getClosestUsers: (closestUsers) => dispatch(getClosestUsers(closestUsers)),
   }
 }
 
@@ -57,6 +60,8 @@ class App extends Component {
       .catch(err => {
         AdapterUser.deleteToken();
       })
+      AdapterUsers.getClosestUsers()
+      .then(json => this.props.getClosestUsers(json))
     }
   }
 

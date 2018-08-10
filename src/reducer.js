@@ -1,4 +1,4 @@
-import {LOGIN, LOGOUT, SAVE_PROFILE, SAVE_PROFILE_IMAGE, GET_CURRENT_GEOLOCATION} from './types';
+import {LOGIN, LOGOUT, SAVE_PROFILE, SAVE_PROFILE_IMAGE, GET_CURRENT_GEOLOCATION, GET_CLOSEST_USERS} from './types';
 
 //Default App State - REDUX
 const initialState = {
@@ -10,6 +10,7 @@ const initialState = {
     profileImageLink: undefined,
     lat: undefined,
     lon: undefined,
+    closestUsers: [],
   }
   
 export default function reducer(state = initialState, action) {
@@ -42,10 +43,14 @@ export default function reducer(state = initialState, action) {
                 profileImageLink: action.payload.profileImageLink,
             }
         case GET_CURRENT_GEOLOCATION:
+            return { ...state,
+                    lat: action.payload.lat,
+                    lon: action.payload.lon,
+            }
+        case GET_CLOSEST_USERS:
         return { ...state,
-                lat: action.payload.lat,
-                lon: action.payload.lon,
-            }       
+                closestUsers: action.payload.closestUsers,
+        }      
         default:
             return state;
     }
