@@ -69,6 +69,7 @@
   border-radius: 10px;
   padding: 5px;
   margin: 5px;
+  z-index: 1;
 }
 
 .profile-image-username {
@@ -77,6 +78,7 @@
   font-family: 'Sniglet', cursive;
   font-weight: 400;
   color: white;
+  z-index: 2;
 }
 
 .profile-image-logged {
@@ -88,6 +90,7 @@
   margin: 95px 90px;
   font-family: 'Sniglet', cursive;
   font-weight: 400;
+  z-index: 2;
 }
 
 .messaging-container  { 

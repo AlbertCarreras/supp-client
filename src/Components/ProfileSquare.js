@@ -19,10 +19,10 @@ const mapDispatchToProps = dispatch => {
 const ProfileSquare = (props) => {
     return (
         <div>
-            <p className="profile-image-username">{props.username}</p>
-            <div className="profile-image-logged"></div>
+            <p className="profile-image-username animated flipInY">{props.username}</p>
+            <div className="profile-image-logged animated flipInY"></div>
             <img 
-                className="profile-image-list animated flipInY delay-5s" 
+                className="profile-image-list animated flipInY" 
                 src={`${props.profileImageLink}`}
                 alt="profile" 
             />
