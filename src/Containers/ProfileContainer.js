@@ -48,16 +48,17 @@ class ProfileContainer extends Component {
         })
     }
 
-    handleSubmit = () => {
-        let formData = new FormData();
-        formData.append('user_id', this.props.user_id);
-        formData.append('profile_image', this.state.profile_image);
-        AdapterUser.uploadProfile(formData)
-        .then(json => this.props.saveProfileImage(json.url))
+    handleSubmit = () => {        
+        this.state.profile_image 
+            ? AdapterUser.uploadProfile(this.props.user_id, this.state.profile_image)
+            .then(json => this.props.saveProfileImage(json.url))
+            :null
+        AdapterUser.updateProfileInfo(this.props.user_id, this.state.username, this.state.bio)
+        .then(json => this.props.saveProfile(json.username, json.bio))
+        this.props.history.push('/home');
     }
 
     render() {
-        console.log(this.state)
         return (
             <Fragment>
                 <div className="profile-container">

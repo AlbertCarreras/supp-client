@@ -78,13 +78,22 @@
 
 .profile-image-username {
   position: absolute;
-  margin: 90px 0px 0px 15px;
+  margin: 85px 0px 0px 15px;
   font-family: 'Sniglet', cursive;
   font-weight: 400;
   color: white;
   z-index: 2;
 }
 
+.profile-image-distance {
+  position: absolute;
+  margin: 100px 0px 0px 15px;
+  font-family: 'Sniglet', cursive;
+  font-weight: 400;
+  font-size: .60em;
+  color: white;
+  z-index: 2;
+}
 .profile-image-logged {
   height: 10px;
   width: 10px;

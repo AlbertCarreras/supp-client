@@ -29,6 +29,11 @@ class CentralContainer extends Component {
                     key={user.userId}
                     username={user.username}
                     profileImageLink={user.profileImageLink}
+                    distance={
+                        user.distance < 1 
+                            ? `${(user.distance * 5280).toFixed(1)} ft`
+                            : `${(user.distance).toFixed(1)} mi`
+                    }
                 />
             )
         )

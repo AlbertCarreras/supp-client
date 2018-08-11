@@ -64,7 +64,11 @@ class AdapterUser {
     })
   }
 
-  static uploadProfile(formData) {
+  static uploadProfile(userId, profileImage) {
+    let formData = new FormData();
+    formData.append('user_id', userId);
+    formData.append('profile_image', profileImage);
+
     return fetch(`${API}/users/uploadProfile`, {
     method: 'POST',
     headers: {
@@ -74,6 +78,35 @@ class AdapterUser {
     })
     .then(resp => resp.json())
   }
+        
 
+  static  updateProfileInfo(userId, username, bio) {
+    let body = {"user": {}}
+
+    username
+    ? body = Object.assign({}, body, {"user": {
+      ...body.user,
+      "username": username
+    }}) 
+    : null
+    
+    bio
+    ? body = Object.assign({}, body, {"user": {
+      ...body.user,
+      "bio": bio
+    }}) 
+    : null
+    
+    return fetch(`${API}/user/${userId}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${AdapterUser.getToken()}`
+        },
+        body: JSON.stringify(body)
+    })
+    .then(resp => resp.json())
+  }
 }
+
 export default AdapterUser;
