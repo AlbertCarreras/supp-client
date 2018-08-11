@@ -28,6 +28,7 @@ import Footer from './Components/Footer'
 const mapStateToProps = state => {
   return {
       userId: state.userId,
+      loggedIn: state.loggedIn,
       closestUsers: state.closestUsers,
   }
 }
@@ -66,9 +67,13 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps){
-    return this.props.userId !== prevProps.userId 
-    ? this.getCurrentPosition()
-    : null
+    if (this.props.userId !== prevProps.userId) {
+      this.getCurrentPosition();
+      return this.props.loggedIn 
+      ? AdapterUsers.getClosestUsers()
+        .then(json => this.props.getClosestUsers(json))
+      : null
+      }
   }
 
   render() {
