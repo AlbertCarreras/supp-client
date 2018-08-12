@@ -29,8 +29,10 @@ export default function reducer(state = initialState, action) {
             return { ...state,
                 username: "",
                 email: "",
-                userId: null,
+                userId: undefined,
                 profileImageLink: "",
+                prevGeolocationLat: undefined, 
+                prevGeolocationLon: undefined,
                 loggedIn: false
             }
         case SAVE_PROFILE:

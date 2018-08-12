@@ -8,7 +8,7 @@ import './App.css';
 // ADAPTERS
 import AdapterUser from './Adapters/AdapterUser';
 import AdapterLocation from './Adapters/AdapterLocation';
-import AdapterUsers from './Adapters/AdapterUsers';
+import Adapters from './Adapters/Adapters';
 
 
 // ACTIONS
@@ -57,8 +57,9 @@ class App extends Component {
       .then(json => this.props.login(json.username, json.email, json.id, json.profile_image, json.lat, json.lon))
       .catch(err => {
         AdapterUser.deleteToken();
+        this.props.history.push('/login');
       })
-      AdapterUsers.getClosestUsers()
+      Adapters.getClosestUsers()
       .then(json => this.props.getClosestUsers(json))
     }
   }
@@ -67,7 +68,7 @@ class App extends Component {
     if (this.props.userId !== prevProps.userId) {
       this.getCurrentPosition();
       return this.props.loggedIn 
-      ? AdapterUsers.getClosestUsers()
+      ? Adapters.getClosestUsers()
         .then(json => this.props.getClosestUsers(json))
       : null
       }

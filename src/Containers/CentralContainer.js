@@ -15,11 +15,6 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-    }
-  }
-
 class CentralContainer extends Component {
 
     generateUserList = (closestUsers) => {
@@ -56,4 +51,4 @@ class CentralContainer extends Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CentralContainer);
+export default connect(mapStateToProps, null)(CentralContainer);

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 // ADAPTERS
 import AdapterUser from './../Adapters/AdapterUser';
+import Adapters from './../Adapters/Adapters';
 
 // ACTIONS
 import { logout } from '../actions';
@@ -11,7 +12,7 @@ import { logout } from '../actions';
 // REDUX PROPS 
 const mapStateToProps = state => {
     return {
-        username: state.username.charAt(0).toUpperCase() + state.username.slice(1),
+        username: Adapters.capitalize(state.username),
         loggedIn: state.loggedIn,
         profileImageLink: state.profileImageLink,
     }

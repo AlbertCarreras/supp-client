@@ -45,6 +45,9 @@ class Signup extends Component {
         })
         : console.log("error")
       )
+      .catch(err => {
+        this.props.history.push('/signup');
+      })
   }
 
   render() {

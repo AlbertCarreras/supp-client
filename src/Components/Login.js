@@ -37,6 +37,9 @@ class Login extends Component {
         .then(json => this.props.login(json.username, json.email, json.id, json.profile_image))
         this.props.history.push('/home');
       })
+      .catch(err => {
+        this.props.history.push('/login');
+      })
   }
 
   render() {
