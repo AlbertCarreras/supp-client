@@ -1,4 +1,9 @@
-import {LOGIN, LOGOUT, SAVE_PROFILE, SAVE_PROFILE_IMAGE, GET_CURRENT_GEOLOCATION, GET_CLOSEST_USERS} from './types';
+import {
+    LOGIN, LOGOUT, 
+    SAVE_PROFILE, SAVE_PROFILE_IMAGE, 
+    GET_CURRENT_GEOLOCATION, GET_CLOSEST_USERS,
+    SELECT_COMMON_INTERESTS
+} from './types';
 
 //Default App State - REDUX
 const initialState = {
@@ -11,6 +16,7 @@ const initialState = {
     lat: undefined,
     lon: undefined,
     closestUsers: [],
+    selectedCommonInterest: undefined,
   }
   
 export default function reducer(state = initialState, action) {
@@ -23,7 +29,8 @@ export default function reducer(state = initialState, action) {
                 profileImageLink: action.payload.profileImageLink,
                 prevGeolocationLat: action.payload.prevGeolocationLat, 
                 prevGeolocationLon: action.payload.prevGeolocationLon,
-                loggedIn: true
+                loggedIn: true,
+                selectedCommonInterest: action.payload.selectedCommonInterest,
             }
         case LOGOUT:
             return { ...state,
@@ -33,6 +40,7 @@ export default function reducer(state = initialState, action) {
                 profileImageLink: "",
                 prevGeolocationLat: undefined, 
                 prevGeolocationLon: undefined,
+                selectedCommonInterest: undefined,
                 loggedIn: false
             }
         case SAVE_PROFILE:
@@ -50,9 +58,15 @@ export default function reducer(state = initialState, action) {
                     lon: action.payload.lon,
             }
         case GET_CLOSEST_USERS:
+            return { ...state,
+                    closestUsers: action.payload.closestUsers,
+            }    
+
+        case SELECT_COMMON_INTERESTS:
         return { ...state,
-                closestUsers: action.payload.closestUsers,
+            selectedCommonInterest: action.payload.selectedCommonInterest,
         }      
+  
         default:
             return state;
     }

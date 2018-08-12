@@ -7,7 +7,6 @@ class FilterContainer extends Component {
     render() {
         return (
             <div className="aside filter-container">
-                <p>INTEREST SEARCH</p>
                 <SearchBox />
                 <br/>
                 <p>YOUR INTERESTS</p>

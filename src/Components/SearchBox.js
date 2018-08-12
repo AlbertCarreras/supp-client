@@ -1,5 +1,8 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import { withRouter } from "react-router-dom";
+import { Icon } from 'semantic-ui-react'
+import { connect } from 'react-redux';
+
 import _ from 'lodash'
 
 // ADAPTERS
@@ -7,6 +10,13 @@ import Adapters from './../Adapters/Adapters';
 
 //COMPONENTS
 import SearchList from './SearchList'
+
+// REDUX PROPS 
+const mapStateToProps = state => {
+    return {
+        selectedCommonInterest: state.selectedCommonInterest,
+    }
+}
 
 class SearchBox extends Component {
     // keeping local state
@@ -30,12 +40,7 @@ class SearchBox extends Component {
                 })
             : _.debounce( 
                 () => Adapters.getSearchMatches(searchTerm)
-                .then( resp => {
-                    searchTerm === ""
-                    this.setState({
-                        searchTermArray: resp,
-                    })
-                })
+                .then( resp => this.setState({searchTermArray: resp}))
                 .catch(err => {})
             , 500).call(this)
 
@@ -48,6 +53,17 @@ class SearchBox extends Component {
     render () {
         return (
                 <div className="ui search">
+                <Fragment>
+                            {this.props.selectedCommonInterest !== undefined
+                                ?   <div>
+                                        <p>Meet people who love...</p>
+                                        {Adapters.capitalize(this.props.selectedCommonInterest.name)}
+                                        <Icon color='teal' name='remove' />
+                                    </div>
+                                : <p>Find people who love</p>
+
+                            }
+                        </Fragment>
                     <div className="ui icon input">
                         <input 
                             className="prompt" 
@@ -65,4 +81,4 @@ class SearchBox extends Component {
     }
 };
 
-export default withRouter(SearchBox);
+export default connect(mapStateToProps, null)(withRouter(SearchBox));

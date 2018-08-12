@@ -1,4 +1,9 @@
-import {LOGIN, LOGOUT, SAVE_PROFILE, SAVE_PROFILE_IMAGE, GET_CURRENT_GEOLOCATION, GET_CLOSEST_USERS} from './types';
+import {
+    LOGIN, LOGOUT, 
+    SAVE_PROFILE, SAVE_PROFILE_IMAGE, 
+    GET_CURRENT_GEOLOCATION, GET_CLOSEST_USERS,
+    SELECT_COMMON_INTERESTS
+} from './types';
 
 export function login(username, email, userId, profileImageLink=`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`, prevGeolocationLat, prevGeolocationLon) {
     return {
@@ -55,6 +60,15 @@ export function getClosestUsers(closestUsers) {
         type: GET_CLOSEST_USERS,
         payload: {
             closestUsers: closestUsers,
+        }
+    }
+}
+
+export function selectCommonInterests(selectedCommonInterest) {
+    return {
+        type: SELECT_COMMON_INTERESTS,
+        payload: {
+            selectedCommonInterest: selectedCommonInterest,
         }
     }
 }

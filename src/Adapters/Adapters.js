@@ -1,4 +1,3 @@
-
 // ADAPTERS
 import {API} from './AdapterUser'
 import AdapterUser from './AdapterUser';
