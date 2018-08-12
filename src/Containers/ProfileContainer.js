@@ -49,13 +49,13 @@ class ProfileContainer extends Component {
     }
 
     handleSubmit = () => {        
-        this.state.profile_image 
-            ? AdapterUser.uploadProfile(this.props.user_id, this.state.profile_image)
+        if (this.state.profile_image) {
+            AdapterUser.uploadProfile(this.props.user_id, this.state.profile_image)
             .then(json => this.props.saveProfileImage(json.url))
-            :null
-        AdapterUser.updateProfileInfo(this.props.user_id, this.state.username, this.state.bio)
-        .then(json => this.props.saveProfile(json.username, json.bio))
-        this.props.history.push('/home');
+            AdapterUser.updateProfileInfo(this.props.user_id, this.state.username, this.state.bio)
+                .then(json => this.props.saveProfile(json.username, json.bio))
+                this.props.history.push('/home');
+        } 
     }
 
     render() {

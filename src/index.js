@@ -10,6 +10,7 @@ import store from './store';
 
 //STYLING
 import './index.css';
+import 'semantic-ui/dist/semantic.min.css';
 
 //COMPONENTS
 import App from './App';

@@ -7,7 +7,6 @@
 .app-header {
   display: flex;
   background-color: #5CDB95;
-  height: 60px;
   padding: 20px;
 }
 
@@ -55,6 +54,11 @@
   flex: 1 2 25%; 
 }
 
+.central-container::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
 .central-container  { 
   background: #379683;
   flex: 2 1 50%; 
@@ -78,7 +82,7 @@
 
 .profile-image-username {
   position: absolute;
-  margin: 85px 0px 0px 15px;
+  margin: 75px 0px 0px 15px;
   font-family: 'Sniglet', cursive;
   font-weight: 400;
   color: white;
@@ -87,7 +91,7 @@
 
 .profile-image-distance {
   position: absolute;
-  margin: 100px 0px 0px 15px;
+  margin: 85px 0px 0px 15px;
   font-family: 'Sniglet', cursive;
   font-weight: 400;
   font-size: .60em;
@@ -100,7 +104,7 @@
   border-radius: 25px;
   background: #5CDB95;
   position: absolute;
-  margin: 95px 0px 0px 90px;
+  margin: 85px 0px 0px 85px;
   font-family: 'Sniglet', cursive;
   font-weight: 400;
   z-index: 2;
@@ -112,7 +116,6 @@
 
 .app-footer {
   background-color: #5CDB95;
-  height: 50px;
   padding: 20px;
 }
 
@@ -216,6 +219,7 @@ img {
 /* Dropdown Logout Button */
 .logout-btn {
   border: none;
+  font-size: 1em;
   background-color: #379683;
   color: #05386B;
   width: 100%;

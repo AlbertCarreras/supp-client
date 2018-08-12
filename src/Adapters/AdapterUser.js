@@ -81,21 +81,21 @@ class AdapterUser {
         
 
   static  updateProfileInfo(userId, username, bio) {
-    let body = {"user": {}}
+    let body = {"user": {}};
 
-    username
-    ? body = Object.assign({}, body, {"user": {
-      ...body.user,
-      "username": username
-    }}) 
-    : null
-    
-    bio
-    ? body = Object.assign({}, body, {"user": {
-      ...body.user,
-      "bio": bio
-    }}) 
-    : null
+    if (username) {
+      body = Object.assign({}, body, {"user": {
+        ...body.user,
+        "username": username
+      }
+    })} 
+
+    if (bio) {
+      body = Object.assign({}, body, {"user": {
+        ...body.user,
+        "bio": bio
+      }
+    })}
     
     return fetch(`${API}/user/${userId}`, {
         method: 'PATCH',

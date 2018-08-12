@@ -8,6 +8,7 @@ import ProfileSquare from "./../Components/ProfileSquare"
 const mapStateToProps = state => {
     return {
         username: state.username,
+        bio: state.bio,
         loggedIn: state.loggedIn,
         profileImageLink: state.profileImageLink,
         closestUsers: state.closestUsers,
@@ -27,6 +28,7 @@ class CentralContainer extends Component {
                 (user) => 
                 <ProfileSquare 
                     key={user.userId}
+                    bio={user.bio}
                     username={user.username}
                     profileImageLink={user.profileImageLink}
                     distance={
@@ -40,10 +42,12 @@ class CentralContainer extends Component {
     }
 
     render() {
+        
         return (
             <div className="central-container">
                 <ProfileSquare 
                     username={"YOU"}
+                    bio={this.props.bio}
                     profileImageLink={this.props.profileImageLink}
                 />
                 {this.generateUserList(this.props.closestUsers)}

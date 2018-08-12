@@ -1,9 +1,6 @@
 import React, { Component, Fragment} from 'react';
 import { connect } from 'react-redux';
-import {
-  Route,
-  withRouter
-} from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 
 //STYLING
 import './App.css';
