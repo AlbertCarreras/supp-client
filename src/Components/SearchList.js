@@ -55,6 +55,7 @@ const SearchList = (props) => {
                             onClick={() => {
                                 props.addUserInterests(term)
                                 AdapterUser.persistAddInterests(props.userId, props.userInterests)
+                                .then(console.log)
                             }}
                             color='teal'
                             name='user plus'
