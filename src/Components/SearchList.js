@@ -8,7 +8,7 @@ import Adapters from './../Adapters/Adapters';
 import AdapterUser from './../Adapters/AdapterUser';
 
 // ACTIONS
-import { selectCommonInterests, addUserInterests, saveFilteredClosestUsers } from '../actions';
+import { selectCommonInterests, saveUserInterests, saveFilteredClosestUsers } from '../actions';
 
 // REDUX PROPS 
 const mapStateToProps = state => {
@@ -22,7 +22,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         selectCommonInterests: (selectedCommonInterest) => dispatch(selectCommonInterests(selectedCommonInterest)),
-        addUserInterests: (selectedUserInterest) => dispatch(addUserInterests(selectedUserInterest)),
+        saveUserInterests: (userInterestArray) => dispatch(saveUserInterests(userInterestArray)),
         saveFilteredClosestUsers: (closestUsers) => dispatch(saveFilteredClosestUsers(closestUsers)),
 
     }
@@ -53,10 +53,8 @@ const SearchList = (props) => {
                         />
                         <Icon 
                             onClick={() => {
-                                props.addUserInterests(term)
-                                AdapterUser.persistAddInterests(props.userId, 
-                                    [{id: 34, name: "bird watching"}, {id: 22, name: "auto audiophilia"}])
-                                .then(console.log)
+                                AdapterUser.persistAddInterests(props.userId, term)
+                                .then(resp => props.saveUserInterests(resp))
                             }}
                             color='teal'
                             name='user plus'

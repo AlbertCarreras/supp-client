@@ -2,7 +2,7 @@ import {
     LOGIN, LOGOUT, 
     SAVE_PROFILE, SAVE_PROFILE_IMAGE, 
     SAVE_CURRENT_GEOLOCATION, SAVE_CLOSEST_USERS,
-    ADD_USER_INTERESTS, REMOVE_USER_INTERESTS,
+    SAVE_USER_INTERESTS, REMOVE_USER_INTERESTS,
     SAVE_FILTERED_CLOSEST_USERS,
     SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS
 } from './types';
@@ -84,9 +84,9 @@ export default function reducer(state = initialState, action) {
             selectedCommonInterest: undefined,
         }  
 
-        case ADD_USER_INTERESTS:
+        case SAVE_USER_INTERESTS:
         return { ...state,
-            userInterests: [...state.userInterests, action.payload.selectedUserInterest]
+            userInterests: action.payload.userInterestArray,
         }
 
         case REMOVE_USER_INTERESTS:

@@ -112,8 +112,8 @@ class AdapterUser {
     let bodyPersistAddInterests = {"user": {
       "interests": userInterests
     }};
-    return fetch(`${API}/user/${userId}`, {
-        method: 'PATCH',
+    return fetch(`${API}/user/${userId}/interests`, {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${AdapterUser.getToken()}`
