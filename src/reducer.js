@@ -34,6 +34,7 @@ export default function reducer(state = initialState, action) {
                 prevGeolocationLat: action.payload.prevGeolocationLat, 
                 prevGeolocationLon: action.payload.prevGeolocationLon,
                 loggedIn: true,
+                userInterests: action.payload.userInterests,
                 selectedCommonInterest: action.payload.selectedCommonInterest,
             }
         case LOGOUT:
@@ -50,6 +51,7 @@ export default function reducer(state = initialState, action) {
                 closestUsers: [],
                 selectedCommonInterest: undefined,
             }
+            
         case SAVE_PROFILE:
             return { ...state,
                 username: action.payload.username,

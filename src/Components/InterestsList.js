@@ -8,6 +8,9 @@ import Adapters from './../Adapters/Adapters';
 // ACTIONS
 import { unselectCommonInterests } from '../actions'
 
+//COMPONENTS
+import UserInterestList from './UserInterestList'
+
 // REDUX PROPS 
 const mapStateToProps = state => {
     return {
@@ -41,7 +44,7 @@ class InterestsList extends Component {
                             : null
                     } 
                 <div>What you <Icon color='red' name='heart'/></div>
-                    
+                <UserInterestList />
             </div>
        
         );

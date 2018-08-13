@@ -7,7 +7,7 @@ import {
     SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS,
 } from './types';
 
-export function login(username, email, userId, bio, profileImageLink=`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`, prevGeolocationLat, prevGeolocationLon) {
+export function login(username, email, userId, bio, userInterests, profileImageLink=`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`, prevGeolocationLat, prevGeolocationLon) {
     return {
         type: LOGIN,
         payload: {
@@ -16,6 +16,7 @@ export function login(username, email, userId, bio, profileImageLink=`/assets/av
             userId: userId,
             bio: bio,
             loggedIn: true,
+            userInterests: userInterests,
             profileImageLink: profileImageLink,
             prevGeolocationLat: prevGeolocationLat, 
             prevGeolocationLon: prevGeolocationLon, 

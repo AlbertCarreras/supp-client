@@ -11,7 +11,7 @@ import { login } from '../actions';
 // REDUX PROPS 
 const mapDispatchToProps = dispatch => {
   return {
-    login: (username, email, userId, bio, profileImageLink, prevGeolocationLat, prevGeolocationLon) => dispatch(login(username, email, userId, bio, profileImageLink, prevGeolocationLat, prevGeolocationLon))
+    login: (username, email, userId, bio, userInterests, profileImageLink, prevGeolocationLat, prevGeolocationLon) => dispatch(login(username, email, userId, bio, userInterests, profileImageLink, prevGeolocationLat, prevGeolocationLon))
   }
 }
 
@@ -34,7 +34,7 @@ class Login extends Component {
       .then(json => {
         AdapterUser.setToken(json.jwt);
         AdapterUser.getCurrentUser()
-        .then(json => this.props.login(json.username, json.email, json.id, json.bio, json.profile_image, json.lat, json.lon))
+        .then(json => this.props.login(json.username, json.email, json.id, json.bio, json.userInterests, json.profile_image, json.lat, json.lon))
         this.props.history.push('/home');
       })
       .catch(err => {
