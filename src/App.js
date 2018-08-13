@@ -34,7 +34,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    login: (username, email, userId, profileImageLink, prevGeolocationLat, prevGeolocationLon) => dispatch(login(username, email, userId, profileImageLink, prevGeolocationLat, prevGeolocationLon)),
+    login: (username, email, userId, bio, profileImageLink, prevGeolocationLat, prevGeolocationLon) => dispatch(login(username, email, userId, bio, profileImageLink, prevGeolocationLat, prevGeolocationLon)),
     saveCurrentGeolocation: (userId, lat, lon) => dispatch(saveCurrentGeolocation(userId,lat, lon)),
     saveClosestUsers: (closestUsers) => dispatch(saveClosestUsers(closestUsers)),
   }
@@ -57,7 +57,7 @@ class App extends Component {
   componentDidMount(){
     if (AdapterUser.getToken()) {
       AdapterUser.getCurrentUser()
-      .then(json => this.props.login(json.username, json.email, json.id, json.profile_image, json.lat, json.lon))
+      .then(json => this.props.login(json.username, json.email, json.id, json.bio, json.profile_image, json.lat, json.lon))
       .catch(err => {
         AdapterUser.deleteToken();
         this.props.history.push('/login');
@@ -81,7 +81,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className="app">
         <Header />

@@ -28,6 +28,7 @@ export default function reducer(state = initialState, action) {
                 username: action.payload.username,
                 email: action.payload.email,
                 userId: action.payload.userId,
+                bio: action.payload.bio,
                 profileImageLink: action.payload.profileImageLink,
                 prevGeolocationLat: action.payload.prevGeolocationLat, 
                 prevGeolocationLon: action.payload.prevGeolocationLon,
