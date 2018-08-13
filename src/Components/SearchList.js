@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 // ADAPTERS
 import Adapters from './../Adapters/Adapters';
+import AdapterUser from './../Adapters/AdapterUser';
 
 // ACTIONS
 import { selectCommonInterests, addUserInterests, saveFilteredClosestUsers } from '../actions';
@@ -13,6 +14,8 @@ import { selectCommonInterests, addUserInterests, saveFilteredClosestUsers } fro
 const mapStateToProps = state => {
     return {
         selectedInterest: state.selectedCommonInterest,
+        userInterests: state.userInterests,
+        userId: state.userId
     }
 }
 
@@ -49,7 +52,10 @@ const SearchList = (props) => {
                             name='users' 
                         />
                         <Icon 
-                            onClick={() => props.addUserInterests(term)}
+                            onClick={() => {
+                                props.addUserInterests(term)
+                                AdapterUser.persistAddInterests(props.userId, props.userInterests)
+                            }}
                             color='teal'
                             name='user plus'
                         />
