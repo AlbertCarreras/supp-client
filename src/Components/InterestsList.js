@@ -12,6 +12,7 @@ import { unselectCommonInterests } from '../actions'
 const mapStateToProps = state => {
     return {
         selectedCommonInterest: state.selectedCommonInterest,
+        userInterests: state.userInterests
     }
 }
 
@@ -39,7 +40,8 @@ class InterestsList extends Component {
                                 </div>
                             : null
                     } 
-                    <div>What you <Icon color='red' name='heart'/></div>
+                <div>What you <Icon color='red' name='heart'/></div>
+                    
             </div>
        
         );

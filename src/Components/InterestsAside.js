@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Icon } from 'semantic-ui-react'
 
 //COMPONENTS
 import Search from './Search';

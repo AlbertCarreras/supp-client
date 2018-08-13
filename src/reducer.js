@@ -76,12 +76,12 @@ export default function reducer(state = initialState, action) {
 
         case ADD_USER_INTERESTS:
         return { ...state,
-            userInterests: action.payload.selectedUserInterest,
+            userInterests: [...state.userInterests, action.payload.selectedUserInterest]
         }
 
         case REMOVE_USER_INTERESTS:
         return { ...state,
-            userInterests: action.payload.selectedUserInterest,
+            userInterests: [...state.userInterests.filter(interest => interest.id !== action.payload.selectedUserInterest.id)]
         }
   
         default:
