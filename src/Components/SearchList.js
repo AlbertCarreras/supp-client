@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import Adapters from './../Adapters/Adapters';
 
 // ACTIONS
-import { selectCommonInterests } from '../actions';
+import { selectCommonInterests, addUserInterests } from '../actions';
 
 // REDUX PROPS 
 const mapStateToProps = state => {
@@ -36,7 +36,10 @@ const SearchList = (props) => {
                         {Adapters.capitalize(term.name)}
                         <Icon onClick={
                             () => props.selectCommonInterests(term)                        
-                        } color='teal' name='add' />
+                        } color='teal' name='users' />
+                        <Icon onClick={
+                            () => props.addUserInterests(term)                        
+                        } color='teal' name='user plus' />
                     </div>
         })
     }

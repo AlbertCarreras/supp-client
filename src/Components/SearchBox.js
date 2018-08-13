@@ -2,8 +2,10 @@ import React, {Component, Fragment} from 'react';
 import { withRouter } from "react-router-dom";
 import { Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-
 import _ from 'lodash'
+
+// ACTIONS
+import { unselectCommonInterests } from '../actions'
 
 // ADAPTERS
 import Adapters from './../Adapters/Adapters';
@@ -17,6 +19,12 @@ const mapStateToProps = state => {
         selectedCommonInterest: state.selectedCommonInterest,
     }
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        unselectCommonInterests: () => dispatch(unselectCommonInterests())
+    }
+  }
 
 class SearchBox extends Component {
     // keeping local state
@@ -53,22 +61,11 @@ class SearchBox extends Component {
     render () {
         return (
                 <div className="ui search">
-                <Fragment>
-                            {this.props.selectedCommonInterest !== undefined
-                                ?   <div>
-                                        <p>Meet people who love...</p>
-                                        {Adapters.capitalize(this.props.selectedCommonInterest.name)}
-                                        <Icon color='teal' name='remove' />
-                                    </div>
-                                : <p>Find people who love</p>
-
-                            }
-                        </Fragment>
                     <div className="ui icon input">
                         <input 
                             className="prompt" 
                             type="text"
-                            placeholder="Search interests..."
+                            placeholder="Search activities you ♥"
                             name="searchTerm"
                             onChange={this.handleChange}
                             value={this.state.searchTerm}
@@ -76,9 +73,25 @@ class SearchBox extends Component {
                         <i className="search icon"></i>
                     </div>
                     { this.displayInterestList()}
+                    <div className="filter-container">
+                        Meet people who <Icon color='red' name='heart'/>
+                    </div>
+                    {
+                        this.props.selectedCommonInterest !== undefined
+                            ?   <div className="line-container">
+                                        {Adapters.capitalize(this.props.selectedCommonInterest.name)}
+                                    <Icon onClick={
+                                        () => this.props.unselectCommonInterests()                      
+                                    } color='teal' name='remove' />
+                                    <Icon onClick={
+                                        () => {}                       
+                                    } color='teal' name='user plus' />
+                                </div>
+                            : null
+                    }
                 </div>
         )
     }
 };
 
-export default connect(mapStateToProps, null)(withRouter(SearchBox));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SearchBox));

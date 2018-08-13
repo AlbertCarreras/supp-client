@@ -52,6 +52,7 @@
 
 .filter-container  { 
   flex: 1 2 25%; 
+  padding: 20px;
 }
 
 .central-container::-webkit-scrollbar {
@@ -148,6 +149,10 @@
   height: 300px;
   overflow-x: hidden; /* Hide horizontal scrollbar */
   overflow-y: auto;
+}
+
+.line-container{
+  display: flex;
 }
 
 /* WELCOME CONTAINER. Responsive Image Grid*/

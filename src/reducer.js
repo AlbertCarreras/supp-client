@@ -2,7 +2,8 @@ import {
     LOGIN, LOGOUT, 
     SAVE_PROFILE, SAVE_PROFILE_IMAGE, 
     GET_CURRENT_GEOLOCATION, GET_CLOSEST_USERS,
-    SELECT_COMMON_INTERESTS
+    ADD_USER_INTERESTS, REMOVE_USER_INTERESTS,
+    SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS
 } from './types';
 
 //Default App State - REDUX
@@ -15,6 +16,7 @@ const initialState = {
     profileImageLink: undefined,
     lat: undefined,
     lon: undefined,
+    userInterests: [],
     closestUsers: [],
     selectedCommonInterest: undefined,
   }
@@ -65,7 +67,22 @@ export default function reducer(state = initialState, action) {
         case SELECT_COMMON_INTERESTS:
         return { ...state,
             selectedCommonInterest: action.payload.selectedCommonInterest,
-        }      
+        }
+        
+        case UNSELECT_COMMON_INTERESTS:
+        return { ...state,
+            selectedCommonInterest: undefined,
+        }  
+
+        case ADD_USER_INTERESTS:
+        return { ...state,
+            userInterests: action.payload.selectedUserInterest,
+        }
+
+        case REMOVE_USER_INTERESTS:
+        return { ...state,
+            userInterests: action.payload.selectedUserInterest,
+        }
   
         default:
             return state;

@@ -2,7 +2,8 @@ import {
     LOGIN, LOGOUT, 
     SAVE_PROFILE, SAVE_PROFILE_IMAGE, 
     GET_CURRENT_GEOLOCATION, GET_CLOSEST_USERS,
-    SELECT_COMMON_INTERESTS
+    ADD_USER_INTERESTS, REMOVE_USER_INTERESTS,
+    SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS,
 } from './types';
 
 export function login(username, email, userId, profileImageLink=`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`, prevGeolocationLat, prevGeolocationLon) {
@@ -69,6 +70,30 @@ export function selectCommonInterests(selectedCommonInterest) {
         type: SELECT_COMMON_INTERESTS,
         payload: {
             selectedCommonInterest: selectedCommonInterest,
+        }
+    }
+}
+
+export function unselectCommonInterests() {
+    return {
+        type: UNSELECT_COMMON_INTERESTS,
+    }
+}
+
+export function addUserInterests(selectedUserInterest) {
+    return {
+        type: ADD_USER_INTERESTS,
+        payload: {
+            selectedUserInterest: selectedUserInterest,
+        }
+    }
+}
+
+export function removeUserInterests(selectedUserInterest) {
+    return {
+        type: REMOVE_USER_INTERESTS,
+        payload: {
+            selectedUserInterest: selectedUserInterest,
         }
     }
 }
