@@ -25,20 +25,21 @@ class InterestsList extends Component {
     render() {
         return (
             <div className="filter-container">
-                Meet people who <Icon color='red' name='heart'/>
-                {
-                    this.props.selectedCommonInterest !== undefined
-                        ?   <div className="line-container">
-                                    {Adapters.capitalize(this.props.selectedCommonInterest.name)}
-                                <Icon onClick={
-                                    () => this.props.unselectCommonInterests()                      
-                                } color='teal' name='remove' />
-                                <Icon onClick={
-                                    () => {}                       
-                                } color='teal' name='user plus' />
-                            </div>
-                        : null
-                } 
+                <div>Meet people who <Icon color='red' name='heart'/></div>
+                    {
+                        this.props.selectedCommonInterest !== undefined
+                            ?   <div className="line-container">
+                                        {Adapters.capitalize(this.props.selectedCommonInterest.name)}
+                                    <Icon onClick={
+                                        () => this.props.unselectCommonInterests()                      
+                                    } color='teal' name='remove' />
+                                    <Icon onClick={
+                                        () => {}                       
+                                    } color='teal' name='user plus' />
+                                </div>
+                            : null
+                    } 
+                    <div>What you <Icon color='red' name='heart'/></div>
             </div>
        
         );

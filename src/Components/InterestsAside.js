@@ -11,10 +11,7 @@ class InterestsAside extends Component {
         return (
             <div className="filter-container">
                 <Search />
-                <br/>
                 <InterestsList />
-                <div>What you <Icon color='red' name='heart'/></div>
-
             </div>
 
         );
