@@ -113,7 +113,7 @@ class AdapterUser {
       "interests": userInterests
     }};
     
-    return fetch(`${API}/user/${userId}/interests`, {
+    return fetch(`${API}/user/${userId}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
