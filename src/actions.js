@@ -1,8 +1,8 @@
 import {
-    LOGIN, LOGOUT, 
+    LOGIN, LOGOUT, GET_CURRENT_GEOLOCATION, 
     SAVE_PROFILE, SAVE_PROFILE_IMAGE, 
-    GET_CURRENT_GEOLOCATION, GET_CLOSEST_USERS,
     ADD_USER_INTERESTS, REMOVE_USER_INTERESTS,
+    SAVE_CLOSEST_USERS, SAVE_FILTERED_CLOSEST_USERS,
     SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS,
 } from './types';
 
@@ -56,9 +56,18 @@ export function getCurrentGeolocation(lat, lon) {
     }
 }
 
-export function getClosestUsers(closestUsers) {
+export function saveClosestUsers(closestUsers) {
     return {
-        type: GET_CLOSEST_USERS,
+        type: SAVE_CLOSEST_USERS,
+        payload: {
+            closestUsers: closestUsers,
+        }
+    }
+}
+
+export function saveFilteredClosestUsers(closestUsers) {
+    return {
+        type: SAVE_FILTERED_CLOSEST_USERS,
         payload: {
             closestUsers: closestUsers,
         }

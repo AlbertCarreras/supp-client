@@ -1,9 +1,9 @@
 import {
-    LOGIN, LOGOUT, 
+    LOGIN, LOGOUT, GET_CURRENT_GEOLOCATION, 
     SAVE_PROFILE, SAVE_PROFILE_IMAGE, 
-    GET_CURRENT_GEOLOCATION, GET_CLOSEST_USERS,
     ADD_USER_INTERESTS, REMOVE_USER_INTERESTS,
-    SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS
+    SAVE_CLOSEST_USERS, SAVE_FILTERED_CLOSEST_USERS,
+    SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS,
 } from './types';
 
 //Default App State - REDUX
@@ -59,10 +59,15 @@ export default function reducer(state = initialState, action) {
                     lat: action.payload.lat,
                     lon: action.payload.lon,
             }
-        case GET_CLOSEST_USERS:
+        case SAVE_CLOSEST_USERS:
             return { ...state,
                     closestUsers: action.payload.closestUsers,
-            }    
+            }
+
+        case SAVE_FILTERED_CLOSEST_USERS:
+        return { ...state,
+                closestUsers: action.payload.closestUsers,
+        }    
 
         case SELECT_COMMON_INTERESTS:
         return { ...state,

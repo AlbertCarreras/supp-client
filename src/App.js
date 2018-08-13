@@ -12,7 +12,7 @@ import Adapters from './Adapters/Adapters';
 
 
 // ACTIONS
-import { login, getCurrentGeolocation, getClosestUsers} from './actions';
+import { login, getCurrentGeolocation, saveClosestUsers} from './actions';
 
 //COMPONENTS
 import Header from './Components/Header'
@@ -34,7 +34,7 @@ const mapDispatchToProps = dispatch => {
   return {
     login: (username, email, userId, profileImageLink, prevGeolocationLat, prevGeolocationLon) => dispatch(login(username, email, userId, profileImageLink, prevGeolocationLat, prevGeolocationLon)),
     getCurrentGeolocation: (userId, lat, lon) => dispatch(getCurrentGeolocation(userId,lat, lon)),
-    getClosestUsers: (closestUsers) => dispatch(getClosestUsers(closestUsers)),
+    saveClosestUsers: (closestUsers) => dispatch(saveClosestUsers(closestUsers)),
   }
 }
 
@@ -60,7 +60,7 @@ class App extends Component {
         this.props.history.push('/login');
       })
       Adapters.getClosestUsers()
-      .then(json => this.props.getClosestUsers(json))
+      .then(json => this.props.saveClosestUsers(json))
     }
   }
 
@@ -69,7 +69,7 @@ class App extends Component {
       this.getCurrentPosition();
       return this.props.loggedIn 
       ? Adapters.getClosestUsers()
-        .then(json => this.props.getClosestUsers(json))
+        .then(json => this.props.saveClosestUsers(json))
       : null
       }
   }

@@ -22,8 +22,25 @@ class Adapters {
         return fetch(`${API}/users`, {
             method: 'GET',
             headers: {
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${AdapterUser.getToken()}`
             }
+        })
+        .then(resp => resp.json())
+    }
+
+    static  getFilteredClosestUsers(filterTermId) {
+        return fetch(`${API}/users`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${AdapterUser.getToken()}`
+            },
+            body: JSON.stringify({
+                "filter": {
+                  "filterTerm": filterTermId,
+                }
+            })
         })
         .then(resp => resp.json())
     }
