@@ -1,7 +1,7 @@
 import {
     LOGIN, LOGOUT, 
     SAVE_PROFILE, SAVE_PROFILE_IMAGE, 
-    GET_CURRENT_GEOLOCATION, GET_CLOSEST_USERS,
+    SAVE_CURRENT_GEOLOCATION, SAVE_CLOSEST_USERS,
     ADD_USER_INTERESTS, REMOVE_USER_INTERESTS,
     SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS
 } from './types';
@@ -38,12 +38,15 @@ export default function reducer(state = initialState, action) {
             return { ...state,
                 username: "",
                 email: "",
-                userId: undefined,
-                profileImageLink: "",
-                prevGeolocationLat: undefined, 
-                prevGeolocationLon: undefined,
+                userId: null,
+                loggedIn: false,
+                bio: "",
+                profileImageLink: undefined,
+                lat: undefined,
+                lon: undefined,
+                userInterests: [],
+                closestUsers: [],
                 selectedCommonInterest: undefined,
-                loggedIn: false
             }
         case SAVE_PROFILE:
             return { ...state,
@@ -54,12 +57,12 @@ export default function reducer(state = initialState, action) {
             return { ...state,
                 profileImageLink: action.payload.profileImageLink,
             }
-        case GET_CURRENT_GEOLOCATION:
+        case SAVE_CURRENT_GEOLOCATION:
             return { ...state,
                     lat: action.payload.lat,
                     lon: action.payload.lon,
             }
-        case GET_CLOSEST_USERS:
+        case SAVE_CLOSEST_USERS:
             return { ...state,
                     closestUsers: action.payload.closestUsers,
             }    

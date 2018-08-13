@@ -1,7 +1,7 @@
 import {
     LOGIN, LOGOUT, 
     SAVE_PROFILE, SAVE_PROFILE_IMAGE, 
-    GET_CURRENT_GEOLOCATION, GET_CLOSEST_USERS,
+    SAVE_CURRENT_GEOLOCATION, SAVE_CLOSEST_USERS,
     ADD_USER_INTERESTS, REMOVE_USER_INTERESTS,
     SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS,
 } from './types';
@@ -46,9 +46,9 @@ export function saveProfileImage(profileImageLink) {
     }
 }
 
-export function getCurrentGeolocation(lat, lon) {
+export function saveCurrentGeolocation(lat, lon) {
     return {
-        type: GET_CURRENT_GEOLOCATION,
+        type: SAVE_CURRENT_GEOLOCATION,
         payload: {
             lat: lat,
             lon: lon,
@@ -56,9 +56,9 @@ export function getCurrentGeolocation(lat, lon) {
     }
 }
 
-export function getClosestUsers(closestUsers) {
+export function saveClosestUsers(closestUsers) {
     return {
-        type: GET_CLOSEST_USERS,
+        type: SAVE_CLOSEST_USERS,
         payload: {
             closestUsers: closestUsers,
         }

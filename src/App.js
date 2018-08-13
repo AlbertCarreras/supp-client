@@ -12,7 +12,7 @@ import Adapters from './Adapters/Adapters';
 
 
 // ACTIONS
-import { login, getCurrentGeolocation, getClosestUsers} from './actions';
+import { login, saveCurrentGeolocation, saveClosestUsers} from './actions';
 
 //COMPONENTS
 import Header from './Components/Header'
@@ -27,14 +27,16 @@ const mapStateToProps = state => {
       userId: state.userId,
       loggedIn: state.loggedIn,
       closestUsers: state.closestUsers,
+      lat: state.lat,
+      lon: state.lon,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     login: (username, email, userId, profileImageLink, prevGeolocationLat, prevGeolocationLon) => dispatch(login(username, email, userId, profileImageLink, prevGeolocationLat, prevGeolocationLon)),
-    getCurrentGeolocation: (userId, lat, lon) => dispatch(getCurrentGeolocation(userId,lat, lon)),
-    getClosestUsers: (closestUsers) => dispatch(getClosestUsers(closestUsers)),
+    saveCurrentGeolocation: (userId, lat, lon) => dispatch(saveCurrentGeolocation(userId,lat, lon)),
+    saveClosestUsers: (closestUsers) => dispatch(saveClosestUsers(closestUsers)),
   }
 }
 
@@ -45,8 +47,9 @@ class App extends Component {
     if (AdapterUser.getToken() && navigator.geolocation) {
       return navigator.geolocation.getCurrentPosition(
         resp => {
-          this.props.getCurrentGeolocation(resp.coords.latitude, resp.coords.longitude);
-          AdapterLocation.persistCurrentGeolocation(this.props.userId, resp.coords.latitude, resp.coords.longitude);
+          this.props.saveCurrentGeolocation(resp.coords.latitude, resp.coords.longitude);
+          AdapterLocation.persistCurrentGeolocation(this.props.userId, resp.coords.latitude, resp.coords.longitude)
+          .then(json => this.props.saveCurrentGeolocation(json.lat, json.lon));
         }, AdapterLocation.showError)
     }
   }
@@ -60,21 +63,25 @@ class App extends Component {
         this.props.history.push('/login');
       })
       Adapters.getClosestUsers()
-      .then(json => this.props.getClosestUsers(json))
+      .then(json => this.props.saveClosestUsers(json))
     }
   }
 
   componentDidUpdate(prevProps){
     if (this.props.userId !== prevProps.userId) {
       this.getCurrentPosition();
+    }
+
+    if (this.props.lat !== prevProps.lat || this.props.lon !== prevProps.lon) {
       return this.props.loggedIn 
       ? Adapters.getClosestUsers()
-        .then(json => this.props.getClosestUsers(json))
+        .then(json => this.props.saveClosestUsers(json))
       : null
-      }
+    }
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className="app">
         <Header />

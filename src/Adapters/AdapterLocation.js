@@ -18,7 +18,6 @@ class AdapterLocation {
                 }})
         })
         .then(resp => resp.json())
-        .then(r=> console.log("Successful Persistance", r))
         }
 
     static showError(error) {
