@@ -28,6 +28,22 @@ class Adapters {
         .then(resp => resp.json())
     }
 
+    static  getFilteredClosestUsers(filterTermId) {
+        return fetch(`${API}/users`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${AdapterUser.getToken()}`
+            },
+            body: JSON.stringify({
+                "filter": {
+                  "filterId": filterTermId,
+                }
+            })
+        })
+        .then(resp => resp.json())
+    }
+
     static  getSearchMatches(searchTerm) {
         return fetch(`${API}/searchInterests`, {
             method: 'POST',

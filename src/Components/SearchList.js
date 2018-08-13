@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import Adapters from './../Adapters/Adapters';
 
 // ACTIONS
-import { selectCommonInterests, addUserInterests } from '../actions';
+import { selectCommonInterests, addUserInterests, saveFilteredClosestUsers } from '../actions';
 
 // REDUX PROPS 
 const mapStateToProps = state => {
@@ -20,6 +20,8 @@ const mapDispatchToProps = dispatch => {
     return {
         selectCommonInterests: (selectedCommonInterest) => dispatch(selectCommonInterests(selectedCommonInterest)),
         addUserInterests: (selectedUserInterest) => dispatch(addUserInterests(selectedUserInterest)),
+        saveFilteredClosestUsers: (closestUsers) => dispatch(saveFilteredClosestUsers(closestUsers)),
+
     }
   }
 
@@ -36,7 +38,13 @@ const SearchList = (props) => {
             return  <div key={term.id}>
                         {Adapters.capitalize(term.name)}
                         <Icon 
-                            onClick={() => props.selectCommonInterests(term)} 
+                            onClick={() => {
+                                props.selectCommonInterests(term)
+                                console.log(term)
+                                Adapters.getFilteredClosestUsers(term.id)
+                                .then(console.log)
+                                // .then(this.props.saveFilteredClosestUsers)
+                            }}
                             color='teal' 
                             name='users' 
                         />

@@ -3,6 +3,7 @@ import {
     SAVE_PROFILE, SAVE_PROFILE_IMAGE, 
     SAVE_CURRENT_GEOLOCATION, SAVE_CLOSEST_USERS,
     ADD_USER_INTERESTS, REMOVE_USER_INTERESTS,
+    SAVE_FILTERED_CLOSEST_USERS,
     SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS,
 } from './types';
 
@@ -53,6 +54,15 @@ export function saveCurrentGeolocation(lat, lon) {
         payload: {
             lat: lat,
             lon: lon,
+        }
+    }
+}
+
+export function saveFilteredClosestUsers(closestUsers) {
+    return {
+        type: SAVE_FILTERED_CLOSEST_USERS,
+        payload: {
+            closestUsers: closestUsers,
         }
     }
 }

@@ -31,7 +31,7 @@ class Search extends Component {
                 () => Adapters.getSearchMatches(searchTerm)
                 .then( resp => this.setState({searchTermArray: resp}))
                 .catch(err => {})
-            , 500).call(this)
+            , 100).call(this)
 
     displayInterestList = () => {
         if (this.state.searchTermArray.length > 0) {
