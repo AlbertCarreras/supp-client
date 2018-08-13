@@ -18,7 +18,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        selectCommonInterests: (selectedCommonInterest) => dispatch(selectCommonInterests(selectedCommonInterest))
+        selectCommonInterests: (selectedCommonInterest) => dispatch(selectCommonInterests(selectedCommonInterest)),
+        addUserInterests: (selectedUserInterest) => dispatch(addUserInterests(selectedUserInterest)),
     }
   }
 
@@ -34,12 +35,18 @@ const SearchList = (props) => {
         return searchTermArray.map( (term) => {
             return  <div key={term.id}>
                         {Adapters.capitalize(term.name)}
-                        <Icon onClick={
-                            () => props.selectCommonInterests(term)                        
-                        } color='teal' name='users' />
-                        <Icon onClick={
-                            () => props.addUserInterests(term)                        
-                        } color='teal' name='user plus' />
+                        <Icon 
+                            onClick={() => props.selectCommonInterests(term)} 
+                            name="add_to_match"
+                            color='teal' 
+                            name='users' 
+                        />
+                        <Icon 
+                            onClick={() => props.addUserInterests(term)}
+                            name="add_to_user"
+                            color='teal'
+                            name='user plus'
+                        />
                     </div>
         })
     }
