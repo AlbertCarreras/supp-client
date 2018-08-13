@@ -112,7 +112,6 @@ class AdapterUser {
     let bodyPersistAddInterests = {"user": {
       "interests": userInterests
     }};
-    
     return fetch(`${API}/user/${userId}`, {
         method: 'PATCH',
         headers: {
