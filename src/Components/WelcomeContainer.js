@@ -3,8 +3,8 @@ import {Route, Switch} from "react-router-dom";
   
 
 //COMPONENTS
-import Login from './../Components/Login'
-import Signup from './../Components/Signup'
+import Login from './Login'
+import Signup from './Signup'
 
 const WelcomeContainer = () => {
     return (

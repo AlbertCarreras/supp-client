@@ -11,7 +11,6 @@ import { saveProfileImage } from '../actions';
 
 
 // REDUX PROPS 
-
 const mapStateToProps = state => {
     return {
         user_id: state.userId,
@@ -26,7 +25,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-class ProfileContainer extends Component {
+class UserProfile extends Component {
 
     // keeping local state
     state = {
@@ -93,4 +92,4 @@ class ProfileContainer extends Component {
         );
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ProfileContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(UserProfile));

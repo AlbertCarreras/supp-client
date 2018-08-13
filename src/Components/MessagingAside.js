@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class MessagingContainer extends Component {
+class MessagingAside extends Component {
     render() {
         return (
             <div className="aside messaging-container">
@@ -10,4 +10,4 @@ class MessagingContainer extends Component {
     }
 }
 
-export default MessagingContainer;
+export default MessagingAside;

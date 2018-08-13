@@ -16,9 +16,9 @@ import { login, getCurrentGeolocation, getClosestUsers} from './actions';
 
 //COMPONENTS
 import Header from './Components/Header'
-import WelcomeContainer from './Containers/WelcomeContainer'
-import HomeContainer from './Containers/HomeContainer'
-import ProfileContainer from './Containers/ProfileContainer'
+import WelcomeContainer from './Components/WelcomeContainer'
+import HomeContainer from './Components/HomeContainer'
+import UserProfile from './Components/UserProfile'
 import Footer from './Components/Footer'
 
 // REDUX PROPS 
@@ -83,7 +83,7 @@ class App extends Component {
           ? <Fragment>
               <Route
                 path="/user/profile"
-                component={ProfileContainer}
+                component={UserProfile}
               />
               <Route
                 path="/home"

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 //COMPONENTS
-import ProfileSquare from "./../Components/ProfileSquare"
+import ProfileSquare from "./ProfileSquare"
 
 // REDUX PROPS 
 const mapStateToProps = state => {
@@ -15,7 +15,7 @@ const mapStateToProps = state => {
     }
 }
 
-class CentralContainer extends Component {
+class UserList extends Component {
 
     generateUserList = (closestUsers) => {
         return(
@@ -51,4 +51,4 @@ class CentralContainer extends Component {
     }
 }
 
-export default connect(mapStateToProps, null)(CentralContainer);
+export default connect(mapStateToProps, null)(UserList);

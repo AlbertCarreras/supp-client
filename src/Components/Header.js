@@ -3,7 +3,7 @@ import React from 'react';
 //COMPONENTS
 import ProfileNavBar from './ProfileNavBar'
 
-const Header = (props) => {
+const Header = () => {
 
     return (
             <div className="app-header">

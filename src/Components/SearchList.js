@@ -37,13 +37,11 @@ const SearchList = (props) => {
                         {Adapters.capitalize(term.name)}
                         <Icon 
                             onClick={() => props.selectCommonInterests(term)} 
-                            name="add_to_match"
                             color='teal' 
                             name='users' 
                         />
                         <Icon 
                             onClick={() => props.addUserInterests(term)}
-                            name="add_to_user"
                             color='teal'
                             name='user plus'
                         />

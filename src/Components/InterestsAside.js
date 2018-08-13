@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import { Icon } from 'semantic-ui-react'
 
 //COMPONENTS
-import SearchBox from '../Components/SearchBox';
+import Search from './Search';
+import InterestsList from './InterestsList';
 
-class FilterContainer extends Component {
+
+class InterestsAside extends Component {
     render() {
         return (
             <div className="filter-container">
-                <SearchBox />
+                <Search />
                 <br/>
+                <InterestsList />
                 <div>What you <Icon color='red' name='heart'/></div>
 
             </div>
@@ -18,4 +21,4 @@ class FilterContainer extends Component {
     }
 }
 
-export default FilterContainer;
+export default InterestsAside;
