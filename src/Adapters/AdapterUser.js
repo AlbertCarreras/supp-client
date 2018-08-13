@@ -81,18 +81,18 @@ class AdapterUser {
         
 
   static  updateProfileInfo(userId, username, bio) {
-    let body = {"user": {}};
+    let bodyUpdateProfileInfo = {"user": {}};
 
     if (username) {
-      body = Object.assign({}, body, {"user": {
-        ...body.user,
+      bodyUpdateProfileInfo = Object.assign({}, bodyUpdateProfileInfo, {"user": {
+        ...bodyUpdateProfileInfo.user,
         "username": username
       }
     })} 
 
     if (bio) {
-      body = Object.assign({}, body, {"user": {
-        ...body.user,
+      bodyUpdateProfileInfo = Object.assign({}, bodyUpdateProfileInfo, {"user": {
+        ...bodyUpdateProfileInfo.user,
         "bio": bio
       }
     })}
@@ -103,10 +103,28 @@ class AdapterUser {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${AdapterUser.getToken()}`
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify(bodyUpdateProfileInfo)
+    })
+    .then(resp => resp.json())
+  }
+
+  static  persistAddInterests(userId, userInterests) {
+    let bodyPersistAddInterests = {"user": {
+      "interests": userInterests
+    }};
+    
+    return fetch(`${API}/user/${userId}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${AdapterUser.getToken()}`
+        },
+        body: JSON.stringify(bodyPersistAddInterests)
     })
     .then(resp => resp.json())
   }
 }
+
+
 
 export default AdapterUser;
