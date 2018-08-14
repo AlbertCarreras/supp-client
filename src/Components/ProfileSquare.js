@@ -32,7 +32,7 @@ const ProfileSquare = (props) => {
             </div>
         )
     }
-    
+      
     return (
         <Modal dimmer={'inverted'} size={'small'} trigger={profileSquareButton()}>
         <Modal.Header>{Adapters.usernameLongFormat(props.username)}
@@ -52,7 +52,7 @@ const ProfileSquare = (props) => {
                 <p>{props.bio}</p>
                 <div className="ui tiny header">{props.distance}</div>
                 {
-                    props.bio === "YOU"
+                    props.username === "YOU"
                         ? <UserInterestList /> 
                         : <FriendInterestList friendInterestArray={props.interests}/>
                 }
