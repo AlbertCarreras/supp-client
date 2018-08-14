@@ -4,6 +4,7 @@ import { Icon } from 'semantic-ui-react'
 
 // ADAPTERS
 import Adapters from './../Adapters/Adapters';
+import AdapterUser from './../Adapters/AdapterUser';
 
 // ACTIONS
 import { unselectCommonInterests } from '../actions'
@@ -33,13 +34,26 @@ class InterestsList extends Component {
                     {
                         this.props.selectedCommonInterest !== undefined
                             ?   <div className="line-container">
-                                        {Adapters.capitalize(this.props.selectedCommonInterest.name)}
-                                    <Icon onClick={
-                                        () => this.props.unselectCommonInterests()                      
-                                    } color='teal' name='remove' />
-                                    <Icon onClick={
-                                        () => {}                       
-                                    } color='teal' name='user plus' />
+                                    {Adapters.capitalize(this.props.selectedCommonInterest.name)}
+                                    <Icon 
+                                        onClick={
+                                            () => this.props.unselectCommonInterests()
+                                        } 
+                                        color='teal'
+                                        name='remove'
+                                    />
+                                    { !this.props.userInterests.find((i)=> i.id === this.props.selectedCommonInterest.id)
+                                        ?   <Icon 
+                                                onClick={() => {
+                                                    AdapterUser.persistAddInterests(this.props.userId, this.props.selectedCommonInterest.name)
+                                                    .then(resp => this.props.saveUserInterests(resp.interests))
+                                                }}
+                                                color='teal'
+                                                name='user plus'
+                                            />
+                                        : null
+                                        
+                                    }
                                 </div>
                             : null
                     } 

@@ -43,23 +43,24 @@ const SearchList = (props) => {
                         <Icon 
                             onClick={() => {
                                 props.selectCommonInterests(term)
-                                console.log(term)
                                 Adapters.getFilteredClosestUsers(term.id)
-                                .then(console.log)
-                                // .then(this.props.saveFilteredClosestUsers)
+                                // .then(props.saveFilteredClosestUsers)
                             }}
                             color='teal' 
                             name='users' 
                         />
-                        <Icon 
-                            onClick={() => {
-                                AdapterUser.persistAddInterests(props.userId, term)
-                                .then(resp => props.saveUserInterests(resp.interests))
-                                .then(r=> console.log("now",r))
-                            }}
-                            color='teal'
-                            name='user plus'
-                        />
+                        { !props.userInterests.find((i)=> i.id === term.id)
+                            ?   <Icon 
+                                    onClick={() => {
+                                        AdapterUser.persistAddInterests(props.userId, term)
+                                        .then(resp => props.saveUserInterests(resp.interests))
+                                    }}
+                                    color='teal'
+                                    name='user plus'
+                                />
+                            : null
+                        }
+                        
                     </div>
         })
     }
