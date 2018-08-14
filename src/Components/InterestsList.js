@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Icon } from 'semantic-ui-react'
 
@@ -32,7 +32,14 @@ class InterestsList extends Component {
     render() {
         return (
             <div className="filter-container">
-                <div>Meet people who <Icon color='red' name='heart'/></div>
+                <div 
+                    className="heart-message"
+                    >Meet people who 
+                    <Icon 
+                        color='red' 
+                        name='heart'
+                    />
+                </div>
                     {
                         this.props.selectedCommonInterest !== undefined
                             ?   <div className="line-container">
@@ -59,9 +66,30 @@ class InterestsList extends Component {
                                         
                                     }
                                 </div>
-                            : null
+                                :   <Fragment>
+                                        <p>Select an activity by clicking on 
+                                            <Icon 
+                                                color='teal'
+                                                name='users'
+                                            />
+                                        </p>
+                                        <p>Unselect your activities clicking on 
+                                            <Icon 
+                                                color='teal'
+                                                name='remove'
+                                            />
+                                        </p>
+                                    </Fragment>
+
                     } 
-                <div>What you <Icon color='red' name='heart'/></div>
+                <div 
+                    className="heart-message"
+                    >What you 
+                        <Icon 
+                            color='red' 
+                            name='heart'
+                        />
+                </div>
                 <UserInterestList />
             </div>
        

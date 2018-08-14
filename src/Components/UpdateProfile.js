@@ -69,35 +69,51 @@ class UpdateProfile extends Component {
     render() {
         return (
             <Fragment>
-                <div className="profile-container">
-                <label htmlFor="email"> Username </label>
-                <input
-                    type="text"
-                    name="username"
-                    placeholder="Username"
-                    onChange={this.handleChange}
-                    value={this.state.username}
-                />
-                <br/>
-                <label htmlFor="bio"> Bio </label>
-                <textarea
-                    name="bio"
-                    placeholder="Few words about yourself"
-                    onChange={this.handleChange}
-                    value={this.state.bio}
-                />
-                <br/>
-                <label htmlFor="profile_image"> Upload a photo </label>
-                <input
-                    type="file"
-                    name="profile_image"
-                    ref={this.fileInput}
-                    onChange={this.handleUpload}
-                />
-                <br/>
-                <button type="submit" onClick={this.handleSubmit}>Save Profile</button>            
+                <div className="user-account-container">
+                    <div className="ui form update-profile-form">
+                        <div 
+                            className="signup-message">YOUR PROFILE
+                        </div>
+                        <div className="fields">
+                            <div className="field">
+                                <label>Username</label>
+                                <input 
+                                    type="text"
+                                    name="username"
+                                    placeholder="Username"
+                                    onChange={this.handleChange}
+                                    value={this.state.username}
+                                />
+                            </div>
+                            <div className="field">
+                                <label htmlFor="bio">About you</label>
+                                <textarea
+                                    name="bio"
+                                    placeholder="Few words about yourself"
+                                    onChange={this.handleChange}
+                                    value={this.state.bio}
+                                />
+                            </div>
+                            <div className="field">
+                                <label htmlFor="profile_image"> Upload a profile photo </label>
+                                <input
+                                    type="file"
+                                    name="profile_image"
+                                    ref={this.fileInput}
+                                    onChange={this.handleUpload}
+                                />    
+                            </div>
+                        </div>          
+                        <div 
+                            className="ui submit button"
+                            onClick={this.handleSubmit}
+                            >Save Profile
+                        </div>
+                    </div>
                 </div>
             </Fragment>
+
+           
         );
     }
 }

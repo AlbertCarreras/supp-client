@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { Icon } from 'semantic-ui-react'
 import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
@@ -33,30 +33,46 @@ const UserInterestList = (props) => {
         return props.userInterests.map( (interest) => {
             return  <div key={interest.id}>
                         {Adapters.capitalize(interest.name)}
-                        <Icon 
-                            onClick={() => {
-                                props.selectCommonInterests(interest)
-                                Adapters.getFilteredClosestUsers(interest.id)
-                                .then(props.saveFilteredClosestUsers)
-                            }}
-                            color='teal' 
-                            name='users' 
-                        />
-                        <Icon 
-                            onClick={() => {
-                                AdapterUser.persistRemoveInterests(interest)
-                                .then(resp => props.saveUserInterests(resp.interests))
-                            }}
-                            color='teal'
-                            name='user close'
-                        />
+                            <Icon 
+                                onClick={() => {
+                                    props.selectCommonInterests(interest)
+                                    Adapters.getFilteredClosestUsers(interest.id)
+                                    .then(props.saveFilteredClosestUsers)
+                                }}
+                                color='teal' 
+                                name='users' 
+                            />
+                            <Icon 
+                                onClick={() => {
+                                    AdapterUser.persistRemoveInterests(interest)
+                                    .then(resp => props.saveUserInterests(resp.interests))
+                                }}
+                                color='teal'
+                                name='user close'
+                            />
                     </div>
         })
     }
 
     return (
         <div className="interest-list">
-            {buildInterestList()}
+            { props.userInterests.length > 0
+                ?   buildInterestList()
+                :   <Fragment>
+                        <p>Choose your activities clicking on 
+                            <Icon 
+                                color='teal'
+                                name='user plus'
+                            />
+                        </p>
+                        <p>Unselect your activities clicking on 
+                            <Icon 
+                                color='teal'
+                                name='user remove'
+                            />
+                        </p>
+                    </Fragment>
+            }
         </div>
     )
 };

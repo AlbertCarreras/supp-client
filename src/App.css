@@ -162,15 +162,34 @@
   color: #05386B;
 }
 
+.user-account-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.update-profile-form {
+  padding: 20px;
+  width: 300px;
+  height: 700px;
+}
+
 /* SEARCH CONTAINER. */
 .interest-list {
-  height: 300px;
+  height: 250px;
   overflow-x: hidden; /* Hide horizontal scrollbar */
   overflow-y: auto;
 }
 
 .line-container{
   display: flex;
+}
+
+.heart-message {
+  font-family: 'Sniglet', cursive;
+  font-weight: 400;
+  font-size: 1.5em;
+  color: #05386B;
+  margin: 30px 0px 10px 0px;
 }
 
 /* WELCOME CONTAINER. Responsive Image Grid*/
@@ -304,7 +323,6 @@ img {
   font-family: 'Sniglet', cursive;
   font-weight: 400;
   font-size: 1.5em;
-  width: 100%;
   align-content: flex-start;
   color: #5CDB95;
   text-align: left;

@@ -47,6 +47,7 @@ const ProfileNavBar = (props) => {
                             </div>
                             <NavLink to="/home" exact>Home</NavLink>
                             <NavLink to="/user/profile" exact>Profile</NavLink>
+                            <NavLink to="/user/profile" exact>Account</NavLink>
                             <button className="logout-btn" onClick={()=>handleLogout()}>Log Out</button> 
                         </div>
                 </div>

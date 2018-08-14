@@ -80,7 +80,7 @@ class Signup extends Component {
                 /> 
               </div>  
               <div className="field">
-                <input 
+                <input
                   type="text"
                   name="email"
                   placeholder="Account Email"
