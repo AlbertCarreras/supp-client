@@ -121,8 +121,20 @@ class AdapterUser {
     })
     .then(resp => resp.json())
   }
+
+  static  persistRemoveInterests(userInterests) {
+    let bodyPersistRemoveInterests = {"user": {
+      "interests": userInterests
+    }};
+    return fetch(`${API}/user_interests/${userInterests.id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${AdapterUser.getToken()}`
+        },
+        body: JSON.stringify(bodyPersistRemoveInterests)
+    }).then(resp => resp.json())
+  }
 }
-
-
 
 export default AdapterUser;
