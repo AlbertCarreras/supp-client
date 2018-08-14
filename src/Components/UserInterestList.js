@@ -33,9 +33,9 @@ const UserInterestList = (props) => {
                         <Icon 
                             onClick={() => {
                                 props.selectCommonInterests(interest)
-                                console.log(interest)
+                                console.log("userintereslist",interest)
                                 Adapters.getFilteredClosestUsers(interest.id)
-                                .then(console.log)
+                                .then(resp => console.log("userintereslist", resp))
                                 // .then(this.props.saveFilteredClosestUsers)
                             }}
                             color='teal' 
@@ -43,7 +43,7 @@ const UserInterestList = (props) => {
                         />
                         <Icon 
                             onClick={() => {
-                               console.log("hi")
+                               console.log("userintereslist")
                             }}
                             color='teal'
                             name='user close'

@@ -5,6 +5,9 @@ import { Button, Header, Image, Modal } from 'semantic-ui-react'
 // ADAPTERS
 import Adapters from './../Adapters/Adapters';
 
+//COMPONENTS
+import UserInterestList from './UserInterestList'
+
 const ProfileSquare = (props) => {
 
     function profileSquareButton() {
@@ -46,6 +49,7 @@ const ProfileSquare = (props) => {
                 <Header>About me</Header>
                 <p>{props.bio}</p>
                 <div className="ui tiny header">{props.distance}</div>
+                <UserInterestList />
             </Modal.Description>
         </Modal.Content>
         <Modal.Actions>

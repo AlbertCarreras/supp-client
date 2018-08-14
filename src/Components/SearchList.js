@@ -54,8 +54,8 @@ const SearchList = (props) => {
                         <Icon 
                             onClick={() => {
                                 AdapterUser.persistAddInterests(props.userId, term)
-                                .then(console.log)
-                                // .then(resp => props.saveUserInterests(resp))
+                                .then(resp => props.saveUserInterests(resp.interests))
+                                .then(r=> console.log("now",r))
                             }}
                             color='teal'
                             name='user plus'
