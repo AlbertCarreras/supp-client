@@ -54,7 +54,7 @@ const ProfileSquare = (props) => {
                 {
                     props.bio === "YOU"
                         ? <UserInterestList /> 
-                        : <FriendInterestList friendInterestArray={[{id: 1, name:"ho"}, {id: 2, name:"he"} ]}/>
+                        : <FriendInterestList friendInterestArray={props.interests}/>
                 }
             </Modal.Description>
         </Modal.Content>

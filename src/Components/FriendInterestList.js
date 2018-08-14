@@ -19,14 +19,12 @@ const mapDispatchToProps = dispatch => {
 const FriendInterestList = (props) => {
 
     function buildInterestList() {
-
         return props.friendInterestArray.map( (interest) => {
             return  <div key={interest.id}>
                         {Adapters.capitalize(interest.name)}
                         <Icon 
                             onClick={() => {
                                 props.selectCommonInterests(interest)
-                                console.log("userintereslist",interest)
                                 Adapters.getFilteredClosestUsers(interest.id)
                                 .then(resp => console.log("userintereslist", resp))
                                 // .then(this.props.saveFilteredClosestUsers)
@@ -34,15 +32,6 @@ const FriendInterestList = (props) => {
                             color='teal' 
                             name='users' 
                         />
-                        {
-                            <Icon 
-                            onClick={() => {
-                               console.log("userintereslist")
-                            }}
-                            color='teal'
-                            name='user close'
-                        />
-                        }
                     </div>
         })
     }

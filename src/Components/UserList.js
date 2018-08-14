@@ -25,6 +25,7 @@ class UserList extends Component {
                     key={user.userId}
                     bio={user.bio}
                     username={user.username}
+                    interests={user.interests}
                     profileImageLink={user.profileImageLink}
                     distance={
                         user.distance < 1 
