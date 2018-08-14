@@ -116,8 +116,26 @@
 }
 
 .app-footer {
+  display: flex;
   background-color: #5CDB95;
   padding: 20px;
+  box-shadow: 0 50vh 0 50vh #5CDB95;
+}
+
+.app-footer-right {
+  font-size: 0.75em;
+  width: 100%;
+  display: flex;
+  align-self: center;
+  justify-content: flex-end;
+}
+
+.app-footer-right > * {
+  margin: 0px 10px;
+}
+
+.app-footer-left {
+  justify-content: flex-start;
 }
 
 .footer-logo {
@@ -156,32 +174,47 @@
 }
 
 /* WELCOME CONTAINER. Responsive Image Grid*/
-.welcome-form {
+
+.login-form-header {
   font-family: 'Sniglet', cursive;
   font-size: 2em;
   color: #05386B;
-  margin: 20px;
+  padding: 10px;
 }
 .signup {
   height: 480px;/*height needs to be set*/
 }
 
+.btn-submit {
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
 .login {
-  height: 250px;/*height needs to be set*/
+  height: 300px;/*height needs to be set*/
+}
+
+.login-signup-form {
+  padding: 20px;
 }
 
 .signup-message {
-  margin-top: 50px;
+  margin-top: 0px;
   font-family: 'Sniglet', cursive;
   font-weight: 400;
-  font-size: 2em;
+  font-size: 1.8em;
   color: #379683;
-  line-height:5px;
+  line-height:25px;
 }
 
 .signup-message-connect {
   font-size: 3em;
   font-weight: 800;
+}
+
+.signup-error {
+  margin-bottom: 10px;
 }
 
 .overlay-box {

@@ -45,31 +45,38 @@ class Login extends Component {
   render() {
     return (
       <div className="overlay-box login">
-        <h3 className="welcome-form">LOG IN</h3>
-        <label htmlFor="email">Email</label>
-        <input
-          type="text"
-          name="email"
-          placeholder="Email"
-          onChange={this.handleChange}
-          value={this.state.email}
-        /> 
-        <br/>
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={this.handleChange}
-          value={this.state.password}
-        />
-        <br/>        
-        <button type="submit" onClick={this.handleSubmit}>Log me in!</button>
-        <br/>        
-        <br/>        
+        <div className="login-signup-form">
+          <h3 className="login-form-header">LOG IN</h3>
+            <div className="ui tiny form">
+              <div className="two fields">
+                <div className="field">
+                  <input 
+                    type="text"
+                    name="email"
+                    placeholder="Account Email"
+                    onChange={this.handleChange}
+                    value={this.state.email} />
+                </div>
+                <div className="field">
+                  <input 
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    onChange={this.handleChange}
+                    value={this.state.password}
+                  />
+                </div>
+              </div>
+              <div className="btn-submit">
+                <div 
+                  className="ui submit button"
+                  onClick={this.handleSubmit}
+                >Log me in!</div>
+              </div>      
+            </div>      
+        </div>
         <h3>New to Supp? <NavLink to="/signup" exact>Sign up!</NavLink></h3>
-        
-        
+
       </div>
     )
   }

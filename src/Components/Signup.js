@@ -23,6 +23,7 @@ class Signup extends Component {
     email: "",
     password: "",
     confirmPassword: "",
+    agreedCheckbox: false,
 
   };
 
@@ -33,72 +34,109 @@ class Signup extends Component {
     })
   }
 
+  handleCheckbox = () => {
+    this.setState({
+      agreedCheckbox: !this.state.agreedCheckbox,
+      error: "black",
+    })
+  }
+
   handleSubmit = () => {
-    AdapterUser.signup(this.state)
-    .then(json => json.ok
-        ? AdapterUser.login(this.state)
-         .then(json => {
-          AdapterUser.setToken(json.jwt);
-          AdapterUser.getCurrentUser()
-          .then(json => this.props.login(json.username, json.email, json.id));
-          this.props.history.push('/home');
+    return this.state.agreedCheckbox
+    ?  AdapterUser.signup(this.state)
+      .then(json => json.ok
+          ? AdapterUser.login(this.state)
+          .then(json => {
+            AdapterUser.setToken(json.jwt);
+            AdapterUser.getCurrentUser()
+            .then(json => this.props.login(json.username, json.email, json.id));
+            this.props.history.push('/home');
+          })
+          : console.log("error")
+        )
+        .catch(err => {
+          this.props.history.push('/signup');
         })
-        : console.log("error")
-      )
-      .catch(err => {
-        this.props.history.push('/signup');
+    : this.setState({
+        error: "red",
       })
   }
 
   render() {
     return (
       <div className="overlay-box signup">
-        <h3>Have an account? <NavLink to="/login" exact>Log in</NavLink></h3>
-        <h3 className="welcome-form">SIGN UP</h3>
-        <label htmlFor="username"> Username </label>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          onChange={this.handleChange}
-          value={this.state.username}
-        />
-        <br/>
-        <label htmlFor="email"> Email </label>
-        <input
-          type="text"
-          name="email"
-          placeholder="Email"
-          onChange={this.handleChange}
-          value={this.state.email}
-        />
-        <br/>
-        <label htmlFor="password"> Password </label>
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={this.handleChange}
-          value={this.state.password}
-        />
-        <br/>
-        <label htmlFor="confirm-password"> Confirm Password </label>
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          onChange={this.handleChange}
-          value={this.state.confirmPassword}
-        />
-        <br/>
-        <button type="submit" onClick={this.handleSubmit}>Sign up</button>
-        <div>
-          <h3 className="signup-message">Find people around you</h3>
-          <h3 className="signup-message">Who love what you love</h3>
-          <h3 className="signup-message signup-message-connect">Connect!</h3>
-          <h3 className="signup-message">Make new friends</h3>
+        <div className="login-signup-form">
+          <h3>Have an account? <NavLink to="/login" exact>Log in</NavLink></h3>
+          <h3 className="login-form-header">SIGN UP</h3>
+          <div className="ui tiny form">
+            <div className="two fields">
+              <div className="field">
+                <input 
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  onChange={this.handleChange}
+                  value={this.state.username}
+                /> 
+              </div>  
+              <div className="field">
+                <input 
+                  type="text"
+                  name="email"
+                  placeholder="Account Email"
+                  onChange={this.handleChange}
+                  value={this.state.email}
+                />
+              </div>
+            </div>  
+            <div className="two fields">
+                <div className="field">
+                  <input 
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    onChange={this.handleChange}
+                    value={this.state.password}
+                  />
+                </div>
+                <div className="field">
+                  <input 
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="Confirm Password"
+                    onChange={this.handleChange}
+                    value={this.state.confirmPassword}
+                  />
+                </div>
+            </div>
+              <div className="btn-submit">
+                <div className="ui checkbox">
+                  <input 
+                    type="checkbox" 
+                    onClick={this.handleCheckbox}
+                    checked={this.state.agreed}
+                  />
+                  <label 
+                    className="signup-error"
+                    style={{color: `${this.state.error}`}}
+                    >I agree to the Terms and Conditions
+                  </label>
+                </div>
+                <div 
+                  className="ui submit button"
+                  onClick={this.handleSubmit}
+                >Create Account
+                </div>
+              </div>
+            </div>
+          </div>  
+          <div>
+            <h3 className="signup-message">Find people around you</h3>
+            <h3 className="signup-message">Who love what you love</h3>
+            <h3 className="signup-message signup-message-connect">Connect!</h3>
+            <h3 className="signup-message">and make new friends</h3>
+          </div>
         </div>
-      </div>
     )
   }
 }
