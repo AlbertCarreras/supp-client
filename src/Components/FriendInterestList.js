@@ -9,13 +9,6 @@ import Adapters from './../Adapters/Adapters';
 // ACTIONS
 import { selectCommonInterests, saveFilteredClosestUsers } from '../actions';
 
-// REDUX PROPS 
-const mapStateToProps = state => {
-    return {
-        userInterests: state.userInterests,
-    }
-}
-
 const mapDispatchToProps = dispatch => {
     return {
         selectCommonInterests: (selectedCommonInterest) => dispatch(selectCommonInterests(selectedCommonInterest)),
@@ -23,18 +16,17 @@ const mapDispatchToProps = dispatch => {
     }
   }
 
-const UserInterestList = (props) => {
-
-
+const FriendInterestList = (props) => {
 
     function buildInterestList() {
 
-        return props.userInterests.map( (interest) => {
+        return props.friendInterestArray.map( (interest) => {
             return  <div key={interest.id}>
                         {Adapters.capitalize(interest.name)}
                         <Icon 
                             onClick={() => {
                                 props.selectCommonInterests(interest)
+                                console.log("userintereslist",interest)
                                 Adapters.getFilteredClosestUsers(interest.id)
                                 .then(resp => console.log("userintereslist", resp))
                                 // .then(this.props.saveFilteredClosestUsers)
@@ -42,13 +34,15 @@ const UserInterestList = (props) => {
                             color='teal' 
                             name='users' 
                         />
-                        <Icon 
+                        {
+                            <Icon 
                             onClick={() => {
                                console.log("userintereslist")
                             }}
                             color='teal'
                             name='user close'
                         />
+                        }
                     </div>
         })
     }
@@ -60,4 +54,4 @@ const UserInterestList = (props) => {
     )
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(UserInterestList));
+export default connect(null, mapDispatchToProps)(withRouter(FriendInterestList));

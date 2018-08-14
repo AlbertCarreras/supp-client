@@ -7,6 +7,8 @@ import Adapters from './../Adapters/Adapters';
 
 //COMPONENTS
 import UserInterestList from './UserInterestList'
+import FriendInterestList from './FriendInterestList'
+
 
 const ProfileSquare = (props) => {
 
@@ -49,7 +51,11 @@ const ProfileSquare = (props) => {
                 <Header>About me</Header>
                 <p>{props.bio}</p>
                 <div className="ui tiny header">{props.distance}</div>
-                <UserInterestList />
+                {
+                    props.bio === "YOU"
+                        ? <UserInterestList /> 
+                        : <FriendInterestList friendInterestArray={[{id: 1, name:"ho"}, {id: 2, name:"he"} ]}/>
+                }
             </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
