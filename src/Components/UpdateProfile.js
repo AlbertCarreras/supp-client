@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 // ADAPTERS
 import AdapterUser from './../Adapters/AdapterUser';
+import Adapters from './../Adapters/Adapters';
 
 // ACTIONS
 import { saveProfile } from '../actions';
@@ -15,6 +16,8 @@ import { saveProfileImage } from '../actions';
 const mapStateToProps = state => {
     return {
         user_id: state.userId,
+        username: state.username,
+        bio: state.bio,
         profileImageLink: state.profileImageLink
     }
 }
@@ -30,8 +33,8 @@ class UpdateProfile extends Component {
 
     // keeping local state
     state = {
-        username: "",
-        bio: "",
+        username: Adapters.capitalize(this.props.username),
+        bio: this.props.bio,
         profile_image: undefined
     };
 
@@ -48,13 +51,18 @@ class UpdateProfile extends Component {
         })
     }
 
+
     handleSubmit = () => {        
-        this.state.profile_image 
-            ? AdapterUser.uploadProfile(this.props.user_id, this.state.profile_image)
+        if (this.state.profile_image) {
+            AdapterUser.uploadProfile(this.props.user_id, this.state.profile_image)
             .then(json => this.props.saveProfileImage(json.url))
-            :null
-        AdapterUser.updateProfileInfo(this.props.user_id, this.state.username, this.state.bio)
-        .then(json => this.props.saveProfile(json.username, json.bio))
+        }
+        
+        if (this.state.username || this.state.bio) {
+            AdapterUser.updateProfileInfo(this.props.user_id, this.state.username, this.state.bio)
+            .then(json => this.props.saveProfile(json.username, json.bio))
+        }
+
         this.props.history.push('/home');
     }
 

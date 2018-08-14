@@ -82,7 +82,7 @@ class AdapterUser {
 
   static  updateProfileInfo(userId, username, bio) {
     let bodyUpdateProfileInfo = {"user": {}};
-
+    
     if (username) {
       bodyUpdateProfileInfo = Object.assign({}, bodyUpdateProfileInfo, {"user": {
         ...bodyUpdateProfileInfo.user,
@@ -104,8 +104,7 @@ class AdapterUser {
             'Authorization': `Bearer ${AdapterUser.getToken()}`
         },
         body: JSON.stringify(bodyUpdateProfileInfo)
-    })
-    .then(resp => resp.json())
+        }).then(resp => resp.json())
   }
 
   static  persistAddInterests(userId, userInterests) {

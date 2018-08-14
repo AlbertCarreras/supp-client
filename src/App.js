@@ -18,7 +18,7 @@ import { login, saveCurrentGeolocation, saveClosestUsers} from './actions';
 import Header from './Components/Header'
 import WelcomeContainer from './Components/WelcomeContainer'
 import HomeContainer from './Components/HomeContainer'
-import UserProfile from './Components/UserProfile'
+import UpdateProfile from './Components/UpdateProfile'
 import Footer from './Components/Footer'
 
 // REDUX PROPS 
@@ -89,7 +89,7 @@ class App extends Component {
           ? <Fragment>
               <Route
                 path="/user/profile"
-                component={UserProfile}
+                component={UpdateProfile}
               />
               <Route
                 path="/home"
