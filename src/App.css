@@ -29,7 +29,7 @@
 
 .home-container {
   display: flex;
-  height: 700px;
+  height: 800px;
   background-color: white;
 }
 
@@ -51,7 +51,7 @@
 }
 
 .filter-container  { 
-  flex: 1 2 25%; 
+  flex: 1 2 25%;
   padding: 20px;
 }
 
@@ -175,7 +175,7 @@
 
 /* SEARCH CONTAINER. */
 .interest-list {
-  height: 250px;
+  height: 275px;
   overflow-x: hidden; /* Hide horizontal scrollbar */
   overflow-y: auto;
 }
@@ -190,6 +190,10 @@
   font-size: 1.5em;
   color: #05386B;
   margin: 30px 0px 10px 0px;
+}
+
+.empty-message > * {
+  margin: 0px;
 }
 
 /* WELCOME CONTAINER. Responsive Image Grid*/

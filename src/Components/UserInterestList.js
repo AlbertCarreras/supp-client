@@ -58,7 +58,7 @@ const UserInterestList = (props) => {
         <div className="interest-list">
             { props.userInterests.length > 0
                 ?   buildInterestList()
-                :   <Fragment>
+                :   <div className="empty-message">
                         <p>Choose your activities clicking on 
                             <Icon 
                                 color='teal'
@@ -71,7 +71,7 @@ const UserInterestList = (props) => {
                                 name='user remove'
                             />
                         </p>
-                    </Fragment>
+                    </div>
             }
         </div>
     )

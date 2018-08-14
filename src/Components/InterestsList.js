@@ -31,7 +31,7 @@ const mapDispatchToProps = dispatch => {
 class InterestsList extends Component {
     render() {
         return (
-            <div className="filter-container">
+            <div>
                 <div 
                     className="heart-message"
                     >Meet people who 
@@ -66,7 +66,7 @@ class InterestsList extends Component {
                                         
                                     }
                                 </div>
-                                :   <Fragment>
+                                :   <div className="empty-message">
                                         <p>Select an activity by clicking on 
                                             <Icon 
                                                 color='teal'
@@ -79,7 +79,7 @@ class InterestsList extends Component {
                                                 name='remove'
                                             />
                                         </p>
-                                    </Fragment>
+                                    </div>
 
                     } 
                 <div 
