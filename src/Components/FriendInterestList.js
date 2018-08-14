@@ -26,8 +26,7 @@ const FriendInterestList = (props) => {
                             onClick={() => {
                                 props.selectCommonInterests(interest)
                                 Adapters.getFilteredClosestUsers(interest.id)
-                                .then(resp => console.log("userintereslist", resp))
-                                // .then(this.props.saveFilteredClosestUsers)
+                                .then(props.saveFilteredClosestUsers)
                             }}
                             color='teal' 
                             name='users' 

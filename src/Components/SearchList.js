@@ -44,7 +44,7 @@ const SearchList = (props) => {
                             onClick={() => {
                                 props.selectCommonInterests(term)
                                 Adapters.getFilteredClosestUsers(term.id)
-                                // .then(props.saveFilteredClosestUsers)
+                                .then(props.saveFilteredClosestUsers)
                             }}
                             color='teal' 
                             name='users' 
