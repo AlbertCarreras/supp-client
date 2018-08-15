@@ -1,6 +1,6 @@
 import React, { Component, Fragment} from 'react';
 import { connect } from 'react-redux';
-import { Route, withRouter } from "react-router-dom";
+import { Route, withRouter, Switch } from "react-router-dom";
 
 //STYLING
 import './App.css';
@@ -87,14 +87,20 @@ class App extends Component {
         {
           !!AdapterUser.getToken()
           ? <Fragment>
-              <Route
-                exact path="/user/profile"
-                component={UpdateProfile}
-              />
-              <Route
-                path="/"
-                component={HomeContainer}
-              />
+              <Switch>
+                <Route
+                  path="/user/profile"
+                  component={UpdateProfile}
+                />
+                <Route
+                  path="/home"
+                  component={HomeContainer}
+                />
+                <Route
+                  path="/"
+                  component={HomeContainer}
+                />
+              </Switch>
             </Fragment>
           : <Route
                 path="/"
