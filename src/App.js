@@ -88,11 +88,11 @@ class App extends Component {
           !!AdapterUser.getToken()
           ? <Fragment>
               <Route
-                path="/user/profile"
+                exact path="/user/profile"
                 component={UpdateProfile}
               />
               <Route
-                path="/home"
+                path="/"
                 component={HomeContainer}
               />
             </Fragment>

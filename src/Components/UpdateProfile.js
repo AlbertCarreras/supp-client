@@ -70,7 +70,7 @@ class UpdateProfile extends Component {
         return (
             <Fragment>
                 <div className="user-account-container">
-                    <div className="ui form update-profile-form">
+                    <div className="ui form update-profile-form ">
                         <div 
                             className="signup-message">YOUR PROFILE
                         </div>

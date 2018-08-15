@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Icon } from 'semantic-ui-react'
 import _ from 'lodash'
 
 // ADAPTERS
@@ -53,7 +54,15 @@ class Search extends Component {
                         />
                         <i className="search icon"></i>
                     </div>
-                    { this.displayInterestList()}
+                    {   this.state.searchTerm !== ""
+                        ? this.displayInterestList()
+                        :   <p className="animated bounceIn delay-5s">Start here 
+                                <Icon 
+                                    color='teal' 
+                                    name='arrow up' 
+                                />
+                            </p>
+                    }
 
                 </div>
         )
