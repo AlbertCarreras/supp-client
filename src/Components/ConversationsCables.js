@@ -5,7 +5,7 @@ const MessagesCables = ({ handleReceivedConversation }) => {
   return (
           <ActionCable
               channel={{ channel: 'ConversationsChannel' }}
-              onReceived={this.handleReceivedConversation}
+              onReceived={handleReceivedConversation}
           />
   );
 };
