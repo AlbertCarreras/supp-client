@@ -1,4 +1,8 @@
-export const API = 'http://localhost:3000/api/v1';
+import {API_ROOT} from './AdapterConstants'
+import {INIT_HEADERS} from './AdapterConstants'
+import {AUTH_HEADERS_JSON} from './AdapterConstants'
+import {AUTH_HEADERS_IMAGE} from './AdapterConstants'
+
 
 class AdapterUser {
 
@@ -15,12 +19,9 @@ class AdapterUser {
   }
 
   static getCurrentUser() {
-    return fetch(`${API}/user/auth`, {
+    return fetch(`${API_ROOT}/user/auth`, {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${this.getToken()}`
-      }
+      headers: AUTH_HEADERS_JSON
     })
     .then(resp =>
       {
@@ -34,11 +35,9 @@ class AdapterUser {
   }
 
   static login(loginState) {
-    return fetch(`${API}/user_token`, {
+    return fetch(`${API_ROOT}/user_token`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: INIT_HEADERS,
     body: JSON.stringify({
       "auth": {
         "email": loginState.email,
@@ -49,11 +48,9 @@ class AdapterUser {
   }
 
   static signup(signupState) {
-    return fetch(`${API}/users/create`, {
+    return fetch(`${API_ROOT}/users/create`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: INIT_HEADERS,
     body: JSON.stringify({
       "user": {
         "email": signupState.email,
@@ -69,11 +66,9 @@ class AdapterUser {
     formData.append('user_id', userId);
     formData.append('profile_image', profileImage);
 
-    return fetch(`${API}/users/uploadProfile`, {
+    return fetch(`${API_ROOT}/users/uploadProfile`, {
     method: 'POST',
-    headers: {
-      "Authorization": `Bearer ${this.getToken()}`
-    },
+    headers: AUTH_HEADERS_IMAGE,
     body: formData
     })
     .then(resp => resp.json())
@@ -97,12 +92,9 @@ class AdapterUser {
       }
     })}
     
-    return fetch(`${API}/user/${userId}`, {
+    return fetch(`${API_ROOT}/user/${userId}`, {
         method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${AdapterUser.getToken()}`
-        },
+        headers: AUTH_HEADERS_JSON,
         body: JSON.stringify(bodyUpdateProfileInfo)
         }).then(resp => resp.json())
   }
@@ -111,12 +103,9 @@ class AdapterUser {
     let bodyPersistAddInterests = {"user": {
       "interests": userInterests
     }};
-    return fetch(`${API}/user/${userId}/interests`, {
+    return fetch(`${API_ROOT}/user/${userId}/interests`, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${AdapterUser.getToken()}`
-        },
+        headers: AUTH_HEADERS_JSON,
         body: JSON.stringify(bodyPersistAddInterests)
     })
     .then(resp => resp.json())
@@ -126,12 +115,9 @@ class AdapterUser {
     let bodyPersistRemoveInterests = {"user": {
       "interests": userInterests
     }};
-    return fetch(`${API}/user_interests/${userInterests.id}`, {
+    return fetch(`${API_ROOT}/user_interests/${userInterests.id}`, {
         method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${AdapterUser.getToken()}`
-        },
+        headers: AUTH_HEADERS_JSON,
         body: JSON.stringify(bodyPersistRemoveInterests)
     }).then(resp => resp.json())
   }

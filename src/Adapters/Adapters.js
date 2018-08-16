@@ -1,6 +1,6 @@
 // ADAPTERS
-import {API} from './AdapterUser'
-import AdapterUser from './AdapterUser';
+import {API_ROOT} from './AdapterConstants'
+import {AUTH_HEADERS_JSON} from './AdapterConstants'
 
 class Adapters {
 
@@ -19,22 +19,17 @@ class Adapters {
 
      //API DATA
     static  getClosestUsers() {
-        return fetch(`${API}/users`, {
+        return fetch(`${API_ROOT}/users`, {
             method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${AdapterUser.getToken()}`
-            }
+            headers: AUTH_HEADERS_JSON
         })
         .then(resp => resp.json())
     }
 
     static  getFilteredClosestUsers(filterTermId) {
-        return fetch(`${API}/users`, {
+        return fetch(`${API_ROOT}/users`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${AdapterUser.getToken()}`
-            },
+            headers: AUTH_HEADERS_JSON,
             body: JSON.stringify({
                 "filter": {
                   "filterId": filterTermId,
@@ -45,12 +40,9 @@ class Adapters {
     }
 
     static  getSearchMatches(searchTerm) {
-        return fetch(`${API}/searchInterests`, {
+        return fetch(`${API_ROOT}/searchInterests`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${AdapterUser.getToken()}`
-            },
+            headers: AUTH_HEADERS_JSON,
             body: JSON.stringify({
                 "search": {
                   "searchTerm": searchTerm.toLowerCase(),
