@@ -31,9 +31,9 @@ class ConversationsList extends React.Component {
     mapConversations = (conversations, handleClick) => {
         return conversations.map(conversation => {
           return (
-            <li key={conversation.id} onClick={() => handleClick(conversation.id)}>
+            <div key={conversation.id} onClick={() => handleClick(conversation.id)}>
               {conversation.title}
-            </li>
+            </div>
           );
         });
       };
@@ -77,7 +77,7 @@ class ConversationsList extends React.Component {
               />
             ) : null}
             
-            <h2>Conversations</h2>
+            <h2 className="heart-message">Conversations</h2>
             
             <ul>
                 {this.mapConversations(conversations, this.handleClick)}

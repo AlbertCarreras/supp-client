@@ -1,4 +1,5 @@
 import React from 'react';
+import { Icon } from 'semantic-ui-react'
 
 //ADAPTERS
 import { API_ROOT, AUTH_HEADERS } from './../Adapters/AdapterConstants';
@@ -26,7 +27,12 @@ class NewConversationForm extends React.Component {
     return (
       <div className="newConversationForm">
         <form onSubmit={this.handleSubmit}>
-          <label>New Conversation:</label>
+          <p className="animated bounceIn delay-5s">Start a new conversation here 
+          <Icon 
+              color='teal' 
+              name='arrow down' 
+          />
+          </p>
           <br />
           <input
             type="text"
