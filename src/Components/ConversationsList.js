@@ -45,6 +45,7 @@ class ConversationsList extends React.Component {
     
     //WEBSOCKET FUNCTIONALITY: Receivers
     handleReceivedConversation = response => {
+      console.log(response)
         const { conversation } = response;
         this.setState({
           conversations: [...this.state.conversations, conversation]
@@ -64,7 +65,7 @@ class ConversationsList extends React.Component {
     render = () => {
         const { conversations, activeConversation } = this.state;
         return (
-            <div className="conversationsList">
+          <div className="conversationsList">
             
             <ConversationsCables
                 handleReceivedConversation={this.handleReceivedConversation}
@@ -85,7 +86,8 @@ class ConversationsList extends React.Component {
             
             <NewConversationForm />
 
-            { activeConversation ? (
+            { 
+              activeConversation ? (
                 <MessagesArea
                     conversation={this.findActiveConversation(
                     conversations,
