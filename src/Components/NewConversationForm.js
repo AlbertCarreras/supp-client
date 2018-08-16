@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from 'semantic-ui-react'
 
 //ADAPTERS
-import { API_ROOT, AUTH_HEADERS } from './../Adapters/AdapterConstants';
+import AdapterChats from './../Adapters/AdapterChats';
 
 class NewConversationForm extends React.Component {
   state = {
@@ -15,11 +15,7 @@ class NewConversationForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    fetch(`${API_ROOT}/conversations`, {
-      method: 'POST',
-      headers: AUTH_HEADERS,
-      body: JSON.stringify(this.state)
-    });
+    AdapterChats.fetchToWebsocket("conversations", this.state);
     this.setState({ title: '' });
   };
 

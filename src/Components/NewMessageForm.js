@@ -1,7 +1,7 @@
 import React from 'react';
 
 //ADAPTERS
-import { API_ROOT, AUTH_HEADERS } from './../Adapters/AdapterConstants';
+import AdapterChats from './../Adapters/AdapterChats';
 
 class NewMessageForm extends React.Component {
   state = {
@@ -20,12 +20,7 @@ class NewMessageForm extends React.Component {
   //PROPS FUNCTIONALITY: Button handlers
   handleSubmit = e => {
     e.preventDefault();
-
-    fetch(`${API_ROOT}/messages`, {
-      method: 'POST',
-      headers: AUTH_HEADERS,
-      body: JSON.stringify(this.state)
-    });
+    AdapterChats.fetchToWebsocket("messages", this.state);
     this.setState({ text: '' });
   };
 
