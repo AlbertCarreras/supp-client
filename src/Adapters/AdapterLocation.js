@@ -5,7 +5,6 @@ import {AUTH_HEADERS_JSON} from './AdapterConstants'
 class AdapterLocation {
 
     static  persistCurrentGeolocation(userId, latitude, longitude) {
-        debugger
         return fetch(`${API_ROOT}/user/${userId}`, {
             method: 'PATCH',
             headers: AUTH_HEADERS_JSON,
