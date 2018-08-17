@@ -1,4 +1,4 @@
-import React, { Component, Fragment} from 'react';
+import React, { Component} from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter, Switch } from "react-router-dom";
 import { ActionCableProvider } from 'react-actioncable-provider';
