@@ -5,7 +5,6 @@ import {AUTH_HEADERS_JSON} from './AdapterConstants'
 class AdapterChats {
 
     static  fetchToWebsocket(route, bodyData) {
-        debugger
         fetch(`${API_ROOT}/${route}`, {
             method: 'POST',
             headers: AUTH_HEADERS_JSON,
