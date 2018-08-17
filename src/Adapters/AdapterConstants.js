@@ -3,7 +3,7 @@ import AdapterUser from './AdapterUser';
 
 //URLS
 export const API_ROOT = 'http://localhost:3000/api/v1';
-export const API_WS_ROOT = `ws://localhost:3000/api/v1/cable?token=${AdapterUser.getToken()}`;
+export const API_WS_ROOT = 'ws://localhost:3000/api/v1/cable';
 
 //HEADERS
 export const AUTH_HEADERS_JSON =  {

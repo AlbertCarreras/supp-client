@@ -64,6 +64,7 @@ class App extends Component {
         AdapterUser.deleteToken();
         this.props.history.push('/login');
       })
+      document.cookie = 'X-Authorization=' + AdapterUser.getToken() + '; path=/';
       Adapters.getClosestUsers()
       .then(json => this.props.saveClosestUsers(json))
     }
