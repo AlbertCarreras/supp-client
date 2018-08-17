@@ -45,7 +45,6 @@ class ConversationsList extends React.Component {
     
     //WEBSOCKET FUNCTIONALITY: Receivers
     handleReceivedConversation = response => {
-      console.log(response)
         const { conversation } = response;
         this.setState({
           conversations: [...this.state.conversations, conversation]

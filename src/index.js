@@ -21,13 +21,11 @@ import App from './App';
 
 
 ReactDOM.render(
-  <ActionCableProvider url={API_WS_ROOT}>
     <Provider store={store}>
       <Router>
         <App />
       </Router>
-    </Provider>
-  </ActionCableProvider>,
+    </Provider>,
     document.getElementById('root')
 );
 

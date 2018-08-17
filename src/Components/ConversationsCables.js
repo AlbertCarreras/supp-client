@@ -4,7 +4,9 @@ import { ActionCable } from 'react-actioncable-provider';
 const MessagesCables = ({ handleReceivedConversation }) => {
   return (
           <ActionCable
-              channel={{ channel: 'ConversationsChannel' }}
+              channel={{ 
+                channel: 'ConversationsChannel'
+              }}
               onReceived={handleReceivedConversation}
           />
   );

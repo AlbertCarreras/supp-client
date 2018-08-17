@@ -1,6 +1,7 @@
 import React, { Component, Fragment} from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter, Switch } from "react-router-dom";
+import { ActionCableProvider } from 'react-actioncable-provider';
 
 //STYLING
 import './App.css';
@@ -9,6 +10,7 @@ import './App.css';
 import AdapterUser from './Adapters/AdapterUser';
 import AdapterLocation from './Adapters/AdapterLocation';
 import Adapters from './Adapters/Adapters';
+import { API_WS_ROOT } from './Adapters/AdapterConstants';
 
 
 // ACTIONS
@@ -86,7 +88,7 @@ class App extends Component {
         <Header />
         {
           !!AdapterUser.getToken()
-          ? <Fragment>
+          ? <ActionCableProvider url={API_WS_ROOT}>
               <Switch>
                 <Route
                   path="/user/profile"
@@ -101,7 +103,7 @@ class App extends Component {
                   component={HomeContainer}
                 />
               </Switch>
-            </Fragment>
+            </ActionCableProvider>
           : <Route
                 path="/"
                 component={WelcomeContainer}
