@@ -20,7 +20,13 @@ class NewMessageForm extends React.Component {
   //PROPS FUNCTIONALITY: Button handlers
   handleSubmit = e => {
     e.preventDefault();
-    AdapterChats.fetchToWebsocket("messages", this.state);
+    let body = {
+      text: this.state.text,
+      conversation_id: this.state.conversation_id,
+      user_id: 1, //default alberto for now!
+    };
+
+    AdapterChats.fetchToWebsocket("messages", body);
     this.setState({ text: '' });
   };
 

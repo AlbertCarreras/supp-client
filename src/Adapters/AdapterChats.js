@@ -4,11 +4,11 @@ import {AUTH_HEADERS_JSON} from './AdapterConstants'
 
 class AdapterChats {
 
-    static  fetchToWebsocket(route, stateData) {
+    static  fetchToWebsocket(route, bodyData) {
         fetch(`${API_ROOT}/${route}`, {
             method: 'POST',
             headers: AUTH_HEADERS_JSON,
-            body: JSON.stringify(stateData)
+            body: JSON.stringify(bodyData)
         })
     }        
 }
