@@ -57,14 +57,21 @@ class App extends Component {
   }
 
   componentDidMount(){
+
+    document.cookie = 'X-Authorization=' + AdapterUser.getToken() + '; path=/';
+    
+    // token?, then return me the user info & friends. otherwise, do nothing
     if (AdapterUser.getToken()) {
+      console.log("Path App");
       AdapterUser.getCurrentUser()
       .then(json => this.props.login(json.username, json.email, json.id, json.bio, json.userInterests, json.profile_image, json.lat, json.lon))
       .catch(err => {
+        
         AdapterUser.deleteToken();
         this.props.history.push('/login');
+
       })
-      document.cookie = 'X-Authorization=' + AdapterUser.getToken() + '; path=/';
+
       Adapters.getClosestUsers()
       .then(json => this.props.saveClosestUsers(json))
     }
@@ -88,6 +95,7 @@ class App extends Component {
       <div className="app">
         <Header />
         {
+          //if there is token, you're in. If there is not, go to welcome container.
           !!AdapterUser.getToken()
           ? <ActionCableProvider url={API_WS_ROOT}>
               <Switch>

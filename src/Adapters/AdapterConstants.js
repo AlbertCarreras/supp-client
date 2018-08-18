@@ -7,11 +7,13 @@ export const AUTH_HEADERS_JSON =  {
   "Accept": "application/json",
   "Content-Type": "application/json",
   "Authorization": `Bearer ${localStorage.getItem("token")}`
-  };
-  export const AUTH_HEADERS_IMAGE =  {
-    "Authorization": `Bearer ${localStorage.getItem("token")}`
-  };
+};
+
+export const AUTH_HEADERS_IMAGE =  {
+  "Authorization": `Bearer ${localStorage.getItem("token")}`
+};
+
 export const INIT_HEADERS =  {
     "Accept": "application/json",
     "Content-Type": "application/json",
-  };
+};

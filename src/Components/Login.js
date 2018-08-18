@@ -33,8 +33,9 @@ class Login extends Component {
     AdapterUser.login(this.state)
       .then(json => {
         AdapterUser.setToken(json.jwt);
+        //This one does not work.
         AdapterUser.getCurrentUser()
-        .then(json => this.props.login(json.username, json.email, json.id, json.bio, json.userInterests, json.profile_image, json.lat, json.lon))
+        .then(json => this.props.login(json.username, json.email, json.id, json.bio, json.userInterests, json.profile_image, json.lat, json.lon));
         this.props.history.push('/home');
       })
       .catch(err => {
