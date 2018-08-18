@@ -14,6 +14,10 @@ class AdapterUser {
     return localStorage.getItem("token")
   }
 
+  static saveTokenAsCookie() {
+    document.cookie = 'X-Authorization=' + this.getToken() + '; path=/';
+  }
+
   static deleteToken() {
     localStorage.removeItem("token")
   }

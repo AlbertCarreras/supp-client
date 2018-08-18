@@ -58,22 +58,23 @@ class App extends Component {
   }
 
   getUserFromDb = () => {
-    document.cookie = 'X-Authorization=' + AdapterUser.getToken() + '; path=/';
-    console.log("Path App, JWT is in localStorage");
+    console.log("getUserFromDb");
     AdapterUser.getCurrentUser()
     .then(json => this.props.login(json.username, json.email, json.id, json.bio, json.userInterests, json.profile_image, json.lat, json.lon))
     .catch(err => {
-      
+      console.log(err)
       AdapterUser.deleteToken();
       this.props.history.push('/login');
 
     })
   }
 
-  componentDidMount(){    
+  componentDidMount(){ 
+    
+    console.log("componentDidMount")
     // token?, then return me the user info & friends. otherwise, do nothing
     if (AdapterUser.getToken()) {
-
+      AdapterUser.saveTokenAsCookie();
       this.getUserFromDb();
       Adapters.getClosestUsers()
       .then(json => this.props.saveClosestUsers(json))
@@ -85,7 +86,7 @@ class App extends Component {
     // got new UserId?, then get current position
     if (this.props.userId !== prevProps.userId) {
 
-      this.getCurrentPosition();
+      // this.getCurrentPosition();
     
     }
 
@@ -100,12 +101,17 @@ class App extends Component {
     }
 
     // just logged in and got JWT token saved in localStorage?, then as if   componentDidMount
-    if (prevProps.jwtToken === false && this.props.jwtToken !== prevProps.jwtToken) {
-      
-      // this.getUserFromDb();
-      
-      // Adapters.getClosestUsers()
-      // .then(json => this.props.saveClosestUsers(json));
+    if (prevProps.jwtToken === false && this.props.jwtToken === true) {
+      console.log("componentDidUpdateToken")
+      //BUG IS HERE!!!!!!!!!!!!
+      debugger;
+
+      // if (AdapterUser.getToken()) {
+      //   AdapterUser.saveTokenAsCookie();
+      //   this.getUserFromDb();
+      //   Adapters.getClosestUsers()
+      //   .then(json => this.props.saveClosestUsers(json))
+      // }
 
     }
   }

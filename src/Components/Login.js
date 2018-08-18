@@ -32,11 +32,11 @@ class Login extends Component {
 
   handleSubmit = () => {
 
-    console.log("Path Login, JWT is NOT in localStorage");
     AdapterUser.login(this.state)
       .then(json => {
         AdapterUser.setToken(json.jwt);
         this.props.jwtSavedInLocalStorage();
+        AdapterUser.saveTokenAsCookie();
         this.props.history.push('/home');
       })
       .catch(err => {
