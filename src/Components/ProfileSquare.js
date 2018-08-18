@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter} from 'react-router-dom';
-import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import { Header, Image, Modal } from 'semantic-ui-react'
 
 // ADAPTERS
 import Adapters from './../Adapters/Adapters';
@@ -8,13 +8,9 @@ import Adapters from './../Adapters/Adapters';
 //COMPONENTS
 import UserInterestList from './UserInterestList'
 import FriendInterestList from './FriendInterestList'
-
+import StartChatButton from './StartChatButton'
 
 const ProfileSquare = (props) => {
-
-    function handleClick() {
-        console.log(props.userId)
-    }
 
     function profileSquareButton() {
         return (
@@ -66,10 +62,7 @@ const ProfileSquare = (props) => {
             {
                 props.username === "YOU" 
                 ?   null
-                :   <Button
-                    onClick={() => handleClick()}
-                    primary>Say <div className="btn-logo">Supp?!</div>
-                    </Button>
+                :   <StartChatButton user_receiver_id={props.userId}/>
             }
             
         </Modal.Actions>
