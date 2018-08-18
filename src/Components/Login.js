@@ -6,12 +6,11 @@ import { connect } from 'react-redux';
 import AdapterUser from './../Adapters/AdapterUser';
 
 // ACTIONS
-import { login, jwtSavedInLocalStorage } from '../actions';
+import { jwtSavedInLocalStorage } from '../actions';
 
 // REDUX PROPS 
 const mapDispatchToProps = dispatch => {
   return {
-    login: (username, email, userId, bio, userInterests, profileImageLink, prevGeolocationLat, prevGeolocationLon) => dispatch(login(username, email, userId, bio, userInterests, profileImageLink, prevGeolocationLat, prevGeolocationLon)),
     jwtSavedInLocalStorage: () => dispatch(jwtSavedInLocalStorage())
   }
 }

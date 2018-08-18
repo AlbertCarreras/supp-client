@@ -65,7 +65,6 @@ class App extends Component {
       console.log(err)
       AdapterUser.deleteToken();
       this.props.history.push('/login');
-
     })
   }
 
@@ -102,16 +101,17 @@ class App extends Component {
 
     // just logged in and got JWT token saved in localStorage?, then as if   componentDidMount
     if (prevProps.jwtToken === false && this.props.jwtToken === true) {
-      console.log("componentDidUpdateToken")
+      
       //BUG IS HERE!!!!!!!!!!!!
-      debugger;
 
-      // if (AdapterUser.getToken()) {
-      //   AdapterUser.saveTokenAsCookie();
-      //   this.getUserFromDb();
-      //   Adapters.getClosestUsers()
-      //   .then(json => this.props.saveClosestUsers(json))
-      // }
+      console.log("componentDidUpdateToken")
+      if (AdapterUser.getToken()) {
+        console.log(AdapterUser.getToken());
+        AdapterUser.saveTokenAsCookie();
+        this.getUserFromDb();
+        Adapters.getClosestUsers()
+        .then(json => this.props.saveClosestUsers(json))
+      }
 
     }
   }
