@@ -1,6 +1,7 @@
 // ADAPTERS
-import {API} from './AdapterUser'
-import AdapterUser from './AdapterUser';
+import {API} from './AdapterConstants'
+import {HEADER_JWT} from './AdapterConstants'
+import {HEADER_JWT_JSON} from './AdapterConstants'
 
 class Adapters {
 
@@ -21,9 +22,7 @@ class Adapters {
     static  getClosestUsers() {
         return fetch(`${API}/users`, {
             method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${AdapterUser.getToken()}`
-            }
+            headers: HEADER_JWT
         })
         .then(resp => resp.json())
     }
@@ -31,10 +30,7 @@ class Adapters {
     static  getFilteredClosestUsers(filterTermId) {
         return fetch(`${API}/users`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${AdapterUser.getToken()}`
-            },
+            headers: HEADER_JWT_JSON,
             body: JSON.stringify({
                 "filter": {
                   "filterId": filterTermId,
@@ -47,10 +43,7 @@ class Adapters {
     static  getSearchMatches(searchTerm) {
         return fetch(`${API}/searchInterests`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${AdapterUser.getToken()}`
-            },
+            headers: HEADER_JWT_JSON,
             body: JSON.stringify({
                 "search": {
                   "searchTerm": searchTerm.toLowerCase(),

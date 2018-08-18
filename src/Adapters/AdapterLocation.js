@@ -1,16 +1,13 @@
 // ADAPTERS
-import {API} from './AdapterUser'
-import AdapterUser from './AdapterUser';
+import {API} from './AdapterConstants'
+import {HEADER_JWT_JSON} from './AdapterConstants'
 
 class AdapterLocation {
 
     static  persistCurrentGeolocation(userId, latitude, longitude) {
         return fetch(`${API}/user/${userId}`, {
             method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${AdapterUser.getToken()}`
-            },
+            headers: HEADER_JWT_JSON,
             body: JSON.stringify({
                 "user": {
                   "last_location_lat": latitude,
