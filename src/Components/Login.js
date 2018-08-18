@@ -11,7 +11,7 @@ import { jwtSavedInLocalStorage } from '../actions';
 // REDUX PROPS 
 const mapDispatchToProps = dispatch => {
   return {
-    jwtSavedInLocalStorage: () => dispatch(jwtSavedInLocalStorage())
+    jwtSavedInLocalStorage: () => dispatch(jwtSavedInLocalStorage()),
   }
 }
 

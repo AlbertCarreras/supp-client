@@ -85,7 +85,7 @@ class App extends Component {
     // got new UserId?, then get current position
     if (this.props.userId !== prevProps.userId) {
 
-      // this.getCurrentPosition();
+      this.getCurrentPosition();
     
     }
 
@@ -107,10 +107,10 @@ class App extends Component {
       console.log("componentDidUpdateToken")
       if (AdapterUser.getToken()) {
         console.log(AdapterUser.getToken());
-        AdapterUser.saveTokenAsCookie();
-        this.getUserFromDb();
-        Adapters.getClosestUsers()
-        .then(json => this.props.saveClosestUsers(json))
+      //   AdapterUser.saveTokenAsCookie();
+      //   this.getUserFromDb();
+      //   Adapters.getClosestUsers()
+      //   .then(json => this.props.saveClosestUsers(json))
       }
 
     }
