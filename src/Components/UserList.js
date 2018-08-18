@@ -24,6 +24,7 @@ class UserList extends Component {
                 <ProfileSquare 
                     key={user.userId}
                     bio={user.bio}
+                    userId={user.userId}
                     username={user.username}
                     interests={user.interests}
                     profileImageLink={user.profileImageLink}

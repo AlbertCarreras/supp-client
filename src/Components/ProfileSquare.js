@@ -12,6 +12,10 @@ import FriendInterestList from './FriendInterestList'
 
 const ProfileSquare = (props) => {
 
+    function handleClick() {
+        console.log(props.userId)
+    }
+
     function profileSquareButton() {
         return (
             <div className="profile-image-space">
@@ -59,7 +63,15 @@ const ProfileSquare = (props) => {
             </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
-            <Button primary>Say <div className="btn-logo">Supp?!</div></Button>
+            {
+                props.username === "YOU" 
+                ?   null
+                :   <Button
+                    onClick={() => handleClick()}
+                    primary>Say <div className="btn-logo">Supp?!</div>
+                    </Button>
+            }
+            
         </Modal.Actions>
       </Modal>
     );
