@@ -1,5 +1,5 @@
 import {
-    LOGIN, LOGOUT, 
+    JWT, LOGIN, LOGOUT, 
     SAVE_PROFILE, SAVE_PROFILE_IMAGE, 
     SAVE_CURRENT_GEOLOCATION, SAVE_CLOSEST_USERS,
     SAVE_USER_INTERESTS, REMOVE_USER_INTERESTS,
@@ -9,6 +9,7 @@ import {
 
 //Default App State - REDUX
 const initialState = {
+    jwtToken: false,
     username: "",
     email: "",
     userId: null,
@@ -24,6 +25,11 @@ const initialState = {
   
 export default function reducer(state = initialState, action) {
     switch(action.type) {
+        case JWT: {
+            return { ...state,
+                jwtToken: true,
+            }
+        }
         case LOGIN:
             return { ...state,
                 username: action.payload.username,
@@ -39,6 +45,7 @@ export default function reducer(state = initialState, action) {
             }
         case LOGOUT:
             return { ...state,
+                jwtToken: false,
                 username: "",
                 email: "",
                 userId: null,

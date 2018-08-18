@@ -26,6 +26,7 @@ import Footer from './Components/Footer'
 // REDUX PROPS 
 const mapStateToProps = state => {
   return {
+      jwtToken: state.jwtToken,
       userId: state.userId,
       loggedIn: state.loggedIn,
       closestUsers: state.closestUsers,
@@ -56,37 +57,56 @@ class App extends Component {
     }
   }
 
-  componentDidMount(){
-
+  getUserFromDb = () => {
     document.cookie = 'X-Authorization=' + AdapterUser.getToken() + '; path=/';
-    
+    console.log("Path App, JWT is in localStorage");
+    AdapterUser.getCurrentUser()
+    .then(json => this.props.login(json.username, json.email, json.id, json.bio, json.userInterests, json.profile_image, json.lat, json.lon))
+    .catch(err => {
+      
+      AdapterUser.deleteToken();
+      this.props.history.push('/login');
+
+    })
+  }
+
+  componentDidMount(){    
     // token?, then return me the user info & friends. otherwise, do nothing
     if (AdapterUser.getToken()) {
-      console.log("Path App, JWT is in localStorage");
-      AdapterUser.getCurrentUser()
-      .then(json => this.props.login(json.username, json.email, json.id, json.bio, json.userInterests, json.profile_image, json.lat, json.lon))
-      .catch(err => {
-        
-        AdapterUser.deleteToken();
-        this.props.history.push('/login');
 
-      })
-
+      this.getUserFromDb();
       Adapters.getClosestUsers()
       .then(json => this.props.saveClosestUsers(json))
     }
+
   }
 
   componentDidUpdate(prevProps){
+    // got new UserId?, then get current position
     if (this.props.userId !== prevProps.userId) {
+
       this.getCurrentPosition();
+    
     }
 
+    // position changed?, then get new closest friends
     if (this.props.lat !== prevProps.lat || this.props.lon !== prevProps.lon) {
+      
       return this.props.loggedIn 
       ? Adapters.getClosestUsers()
         .then(json => this.props.saveClosestUsers(json))
       : null
+
+    }
+
+    // just logged in and got JWT token saved in localStorage?, then as if   componentDidMount
+    if (prevProps.jwtToken === false && this.props.jwtToken !== prevProps.jwtToken) {
+      
+      // this.getUserFromDb();
+      
+      // Adapters.getClosestUsers()
+      // .then(json => this.props.saveClosestUsers(json));
+
     }
   }
 

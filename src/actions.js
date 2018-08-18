@@ -1,11 +1,17 @@
 import {
-    LOGIN, LOGOUT, 
+    JWT, LOGIN, LOGOUT, 
     SAVE_PROFILE, SAVE_PROFILE_IMAGE, 
     SAVE_CURRENT_GEOLOCATION, SAVE_CLOSEST_USERS,
     SAVE_USER_INTERESTS, REMOVE_USER_INTERESTS,
     SAVE_FILTERED_CLOSEST_USERS,
     SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS,
 } from './types';
+
+export function jwtSavedInLocalStorage() {
+    return {
+        type: JWT,
+    }
+}
 
 export function login(username, email, userId, bio, userInterests=[], profileImageLink=`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`, prevGeolocationLat, prevGeolocationLon) {
     return {

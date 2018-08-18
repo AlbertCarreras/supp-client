@@ -6,12 +6,13 @@ import { connect } from 'react-redux';
 import AdapterUser from './../Adapters/AdapterUser';
 
 // ACTIONS
-import { login } from '../actions';
+import { login, jwtSavedInLocalStorage } from '../actions';
 
 // REDUX PROPS 
 const mapDispatchToProps = dispatch => {
   return {
-    login: (username, email, userId, bio, userInterests, profileImageLink, prevGeolocationLat, prevGeolocationLon) => dispatch(login(username, email, userId, bio, userInterests, profileImageLink, prevGeolocationLat, prevGeolocationLon))
+    login: (username, email, userId, bio, userInterests, profileImageLink, prevGeolocationLat, prevGeolocationLon) => dispatch(login(username, email, userId, bio, userInterests, profileImageLink, prevGeolocationLat, prevGeolocationLon)),
+    jwtSavedInLocalStorage: () => dispatch(jwtSavedInLocalStorage())
   }
 }
 
@@ -35,6 +36,7 @@ class Login extends Component {
     AdapterUser.login(this.state)
       .then(json => {
         AdapterUser.setToken(json.jwt);
+        this.props.jwtSavedInLocalStorage();
         this.props.history.push('/home');
       })
       .catch(err => {
