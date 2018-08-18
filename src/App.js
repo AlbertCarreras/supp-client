@@ -62,7 +62,7 @@ class App extends Component {
     
     // token?, then return me the user info & friends. otherwise, do nothing
     if (AdapterUser.getToken()) {
-      console.log("Path App");
+      console.log("Path App, JWT is in localStorage");
       AdapterUser.getCurrentUser()
       .then(json => this.props.login(json.username, json.email, json.id, json.bio, json.userInterests, json.profile_image, json.lat, json.lon))
       .catch(err => {
