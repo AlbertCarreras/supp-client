@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 //ADAPTERS
 import AdapterChats from './../Adapters/AdapterChats';
@@ -8,6 +9,13 @@ import NewConversationForm from './NewConversationForm';
 import MessagesArea from './MessagesArea';
 import MessagesCables from './MessagesCables';
 import ConversationsCables from './ConversationsCables';
+
+// REDUX PROPS 
+const mapStateToProps = state => {
+  return {
+      userId: state.userId,
+  }
+}
 
 class ConversationsList extends React.Component {
     state = {
@@ -43,15 +51,16 @@ class ConversationsList extends React.Component {
     };
     
     //WEBSOCKET FUNCTIONALITY: Receivers
-    handleReceivedConversation = response => {
-        const { conversation } = response;
+    handleReceivedConversation = (response, userId = this.props.userId) => {
+      const { conversation } = response;
+      if (conversation.users.map((i)=> i.id).includes(userId)) {
         this.setState({
           conversations: [...this.state.conversations, conversation]
         });
+      }
     };
 
     handleReceivedMessage = response => {
-        console.log(response)
         const { message } = response;
         const conversations = [...this.state.conversations];
         const conversation = conversations.find(
@@ -101,5 +110,4 @@ class ConversationsList extends React.Component {
       };
     }
     
-    export default ConversationsList;
-    
+    export default connect(mapStateToProps, null)(ConversationsList);
