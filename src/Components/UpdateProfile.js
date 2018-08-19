@@ -12,7 +12,6 @@ import { saveProfileImage } from '../actions';
 
 
 // REDUX PROPS 
-
 const mapStateToProps = state => {
     return {
         user_id: state.userId,

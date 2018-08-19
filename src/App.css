@@ -50,7 +50,7 @@
   flex: 1 100%;
 }
 
-.filter-container  { 
+.aside-container  { 
   flex: 1 2 25%;
   padding: 20px;
 }
@@ -109,10 +109,6 @@
   font-family: 'Sniglet', cursive;
   font-weight: 400;
   z-index: 2;
-}
-
-.messaging-container  { 
-  flex: 1 2 25%; 
 }
 
 .app-footer {

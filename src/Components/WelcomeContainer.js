@@ -9,6 +9,7 @@ import Signup from './Signup'
 const WelcomeContainer = () => {
     return (
         <Fragment>
+
             <Switch>
                 <Route
                     exact path="/signup"
@@ -17,9 +18,10 @@ const WelcomeContainer = () => {
                 <Route
                     path="/"
                     component={Login}
-                />
-                
+                />    
             </Switch>
+            
+            {/* Background images collage */}
             <div className="welcome-container">
                 <div className="row"> 
                     <div className="column">

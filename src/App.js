@@ -1,6 +1,7 @@
-import React, { Component, Fragment} from 'react';
+import React, { Component} from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter, Switch } from "react-router-dom";
+import { ActionCableProvider } from 'react-actioncable-provider';
 
 //STYLING
 import './App.css';
@@ -9,6 +10,7 @@ import './App.css';
 import AdapterUser from './Adapters/AdapterUser';
 import AdapterLocation from './Adapters/AdapterLocation';
 import Adapters from './Adapters/Adapters';
+import { API_WS_ROOT } from './Adapters/AdapterConstants';
 
 
 // ACTIONS
@@ -24,6 +26,7 @@ import Footer from './Components/Footer'
 // REDUX PROPS 
 const mapStateToProps = state => {
   return {
+      jwtToken: state.jwtToken,
       userId: state.userId,
       loggedIn: state.loggedIn,
       closestUsers: state.closestUsers,
@@ -54,29 +57,62 @@ class App extends Component {
     }
   }
 
-  componentDidMount(){
+  getUserFromDb = () => {
+    console.log("getUserFromDb");
+    AdapterUser.getCurrentUser()
+    .then(json => this.props.login(json.username, json.email, json.id, json.bio, json.userInterests, json.profile_image, json.lat, json.lon))
+    .catch(err => {
+      console.log(err)
+      AdapterUser.deleteToken();
+      this.props.history.push('/login');
+    })
+  }
+
+  componentDidMount(){ 
+    
+    console.log("componentDidMount")
+    // token?, then return me the user info & friends. otherwise, do nothing
     if (AdapterUser.getToken()) {
-      AdapterUser.getCurrentUser()
-      .then(json => this.props.login(json.username, json.email, json.id, json.bio, json.userInterests, json.profile_image, json.lat, json.lon))
-      .catch(err => {
-        AdapterUser.deleteToken();
-        this.props.history.push('/login');
-      })
+      AdapterUser.saveTokenAsCookie();
+      this.getUserFromDb();
       Adapters.getClosestUsers()
       .then(json => this.props.saveClosestUsers(json))
     }
+
   }
 
   componentDidUpdate(prevProps){
+    // got new UserId?, then get current position
     if (this.props.userId !== prevProps.userId) {
+
       this.getCurrentPosition();
+    
     }
 
+    // position changed?, then get new closest friends
     if (this.props.lat !== prevProps.lat || this.props.lon !== prevProps.lon) {
+      
       return this.props.loggedIn 
       ? Adapters.getClosestUsers()
         .then(json => this.props.saveClosestUsers(json))
       : null
+
+    }
+
+    // just logged in and got JWT token saved in localStorage?, then as if   componentDidMount
+    if (prevProps.jwtToken === false && this.props.jwtToken === true) {
+      
+      //BUG IS HERE!!!!!!!!!!!!
+
+      console.log("componentDidUpdateToken")
+      if (AdapterUser.getToken()) {
+        console.log(AdapterUser.getToken());
+      //   AdapterUser.saveTokenAsCookie();
+      //   this.getUserFromDb();
+      //   Adapters.getClosestUsers()
+      //   .then(json => this.props.saveClosestUsers(json))
+      }
+
     }
   }
 
@@ -85,8 +121,9 @@ class App extends Component {
       <div className="app">
         <Header />
         {
+          //if there is token, you're in. If there is not, go to welcome container.
           !!AdapterUser.getToken()
-          ? <Fragment>
+          ? <ActionCableProvider url={API_WS_ROOT}>
               <Switch>
                 <Route
                   path="/user/profile"
@@ -101,7 +138,7 @@ class App extends Component {
                   component={HomeContainer}
                 />
               </Switch>
-            </Fragment>
+            </ActionCableProvider>
           : <Route
                 path="/"
                 component={WelcomeContainer}

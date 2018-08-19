@@ -6,12 +6,12 @@ import { connect } from 'react-redux';
 import AdapterUser from './../Adapters/AdapterUser';
 
 // ACTIONS
-import { login } from '../actions';
+import { jwtSavedInLocalStorage } from '../actions';
 
 // REDUX PROPS 
 const mapDispatchToProps = dispatch => {
   return {
-    login: (username, email, userId, bio, userInterests, profileImageLink, prevGeolocationLat, prevGeolocationLon) => dispatch(login(username, email, userId, bio, userInterests, profileImageLink, prevGeolocationLat, prevGeolocationLon))
+    jwtSavedInLocalStorage: () => dispatch(jwtSavedInLocalStorage()),
   }
 }
 
@@ -30,11 +30,12 @@ class Login extends Component {
   }
 
   handleSubmit = () => {
+
     AdapterUser.login(this.state)
       .then(json => {
         AdapterUser.setToken(json.jwt);
-        AdapterUser.getCurrentUser()
-        .then(json => this.props.login(json.username, json.email, json.id, json.bio, json.userInterests, json.profile_image, json.lat, json.lon))
+        this.props.jwtSavedInLocalStorage();
+        AdapterUser.saveTokenAsCookie();
         this.props.history.push('/home');
       })
       .catch(err => {

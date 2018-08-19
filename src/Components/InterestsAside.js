@@ -8,7 +8,7 @@ import InterestsList from './InterestsList';
 class InterestsAside extends Component {
     render() {
         return (
-            <div className="filter-container">
+            <div className="aside-container">
                 <Search />
                 <InterestsList />
             </div>
