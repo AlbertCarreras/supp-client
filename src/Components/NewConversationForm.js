@@ -17,8 +17,6 @@ class NewConversationForm extends React.Component {
     e.preventDefault();
     let body = {
       title: this.state.title,
-      submitter_id: 1, //default alberto for now!
-      receiver_id: 19 //default avi for now! should be live based on clicks and user
     };
 
     AdapterChats.fetchToWebsocket("conversations", body);

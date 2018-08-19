@@ -1,7 +1,7 @@
 import React from 'react';
 
 //ADAPTERS
-import { API_ROOT } from './../Adapters/AdapterConstants';
+import AdapterChats from './../Adapters/AdapterChats';
 
 //COMPONENTS
 import NewConversationForm from './NewConversationForm';
@@ -16,10 +16,9 @@ class ConversationsList extends React.Component {
     };
     
     componentDidMount = () => {
-        fetch(`${API_ROOT}/conversations`)
-          .then(res => res.json())
-          .then(conversations => this.setState({ conversations }));
-      };
+      AdapterChats.getConversations()
+      .then(conversations => this.setState({ conversations }));
+    };
     
     //HELPERS
     findActiveConversation = (conversations, activeConversation) => {

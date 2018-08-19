@@ -23,7 +23,6 @@ class NewMessageForm extends React.Component {
     let body = {
       text: this.state.text,
       conversation_id: this.state.conversation_id,
-      user_id: 1, //default alberto for now!
     };
 
     AdapterChats.fetchToWebsocket("messages", body);
