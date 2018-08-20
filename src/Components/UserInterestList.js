@@ -9,7 +9,7 @@ import AdapterUser from './../Adapters/AdapterUser';
 
 
 // ACTIONS
-import { selectCommonInterests, saveFilteredClosestUsers, saveUserInterests } from '../actions';
+import { selectCommonInterests, thunkSaveFilteredClosestUsers, saveUserInterests } from '../actions';
 
 // REDUX PROPS 
 const mapStateToProps = state => {
@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => {
     return {
         selectCommonInterests: (selectedCommonInterest) => dispatch(selectCommonInterests(selectedCommonInterest)),
         saveUserInterests: (userInterests) => dispatch(saveUserInterests(userInterests)),
-        saveFilteredClosestUsers: (closestUsers) => dispatch(saveFilteredClosestUsers(closestUsers)),
+        thunkSaveFilteredClosestUsers: (interestId) => dispatch(thunkSaveFilteredClosestUsers(interestId)),
     }
   }
 
@@ -36,8 +36,7 @@ const UserInterestList = (props) => {
                             <Icon 
                                 onClick={() => {
                                     props.selectCommonInterests(interest)
-                                    Adapters.getFilteredClosestUsers(interest.id)
-                                    .then(props.saveFilteredClosestUsers)
+                                    props.thunkSaveFilteredClosestUsers(interest.id)
                                 }}
                                 color='teal' 
                                 name='users' 
