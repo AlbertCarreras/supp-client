@@ -1,7 +1,6 @@
 // ADAPTERS
 import {API_ROOT} from './AdapterConstants'
 import {INIT_HEADERS} from './AdapterConstants'
-import {AUTH_HEADERS_JSON} from './AdapterConstants'
 
 class AdapterUser {
 
@@ -50,17 +49,6 @@ class AdapterUser {
       }})
     })
   }        
-
-  static  persistRemoveInterests(userInterests) {
-    let bodyPersistRemoveInterests = {"user": {
-      "interests": userInterests
-    }};
-    return fetch(`${API_ROOT}/user_interests/${userInterests.id}`, {
-        method: 'DELETE',
-        headers: AUTH_HEADERS_JSON,
-        body: JSON.stringify(bodyPersistRemoveInterests)
-    }).then(resp => resp.json())
-  }
 }
 
 export default AdapterUser;

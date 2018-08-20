@@ -3,7 +3,7 @@ import {
     JWT, LOGIN, LOGOUT, 
     SAVE_PROFILE, SAVE_PROFILE_IMAGE, 
     SAVE_CURRENT_GEOLOCATION, SAVE_CLOSEST_USERS,
-    SAVE_USER_INTERESTS, REMOVE_USER_INTERESTS,
+    SAVE_USER_INTERESTS,
     SAVE_FILTERED_CLOSEST_USERS,
     SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS,
 } from './types';
@@ -189,7 +189,7 @@ export const thunkSaveUserInterests = (userId, userInterests) => {
 
     return (dispatch) => {
         console.log("thunk user interests")
-        fetch(`http://localhost:3000/api/v1//user/${userId}/interests`, {
+        fetch(`http://localhost:3000/api/v1/user/${userId}/interests`, {
             method: 'POST',
             headers: {
                 "Accept": "application/json",
@@ -198,7 +198,7 @@ export const thunkSaveUserInterests = (userId, userInterests) => {
             },
             body: JSON.stringify(bodyPersistAddInterests)
         })
-        .then(r=>r.json())
+        .then(resp=>resp.json())
         .then(resp => dispatch( { 
             type: SAVE_USER_INTERESTS,
             payload: {
@@ -208,12 +208,29 @@ export const thunkSaveUserInterests = (userId, userInterests) => {
     }
 }
 
-export function removeUserInterests(selectedUserInterest) {
-    return {
-        type: REMOVE_USER_INTERESTS,
-        payload: {
-            selectedUserInterest: selectedUserInterest,
-        }
+export const thunkRemoveUserInterests = (userInterests) => {
+    let bodyPersistRemoveInterests = {"user": {
+        "interests": userInterests
+      }};
+
+    return (dispatch) => {
+        console.log("thunk user interests")
+        fetch(`http://localhost:3000/api/v1/user_interests/${userInterests.id}`, {
+            method: 'DELETE',
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify(bodyPersistRemoveInterests)
+        })
+        .then(resp=>resp.json())
+        .then(resp => dispatch( { 
+            type: SAVE_USER_INTERESTS,
+            payload: {
+                userInterestArray: resp.interests,
+            }
+        }))
     }
 }
 
