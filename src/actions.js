@@ -38,7 +38,7 @@ export const thunkLogin = () => {
         }))
     }
 }
-  export const thunkSaveClosestUsers = () => {
+export const thunkSaveClosestUsers = () => {
     console.log(localStorage.getItem("token"))
     return (dispatch) => {
         console.log("thunk closest users action")
@@ -48,7 +48,7 @@ export const thunkLogin = () => {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
-              }
+                }
         })
         .then(r=>r.json())
         .then(resp => dispatch( { 
@@ -58,9 +58,9 @@ export const thunkLogin = () => {
             }
         }))
     }
-  }
+}
 
-  export const thunkPersistCurrentGeolocation = (userId, latitude, longitude) => {
+export const thunkPersistCurrentGeolocation = (userId, latitude, longitude) => {
     console.log(localStorage.getItem("token"))
     return () => {
         console.log("thunk save location")
@@ -73,15 +73,40 @@ export const thunkLogin = () => {
             },
             body: JSON.stringify({
                 "user": {
-                  "last_location_lat": latitude,
-                  "last_location_lon": longitude,
+                    "last_location_lat": latitude,
+                    "last_location_lon": longitude,
                 }})
         })
         .then(console.log)
     }
-  }
+}
 
-
+export const thunkSaveFilteredClosestUsers = (filterTermId) => {
+    console.log(localStorage.getItem("token"))
+    return (dispatch) => {
+        console.log("thunk filter friends")
+        fetch(`http://localhost:3000/api/v1/users`, {
+            method: 'POST',
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify({
+                "filter": {
+                  "filterId": filterTermId,
+                }
+            })
+        })
+        .then(r=>r.json())
+        .then(resp => dispatch( { 
+            type: SAVE_FILTERED_CLOSEST_USERS,
+            payload: {
+                closestUsers: resp,
+            }
+        }))
+    }
+}
 
 
 //REDUX

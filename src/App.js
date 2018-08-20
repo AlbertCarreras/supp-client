@@ -71,10 +71,12 @@ class App extends Component {
     }
 
     // position changed?, then get new closest friends
-    if (this.props.lat !== prevProps.lat || this.props.lon !== prevProps.lon) {
-      return this.props.loggedIn 
-      ? this.props.thunkSaveClosestUsers()
-      : null
+    if (this.props.userId !== null) {
+      if (this.props.lat !== prevProps.lat || this.props.lon !== prevProps.lon) {
+        return this.props.loggedIn 
+        ? this.props.thunkSaveClosestUsers()
+        : null
+      }
     }
 
     // just logged in and got JWT token saved in localStorage?, then as if   componentDidMount
