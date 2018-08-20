@@ -209,6 +209,7 @@ export const thunkSaveUserInterests = (userId, userInterests) => {
 }
 
 export const thunkRemoveUserInterests = (userInterests) => {
+    
     let bodyPersistRemoveInterests = {"user": {
         "interests": userInterests
       }};
