@@ -36,6 +36,7 @@ class AdapterUser {
     .then(resp => resp.json())
   }
 
+  //signup to receive JWT. getCurrentUser is an Thunk action
   static signup(signupState) {
     return fetch(`${API_ROOT}/users/create`, {
     method: 'POST',
@@ -49,18 +50,6 @@ class AdapterUser {
       }})
     })
   }        
-
-  static  persistAddInterests(userId, userInterests) {
-    let bodyPersistAddInterests = {"user": {
-      "interests": userInterests
-    }};
-    return fetch(`${API_ROOT}/user/${userId}/interests`, {
-        method: 'POST',
-        headers: AUTH_HEADERS_JSON,
-        body: JSON.stringify(bodyPersistAddInterests)
-    })
-    .then(resp => resp.json())
-  }
 
   static  persistRemoveInterests(userInterests) {
     let bodyPersistRemoveInterests = {"user": {

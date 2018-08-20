@@ -5,11 +5,9 @@ import { connect } from 'react-redux';
 
 // ADAPTERS
 import Adapters from './../Adapters/Adapters';
-import AdapterUser from './../Adapters/AdapterUser';
-
 
 // ACTIONS
-import { selectCommonInterests, thunkSaveFilteredClosestUsers, saveUserInterests } from '../actions';
+import { selectCommonInterests, thunkSaveFilteredClosestUsers, thunkSaveUserInterests } from '../actions';
 
 // REDUX PROPS 
 const mapStateToProps = state => {
@@ -21,7 +19,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         selectCommonInterests: (selectedCommonInterest) => dispatch(selectCommonInterests(selectedCommonInterest)),
-        saveUserInterests: (userInterests) => dispatch(saveUserInterests(userInterests)),
+        thunkSaveUserInterests: (userId, userInterestArray) => dispatch(thunkSaveUserInterests(userId, userInterestArray)),
         thunkSaveFilteredClosestUsers: (interestId) => dispatch(thunkSaveFilteredClosestUsers(interestId)),
     }
   }
@@ -43,8 +41,7 @@ const UserInterestList = (props) => {
                             />
                             <Icon 
                                 onClick={() => {
-                                    AdapterUser.persistRemoveInterests(interest)
-                                    .then(resp => props.saveUserInterests(resp.interests))
+                                    props.thunkSaveUserInterests(interest)
                                 }}
                                 color='teal'
                                 name='user close'

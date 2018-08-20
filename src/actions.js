@@ -10,7 +10,7 @@ import {
 
 //REDUX-THUNK
 export const thunkLogin = () => {
-    console.log(localStorage.getItem("token"))
+
     return (dispatch) => {
         console.log("thunk action")
         fetch(`http://localhost:3000/api/v1/user/auth`, {
@@ -40,7 +40,7 @@ export const thunkLogin = () => {
 }
 
 export const thunkSaveClosestUsers = () => {
-    console.log(localStorage.getItem("token"))
+
     return (dispatch) => {
         console.log("thunk closest users action")
         fetch(`http://localhost:3000/api/v1/users`, {
@@ -62,7 +62,7 @@ export const thunkSaveClosestUsers = () => {
 }
 
 export const thunkPersistCurrentGeolocation = (userId, latitude, longitude) => {
-    console.log(localStorage.getItem("token"))
+
     return (dispatch) => {
         console.log("thunk save location")
         fetch(`http://localhost:3000/api/v1/user/${userId}`, {
@@ -90,7 +90,7 @@ export const thunkPersistCurrentGeolocation = (userId, latitude, longitude) => {
 }
 
 export const thunkSaveFilteredClosestUsers = (filterTermId) => {
-    console.log(localStorage.getItem("token"))
+
     return (dispatch) => {
         console.log("thunk filter friends")
         fetch(`http://localhost:3000/api/v1/users`, {
@@ -117,7 +117,6 @@ export const thunkSaveFilteredClosestUsers = (filterTermId) => {
 }
 
 export const thunkUploadProfile = (userId, profileImage) => {
-    console.log(localStorage.getItem("token"))
 
     let formData = new FormData();
     formData.append('user_id', userId);
@@ -143,7 +142,6 @@ export const thunkUploadProfile = (userId, profileImage) => {
 }
 
 export const thunkUpdateProfileInfo = (userId, username, bio) => {
-    console.log(localStorage.getItem("token"))
 
     let bodyUpdateProfileInfo = {"user": {}};
     
@@ -183,47 +181,52 @@ export const thunkUpdateProfileInfo = (userId, username, bio) => {
     }
 }
 
+export const thunkSaveUserInterests = (userId, userInterests) => {
+
+    let bodyPersistAddInterests = {"user": {
+        "interests": userInterests
+      }};
+
+    return (dispatch) => {
+        console.log("thunk user interests")
+        fetch(`http://localhost:3000/api/v1//user/${userId}/interests`, {
+            method: 'POST',
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify(bodyPersistAddInterests)
+        })
+        .then(r=>r.json())
+        .then(resp => dispatch( { 
+            type: SAVE_USER_INTERESTS,
+            payload: {
+                userInterestArray: resp.interests,
+            }
+        }))
+    }
+}
+
+export function removeUserInterests(selectedUserInterest) {
+    return {
+        type: REMOVE_USER_INTERESTS,
+        payload: {
+            selectedUserInterest: selectedUserInterest,
+        }
+    }
+}
+
 //REDUX
 export function jwtSavedInLocalStorage() {
     return {
         type: JWT,
     }
 }
-
-//to be deleted
   
 export function logout() {
     return {
         type: LOGOUT,
-    }
-}
-
-export function saveCurrentGeolocation(lat, lon) {
-    return {
-        type: SAVE_CURRENT_GEOLOCATION,
-        payload: {
-            lat: lat,
-            lon: lon,
-        }
-    }
-}
-
-export function saveFilteredClosestUsers(closestUsers) {
-    return {
-        type: SAVE_FILTERED_CLOSEST_USERS,
-        payload: {
-            closestUsers: closestUsers,
-        }
-    }
-}
-
-//to be deleted
-export function saveClosestUsers(closestUsers) {
-    return {
-        type: SAVE_CLOSEST_USERS,
-        payload: {
-            closestUsers: closestUsers,
-        }
     }
 }
 
@@ -239,23 +242,5 @@ export function selectCommonInterests(selectedCommonInterest) {
 export function unselectCommonInterests() {
     return {
         type: UNSELECT_COMMON_INTERESTS,
-    }
-}
-
-export function saveUserInterests(userInterestArray) {
-    return {
-        type: SAVE_USER_INTERESTS,
-        payload: {
-            userInterestArray: userInterestArray,
-        }
-    }
-}
-
-export function removeUserInterests(selectedUserInterest) {
-    return {
-        type: REMOVE_USER_INTERESTS,
-        payload: {
-            selectedUserInterest: selectedUserInterest,
-        }
     }
 }

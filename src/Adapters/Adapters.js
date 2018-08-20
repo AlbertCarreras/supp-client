@@ -18,7 +18,6 @@ class Adapters {
     }
 
      //API DATA
-
     static  getSearchMatches(searchTerm) {
         return fetch(`${API_ROOT}/searchInterests`, {
             method: 'POST',

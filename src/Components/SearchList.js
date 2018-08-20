@@ -5,10 +5,9 @@ import { connect } from 'react-redux';
 
 // ADAPTERS
 import Adapters from './../Adapters/Adapters';
-import AdapterUser from './../Adapters/AdapterUser';
 
 // ACTIONS
-import { selectCommonInterests, saveUserInterests, thunkSaveFilteredClosestUsers } from '../actions';
+import { selectCommonInterests, thunkSaveUserInterests, thunkSaveFilteredClosestUsers } from '../actions';
 
 // REDUX PROPS 
 const mapStateToProps = state => {
@@ -22,7 +21,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         selectCommonInterests: (selectedCommonInterest) => dispatch(selectCommonInterests(selectedCommonInterest)),
-        saveUserInterests: (userInterestArray) => dispatch(saveUserInterests(userInterestArray)),
+        thunkSaveUserInterests: (userId, userInterestArray) => dispatch(thunkSaveUserInterests(userId, userInterestArray)),
         thunkSaveFilteredClosestUsers: (termId) => dispatch(thunkSaveFilteredClosestUsers(termId)),
 
     }
@@ -43,7 +42,7 @@ const SearchList = (props) => {
                         <Icon 
                             onClick={() => {
                                 props.selectCommonInterests(term)
-                                this.props.thunkSaveFilteredClosestUsers(term.id)
+                                props.thunkSaveFilteredClosestUsers(term.id)
                             }}
                             color='teal' 
                             name='users' 
@@ -51,8 +50,7 @@ const SearchList = (props) => {
                         { !props.userInterests.find((i)=> i.id === term.id)
                             ?   <Icon 
                                     onClick={() => {
-                                        AdapterUser.persistAddInterests(props.userId, term)
-                                        .then(resp => props.saveUserInterests(resp.interests))
+                                        props.thunkSaveUserInterests(props.userId, term)
                                     }}
                                     color='teal'
                                     name='user plus'

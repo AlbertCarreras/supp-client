@@ -11,7 +11,7 @@ import AdapterUser from './Adapters/AdapterUser';
 import { API_WS_ROOT } from './Adapters/AdapterConstants';
 
 // ACTIONS
-import { thunkLogin, thunkSaveClosestUsers, thunkPersistCurrentGeolocation,saveCurrentGeolocation } from './actions';
+import { thunkLogin, thunkSaveClosestUsers, thunkPersistCurrentGeolocation } from './actions';
 
 //COMPONENTS
 import Header from './Components/Header'
@@ -37,7 +37,6 @@ const mapDispatchToProps = dispatch => {
     thunkSaveClosestUsers: () => dispatch(thunkSaveClosestUsers()), 
     thunkLogin: () => dispatch(thunkLogin()), 
     thunkPersistCurrentGeolocation: (userId, lat, lon) => dispatch(thunkPersistCurrentGeolocation(userId,lat, lon)),
-    saveCurrentGeolocation: (userId, lat, lon) => dispatch(saveCurrentGeolocation(userId,lat, lon)),
   }
 }
 
