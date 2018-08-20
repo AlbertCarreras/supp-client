@@ -7,9 +7,7 @@ import AdapterUser from './../Adapters/AdapterUser';
 import Adapters from './../Adapters/Adapters';
 
 // ACTIONS
-import { saveProfile } from '../actions';
-import { saveProfileImage } from '../actions';
-
+import { saveProfile, thunkUploadProfile } from '../actions';
 
 // REDUX PROPS 
 const mapStateToProps = state => {
@@ -23,8 +21,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    thunkUploadProfile: (userId, profileImage) => dispatch(thunkUploadProfile(userId, profileImage)),
     saveProfile: (username, bio) => dispatch(saveProfile(username, bio)),
-    saveProfileImage: (profileImageLink) => dispatch(saveProfileImage(profileImageLink))
   }
 }
 
@@ -53,8 +51,7 @@ class UpdateProfile extends Component {
 
     handleSubmit = () => {        
         if (this.state.profile_image) {
-            AdapterUser.uploadProfile(this.props.user_id, this.state.profile_image)
-            .then(json => this.props.saveProfileImage(json.url))
+            this.props.thunkUploadProfile(this.props.user_id, this.state.profile_image)
         }
         
         if (this.state.username || this.state.bio) {

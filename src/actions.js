@@ -116,6 +116,31 @@ export const thunkSaveFilteredClosestUsers = (filterTermId) => {
     }
 }
 
+export const thunkUploadProfile = (userId, profileImage) => {
+    console.log(localStorage.getItem("token"))
+
+    let formData = new FormData();
+    formData.append('user_id', userId);
+    formData.append('profile_image', profileImage);
+    
+    return (dispatch) => {
+        console.log("thunk pic upload")
+        fetch(`http://localhost:3000/api/v1/users/uploadProfile`, {
+            method: 'POST',
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+              },
+            body: formData
+            })
+        .then(resp=>resp.json())
+        .then(resp => dispatch( { 
+            type: SAVE_PROFILE_IMAGE,
+            payload: {
+                profileImageLink: resp.url,
+            }
+        }))
+    }
+}
 
 //REDUX
 export function jwtSavedInLocalStorage() {

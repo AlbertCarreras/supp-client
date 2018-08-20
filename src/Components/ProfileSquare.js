@@ -22,10 +22,13 @@ const ProfileSquare = (props) => {
                 <div className="profile-image-logged animated flipInY"></div>
                 <img 
                     className="profile-image-list animated flipInY" 
-                    src={
-                        props.profileImageLink !== "undefined"
-                        ? `${props.profileImageLink}` 
-                        : `/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
+                    src={ props.username === "YOU"
+                            ? props.profileImageLink !== undefined
+                                ? `${props.profileImageLink}` 
+                                : `/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
+                            : props.profileImageLink !== "undefined"
+                                ? `${props.profileImageLink}` 
+                                : `/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
                     }
                     alt="profile" 
                 />
@@ -41,7 +44,7 @@ const ProfileSquare = (props) => {
             <Image 
                 size='medium' 
                 src={
-                props.profileImageLink !== "undefined"
+                props.profileImageLink !== undefined
                 ? `${props.profileImageLink}` 
                 : `/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
                 } 

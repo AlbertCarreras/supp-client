@@ -39,7 +39,7 @@ const ProfileNavBar = (props) => {
                         <img 
                             className="profile-image animated bounceIn delay-5s shake-slow" 
                             src={
-                                props.profileImageLink !== undefined
+                                props.profileImageLink !== undefined 
                                 ? `${props.profileImageLink}` 
                                 : `/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
                             }

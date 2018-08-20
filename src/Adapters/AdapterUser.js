@@ -2,7 +2,6 @@
 import {API_ROOT} from './AdapterConstants'
 import {INIT_HEADERS} from './AdapterConstants'
 import {AUTH_HEADERS_JSON} from './AdapterConstants'
-import {AUTH_HEADERS_IMAGE} from './AdapterConstants'
 
 class AdapterUser {
 
@@ -49,21 +48,7 @@ class AdapterUser {
         "username": signupState.username
       }})
     })
-  }
-
-  static uploadProfile(userId, profileImage) {
-    let formData = new FormData();
-    formData.append('user_id', userId);
-    formData.append('profile_image', profileImage);
-
-    return fetch(`${API_ROOT}/users/uploadProfile`, {
-    method: 'POST',
-    headers: AUTH_HEADERS_IMAGE,
-    body: formData
-    })
-    .then(resp => resp.json())
-  }
-        
+  }        
 
   static  updateProfileInfo(userId, username, bio) {
     let bodyUpdateProfileInfo = {"user": {}};
