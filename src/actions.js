@@ -28,7 +28,7 @@ export const thunkLogin = () => {
                 username: resp.username,
                 email: resp.email,
                 userId: resp.id,
-                bio: resp.bio,
+                bio: resp.bio === null ? "" : resp.bio,
                 loggedIn: true,
                 userInterests: resp.userInterests,
                 profileImageLink: resp.profile_image,
@@ -63,7 +63,7 @@ export const thunkSaveClosestUsers = () => {
 
 export const thunkPersistCurrentGeolocation = (userId, latitude, longitude) => {
     console.log(localStorage.getItem("token"))
-    return () => {
+    return (dispatch) => {
         console.log("thunk save location")
         fetch(`http://localhost:3000/api/v1/user/${userId}`, {
             method: 'PATCH',
@@ -78,7 +78,14 @@ export const thunkPersistCurrentGeolocation = (userId, latitude, longitude) => {
                     "last_location_lon": longitude,
                 }})
         })
-        .then(console.log)
+        .then(r=>r.json())
+        .then(resp => dispatch({ 
+            type: SAVE_CURRENT_GEOLOCATION,
+            payload: {
+                lat: resp.lat,
+                lon: resp.lon,
+            }
+        }))
     }
 }
 

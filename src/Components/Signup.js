@@ -25,7 +25,6 @@ class Signup extends Component {
     password: "",
     confirmPassword: "",
     agreedCheckbox: false,
-
   };
 
   //PROPS FUNCTIONALITY: Button handlers

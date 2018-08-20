@@ -48,8 +48,6 @@ class App extends Component {
     if (AdapterUser.getToken() && navigator.geolocation) {
       return navigator.geolocation.getCurrentPosition(
         resp => {
-          this.props.saveCurrentGeolocation(resp.coords.latitude, resp.coords.longitude);
-
           this.props.thunkPersistCurrentGeolocation(this.props.userId, resp.coords.latitude, resp.coords.longitude);
         })
     }
