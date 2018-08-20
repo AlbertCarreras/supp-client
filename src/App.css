@@ -202,10 +202,11 @@
 }
 .conversation-image-box {
   margin: 2.5px 2.5px 2.5px 10px;
+  height: 35px;
+  max-height: 35px;
 }
 .conversation-image {
   border: 2px solid #5CDB95;
-  flex
   height: 35px;
   width:35px;
   border-radius: 25px;
@@ -213,9 +214,18 @@
 
 .conversation-text-box {
   margin-left: 20px;
+  margin-right: 20px;
   width: 100%;
   text-align: left;
   color: #fff;
+  white-space: nowrap;
+}
+
+.conversation-first-message {
+  font-style: italic;
+}
+.message-box {
+  display: flex;
 }
 
 /* WELCOME CONTAINER. Responsive Image Grid*/
