@@ -38,6 +38,7 @@ export const thunkLogin = () => {
         }))
     }
 }
+
 export const thunkSaveClosestUsers = () => {
     console.log(localStorage.getItem("token"))
     return (dispatch) => {
@@ -117,22 +118,22 @@ export function jwtSavedInLocalStorage() {
 }
 
 //to be deleted
-export function login(username, email, userId, bio, userInterests=[], profileImageLink=`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`, prevGeolocationLat, prevGeolocationLon) {
-    return {
-        type: LOGIN,
-        payload: {
-            username: username,
-            email: email,
-            userId: userId,
-            bio: bio,
-            loggedIn: true,
-            userInterests: userInterests,
-            profileImageLink: profileImageLink,
-            prevGeolocationLat: prevGeolocationLat, 
-            prevGeolocationLon: prevGeolocationLon, 
-        }
-    }
-}
+// export function login(username, email, userId, bio, userInterests=[], profileImageLink=`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`, prevGeolocationLat, prevGeolocationLon) {
+//     return {
+//         type: LOGIN,
+//         payload: {
+//             username: username,
+//             email: email,
+//             userId: userId,
+//             bio: bio,
+//             loggedIn: true,
+//             userInterests: userInterests,
+//             profileImageLink: profileImageLink,
+//             prevGeolocationLat: prevGeolocationLat, 
+//             prevGeolocationLon: prevGeolocationLon, 
+//         }
+//     }
+// }
   
 export function logout() {
     return {

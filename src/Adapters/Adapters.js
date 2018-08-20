@@ -18,14 +18,6 @@ class Adapters {
     }
 
      //API DATA
-    static  getClosestUsers() {
-        return fetch(`${API_ROOT}/users`, {
-            method: 'GET',
-            headers: AUTH_HEADERS_JSON
-        })
-        .then(resp => resp.json())
-    }
-
 
     static  getSearchMatches(searchTerm) {
         return fetch(`${API_ROOT}/searchInterests`, {

@@ -40,7 +40,7 @@ class Login extends Component {
         this.props.history.push('/login');
       })
   }
-
+ 
   render() {
     return (
       <div className="overlay-box login">

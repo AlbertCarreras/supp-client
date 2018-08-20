@@ -7,7 +7,7 @@ import Adapters from './../Adapters/Adapters';
 import AdapterUser from './../Adapters/AdapterUser';
 
 // ACTIONS
-import { unselectCommonInterests, saveUserInterests, saveClosestUsers } from '../actions'
+import { unselectCommonInterests, saveUserInterests, thunkSaveClosestUsers } from '../actions'
 
 //COMPONENTS
 import UserInterestList from './UserInterestList'
@@ -24,7 +24,7 @@ const mapDispatchToProps = dispatch => {
     return {
         unselectCommonInterests: () => dispatch(unselectCommonInterests()),
         saveUserInterests: (userInterests) => dispatch(saveUserInterests(userInterests)),
-        saveClosestUsers: (closestUsers) => dispatch(saveClosestUsers(closestUsers)),
+        thunkSaveClosestUsers: () => dispatch(thunkSaveClosestUsers()),
     }
 }
 
@@ -47,8 +47,7 @@ class InterestsList extends Component {
                                     <Icon 
                                         onClick={ () => {
                                             this.props.unselectCommonInterests()
-                                            Adapters.getClosestUsers()
-                                            .then(json => this.props.saveClosestUsers(json))
+                                            this.props.thunkSaveClosestUsers()
                                         }} 
                                         color='teal'
                                         name='remove'

@@ -6,6 +6,7 @@ import {AUTH_HEADERS_IMAGE} from './AdapterConstants'
 
 class AdapterUser {
 
+  //JWT management
   static setToken(jsonToken) {
     return localStorage.setItem("token", jsonToken)
   }
@@ -22,23 +23,7 @@ class AdapterUser {
     localStorage.removeItem("token")
   }
 
-  static getCurrentUser() {
-    console.log()
-    return fetch(`${API_ROOT}/user/auth`, {
-      method: "GET",
-      headers: AUTH_HEADERS_JSON
-    })
-    .then(resp =>
-      {
-        if (resp.ok) {
-          return resp.json()
-        }
-        else {
-          console.log("error getCurrentUser()")
-        }
-    });
-  }
-
+  //login to receive JWT. getCurrentUser is an Thunk action
   static login(loginState) {
     return fetch(`${API_ROOT}/user_token`, {
     method: 'POST',
