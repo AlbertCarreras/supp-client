@@ -106,11 +106,11 @@ class App extends Component {
 
       console.log("componentDidUpdateToken")
       if (AdapterUser.getToken()) {
-        console.log(AdapterUser.getToken());
-      //   AdapterUser.saveTokenAsCookie();
-      //   this.getUserFromDb();
-      //   Adapters.getClosestUsers()
-      //   .then(json => this.props.saveClosestUsers(json))
+        console.log("BUG LINE", AdapterUser.getToken());
+        // AdapterUser.saveTokenAsCookie();
+        // this.getUserFromDb();
+        // Adapters.getClosestUsers()
+        // .then(json => this.props.saveClosestUsers(json))
       }
 
     }

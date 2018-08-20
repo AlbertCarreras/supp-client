@@ -12,6 +12,13 @@ const mapStateToProps = state => {
     }
 }
 
+// { props.conversation.messages === undefined
+//     ?   null
+//     :   <div className="conversation-first-message">
+//             {Adapters.capitalize(props.conversation.messages[(props.conversation.messages.length)-1].user.username)}: {props.conversation.messages[(props.conversation.messages.length)-1].text}
+//         </div> 
+// }
+
 const Conversation = (props) => {
     return (
         <Fragment>
@@ -31,10 +38,7 @@ const Conversation = (props) => {
             <div className="conversation-title">
                 {Adapters.capitalize(props.conversation.users.find((u) => u.id !== props.userId).username)}
             </div>
-    
-            <div className="conversation-first-message">
-                {Adapters.capitalize(props.conversation.messages[(props.conversation.messages.length)-1].user.username)}: {props.conversation.messages[(props.conversation.messages.length)-1].text}
-            </div> 
+            
 
         </div>
         </Fragment>
