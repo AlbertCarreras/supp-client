@@ -192,8 +192,33 @@
   margin: 0px;
 }
 
-/* WELCOME CONTAINER. Responsive Image Grid*/
+/* MESSAGING CONTAINER. Responsive Image Grid*/
+.conversation-box {
+  display: flex;
+  border-radius: 10px;
+  width:100%;
+  background: #05386B;
+  margin: 5px 0px;
+}
+.conversation-image-box {
+  margin: 2.5px 2.5px 2.5px 10px;
+}
+.conversation-image {
+  border: 2px solid #5CDB95;
+  flex
+  height: 35px;
+  width:35px;
+  border-radius: 25px;
+}
 
+.conversation-text-box {
+  margin-left: 20px;
+  width: 100%;
+  text-align: left;
+  color: #fff;
+}
+
+/* WELCOME CONTAINER. Responsive Image Grid*/
 .login-form-header {
   font-family: 'Sniglet', cursive;
   font-size: 2em;

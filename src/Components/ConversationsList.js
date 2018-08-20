@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import AdapterChats from './../Adapters/AdapterChats';
 
 //COMPONENTS
-import NewConversationForm from './NewConversationForm';
 import MessagesArea from './MessagesArea';
 import MessagesCables from './MessagesCables';
 import ConversationsCables from './ConversationsCables';
+import Conversation from './Conversation';
 
 // REDUX PROPS 
 const mapStateToProps = state => {
@@ -36,11 +36,19 @@ class ConversationsList extends React.Component {
       };
       
     mapConversations = (conversations, handleClick) => {
+      console.log(conversations)
         return conversations.map(conversation => {
           return (
-            <div key={conversation.id} onClick={() => handleClick(conversation.id)}>
-              {conversation.title}
-            </div>
+            <div 
+              key={conversation.id} 
+              className="conversation-box"
+              onClick={() => handleClick(conversation.id)}
+            >
+              <Conversation 
+                conversation={conversation}
+              />
+            </div> 
+
           );
         });
       };
@@ -61,6 +69,7 @@ class ConversationsList extends React.Component {
     };
 
     handleReceivedMessage = response => {
+      console.log(response)
         const { message } = response;
         const conversations = [...this.state.conversations];
         const conversation = conversations.find(
@@ -88,12 +97,8 @@ class ConversationsList extends React.Component {
             
             <h2 className="heart-message">Conversations</h2>
             
-            <ul>
-                {this.mapConversations(conversations, this.handleClick)}
-            </ul>
+            {this.mapConversations(conversations, this.handleClick)}
             
-            <NewConversationForm />
-
             { 
               activeConversation ? (
                 <MessagesArea
