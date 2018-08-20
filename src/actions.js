@@ -62,7 +62,7 @@ export const thunkLogin = () => {
 
   export const thunkPersistCurrentGeolocation = (userId, latitude, longitude) => {
     console.log(localStorage.getItem("token"))
-    return (dispatch) => {
+    return () => {
         console.log("thunk save location")
         fetch(`http://localhost:3000/api/v1/user/${userId}`, {
             method: 'PATCH',
@@ -78,13 +78,6 @@ export const thunkLogin = () => {
                 }})
         })
         .then(console.log)
-        // .then(resp => dispatch( { 
-        //     type: SAVE_CURRENT_GEOLOCATION,
-        //     payload: {
-        //         lat: resp.lat,
-        //         lon: resp.lon,
-        // }
-        // }))
     }
   }
 

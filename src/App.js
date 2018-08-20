@@ -55,26 +55,13 @@ class App extends Component {
     }
   }
 
-  getUserFromDb = () => {
-    console.log("getUserFromDb");
-    this.props.thunkLogin();
-    // .catch(err => {
-    //   console.log(err)
-    //   AdapterUser.deleteToken();
-    //   this.props.history.push('/login');
-    // })
-  }
-
   componentDidMount(){ 
-    
-    console.log("componentDidMount")
     //token?, then return me the user info & friends. otherwise, do nothing
     if (AdapterUser.getToken()) {
       AdapterUser.saveTokenAsCookie();
-      this.getUserFromDb();
+      this.props.thunkLogin();
       this.props.thunkSaveClosestUsers();
     }
-
   }
 
   componentDidUpdate(prevProps){
@@ -93,14 +80,10 @@ class App extends Component {
     // just logged in and got JWT token saved in localStorage?, then as if   componentDidMount
     if (prevProps.jwtToken === false && this.props.jwtToken === true) {
       
-      //BUG IS HERE!!!!!!!!!!!!
-      console.log("componentDidUpdateToken")
       if (AdapterUser.getToken()) {
         AdapterUser.saveTokenAsCookie();
-        console.log("BUG LINE", AdapterUser.getToken());
         this.props.thunkLogin();
         this.props.thunkSaveClosestUsers();
-
       }
 
     }
