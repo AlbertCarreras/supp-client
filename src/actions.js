@@ -1,3 +1,7 @@
+// ADAPTERS
+import AdapterUser from './Adapters/AdapterUser';
+
+//TYPES
 import {
     JWT, LOGIN, LOGOUT, 
     SAVE_PROFILE, SAVE_PROFILE_IMAGE, 
@@ -7,6 +11,29 @@ import {
     SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS,
 } from './types';
 
+//REDUX-THUNK
+export const thunkLogin = () => {
+    return (dispatch) => {
+        console.log("thunk action")
+        AdapterUser.getCurrentUser()
+        .then(resp => dispatch( { 
+            type: LOGIN,
+            payload: {
+                username: resp.username,
+                email: resp.email,
+                userId: resp.userId,
+                bio: resp.bio,
+                loggedIn: true,
+                userInterests: resp.userInterests,
+                profileImageLink: resp.profileImageLink,
+                prevGeolocationLat: resp.prevGeolocationLat, 
+                prevGeolocationLon: resp.prevGeolocationLon, 
+            }
+        }))
+    }
+  }
+
+//REDUX
 export function jwtSavedInLocalStorage() {
     return {
         type: JWT,

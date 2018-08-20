@@ -7,6 +7,7 @@ import InterestsList from './InterestsList';
 
 class InterestsAside extends Component {
     render() {
+        
         return (
             <div className="aside-container">
                 <Search />

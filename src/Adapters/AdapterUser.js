@@ -23,6 +23,7 @@ class AdapterUser {
   }
 
   static getCurrentUser() {
+    console.log()
     return fetch(`${API_ROOT}/user/auth`, {
       method: "GET",
       headers: AUTH_HEADERS_JSON

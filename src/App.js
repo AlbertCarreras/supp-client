@@ -14,7 +14,7 @@ import { API_WS_ROOT } from './Adapters/AdapterConstants';
 
 
 // ACTIONS
-import { login, saveCurrentGeolocation, saveClosestUsers} from './actions';
+import { thunkLogin, login, saveCurrentGeolocation, saveClosestUsers} from './actions';
 
 //COMPONENTS
 import Header from './Components/Header'
@@ -37,6 +37,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    thunkLogin: () => dispatch(thunkLogin()), 
     login: (username, email, userId, bio, userInterests, profileImageLink, prevGeolocationLat, prevGeolocationLon) => dispatch(login(username, email, userId, bio, userInterests,profileImageLink, prevGeolocationLat, prevGeolocationLon)),
     saveCurrentGeolocation: (userId, lat, lon) => dispatch(saveCurrentGeolocation(userId,lat, lon)),
     saveClosestUsers: (closestUsers) => dispatch(saveClosestUsers(closestUsers)),
@@ -71,7 +72,7 @@ class App extends Component {
   componentDidMount(){ 
     
     console.log("componentDidMount")
-    // token?, then return me the user info & friends. otherwise, do nothing
+    //token?, then return me the user info & friends. otherwise, do nothing
     if (AdapterUser.getToken()) {
       AdapterUser.saveTokenAsCookie();
       this.getUserFromDb();
@@ -103,12 +104,12 @@ class App extends Component {
     if (prevProps.jwtToken === false && this.props.jwtToken === true) {
       
       //BUG IS HERE!!!!!!!!!!!!
-
       console.log("componentDidUpdateToken")
       if (AdapterUser.getToken()) {
-        console.log("BUG LINE", AdapterUser.getToken());
         // AdapterUser.saveTokenAsCookie();
-        // this.getUserFromDb();
+        console.log("BUG LINE", AdapterUser.getToken());
+        this.props.thunkLogin();
+      //   // this.getUserFromDb();
         // Adapters.getClosestUsers()
         // .then(json => this.props.saveClosestUsers(json))
       }
@@ -123,26 +124,26 @@ class App extends Component {
         {
           //if there is token, you're in. If there is not, go to welcome container.
           !!AdapterUser.getToken()
-          ? <ActionCableProvider url={API_WS_ROOT}>
-              <Switch>
-                <Route
-                  path="/user/profile"
-                  component={UpdateProfile}
-                />
-                <Route
-                  path="/home"
-                  component={HomeContainer}
-                />
-                <Route
+              ? <ActionCableProvider url={API_WS_ROOT}>
+                  <Switch>
+                    <Route
+                      path="/user/profile"
+                      component={UpdateProfile}
+                    />
+                    <Route
+                      path="/home"
+                      component={HomeContainer}
+                    />
+                    <Route
+                      path="/"
+                      component={HomeContainer}
+                    />
+                  </Switch>
+                </ActionCableProvider>
+            : <Route
                   path="/"
-                  component={HomeContainer}
-                />
-              </Switch>
-            </ActionCableProvider>
-          : <Route
-                path="/"
-                component={WelcomeContainer}
-            />
+                  component={WelcomeContainer}
+              />
         }
         <Footer />   
       </div>
