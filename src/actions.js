@@ -142,6 +142,47 @@ export const thunkUploadProfile = (userId, profileImage) => {
     }
 }
 
+export const thunkUpdateProfileInfo = (userId, username, bio) => {
+    console.log(localStorage.getItem("token"))
+
+    let bodyUpdateProfileInfo = {"user": {}};
+    
+    if (username) {
+      bodyUpdateProfileInfo = Object.assign({}, bodyUpdateProfileInfo, {"user": {
+        ...bodyUpdateProfileInfo.user,
+        "username": username
+      }
+    })} 
+
+    if (bio) {
+      bodyUpdateProfileInfo = Object.assign({}, bodyUpdateProfileInfo, {"user": {
+        ...bodyUpdateProfileInfo.user,
+        "bio": bio
+      }
+    })}
+    
+    return (dispatch) => {
+        console.log("thunk update profile info")
+        fetch(`http://localhost:3000/api/v1/user/${userId}`, {
+            method: 'PATCH',
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify(bodyUpdateProfileInfo)
+            })
+        .then(resp=>resp.json())
+        .then(resp => dispatch( { 
+            type: SAVE_PROFILE,
+            payload: {
+                username: username,
+                bio: bio,
+            }
+        }))
+    }
+}
+
 //REDUX
 export function jwtSavedInLocalStorage() {
     return {
@@ -150,45 +191,10 @@ export function jwtSavedInLocalStorage() {
 }
 
 //to be deleted
-// export function login(username, email, userId, bio, userInterests=[], profileImageLink=`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`, prevGeolocationLat, prevGeolocationLon) {
-//     return {
-//         type: LOGIN,
-//         payload: {
-//             username: username,
-//             email: email,
-//             userId: userId,
-//             bio: bio,
-//             loggedIn: true,
-//             userInterests: userInterests,
-//             profileImageLink: profileImageLink,
-//             prevGeolocationLat: prevGeolocationLat, 
-//             prevGeolocationLon: prevGeolocationLon, 
-//         }
-//     }
-// }
   
 export function logout() {
     return {
         type: LOGOUT,
-    }
-}
-
-export function saveProfile(username, bio) {
-    return {
-        type: SAVE_PROFILE,
-        payload: {
-            username: username,
-            bio: bio,
-        }
-    }
-}
-
-export function saveProfileImage(profileImageLink) {
-    return {
-        type: SAVE_PROFILE_IMAGE,
-        payload: {
-            profileImageLink: profileImageLink,
-        }
     }
 }
 

@@ -50,30 +50,6 @@ class AdapterUser {
     })
   }        
 
-  static  updateProfileInfo(userId, username, bio) {
-    let bodyUpdateProfileInfo = {"user": {}};
-    
-    if (username) {
-      bodyUpdateProfileInfo = Object.assign({}, bodyUpdateProfileInfo, {"user": {
-        ...bodyUpdateProfileInfo.user,
-        "username": username
-      }
-    })} 
-
-    if (bio) {
-      bodyUpdateProfileInfo = Object.assign({}, bodyUpdateProfileInfo, {"user": {
-        ...bodyUpdateProfileInfo.user,
-        "bio": bio
-      }
-    })}
-    
-    return fetch(`${API_ROOT}/user/${userId}`, {
-        method: 'PATCH',
-        headers: AUTH_HEADERS_JSON,
-        body: JSON.stringify(bodyUpdateProfileInfo)
-        }).then(resp => resp.json())
-  }
-
   static  persistAddInterests(userId, userInterests) {
     let bodyPersistAddInterests = {"user": {
       "interests": userInterests
