@@ -42,22 +42,26 @@ const MessagesArea = (props) => {
   return (
     <div className="messages-box">
       <div className="messages-header">
-        <div className="chat-header-title">
+          <div className="chat-header-title">
+              <Icon 
+              color='teal' 
+              name='chat'
+              /> 
+              with {Adapters.capitalize(friendUser())}
+          </div>
+          <img 
+            className="chat-header-image"
+            src={
+                props.selectedConversation.users.find((u) => u.id !== props.userId).profile_image_url !== "undefined"
+            ? `${API_SHORT_ROOT+props.selectedConversation.users.find((u) => u.id !== props.userId).profile_image_url}` 
+            : `/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
+            }
+            alt="Mini profile"
+          />
             <Icon 
-            color='teal' 
-            name='chat'
-            /> 
-            with {Adapters.capitalize(friendUser())}
-        </div>
-        <img 
-          className="chat-header-image"
-          src={
-              props.selectedConversation.users.find((u) => u.id !== props.userId).profile_image_url !== "undefined"
-          ? `${API_SHORT_ROOT+props.selectedConversation.users.find((u) => u.id !== props.userId).profile_image_url}` 
-          : `/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
-          }
-          alt="Mini profile"
-        />
+              color='teal' 
+              name='close'
+            />
       </div>
       <div className="outer-messages-list">
         <div className="messages-list">

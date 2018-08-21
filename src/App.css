@@ -258,9 +258,9 @@
 }
 
 .messages-header {
-  display: flex;
-  align-items: center;
   justify-content: center;
+  display: flex;
+  align-items: left;
 }
 
 .chat-header-title {
@@ -269,6 +269,7 @@
   font-size: 1.5em;
   color: #05386B;
   margin-top: 10px;
+  margin-left: 10px;
 }
 
 .messages-box {
