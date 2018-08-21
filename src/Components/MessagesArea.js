@@ -1,22 +1,23 @@
 import React from 'react';
 import NewMessageForm from './NewMessageForm';
 // import { Icon } from 'semantic-ui-react'
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 // //ADAPTERS
 // import Adapters from './../Adapters/Adapters';
 
-// // REDUX PROPS 
-// const mapStateToProps = state => {
-//   return {
-//       userId: state.userId,
-//   }
-// }
+// REDUX PROPS 
+const mapStateToProps = state => {
+  return {
+      userId: state.userId,
+      selectedConversation: state.selectedConversation,
+  }
+}
 
-const MessagesArea = ({conversation: { id, title, messages, users}}) => {
+const MessagesArea = (props) => {
 
   function orderedMessages () {
-    const sortedMessages = messages.sort(
+    const sortedMessages = props.selectedConversation.messages.sort(
       (a, b) => new Date(a.created_at) - new Date(b.created_at)
     );
     return sortedMessages.map(message => {
@@ -31,16 +32,12 @@ const MessagesArea = ({conversation: { id, title, messages, users}}) => {
 
   return (
     <div className="messagesArea">
-      <h2>{title}</h2>
-      <ul>{orderedMessages(messages)}</ul>
-      <NewMessageForm conversation_id={id} />
+      <h2>{props.selectedConversation.title}</h2>
+      <ul>{orderedMessages()}</ul>
+      <NewMessageForm conversation_id={props.selectedConversation.id} />
     </div>
   );
 };
-
-export default MessagesArea;
-
-
 
 // const MessagesArea = (props) => {
 
@@ -79,4 +76,4 @@ export default MessagesArea;
 //   );
 // };
 
-// export default connect(mapStateToProps, null)(MessagesArea);
+export default connect(mapStateToProps, null)(MessagesArea);

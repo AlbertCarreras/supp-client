@@ -23,7 +23,7 @@ const initialState = {
     closestUsers: [],
     selectedCommonInterest: undefined,
     conversations: [],
-    selectedConversationId: undefined,
+    selectedConversation: undefined,
   }
   
 export default function reducer(state = initialState, action) {
@@ -63,7 +63,7 @@ export default function reducer(state = initialState, action) {
                 closestUsers: [],
                 selectedCommonInterest: undefined,
                 conversations: [],
-                selectedConversationId: undefined,            
+                selectedConversation: undefined,            
             }
             
         case SAVE_PROFILE:
@@ -118,7 +118,7 @@ export default function reducer(state = initialState, action) {
 
         case SAVE_SELECTED_CONVERSATION:
         return { ...state,
-            selectedConversationId: action.payload.selectedConversationId,
+            selectedConversation: action.payload.selectedConversation,
         }
   
         default:

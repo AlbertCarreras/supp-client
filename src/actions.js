@@ -284,11 +284,11 @@ export function unselectCommonInterests() {
     }
 }
 
-export function saveSelectedConversation(selectedConversationId) {
+export function saveSelectedConversation(selectedConversation) {
     return {
         type: SAVE_SELECTED_CONVERSATION,
         payload: {
-            selectedConversationId: selectedConversationId,
+            selectedConversation: selectedConversation,
         }
     }
 }

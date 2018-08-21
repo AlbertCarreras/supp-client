@@ -51,7 +51,7 @@ class ConversationsList extends React.Component {
             <div 
               key={conversation.id} 
               className="conversation-box"
-              onClick={() => this.props.saveSelectedConversation(conversation.id)}
+              onClick={() => this.props.saveSelectedConversation(conversation)}
             >
               <Conversation 
                 conversation={conversation}
@@ -84,7 +84,6 @@ class ConversationsList extends React.Component {
     };
     
     render = () => {
-        const { conversations, activeConversation } = this.state;
         return (
           <div className="conversationsList">
             
@@ -92,9 +91,9 @@ class ConversationsList extends React.Component {
                 handleReceivedConversation={this.handleReceivedConversation}
             />
             
-            {this.state.conversations.length ? (
+            {this.props.conversations.length ? (
               <MessagesCables
-                conversations={conversations}
+                conversations={this.props.conversations}
                 handleReceivedMessage={this.handleReceivedMessage}
               />
             ) : null}
@@ -104,14 +103,9 @@ class ConversationsList extends React.Component {
             {this.mapConversations()}
             
             { 
-              activeConversation ? (
-                <MessagesArea
-                    conversation={this.findActiveConversation(
-                    conversations,
-                    activeConversation
-                    )}
-                />
-                ) : null
+              this.props.selectedConversation 
+              ? <MessagesArea />
+              : null
             }
             
           </div>
