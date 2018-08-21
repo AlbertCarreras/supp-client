@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // ACTIONS
-import { thunkSaveConversations, saveSelectedConversation } from '../actions'
+import { thunkSaveConversations, saveSelectedConversation, appendNewConversation } from '../actions'
 
 
 //COMPONENTS
@@ -24,6 +24,7 @@ const mapDispatchToProps = dispatch => {
   return {
     thunkSaveConversations: () => dispatch(thunkSaveConversations()),
     saveSelectedConversation: (selectedConversationId) => dispatch(saveSelectedConversation(selectedConversationId)),
+    appendNewConversation: (newConversation) => dispatch(appendNewConversation(newConversation)),
   }
 }
 
@@ -43,15 +44,15 @@ class ConversationsList extends React.Component {
           conversation => conversation.id === activeConversation
         );
       };
-      
-    mapConversations = (conversations, handleClick) => {
-      console.log(conversations)
-        return conversations.map(conversation => {
+    
+    mapConversations = () => {
+      debugger;
+        return this.props.conversations.map(conversation => {
           return (
             <div 
               key={conversation.id} 
               className="conversation-box"
-              onClick={() => handleClick(conversation.id)}
+              onClick={() => this.props.saveSelectedConversation(conversation.id)}
             >
               <Conversation 
                 conversation={conversation}
@@ -62,16 +63,15 @@ class ConversationsList extends React.Component {
         });
       };
     
-    //PROPS FUNCTIONALITY: Button handlers
-    handleClick = id => this.props.saveSelectedConversation(id)
     
     //WEBSOCKET FUNCTIONALITY: Receivers
     handleReceivedConversation = (response, userId = this.props.userId) => {
+      debugger;
       const { conversation } = response;
       if (conversation.users.map((i)=> i.id).includes(userId)) {
-        this.setState({
-          conversations: [...this.state.conversations, conversation]
-        });
+       
+        this.props.appendNewConversation(conversation)
+    
       }
     };
 
@@ -104,7 +104,7 @@ class ConversationsList extends React.Component {
             
             <h2 className="heart-message">Conversations</h2>
             
-            {this.mapConversations(conversations, this.handleClick)}
+            {this.mapConversations()}
             
             { 
               activeConversation ? (

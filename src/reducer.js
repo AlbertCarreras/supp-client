@@ -5,7 +5,7 @@ import {
     SAVE_USER_INTERESTS,
     SAVE_FILTERED_CLOSEST_USERS,
     SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS,
-    SAVE_CONVERSATIONS, SAVE_SELECTED_CONVERSATION,
+    SAVE_CONVERSATIONS, SAVE_SELECTED_CONVERSATION, APPEND_NEW_CONVERSATION,
 } from './types';
 
 //Default App State - REDUX
@@ -108,6 +108,11 @@ export default function reducer(state = initialState, action) {
         case SAVE_CONVERSATIONS:
         return { ...state,
             conversations: action.payload.conversations,
+        }
+
+        case APPEND_NEW_CONVERSATION:
+        return { ...state,
+            conversations: [...state.conversations, action.payload.receivedNewConversation]
         }
 
         case SAVE_SELECTED_CONVERSATION:
