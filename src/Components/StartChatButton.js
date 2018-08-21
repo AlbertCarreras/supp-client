@@ -45,11 +45,8 @@ const StartChatButton = (props) => {
         }
         else {
             AdapterChats.fetchToWebsocket("conversations", body);
-            setTimeout( () =>  2000)
-            if (conversationExists(props.user_receiver_id)) {
-                props.onClickClose();
-            }    
-        }
+            props.onClickClose();
+        }    
     };
 
     return (

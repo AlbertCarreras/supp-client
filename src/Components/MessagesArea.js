@@ -49,7 +49,7 @@ const MessagesArea = (props) => {
   };
 
   return (
-    <div className="messages-box">
+    <div className="messages-box animated slideInUp delay-5s">
       <div className="messages-header">
           <div className="chat-header-title">
               <Icon 
