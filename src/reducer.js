@@ -4,7 +4,8 @@ import {
     SAVE_CURRENT_GEOLOCATION, SAVE_CLOSEST_USERS,
     SAVE_USER_INTERESTS,
     SAVE_FILTERED_CLOSEST_USERS,
-    SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS
+    SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS,
+    SAVE_CONVERSATIONS, SAVE_SELECTED_CONVERSATION,
 } from './types';
 
 //Default App State - REDUX
@@ -21,6 +22,8 @@ const initialState = {
     userInterests: [],
     closestUsers: [],
     selectedCommonInterest: undefined,
+    conversations: [],
+    selectedConversationId: undefined,
   }
   
 export default function reducer(state = initialState, action) {
@@ -59,6 +62,8 @@ export default function reducer(state = initialState, action) {
                 userInterests: [],
                 closestUsers: [],
                 selectedCommonInterest: undefined,
+                conversations: [],
+                selectedConversationId: undefined,            
             }
             
         case SAVE_PROFILE:
@@ -98,6 +103,16 @@ export default function reducer(state = initialState, action) {
         case SAVE_USER_INTERESTS:
         return { ...state,
             userInterests: action.payload.userInterestArray,
+        }
+
+        case SAVE_CONVERSATIONS:
+        return { ...state,
+            conversations: action.payload.conversations,
+        }
+
+        case SAVE_SELECTED_CONVERSATION:
+        return { ...state,
+            selectedConversationId: action.payload.selectedConversationId,
         }
   
         default:

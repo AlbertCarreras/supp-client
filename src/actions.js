@@ -6,6 +6,7 @@ import {
     SAVE_USER_INTERESTS,
     SAVE_FILTERED_CLOSEST_USERS,
     SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS,
+    SAVE_CONVERSATIONS, SAVE_SELECTED_CONVERSATION,
 } from './types';
 
 //REDUX-THUNK
@@ -235,6 +236,26 @@ export const thunkRemoveUserInterests = (userInterests) => {
     }
 }
 
+export const thunkSaveConversations = () => {
+    
+    return (dispatch) => {
+        console.log("thunk user conversations")
+        fetch(`http://localhost:3000/api/v1/conversations`, {
+            method: 'GET',
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            }
+        })
+        .then(resp=>resp.json())
+        .then(resp => dispatch( { 
+            type: SAVE_CONVERSATIONS,
+            payload: {
+                conversations: resp,
+            }
+        }))
+    }
+}
+
 //REDUX
 export function jwtSavedInLocalStorage() {
     return {
@@ -260,5 +281,14 @@ export function selectCommonInterests(selectedCommonInterest) {
 export function unselectCommonInterests() {
     return {
         type: UNSELECT_COMMON_INTERESTS,
+    }
+}
+
+export function saveSelectedConversation(selectedConversationId) {
+    return {
+        type: SAVE_SELECTED_CONVERSATION,
+        payload: {
+            selectedConversationId: selectedConversationId,
+        }
     }
 }

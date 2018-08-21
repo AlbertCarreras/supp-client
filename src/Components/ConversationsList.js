@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-//ADAPTERS
-import AdapterChats from './../Adapters/AdapterChats';
+// ACTIONS
+import { thunkSaveConversations, saveSelectedConversation } from '../actions'
+
 
 //COMPONENTS
 import MessagesArea from './MessagesArea';
@@ -14,6 +15,15 @@ import Conversation from './Conversation';
 const mapStateToProps = state => {
   return {
       userId: state.userId,
+      conversations: state.conversations,
+      selectedConversation: state.selectedConversation,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    thunkSaveConversations: () => dispatch(thunkSaveConversations()),
+    saveSelectedConversation: (selectedConversationId) => dispatch(saveSelectedConversation(selectedConversationId)),
   }
 }
 
@@ -24,8 +34,7 @@ class ConversationsList extends React.Component {
     };
     
     componentDidMount = () => {
-      AdapterChats.getConversations()
-      .then(conversations => this.setState({ conversations }));
+      this.props.thunkSaveConversations();
     };
     
     //HELPERS
@@ -54,9 +63,7 @@ class ConversationsList extends React.Component {
       };
     
     //PROPS FUNCTIONALITY: Button handlers
-    handleClick = id => {
-        this.setState({ activeConversation: id });
-    };
+    handleClick = id => this.props.saveSelectedConversation(id)
     
     //WEBSOCKET FUNCTIONALITY: Receivers
     handleReceivedConversation = (response, userId = this.props.userId) => {
@@ -115,4 +122,4 @@ class ConversationsList extends React.Component {
       };
     }
     
-    export default connect(mapStateToProps, null)(ConversationsList);
+    export default connect(mapStateToProps, mapDispatchToProps)(ConversationsList);
