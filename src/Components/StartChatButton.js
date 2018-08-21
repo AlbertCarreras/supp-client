@@ -5,14 +5,33 @@ import { connect } from 'react-redux';
 //ADAPTERS
 import AdapterChats from './../Adapters/AdapterChats';
 
+// ACTIONS
+import { saveSelectedConversation } from '../actions'
+
 // REDUX PROPS 
 const mapStateToProps = state => {
     return {
         user_sender_id: state.userId,
+        conversations: state.conversations,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+      saveSelectedConversation: (selectedConversationId) => dispatch(saveSelectedConversation(selectedConversationId)),
     }
 }
 
 const StartChatButton = (props) => {
+
+    function conversationExists(userReceiverId) {
+        let conversationFound = props.conversations.filter((conversation) => conversation.users.map((i)=> i.id).includes(userReceiverId));
+
+        if (conversationFound.length > 0) {
+            props.saveSelectedConversation(conversationFound[0]);
+            return true;
+        }
+    }
 
     function handleClick() {
         let body = {
@@ -21,9 +40,14 @@ const StartChatButton = (props) => {
             receiver_id: props.user_receiver_id
         };
     
-        AdapterChats.fetchToWebsocket("conversations", body);
-        props.onClickClose();
-      };
+        if (conversationExists(props.user_receiver_id)) {
+            props.onClickClose();
+        }
+        else {
+            AdapterChats.fetchToWebsocket("conversations", body);
+            props.onClickClose();
+        }
+    };
 
     return (
         <Button
@@ -33,4 +57,4 @@ const StartChatButton = (props) => {
     );
 };
 
-export default connect(mapStateToProps, null)(StartChatButton);
+export default connect(mapStateToProps, mapDispatchToProps)(StartChatButton);
