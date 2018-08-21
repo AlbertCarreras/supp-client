@@ -51,8 +51,8 @@ class NewMessageForm extends React.Component {
             onClick={this.handleSubmit}
           >
             <Icon 
-            color='teal' 
-            name='send'
+              color='teal' 
+              name='send'
             />
             <p className="footer-logo">Suppmit</p>
           </div>

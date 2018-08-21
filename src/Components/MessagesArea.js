@@ -9,12 +9,21 @@ import {API_SHORT_ROOT} from './../Adapters/AdapterConstants';
 //COMPONENTS
 import NewMessageForm from './NewMessageForm';
 
+// ACTIONS
+import { cleanSelectedConversation } from '../actions'
+
 // REDUX PROPS 
 const mapStateToProps = state => {
   return {
       userId: state.userId,
       conversations: state.conversations,
       selectedConversation: state.selectedConversation,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    cleanSelectedConversation: () => dispatch(cleanSelectedConversation()),
   }
 }
 
@@ -59,6 +68,7 @@ const MessagesArea = (props) => {
             alt="Mini profile"
           />
             <Icon 
+              onClick={props.cleanSelectedConversation}
               color='teal' 
               name='close'
             />
@@ -74,4 +84,4 @@ const MessagesArea = (props) => {
 };
 
 
-export default connect(mapStateToProps, null)(MessagesArea);
+export default connect(mapStateToProps, mapDispatchToProps)(MessagesArea);

@@ -5,7 +5,7 @@ import {
     SAVE_USER_INTERESTS,
     SAVE_FILTERED_CLOSEST_USERS,
     SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS,
-    SAVE_CONVERSATIONS, SAVE_SELECTED_CONVERSATION, APPEND_NEW_CONVERSATION,
+    SAVE_CONVERSATIONS, SAVE_SELECTED_CONVERSATION, CLEAN_SELECTED_CONVERSATION, APPEND_NEW_CONVERSATION,
 } from './types';
 
 //Default App State - REDUX
@@ -119,6 +119,11 @@ export default function reducer(state = initialState, action) {
         case SAVE_SELECTED_CONVERSATION:
         return { ...state,
             selectedConversation: action.payload.selectedConversation,
+        }
+
+        case CLEAN_SELECTED_CONVERSATION:
+        return { ...state,
+            selectedConversation: undefined,
         }
   
         default:

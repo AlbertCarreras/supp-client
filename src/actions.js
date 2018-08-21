@@ -6,7 +6,7 @@ import {
     SAVE_USER_INTERESTS,
     SAVE_FILTERED_CLOSEST_USERS,
     SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS,
-    SAVE_CONVERSATIONS, SAVE_SELECTED_CONVERSATION, APPEND_NEW_CONVERSATION,
+    SAVE_CONVERSATIONS, SAVE_SELECTED_CONVERSATION, CLEAN_SELECTED_CONVERSATION, APPEND_NEW_CONVERSATION,
 } from './types';
 
 //REDUX-THUNK
@@ -290,6 +290,12 @@ export function saveSelectedConversation(selectedConversation) {
         payload: {
             selectedConversation: selectedConversation,
         }
+    }
+}
+
+export function cleanSelectedConversation() {
+    return {
+        type: CLEAN_SELECTED_CONVERSATION,
     }
 }
 
