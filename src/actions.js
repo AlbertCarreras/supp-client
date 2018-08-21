@@ -293,6 +293,15 @@ export function saveSelectedConversation(selectedConversation) {
     }
 }
 
+export function saveUpdatedConversations(conversations) {
+    return {
+        type: SAVE_CONVERSATIONS,
+        payload: {
+            conversations: conversations,
+        }
+    }
+}
+
 export function appendNewConversation(receivedNewConversation) {
     return {
         type: APPEND_NEW_CONVERSATION,

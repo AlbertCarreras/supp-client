@@ -12,6 +12,7 @@ import NewMessageForm from './NewMessageForm';
 const mapStateToProps = state => {
   return {
       userId: state.userId,
+      conversations: state.conversations,
       selectedConversation: state.selectedConversation,
   }
 }

@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { ActionCable } from 'react-actioncable-provider';
 
-// // ACTIONS
-// import { thunkUpdateConversation } from '../actions'
+// ACTIONS
+import { saveUpdatedConversations } from '../actions'
 
 // REDUX PROPS 
 const mapStateToProps = state => {
@@ -12,16 +12,22 @@ const mapStateToProps = state => {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    saveUpdatedConversations: (conversations) => dispatch(saveUpdatedConversations(conversations)),
+  }
+}
+
 class MessagesCables extends Component {
 
   handleReceivedMessage = (response) => {
-    console.log(response)
       const { message } = response;
       const conversations = [...this.props.conversations];
       const conversation = conversations.find(
         conversation => conversation.id === message.conversation_id
       );
       conversation.messages = [...conversation.messages, message];
+      this.props.saveUpdatedConversations(conversations)
   };
 
   render () {
@@ -43,4 +49,4 @@ class MessagesCables extends Component {
   }
 };
 
-export default connect(mapStateToProps, null)(MessagesCables);
+export default connect(mapStateToProps, mapDispatchToProps)(MessagesCables);
