@@ -1,12 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 //ADAPTERS
 import AdapterChats from './../Adapters/AdapterChats';
 
+const mapStateToProps = state => {
+  return {
+      userId: state.userId,
+      selectedConversation: state.selectedConversation,
+  }
+}
+
 class NewMessageForm extends React.Component {
   state = {
     text: '',
-    conversation_id: this.props.conversation_id
   };
 
   componentWillReceiveProps = nextProps => {
@@ -22,7 +29,7 @@ class NewMessageForm extends React.Component {
     e.preventDefault();
     let body = {
       text: this.state.text,
-      conversation_id: this.state.conversation_id,
+      conversation_id: this.props.selectedConversation.id,
     };
 
     AdapterChats.fetchToWebsocket("messages", body);
@@ -46,4 +53,4 @@ class NewMessageForm extends React.Component {
   };
 }
 
-export default NewMessageForm;
+export default connect(mapStateToProps, null)(NewMessageForm);

@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 // ACTIONS
 import { thunkSaveConversations, saveSelectedConversation, appendNewConversation } from '../actions'
 
-
 //COMPONENTS
 import MessagesArea from './MessagesArea';
 import MessagesCables from './MessagesCables';
@@ -29,22 +28,11 @@ const mapDispatchToProps = dispatch => {
 }
 
 class ConversationsList extends React.Component {
-    state = {
-      conversations: [],
-      activeConversation: null
-    };
     
     componentDidMount = () => {
       this.props.thunkSaveConversations();
     };
-    
-    //HELPERS
-    findActiveConversation = (conversations, activeConversation) => {
-        return conversations.find(
-          conversation => conversation.id === activeConversation
-        );
-      };
-    
+        
     mapConversations = () => {
         return this.props.conversations.map(conversation => {
           return (
@@ -63,40 +51,27 @@ class ConversationsList extends React.Component {
       };
     
     
-    //WEBSOCKET FUNCTIONALITY: Receivers
-    handleReceivedConversation = (response, userId = this.props.userId) => {
-      const { conversation } = response;
-      if (conversation.users.map((i)=> i.id).includes(userId)) {
-        this.props.appendNewConversation(conversation)
+    // //WEBSOCKET FUNCTIONALITY: Receivers
+    // handleReceivedConversation = (response, userId = this.props.userId) => {
+    //   const { conversation } = response;
+    //   if (conversation.users.map((i)=> i.id).includes(userId)) {
+    //     this.props.appendNewConversation(conversation)
     
-      }
-    };
-
-    handleReceivedMessage = response => {
-      console.log(response)
-        const { message } = response;
-        const conversations = [...this.state.conversations];
-        const conversation = conversations.find(
-          conversation => conversation.id === message.conversation_id
-        );
-        conversation.messages = [...conversation.messages, message];
-        this.setState({ conversations });
-    };
+    //   }
+    // };
     
     render = () => {
         return (
           <div className="conversationsList">
             
             <ConversationsCables
-                handleReceivedConversation={this.handleReceivedConversation}
+                // handleReceivedConversation={this.handleReceivedConversation}
             />
             
-            {this.props.conversations.length ? (
-              <MessagesCables
-                conversations={this.props.conversations}
-                handleReceivedMessage={this.handleReceivedMessage}
-              />
-            ) : null}
+            {this.props.conversations.length
+              ? <MessagesCables />
+              : null
+            }
             
             <h2 className="heart-message">Conversations</h2>
             

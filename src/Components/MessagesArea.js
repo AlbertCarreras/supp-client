@@ -1,7 +1,7 @@
 import React from 'react';
 import NewMessageForm from './NewMessageForm';
-// import { Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux';
+// import { Icon } from 'semantic-ui-react'
 
 // //ADAPTERS
 // import Adapters from './../Adapters/Adapters';

@@ -1,10 +1,30 @@
 import React, { Fragment } from 'react';
 import { ActionCable } from 'react-actioncable-provider';
+import { connect } from 'react-redux';
 
-const MessagesCables = ({ conversations, handleReceivedMessage }) => {
+// REDUX PROPS 
+const mapStateToProps = state => {
+  return {
+      conversations: state.conversations,
+  }
+}
+
+const MessagesCables = (props) => {
+
+  function handleReceivedMessage (response) {
+    console.log(response)
+      const { message } = response;
+      const conversations = [...this.state.conversations];
+      const conversation = conversations.find(
+        conversation => conversation.id === message.conversation_id
+      );
+      conversation.messages = [...conversation.messages, message];
+      this.setState({ conversations });
+  };
+
   return (
     <Fragment>
-      {conversations.map(conversation => {
+      {props.conversations.map(conversation => {
         return (
           <ActionCable
             key={conversation.id}  //mapping purposes
@@ -19,4 +39,4 @@ const MessagesCables = ({ conversations, handleReceivedMessage }) => {
   );
 };
 
-export default MessagesCables;
+export default connect(mapStateToProps, null)(MessagesCables);
