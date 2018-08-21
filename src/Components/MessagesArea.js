@@ -1,10 +1,12 @@
 import React from 'react';
-import NewMessageForm from './NewMessageForm';
 import { connect } from 'react-redux';
 // import { Icon } from 'semantic-ui-react'
 
 // //ADAPTERS
 // import Adapters from './../Adapters/Adapters';
+
+//COMPONENTS
+import NewMessageForm from './NewMessageForm';
 
 // REDUX PROPS 
 const mapStateToProps = state => {

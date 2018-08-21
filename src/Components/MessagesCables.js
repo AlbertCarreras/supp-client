@@ -1,6 +1,9 @@
-import React, { Fragment } from 'react';
-import { ActionCable } from 'react-actioncable-provider';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { ActionCable } from 'react-actioncable-provider';
+
+// // ACTIONS
+// import { thunkUpdateConversation } from '../actions'
 
 // REDUX PROPS 
 const mapStateToProps = state => {
@@ -9,33 +12,34 @@ const mapStateToProps = state => {
   }
 }
 
-const MessagesCables = (props) => {
+class MessagesCables extends Component {
 
-  function handleReceivedMessage (response) {
+  handleReceivedMessage = (response) => {
     console.log(response)
       const { message } = response;
-      const conversations = [...this.state.conversations];
+      const conversations = [...this.props.conversations];
       const conversation = conversations.find(
         conversation => conversation.id === message.conversation_id
       );
       conversation.messages = [...conversation.messages, message];
-      this.setState({ conversations });
+      
   };
-
-  return (
-    <Fragment>
-      {props.conversations.map(conversation => {
-        return (
-          <ActionCable
-            key={conversation.id}  //mapping purposes
-            channel={{ 
-              channel: 'MessagesChannel', 
-              conversation: conversation.id }}
-            onReceived={handleReceivedMessage}
-          />
-        );
-      })}
-    </Fragment>
+  render () {
+    return (
+      <Fragment>
+        {props.conversations.map(conversation => {
+          return (
+            <ActionCable
+              key={conversation.id}  //mapping purposes
+              channel={{ 
+                channel: 'MessagesChannel', 
+                conversation: conversation.id }}
+              onReceived={handleReceivedMessage}
+            />
+          );
+        })};
+      </Fragment>
+    }
   );
 };
 
