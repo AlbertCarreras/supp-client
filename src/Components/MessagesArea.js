@@ -53,4 +53,5 @@ const MessagesArea = (props) => {
   );
 };
 
+
 export default connect(mapStateToProps, null)(MessagesArea);

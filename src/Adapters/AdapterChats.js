@@ -1,6 +1,5 @@
 // ADAPTERS
 import {API_ROOT} from './AdapterConstants'
-import {AUTH_HEADERS_JSON} from './AdapterConstants'
 import {AUTH_HEADERS_IMAGE} from './AdapterConstants'
 
 class AdapterChats {
@@ -16,7 +15,11 @@ class AdapterChats {
     static  fetchToWebsocket(route, bodyData) {
         fetch(`${API_ROOT}/${route}`, {
             method: 'POST',
-            headers: AUTH_HEADERS_JSON,
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+              },
             body: JSON.stringify(bodyData)
         })
     }        
