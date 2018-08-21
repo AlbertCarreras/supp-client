@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Icon } from 'semantic-ui-react'
 
@@ -12,7 +12,7 @@ const mapStateToProps = state => {
   }
 }
 
-class NewMessageForm extends React.Component {
+class NewMessageForm extends Component {
   state = {
     text: '',
   };

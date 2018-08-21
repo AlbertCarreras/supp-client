@@ -22,6 +22,7 @@ const StartChatButton = (props) => {
         };
     
         AdapterChats.fetchToWebsocket("conversations", body);
+        props.onClickClose();
       };
 
     return (
