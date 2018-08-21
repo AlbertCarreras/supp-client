@@ -26,6 +26,7 @@ const FriendInterestList = (props) => {
                             onClick={() => {
                                 props.selectCommonInterests(interest)
                                 props.thunkSaveFilteredClosestUsers(interest.id)
+                                props.onClickClose();
                             }}
                             color='teal' 
                             name='users' 

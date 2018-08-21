@@ -73,8 +73,13 @@ class ProfileSquare extends Component {
                     <div className="ui tiny header">{this.props.distance}</div>
                     {
                         this.props.username === "YOU"
-                            ? <UserInterestList /> 
-                            : <FriendInterestList friendInterestArray={this.props.interests}/>
+                            ? <UserInterestList 
+                                onClickClose={this.handleClose}
+                            /> 
+                            : <FriendInterestList 
+                                friendInterestArray={this.props.interests}
+                                onClickClose={this.handleClose}
+                            />
                     }      
                 </Modal.Description>
             </Modal.Content>
