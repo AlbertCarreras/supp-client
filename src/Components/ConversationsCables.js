@@ -21,7 +21,6 @@ const mapDispatchToProps = dispatch => {
 class ConversationsCables extends Component {
 
   handleReceivedConversation = (response) => {
-    debugger
     const { conversation } = response;
     if (conversation.users.map((i)=> i.id).includes(this.props.userId)) {
       this.props.appendNewConversation(conversation);

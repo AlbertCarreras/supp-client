@@ -22,25 +22,25 @@ class MessagesCables extends Component {
         conversation => conversation.id === message.conversation_id
       );
       conversation.messages = [...conversation.messages, message];
-      
   };
+
   render () {
     return (
       <Fragment>
-        {props.conversations.map(conversation => {
+        {this.props.conversations.map(conversation => {
           return (
             <ActionCable
               key={conversation.id}  //mapping purposes
               channel={{ 
                 channel: 'MessagesChannel', 
                 conversation: conversation.id }}
-              onReceived={handleReceivedMessage}
+              onReceived={this.handleReceivedMessage}
             />
-          );
-        })};
+          )
+        })}
       </Fragment>
-    }
-  );
+    );
+  }
 };
 
 export default connect(mapStateToProps, null)(MessagesCables);
