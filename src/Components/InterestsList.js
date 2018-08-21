@@ -4,10 +4,9 @@ import { Icon } from 'semantic-ui-react'
 
 // ADAPTERS
 import Adapters from './../Adapters/Adapters';
-import AdapterUser from './../Adapters/AdapterUser';
 
 // ACTIONS
-import { unselectCommonInterests, saveUserInterests, saveClosestUsers } from '../actions'
+import { unselectCommonInterests, thunkSaveUserInterests, thunkSaveClosestUsers } from '../actions'
 
 //COMPONENTS
 import UserInterestList from './UserInterestList'
@@ -23,8 +22,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         unselectCommonInterests: () => dispatch(unselectCommonInterests()),
-        saveUserInterests: (userInterests) => dispatch(saveUserInterests(userInterests)),
-        saveClosestUsers: (closestUsers) => dispatch(saveClosestUsers(closestUsers)),
+        thunkSaveUserInterests: (userId, userInterestArray) => dispatch(thunkSaveUserInterests(userId, userInterestArray)),
+        thunkSaveClosestUsers: () => dispatch(thunkSaveClosestUsers()),
     }
 }
 
@@ -47,8 +46,7 @@ class InterestsList extends Component {
                                     <Icon 
                                         onClick={ () => {
                                             this.props.unselectCommonInterests()
-                                            Adapters.getClosestUsers()
-                                            .then(json => this.props.saveClosestUsers(json))
+                                            this.props.thunkSaveClosestUsers()
                                         }} 
                                         color='teal'
                                         name='remove'
@@ -56,8 +54,7 @@ class InterestsList extends Component {
                                     { !this.props.userInterests.find((i)=> i.id === this.props.selectedCommonInterest.id)
                                         ?   <Icon 
                                                 onClick={() => {
-                                                    AdapterUser.persistAddInterests(this.props.userId, this.props.selectedCommonInterest)
-                                                    .then(resp => this.props.saveUserInterests(resp.interests))
+                                                    this.props.thunkSaveUserInterests(this.props.userId, this.props.selectedCommonInterest)
                                                 }}
                                                 color='teal'
                                                 name='user plus'

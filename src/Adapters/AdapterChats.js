@@ -5,7 +5,6 @@ import {AUTH_HEADERS_IMAGE} from './AdapterConstants'
 
 class AdapterChats {
 
-
     static getConversations(){
         return fetch(`${API_ROOT}/conversations`, {
             method: 'GET',
@@ -13,15 +12,6 @@ class AdapterChats {
         })
         .then(res => res.json())
     }
-
-    // static getProfilePhoto(userId){
-    //     return fetch(`${API_ROOT}/user/${userId}/photo`, {
-    //         method: 'GET',
-    //         headers: AUTH_HEADERS_IMAGE
-    //     })
-    //     .then(res => res.json())
-    //     .then(console.log)
-    // }
 
     static  fetchToWebsocket(route, bodyData) {
         fetch(`${API_ROOT}/${route}`, {

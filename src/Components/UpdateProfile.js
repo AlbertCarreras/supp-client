@@ -3,13 +3,10 @@ import { withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // ADAPTERS
-import AdapterUser from './../Adapters/AdapterUser';
 import Adapters from './../Adapters/Adapters';
 
 // ACTIONS
-import { saveProfile } from '../actions';
-import { saveProfileImage } from '../actions';
-
+import { thunkUpdateProfileInfo, thunkUploadProfile } from '../actions';
 
 // REDUX PROPS 
 const mapStateToProps = state => {
@@ -23,8 +20,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    saveProfile: (username, bio) => dispatch(saveProfile(username, bio)),
-    saveProfileImage: (profileImageLink) => dispatch(saveProfileImage(profileImageLink))
+    thunkUploadProfile: (userId, profileImage) => dispatch(thunkUploadProfile(userId, profileImage)),
+    thunkUpdateProfileInfo: (userId, username, bio) => dispatch(thunkUpdateProfileInfo(userId, username, bio)),
   }
 }
 
@@ -53,13 +50,11 @@ class UpdateProfile extends Component {
 
     handleSubmit = () => {        
         if (this.state.profile_image) {
-            AdapterUser.uploadProfile(this.props.user_id, this.state.profile_image)
-            .then(json => this.props.saveProfileImage(json.url))
+            this.props.thunkUploadProfile(this.props.user_id, this.state.profile_image)
         }
         
         if (this.state.username || this.state.bio) {
-            AdapterUser.updateProfileInfo(this.props.user_id, this.state.username, this.state.bio)
-            .then(json => this.props.saveProfile(json.username, json.bio))
+            this.props.thunkUpdateProfileInfo(this.props.user_id, this.state.username, this.state.bio)
         }
 
         this.props.history.push('/home');

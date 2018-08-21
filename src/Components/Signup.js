@@ -6,14 +6,15 @@ import { connect } from 'react-redux';
 import AdapterUser from './../Adapters/AdapterUser';
 
 // ACTIONS
-import { login } from '../actions';
+import { jwtSavedInLocalStorage } from '../actions';
 
 // REDUX PROPS 
 const mapDispatchToProps = dispatch => {
   return {
-    login: (username, email, userId) => dispatch(login(username, email, userId))
+    jwtSavedInLocalStorage: () => dispatch(jwtSavedInLocalStorage()),
   }
 }
+
 
 class Signup extends Component {
 
@@ -24,7 +25,6 @@ class Signup extends Component {
     password: "",
     confirmPassword: "",
     agreedCheckbox: false,
-
   };
 
   //PROPS FUNCTIONALITY: Button handlers
@@ -46,12 +46,14 @@ class Signup extends Component {
     ?  AdapterUser.signup(this.state)
       .then(json => json.ok
           ? AdapterUser.login(this.state)
-          .then(json => {
-            AdapterUser.setToken(json.jwt);
-            AdapterUser.getCurrentUser()
-            .then(json => this.props.login(json.username, json.email, json.id));
-            this.props.history.push('/home');
-          })
+            .then(json => {
+              AdapterUser.setToken(json.jwt);
+              AdapterUser.saveTokenAsCookie();
+              this.props.jwtSavedInLocalStorage();
+            })
+            .catch(err => {
+              this.props.history.push('/login');
+            })
           : console.log("error")
         )
         .catch(err => {

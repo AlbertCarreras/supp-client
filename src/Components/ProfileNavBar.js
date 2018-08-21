@@ -38,7 +38,11 @@ const ProfileNavBar = (props) => {
                     <div className="dropdown">
                         <img 
                             className="profile-image animated bounceIn delay-5s shake-slow" 
-                            src={`${props.profileImageLink}`}
+                            src={
+                                props.profileImageLink !== undefined 
+                                ? `${props.profileImageLink}` 
+                                : `/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
+                            }
                             alt="profile" 
                         />
                         <div className="dropdown-content">

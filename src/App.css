@@ -337,6 +337,7 @@ img {
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
+  z-index: 4;
   position: relative;
   display: flex;
   align-self: center;
@@ -345,7 +346,7 @@ img {
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-  z-index: 1;
+  z-index: 4;
   display: none;
   border-radius: 5px 25px 5px 5px;
   position: absolute;
@@ -355,6 +356,7 @@ img {
 }
 
 .dropdown-item {
+  z-index: 4;
   font-family: 'Sniglet', cursive;
   font-weight: 400;
   font-size: 1.5em;
@@ -366,6 +368,7 @@ img {
 
 /* Links inside the dropdown */
 .dropdown-content a {
+  z-index: 4;
   color: #05386B;
   padding: 12px 16px;
   text-decoration: none;

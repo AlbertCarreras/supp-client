@@ -30,19 +30,17 @@ class Login extends Component {
   }
 
   handleSubmit = () => {
-
     AdapterUser.login(this.state)
       .then(json => {
         AdapterUser.setToken(json.jwt);
-        this.props.jwtSavedInLocalStorage();
         AdapterUser.saveTokenAsCookie();
-        debugger;
+        this.props.jwtSavedInLocalStorage();
       })
       .catch(err => {
         this.props.history.push('/login');
       })
   }
-
+ 
   render() {
     return (
       <div className="overlay-box login">

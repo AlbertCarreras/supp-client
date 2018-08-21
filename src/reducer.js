@@ -2,9 +2,10 @@ import {
     JWT, LOGIN, LOGOUT, 
     SAVE_PROFILE, SAVE_PROFILE_IMAGE, 
     SAVE_CURRENT_GEOLOCATION, SAVE_CLOSEST_USERS,
-    SAVE_USER_INTERESTS, REMOVE_USER_INTERESTS,
+    SAVE_USER_INTERESTS,
     SAVE_FILTERED_CLOSEST_USERS,
-    SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS
+    SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS,
+    SAVE_CONVERSATIONS, SAVE_SELECTED_CONVERSATION, APPEND_NEW_CONVERSATION,
 } from './types';
 
 //Default App State - REDUX
@@ -21,6 +22,8 @@ const initialState = {
     userInterests: [],
     closestUsers: [],
     selectedCommonInterest: undefined,
+    conversations: [],
+    selectedConversation: undefined,
   }
   
 export default function reducer(state = initialState, action) {
@@ -59,6 +62,8 @@ export default function reducer(state = initialState, action) {
                 userInterests: [],
                 closestUsers: [],
                 selectedCommonInterest: undefined,
+                conversations: [],
+                selectedConversation: undefined,            
             }
             
         case SAVE_PROFILE:
@@ -100,9 +105,20 @@ export default function reducer(state = initialState, action) {
             userInterests: action.payload.userInterestArray,
         }
 
-        case REMOVE_USER_INTERESTS:
+        case SAVE_CONVERSATIONS:
         return { ...state,
-            userInterests: [...state.userInterests.filter(interest => interest.id !== action.payload.selectedUserInterest.id)]
+            conversations: action.payload.conversations,
+        }
+
+        case APPEND_NEW_CONVERSATION:
+        return { ...state,
+            conversations: [...state.conversations, action.payload.receivedNewConversation]
+        }
+        
+
+        case SAVE_SELECTED_CONVERSATION:
+        return { ...state,
+            selectedConversation: action.payload.selectedConversation,
         }
   
         default:

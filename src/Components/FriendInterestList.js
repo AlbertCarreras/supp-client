@@ -7,12 +7,12 @@ import { connect } from 'react-redux';
 import Adapters from './../Adapters/Adapters';
 
 // ACTIONS
-import { selectCommonInterests, saveFilteredClosestUsers } from '../actions';
+import { selectCommonInterests, thunkSaveFilteredClosestUsers } from '../actions';
 
 const mapDispatchToProps = dispatch => {
     return {
         selectCommonInterests: (selectedCommonInterest) => dispatch(selectCommonInterests(selectedCommonInterest)),
-        saveFilteredClosestUsers: (closestUsers) => dispatch(saveFilteredClosestUsers(closestUsers)),
+        thunkSaveFilteredClosestUsers: (interestId) => dispatch(thunkSaveFilteredClosestUsers(interestId)),
     }
   }
 
@@ -25,8 +25,7 @@ const FriendInterestList = (props) => {
                         <Icon 
                             onClick={() => {
                                 props.selectCommonInterests(interest)
-                                Adapters.getFilteredClosestUsers(interest.id)
-                                .then(props.saveFilteredClosestUsers)
+                                props.thunkSaveFilteredClosestUsers(interest.id)
                             }}
                             color='teal' 
                             name='users' 

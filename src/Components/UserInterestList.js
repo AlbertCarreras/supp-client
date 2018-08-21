@@ -5,11 +5,9 @@ import { connect } from 'react-redux';
 
 // ADAPTERS
 import Adapters from './../Adapters/Adapters';
-import AdapterUser from './../Adapters/AdapterUser';
-
 
 // ACTIONS
-import { selectCommonInterests, saveFilteredClosestUsers, saveUserInterests } from '../actions';
+import { selectCommonInterests, thunkSaveFilteredClosestUsers, thunkRemoveUserInterests } from '../actions';
 
 // REDUX PROPS 
 const mapStateToProps = state => {
@@ -21,8 +19,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         selectCommonInterests: (selectedCommonInterest) => dispatch(selectCommonInterests(selectedCommonInterest)),
-        saveUserInterests: (userInterests) => dispatch(saveUserInterests(userInterests)),
-        saveFilteredClosestUsers: (closestUsers) => dispatch(saveFilteredClosestUsers(closestUsers)),
+        thunkRemoveUserInterests: (userInterest) => dispatch(thunkRemoveUserInterests(userInterest)),
+        thunkSaveFilteredClosestUsers: (interestId) => dispatch(thunkSaveFilteredClosestUsers(interestId)),
     }
   }
 
@@ -36,16 +34,14 @@ const UserInterestList = (props) => {
                             <Icon 
                                 onClick={() => {
                                     props.selectCommonInterests(interest)
-                                    Adapters.getFilteredClosestUsers(interest.id)
-                                    .then(props.saveFilteredClosestUsers)
+                                    props.thunkSaveFilteredClosestUsers(interest.id)
                                 }}
                                 color='teal' 
                                 name='users' 
                             />
                             <Icon 
                                 onClick={() => {
-                                    AdapterUser.persistRemoveInterests(interest)
-                                    .then(resp => props.saveUserInterests(resp.interests))
+                                    props.thunkRemoveUserInterests(interest)
                                 }}
                                 color='teal'
                                 name='user close'
