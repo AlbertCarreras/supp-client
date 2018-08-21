@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // ACTIONS
-import { thunkSaveConversations, saveSelectedConversation, appendNewConversation } from '../actions'
+import { thunkSaveConversations, saveSelectedConversation } from '../actions'
 
 //COMPONENTS
 import MessagesArea from './MessagesArea';
@@ -23,7 +23,6 @@ const mapDispatchToProps = dispatch => {
   return {
     thunkSaveConversations: () => dispatch(thunkSaveConversations()),
     saveSelectedConversation: (selectedConversationId) => dispatch(saveSelectedConversation(selectedConversationId)),
-    appendNewConversation: (newConversation) => dispatch(appendNewConversation(newConversation)),
   }
 }
 
@@ -49,24 +48,12 @@ class ConversationsList extends React.Component {
           );
         });
       };
-    
-    
-    // //WEBSOCKET FUNCTIONALITY: Receivers
-    // handleReceivedConversation = (response, userId = this.props.userId) => {
-    //   const { conversation } = response;
-    //   if (conversation.users.map((i)=> i.id).includes(userId)) {
-    //     this.props.appendNewConversation(conversation)
-    
-    //   }
-    // };
-    
+        
     render = () => {
         return (
           <div className="conversationsList">
             
-            <ConversationsCables
-                // handleReceivedConversation={this.handleReceivedConversation}
-            />
+            <ConversationsCables />
             
             {this.props.conversations.length
               ? <MessagesCables />

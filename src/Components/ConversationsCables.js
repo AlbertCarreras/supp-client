@@ -18,7 +18,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-
 class ConversationsCables extends Component {
 
   handleReceivedConversation = (response) => {
