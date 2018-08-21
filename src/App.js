@@ -2,6 +2,7 @@ import React, { Component} from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter, Switch } from "react-router-dom";
 import { ActionCableProvider } from 'react-actioncable-provider';
+import { hot } from 'react-hot-loader';
 
 //STYLING
 import './App.css';
@@ -122,4 +123,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default hot(module)(withRouter(connect(mapStateToProps, mapDispatchToProps)(App)));
