@@ -9,15 +9,11 @@ import {API_SHORT_ROOT} from './../Adapters/AdapterConstants';
 const mapStateToProps = state => {
     return {
         userId: state.userId,
+        conversations: state.conversations,
     }
 }
 
-// { props.conversation.messages === undefined
-//     ?   null
-//     :   <div className="conversation-first-message">
-//             {Adapters.capitalize(props.conversation.messages[(props.conversation.messages.length)-1].user.username)}: {props.conversation.messages[(props.conversation.messages.length)-1].text}
-//         </div> 
-// }
+
 
 const Conversation = (props) => {
     return (
@@ -38,6 +34,14 @@ const Conversation = (props) => {
             <div className="conversation-title">
                 {Adapters.capitalize(props.conversation.users.find((u) => u.id !== props.userId).username)}
             </div>
+            { props.conversation.messages.length === 0
+                ?   <div className="conversation-first-message">
+                        <p>Start a conversation!</p>
+                    </div> 
+                :   <div className="conversation-first-message">
+                        {Adapters.capitalize(props.conversation.messages[(props.conversation.messages.length)-1].user.username)}: {`${props.conversation.messages[(props.conversation.messages.length)-1].text.substring(0, 60)}...`}
+                    </div> 
+            }
             
 
         </div>

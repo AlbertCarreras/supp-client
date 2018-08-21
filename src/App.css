@@ -7,6 +7,10 @@
 .app-header {
   display: flex;
   background-color: #5CDB95;
+  -moz-box-shadow: inset 0 -10px 10px -10px #000000;
+  -webkit-box-shadow: inset 0 -10px 10px -10px #000000;
+  box-shadow: inset 0 -10px 10px -10px #379683;
+
   padding: 20px;
 }
 
@@ -20,6 +24,7 @@
   width: 150px;
   align-items: top;
 }
+
 .user-profile-bar {
   width: 100%;
   display: flex;
@@ -48,11 +53,19 @@
 
 .home-container > * {
   flex: 1 100%;
+  height: 800px;
 }
 
 .aside-container  { 
   flex: 1 2 25%;
   padding: 20px;
+  height: 100%;
+}
+
+.aside-container-messaging  { 
+  flex: 1 2 25%;
+  padding: 20px 20px 0px 20px;
+  height: 100%;
 }
 
 .central-container::-webkit-scrollbar {
@@ -69,6 +82,7 @@
   align-content: flex-start;
   overflow: scroll;
   position: relative;
+  min-width: 335px;
 }
 
 .profile-image-list {
@@ -116,6 +130,10 @@
   background-color: #5CDB95;
   padding: 20px;
   box-shadow: 0 50vh 0 50vh #5CDB95;
+  -moz-box-shadow: inset 0 10px 10px -10px #000000;
+  -webkit-box-shadow: inset 0 10px 10px -10px #000000;
+  box-shadow: inset 0 10px 10px -10px #379683;
+
 }
 
 .app-footer-right {
@@ -193,10 +211,19 @@
 }
 
 /* MESSAGING CONTAINER. Responsive Image Grid*/
+
+.conversations-list {
+  height: 300px;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
 .conversation-box {
   display: flex;
   border-radius: 10px;
   width:100%;
+  max-width: 450px;
   background: #05386B;
   margin: 5px 0px;
 }
@@ -224,8 +251,68 @@
 .conversation-first-message {
   font-style: italic;
 }
+
+.messages-box {
+  height: 423px;
+  width: 100%;
+  max-width: 450px;
+  position: relative;
+  background: #5CDB95;
+  border-radius: 10px 10px 0px 0px;
+  border-bottom: 2px solid  #379683;
+}
+
+.outer-messages-list {
+  display: flex;
+  flex-direction: column;
+  height: 270px;
+  overflow-y: auto;
+  background: white;
+  border: 5px solid #5CDB95;
+  border-radius: 10px;
+}
+
+.messages-list{
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.messages-list > * {
+  margin: 0px 0px -10px 10px;
+  min-height: 30px;
+}
+
 .message-box {
   display: flex;
+}
+
+.new-message-form {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.new-message-input {
+  width: 100%;
+  flex-grow: 2;
+  min-width: 200px;
+  margin: 5px 5px; 
+  padding: 10px;
+  border: none; 
+  border-bottom: 1px solid  #5CDB95;
+  border-radius: 10px;
+}
+
+.chat-submit-btn {
+  display: flex;
+  border: 1px solid  #5CDB95;
+  border-radius: 15px;
+  padding: 5px;
+  margin-bottom: 5px;
+  background: white;
 }
 
 /* WELCOME CONTAINER. Responsive Image Grid*/

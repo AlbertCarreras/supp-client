@@ -51,19 +51,19 @@ class ConversationsList extends React.Component {
         
     render = () => {
         return (
-          <div className="conversationsList">
+          <div className="conversations-box">
             
+            {/*cables connected to backend websockets*/}
             <ConversationsCables />
-            
             {this.props.conversations.length
               ? <MessagesCables />
               : null
             }
             
             <h2 className="heart-message">Conversations</h2>
-            
-            {this.mapConversations()}
-            
+            <div className="conversations-list">
+              {this.mapConversations()}
+            </div>
             { 
               this.props.selectedConversation 
               ? <MessagesArea />

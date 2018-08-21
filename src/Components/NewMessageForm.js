@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Icon } from 'semantic-ui-react'
 
 //ADAPTERS
 import AdapterChats from './../Adapters/AdapterChats';
@@ -25,8 +26,7 @@ class NewMessageForm extends React.Component {
   };
 
   //PROPS FUNCTIONALITY: Button handlers
-  handleSubmit = e => {
-    e.preventDefault();
+  handleSubmit = () => {
     let body = {
       text: this.state.text,
       conversation_id: this.props.selectedConversation.id,
@@ -38,16 +38,24 @@ class NewMessageForm extends React.Component {
 
   render = () => {
     return (
-      <div className="newMessageForm">
-        <form onSubmit={this.handleSubmit}>
-          <input
+      <div className="new-message-form">
+          <textarea
+            className="new-message-input"
             type="text"
             value={this.state.text}
             onChange={this.handleChange}
             placeholder="Enter new message"
           />
-          <input type="submit" />
-        </form>
+          <div 
+            className="chat-submit-btn"
+            onClick={this.handleSubmit}
+          >
+            <Icon 
+            color='teal' 
+            name='send'
+            />
+            <p className="footer-logo">Suppmit</p>
+          </div>
       </div>
     );
   };

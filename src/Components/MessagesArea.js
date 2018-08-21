@@ -39,7 +39,7 @@ const MessagesArea = (props) => {
   };
 
   return (
-    <div className="messagesArea">
+    <div className="messages-box">
       <h2 className="heart-message">
           <Icon 
           color='teal' 
@@ -47,7 +47,11 @@ const MessagesArea = (props) => {
           /> 
           with {Adapters.capitalize(friendUser())}
       </h2>
-      <ul>{orderedMessages()}</ul>
+      <div className="outer-messages-list">
+        <div className="messages-list">
+          {orderedMessages()}
+        </div>
+      </div>
       <NewMessageForm conversation_id={props.selectedConversation.id} />
     </div>
   );

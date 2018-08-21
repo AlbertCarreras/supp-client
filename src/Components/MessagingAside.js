@@ -6,7 +6,7 @@ import ConversationsList from  './ConversationsList'
 class MessagingAside extends Component {
     render() {
         return (
-            <div className="aside-container">
+            <div className="aside-container-messaging">
                 <ConversationsList />
             </div>
         );
