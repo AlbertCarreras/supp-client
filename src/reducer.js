@@ -114,6 +114,7 @@ export default function reducer(state = initialState, action) {
         return { ...state,
             conversations: [...state.conversations, action.payload.receivedNewConversation]
         }
+        
 
         case SAVE_SELECTED_CONVERSATION:
         return { ...state,

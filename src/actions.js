@@ -297,7 +297,7 @@ export function appendNewConversation(receivedNewConversation) {
     return {
         type: APPEND_NEW_CONVERSATION,
         payload: {
-            receivedConversation: receivedNewConversation,
+            receivedNewConversation: receivedNewConversation,
         }
     }
 }

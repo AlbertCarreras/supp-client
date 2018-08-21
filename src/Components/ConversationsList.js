@@ -46,7 +46,6 @@ class ConversationsList extends React.Component {
       };
     
     mapConversations = () => {
-      debugger;
         return this.props.conversations.map(conversation => {
           return (
             <div 
@@ -66,10 +65,8 @@ class ConversationsList extends React.Component {
     
     //WEBSOCKET FUNCTIONALITY: Receivers
     handleReceivedConversation = (response, userId = this.props.userId) => {
-      debugger;
       const { conversation } = response;
       if (conversation.users.map((i)=> i.id).includes(userId)) {
-       
         this.props.appendNewConversation(conversation)
     
       }
