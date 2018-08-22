@@ -23,6 +23,7 @@ class UserList extends Component {
                 (user) => 
                 <ProfileModal 
                     key={user.userId}
+                    origin={"userList"}
                     bio={user.bio}
                     userId={user.userId}
                     username={user.username}

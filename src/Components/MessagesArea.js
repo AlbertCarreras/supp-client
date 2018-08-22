@@ -8,6 +8,8 @@ import {API_SHORT_ROOT} from './../Adapters/AdapterConstants';
 
 //COMPONENTS
 import NewMessageForm from './NewMessageForm';
+import ProfileModal from './ProfileModal';
+
 
 // ACTIONS
 import { cleanSelectedConversation } from '../actions'
@@ -28,9 +30,9 @@ const mapDispatchToProps = dispatch => {
 }
 
 const MessagesArea = (props) => {
-
+  
   function friendUser () {
-      return props.selectedConversation.users.find((u) => u.id !== props.userId).username
+      return props.selectedConversation.users.find((u) => u.id !== props.userId)
   }
 
   function orderedMessages () {
@@ -55,14 +57,19 @@ const MessagesArea = (props) => {
               color='teal' 
               name='chat'
               /> 
-              with {Adapters.capitalize(friendUser())}
+              with {Adapters.capitalize(friendUser().username)}
           </div>
+          {/*<ProfileModal 
+            origin={"chatHeader"}
+            profileImageLink={friendUser().profileImageLink}
+          />*/}
+
           <img 
             className="chat-header-image"
             onClick={console.log("ji")}
             src={
-                props.selectedConversation.users.find((u) => u.id !== props.userId).profile_image_url !== "undefined"
-            ? `${API_SHORT_ROOT+props.selectedConversation.users.find((u) => u.id !== props.userId).profile_image_url}` 
+              friendUser().profile_image_url !== "undefined"
+            ? `${API_SHORT_ROOT+friendUser().profile_image_url}` 
             : `/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
             }
             alt="Mini profile"
