@@ -22,7 +22,10 @@ class NewMessageForm extends Component {
   };
 
   handleChange = e => {
-    this.setState({ text: e.target.value });
+    var Filter = require('bad-words'),
+        filter = new Filter();
+        filter.addWords("suck")
+    this.setState({ text: filter.clean(e.target.value) });
   };
 
   //PROPS FUNCTIONALITY: Button handlers

@@ -17,8 +17,11 @@ class Search extends Component {
 
     //PROPS FUNCTIONALITY: Button handlers
     handleChange = (event) => {
+        var Filter = require('bad-words'),
+        filter = new Filter();
+        filter.addWords("suck")
         this.setState({
-            [event.target.name]: event.target.value,
+            [event.target.name]: filter.isProfane(event.target.value) ? "" : event.target.value,
         }, () => this.searchTerm(this.state.searchTerm))
     }
 
