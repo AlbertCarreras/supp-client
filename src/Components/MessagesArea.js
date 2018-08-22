@@ -69,6 +69,11 @@ const MessagesArea = (props) => {
               Adapters.getReadableDistance(friendUser().distance)
             }
           />
+          <Icon 
+              onClick={props.cleanSelectedConversation}
+              color='teal' 
+              name='close'
+          />
       </div>
       <div className="outer-messages-list">
         <div className="messages-list">
