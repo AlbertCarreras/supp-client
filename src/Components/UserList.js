@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+//ADAPTERS
+import Adapters from './../Adapters/Adapters';
+
 //COMPONENTS
 import ProfileModal from "./ProfileModal"
 
@@ -30,9 +33,7 @@ class UserList extends Component {
                     interests={user.interests}
                     profileImageLink={user.profileImageLink}
                     distance={
-                        user.distance < 1 
-                            ? `${(user.distance * 5280).toFixed(1)} ft`
-                            : `${(user.distance).toFixed(1)} mi`
+                        Adapters.getReadableDistance(user.distance)
                     }
                 />
             )

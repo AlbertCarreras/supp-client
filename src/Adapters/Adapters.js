@@ -17,6 +17,14 @@ class Adapters {
         return username.split(" ").map((a) => a.charAt(0).toUpperCase() + a.slice(1)).join(" ")
     }
 
+    //DISTANCE
+    static  getReadableDistance(dist) {
+        return dist < 1 
+        ? `${(dist * 5280).toFixed(1)} ft`
+        : `${(dist).toFixed(1)} mi`
+    }
+
+
      //API DATA
     static  getSearchMatches(searchTerm) {
         return fetch(`${API_ROOT}/interests`, {

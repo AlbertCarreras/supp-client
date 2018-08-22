@@ -66,9 +66,7 @@ const MessagesArea = (props) => {
             interests={friendUser().interests}
             profileImageLink={friendUser().profile_image_url}
             distance={
-              friendUser().distance < 1 
-                    ? `${(friendUser().distance * 5280).toFixed(1)} ft`
-                    : `${(friendUser().distance).toFixed(1)} mi`
+              Adapters.getReadableDistance(friendUser().distance)
             }
           />
       </div>
