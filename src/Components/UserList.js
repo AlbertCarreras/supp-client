@@ -31,6 +31,7 @@ class UserList extends Component {
                     userId={user.userId}
                     username={user.username}
                     interests={user.interests}
+                    active_user={user.active_user}
                     profileImageLink={user.profileImageLink}
                     distance={
                         Adapters.getReadableDistance(user.distance)
