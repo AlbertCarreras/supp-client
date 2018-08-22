@@ -20,9 +20,16 @@ class Adapters {
 
     //DISTANCE
     static  getReadableDistance(dist) {
-        return dist < 1 
-        ? `${(dist * 5280).toFixed(1)} ft`
-        : `${(dist).toFixed(1)} mi`
+        
+        if (dist !== undefined) {
+            return dist < 1 
+            ? `${(dist * 5280).toFixed(1)} ft`
+            : `${(dist).toFixed(1)} mi`
+        }
+        else {
+            return null
+        }
+        
     }
 
     //IMAGE URL STANDARIZER
