@@ -21,29 +21,27 @@ const mapDispatchToProps = dispatch => {
 class PresenceCable extends Component {
 
   handleReceivedActiveUser = (response) => {
-
-    const { type } = response
-    // const { user } = response
-    
-
+    const { type } = response    
     switch(type) {
       case "DC_USER":
-      console.log(response)
-        // let closestUsers = [...this.props.closestUsers];
-        // let closestUser = closestUsers.find(
-        //   closestUser => closestUser.id === user
-        // );
-        // closestUser.active_user = false
-        // this.props.updateClosestUsers(closestUsers)
+        let closestUsers = [...this.props.closestUsers];
+        let closestUser = closestUsers.find(
+          closestUser => closestUser.userId === response.user
+        );
+        if (closestUser) {
+          closestUser.active_user = false
+          this.props.updateClosestUsers(closestUsers)
+        }
         break;
       case "CO_USER":
-      console.log(response)
-        // let closestUsers2 = [...this.props.closestUsers];
-        // let closestUser2 = closestUsers2.find(
-        //   closestUser => closestUser.id === user
-        // );
-        // closestUser2.active_user = true
-        // this.props.updateClosestUsers(closestUsers2)
+        let closestUsers2 = [...this.props.closestUsers];
+        let closestUser2 = closestUsers2.find(
+          closestUser => closestUser.userId === response.user
+        );
+        if (closestUser2) {
+          closestUser2.active_user = true
+          this.props.updateClosestUsers(closestUsers2)
+        }
         break;
       default:
         return null;
