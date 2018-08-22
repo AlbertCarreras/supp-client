@@ -20,6 +20,7 @@ class Search extends Component {
         var Filter = require('bad-words'),
         filter = new Filter();
         filter.addWords("suck")
+        filter.removeWords("hell")
         this.setState({
             [event.target.name]: filter.isProfane(event.target.value) ? "" : event.target.value,
         }, () => this.searchTerm(this.state.searchTerm))

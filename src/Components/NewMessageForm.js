@@ -25,6 +25,7 @@ class NewMessageForm extends Component {
     var Filter = require('bad-words'),
         filter = new Filter();
         filter.addWords("suck")
+        filter.removeWords("hell")
     this.setState({ text: filter.clean(e.target.value) });
   };
 
