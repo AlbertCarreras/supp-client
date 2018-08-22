@@ -1,5 +1,6 @@
 // ADAPTERS
 import {API_ROOT} from './AdapterConstants'
+import {API_SHORT_ROOT} from './AdapterConstants'
 import {AUTH_HEADERS_JSON} from './AdapterConstants'
 
 class Adapters {
@@ -22,6 +23,14 @@ class Adapters {
         return dist < 1 
         ? `${(dist * 5280).toFixed(1)} ft`
         : `${(dist).toFixed(1)} mi`
+    }
+
+    //IMAGE URL STANDARIZER
+    static  getStandardImageUrl(apiUrl) {
+        if (apiUrl.substring(0, 6) === "/rails") {
+            return `${API_SHORT_ROOT+apiUrl}`
+        }
+        return apiUrl
     }
 
 

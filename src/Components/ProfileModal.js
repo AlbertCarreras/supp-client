@@ -4,7 +4,6 @@ import { Header, Image, Modal } from 'semantic-ui-react'
 
 // ADAPTERS
 import Adapters from './../Adapters/Adapters';
-import {API_SHORT_ROOT} from './../Adapters/AdapterConstants';
 
 //COMPONENTS
 import UserInterestList from './UserInterestList'
@@ -32,8 +31,8 @@ class ProfileModal extends Component {
                         onClick={this.handleOpen}
                         src={
                             this.props.profileImageLink !== "undefined"
-                        ? `${API_SHORT_ROOT+this.props.profileImageLink}` 
-                        : `/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
+                            ?  Adapters.getStandardImageUrl(this.props.profileImageLink)
+                            : `/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
                         }
                         alt="Mini profile"
                     />
@@ -56,7 +55,7 @@ class ProfileModal extends Component {
                     size='medium' 
                     src={
                     this.props.profileImageLink !== undefined
-                    ? `${this.props.profileImageLink}` 
+                    ? Adapters.getStandardImageUrl(this.props.profileImageLink) 
                     : `/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
                     } 
                     wrapped 
