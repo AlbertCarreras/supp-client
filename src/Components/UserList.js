@@ -46,6 +46,7 @@ class UserList extends Component {
             <div className="central-container">
                 {/* USER PROFILE SQUARE */}
                 <ProfileModal 
+                    origin={"userListYou"}
                     username={"YOU"}
                     bio={this.props.bio}
                     profileImageLink={this.props.profileImageLink}

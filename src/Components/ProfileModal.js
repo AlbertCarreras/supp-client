@@ -19,6 +19,12 @@ class ProfileModal extends Component {
     handleClose = () => this.setState({ modalOpen: false })
 
     selectTrigger = () => {
+        if (this.props.origin === "userListYou") {
+            return <ProfileSquare 
+                        user={this.props}
+                        handleOpen={this.handleOpen}
+                    />
+        }
         if (this.props.origin === "userList") {
             return <ProfileSquare 
                         user={this.props}
