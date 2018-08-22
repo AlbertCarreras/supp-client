@@ -2,7 +2,7 @@
 import {
     JWT, LOGIN, LOGOUT, 
     SAVE_PROFILE, SAVE_PROFILE_IMAGE, 
-    SAVE_CURRENT_GEOLOCATION, SAVE_CLOSEST_USERS,
+    SAVE_CURRENT_GEOLOCATION, SAVE_CLOSEST_USERS, UPDATE_ACTIVE_CLOSEST_USERS,
     SAVE_USER_INTERESTS,
     SAVE_FILTERED_CLOSEST_USERS,
     SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS,
@@ -336,6 +336,15 @@ export function appendNewConversation(receivedNewConversation) {
         type: APPEND_NEW_CONVERSATION,
         payload: {
             receivedNewConversation: receivedNewConversation,
+        }
+    }
+}
+
+export function updateClosestUsers(closestUsers) {
+    return {
+        type: UPDATE_ACTIVE_CLOSEST_USERS,
+        payload: {
+            closestUsers: closestUsers,
         }
     }
 }

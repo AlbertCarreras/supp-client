@@ -1,7 +1,7 @@
 import {
     JWT, LOGIN, LOGOUT, 
     SAVE_PROFILE, SAVE_PROFILE_IMAGE, 
-    SAVE_CURRENT_GEOLOCATION, SAVE_CLOSEST_USERS,
+    SAVE_CURRENT_GEOLOCATION, SAVE_CLOSEST_USERS, UPDATE_ACTIVE_CLOSEST_USERS,
     SAVE_USER_INTERESTS,
     SAVE_FILTERED_CLOSEST_USERS,
     SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS,
@@ -86,6 +86,11 @@ export default function reducer(state = initialState, action) {
         }    
 
         case SAVE_FILTERED_CLOSEST_USERS:
+            return { ...state,
+                    closestUsers: action.payload.closestUsers,
+        }
+
+        case UPDATE_ACTIVE_CLOSEST_USERS:
             return { ...state,
                     closestUsers: action.payload.closestUsers,
         } 
