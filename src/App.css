@@ -206,6 +206,24 @@
   margin: 0px;
 }
 
+.new-word-input{
+  color: #05386B;
+  text-shadow: 0 0 0 #05386B;
+  display: flex;
+  flex-direction: column;
+  align-items: center  
+}
+
+.new-word-btn {
+  color: white;
+  height: 30px;
+  border-radius: 10px;
+  background: #05386B;
+  width: fit-content;
+  padding: 5px;
+}
+
+
 /* MESSAGING CONTAINER. Responsive Image Grid*/
 
 .conversations-list {

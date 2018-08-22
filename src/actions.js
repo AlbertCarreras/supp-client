@@ -256,6 +256,29 @@ export const thunkSaveConversations = () => {
     }
 }
 
+export const thunkCreateNewWord = (userId, newTerm) => {
+    
+    return (dispatch) => {
+        console.log("thunk new word")
+        fetch(`http://localhost:3000/api/v1/interests/create`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+              },
+            body: JSON.stringify({
+                "interest": {
+                    "newTerm": newTerm,
+                }
+            })
+        })
+        .then(resp => resp.json())
+        .then(resp => dispatch(
+            thunkSaveUserInterests(userId, resp)
+        ))
+    }
+}
+
 //REDUX
 export function jwtSavedInLocalStorage() {
     return {

@@ -19,7 +19,7 @@ class Adapters {
 
      //API DATA
     static  getSearchMatches(searchTerm) {
-        return fetch(`${API_ROOT}/searchInterests`, {
+        return fetch(`${API_ROOT}/interests`, {
             method: 'POST',
             headers: AUTH_HEADERS_JSON,
             body: JSON.stringify({

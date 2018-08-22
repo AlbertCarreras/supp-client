@@ -7,6 +7,7 @@ import Adapters from './../Adapters/Adapters';
 
 //COMPONENTS
 import SearchList from './SearchList'
+import NewSearchWordForm from './NewSearchWordForm'
 
 class Search extends Component {
     // keeping local state
@@ -47,7 +48,10 @@ class Search extends Component {
             return null
         }
         else {
-            return <p>HI</p>
+            return <NewSearchWordForm 
+                        searchTerm={this.state.searchTerm}
+                        cleanSearchTerm={this.cleanSearchTerm}
+                    />
         }
     }
 
@@ -64,6 +68,12 @@ class Search extends Component {
                         />
                     </p>
         }
+    }
+
+    cleanSearchTerm = () => {
+        this.setState({
+            searchTerm: "",
+        })
     }
 
     render () {
