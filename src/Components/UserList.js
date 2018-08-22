@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 //COMPONENTS
-import ProfileSquare from "./ProfileSquare"
+import ProfileModal from "./ProfileModal"
 
 // REDUX PROPS 
 const mapStateToProps = state => {
@@ -21,7 +21,7 @@ class UserList extends Component {
         return(
             closestUsers.map(
                 (user) => 
-                <ProfileSquare 
+                <ProfileModal 
                     key={user.userId}
                     bio={user.bio}
                     userId={user.userId}
@@ -42,11 +42,13 @@ class UserList extends Component {
         
         return (
             <div className="central-container">
-                <ProfileSquare 
+                {/* USER PROFILE SQUARE */}
+                <ProfileModal 
                     username={"YOU"}
                     bio={this.props.bio}
                     profileImageLink={this.props.profileImageLink}
                 />
+                {/* CLOSEST USERS PROFILE SQUARES */}
                 {this.generateUserList(this.props.closestUsers)}
             </div>
         );

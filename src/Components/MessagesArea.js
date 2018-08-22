@@ -59,6 +59,7 @@ const MessagesArea = (props) => {
           </div>
           <img 
             className="chat-header-image"
+            onClick={console.log("ji")}
             src={
                 props.selectedConversation.users.find((u) => u.id !== props.userId).profile_image_url !== "undefined"
             ? `${API_SHORT_ROOT+props.selectedConversation.users.find((u) => u.id !== props.userId).profile_image_url}` 
