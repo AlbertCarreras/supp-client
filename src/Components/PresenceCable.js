@@ -1,39 +1,42 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { ActionCable } from 'react-actioncable-provider';
 
 // ACTIONS
-// import { appendNewConversation } from '../actions'
+import { appendNewConversation } from '../actions'
 
-// REDUX PROPS 
-// const mapStateToProps = state => {
-//   return {
-//       userId: state.userId,
-//   }
-// }
+//REDUX PROPS 
+const mapStateToProps = state => {
+  return {
+      userId: state.userId,
+  }
+}
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     appendNewConversation: (newConversation) => dispatch(appendNewConversation(newConversation)),
-//   }
-// }
+const mapDispatchToProps = dispatch => {
+  return {
+    appendNewConversation: (newConversation) => dispatch(appendNewConversation(newConversation)),
+  }
+}
 
-class ConversationsCables extends Component {
+class PresenceCable extends Component {
 
   handleReceivedActiveUser = (response) => {
-    // debugger
-    // const { conversation } = response;
-    // if (conversation.users.map((i)=> i.id).includes(this.props.userId)) {
-    //   this.props.appendNewConversation(conversation);
-    // }
-    // const { type } = response
-    // switch(type) {
-    //   case "DC_USER":
-    //     debugger;
-    //   case "CO_USER":
-    //     debugger;
-    // }
-     console.log(response)
+
+    const { type } = response
+    const { user } = response
+
+    switch(type) {
+      case "DC_USER":
+        console.log(response);
+
+        break;
+      case "CO_USER":
+        console.log(response);
+        break;
+      default:
+        return null;
+    }
+      
   };
 
   render() {
@@ -48,6 +51,4 @@ class ConversationsCables extends Component {
   }
 };
 
-export default ConversationsCables;
-
-// export default connect(mapStateToProps, mapDispatchToProps)(ConversationsCables);
+export default connect(mapStateToProps, mapDispatchToProps)(PresenceCable);
