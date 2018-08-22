@@ -4,7 +4,6 @@ import { Icon } from 'semantic-ui-react'
 
 //ADAPTERS
 import Adapters from './../Adapters/Adapters';
-import {API_SHORT_ROOT} from './../Adapters/AdapterConstants';
 
 //COMPONENTS
 import NewMessageForm from './NewMessageForm';
@@ -59,26 +58,19 @@ const MessagesArea = (props) => {
               /> 
               with {Adapters.capitalize(friendUser().username)}
           </div>
-          {/*<ProfileModal 
+          <ProfileModal 
             origin={"chatHeader"}
-            profileImageLink={friendUser().profileImageLink}
-          />*/}
-
-          <img 
-            className="chat-header-image"
-            onClick={console.log("ji")}
-            src={
-              friendUser().profile_image_url !== "undefined"
-            ? `${API_SHORT_ROOT+friendUser().profile_image_url}` 
-            : `/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
+            bio={friendUser().bio}
+            userId={friendUser().id}
+            username={friendUser().username}
+            interests={friendUser().interests}
+            profileImageLink={friendUser().profile_image_url}
+            distance={
+              friendUser().distance < 1 
+                    ? `${(friendUser().distance * 5280).toFixed(1)} ft`
+                    : `${(friendUser().distance).toFixed(1)} mi`
             }
-            alt="Mini profile"
           />
-            <Icon 
-              onClick={props.cleanSelectedConversation}
-              color='teal' 
-              name='close'
-            />
       </div>
       <div className="outer-messages-list">
         <div className="messages-list">

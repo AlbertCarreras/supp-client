@@ -31,8 +31,8 @@ class ProfileModal extends Component {
                         className="chat-header-image"
                         onClick={this.handleOpen}
                         src={
-                            this.props.profile_image_url !== "undefined"
-                        ? `${API_SHORT_ROOT+this.props.profile_image_url}` 
+                            this.props.profileImageLink !== "undefined"
+                        ? `${API_SHORT_ROOT+this.props.profileImageLink}` 
                         : `/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
                         }
                         alt="Mini profile"
