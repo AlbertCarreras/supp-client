@@ -42,8 +42,7 @@ const MessagesArea = (props) => {
                 key={message.id}
                 className="message-box"
               >
-              <p>{Adapters.capitalize(message.user.username)}:</p>
-                <p>{message.text}</p>
+              <p>{`${Adapters.capitalize(message.user.username)}: ${message.text}`}</p>
               </div>;
     });
   };
