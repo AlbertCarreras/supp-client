@@ -15,13 +15,14 @@ class Search extends Component {
         searchTermArray: [],
     };
 
-     //PROPS FUNCTIONALITY: Button handlers
+    //PROPS FUNCTIONALITY: Button handlers
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value,
         }, () => this.searchTerm(this.state.searchTerm))
     }
 
+    //SEARCH FUNCTIONALITY
     searchTerm = (searchTerm) =>
     
         searchTerm === "" || searchTerm.length < 2
@@ -37,6 +38,27 @@ class Search extends Component {
     displayInterestList = () => {
         if (this.state.searchTermArray.length > 0) {
             return <SearchList searchTermArray={this.state.searchTermArray}/>
+        } 
+        else if (this.state.searchTerm.length < 3 ) {
+            return null
+        }
+        else {
+            return <p>HI</p>
+        }
+    }
+
+    checkValues = () => {
+        if (this.state.searchTerm !== "") {
+            return this.displayInterestList()
+        } 
+        else {
+            return <p className="animated bounceIn delay-5s">
+                        Start here 
+                        <Icon 
+                            color='teal' 
+                            name='arrow up' 
+                        />
+                    </p>
         }
     }
 
@@ -54,16 +76,7 @@ class Search extends Component {
                         />
                         <i className="search icon"></i>
                     </div>
-                    {   this.state.searchTerm !== ""
-                        ? this.displayInterestList()
-                        :   <p className="animated bounceIn delay-5s">Start here 
-                                <Icon 
-                                    color='teal' 
-                                    name='arrow up' 
-                                />
-                            </p>
-                    }
-
+                    { this.checkValues() }
                 </div>
         )
     }
