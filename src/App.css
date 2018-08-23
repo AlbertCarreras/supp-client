@@ -171,15 +171,24 @@
   color: #05386B;
 }
 
+/* UPDATE PROFILE. */
 .user-account-container {
+  background: #379683;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.update-profile-form {
-  padding: 20px;
-  width: 300px;
   height: 700px;
+}
+
+.update-profile-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column; 
+  width: 400px;
+  background: #fff;
+  padding: 20px;
+  border: 3px solid  #05386B;
+  border-radius: 10px;
 }
 
 /* SEARCH CONTAINER. */

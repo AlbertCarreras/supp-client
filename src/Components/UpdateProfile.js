@@ -64,45 +64,52 @@ class UpdateProfile extends Component {
         return (
             <Fragment>
                 <div className="user-account-container">
-                    <div className="ui form update-profile-form ">
-                        <div 
-                            className="signup-message">YOUR PROFILE
+                    <div className="update-profile-form ">
+
+                        <div className="signup-message">YOUR PROFILE</div>
+
+                        <br/>
+                        
+                        <h4>Username</h4>
+                        <div className="ui input">
+                            <br/>
+                            <input 
+                                type="text"
+                                name="username"
+                                placeholder="Username"
+                                onChange={this.handleChange}
+                                value={this.state.username}
+                            />
                         </div>
-                        <div className="fields">
-                            <div className="field">
-                                <label>Username</label>
-                                <input 
-                                    type="text"
-                                    name="username"
-                                    placeholder="Username"
-                                    onChange={this.handleChange}
-                                    value={this.state.username}
-                                />
-                            </div>
-                            <div className="field">
-                                <label htmlFor="bio">About you</label>
-                                <textarea
-                                    name="bio"
-                                    placeholder="Few words about yourself"
-                                    onChange={this.handleChange}
-                                    value={this.state.bio}
-                                />
-                            </div>
-                            <div className="field">
-                                <label htmlFor="profile_image"> Upload a profile photo </label>
-                                <input
-                                    type="file"
-                                    name="profile_image"
-                                    ref={this.fileInput}
-                                    onChange={this.handleUpload}
-                                />    
-                            </div>
-                        </div>          
+                        
+                        <br/>
+                        
+                        <h4>About you</h4>
+                        <div className="ui form">
+                            <textarea
+                                name="bio"
+                                placeholder="Few words about yourself"
+                                onChange={this.handleChange}
+                                value={this.state.bio}
+                            />
+                        </div>
+                        
+                        <h4> Upload a profile photo </h4>
+                        <input
+                            type="file"
+                            name="profile_image"
+                            ref={this.fileInput}
+                            onChange={this.handleUpload}
+                        /> 
+                        
+                        <br/>   
+                        
                         <div 
                             className="ui submit button"
                             onClick={this.handleSubmit}
                             >Save Profile
                         </div>
+                        
                     </div>
                 </div>
             </Fragment>

@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { withRouter} from 'react-router-dom';
+import React, { Component, Fragment } from 'react';
+import { withRouter, NavLink} from 'react-router-dom';
 import { Header, Image, Modal } from 'semantic-ui-react'
+import { Icon } from 'semantic-ui-react'
 
 // ADAPTERS
 import Adapters from './../Adapters/Adapters';
@@ -45,31 +46,69 @@ class ProfileModal extends Component {
         }
     }
 
+    displayDistance = () => {
+        if (this.props.username !== "YOU") {
+            return ( <div className="ui tiny header">
+                        <Icon 
+                            color='teal' 
+                            name='map marker alternate' 
+                        />
+                        {this.props.distance} from you.
+                        </div>
+            )
+        }
+    }
+    displayBio = () => {
+        if (this.props.bio) {
+            return <p>{this.props.bio}</p>
+        }
+        else {
+
+            if (this.props.username === "YOU") {
+                return (
+                    <Fragment>
+                        <p>You have not written anything yet.</p>
+                        <Icon 
+                            color='teal' 
+                            name='pencil alternate icon' 
+                        />
+                        <NavLink to="/user/profile" exact>Edit Your Profile</NavLink>
+                    </Fragment>
+
+                )
+            }
+            else {
+                return <p>{Adapters.usernameLongFormat(this.props.username)} has not written anything yet.</p>
+            }
+        }
+    }
+
     render = () => {
         return (
             <Modal 
                 dimmer={'inverted'} 
-                size={'small'} 
+                size={'tiny'} 
                 trigger={ this.selectTrigger() }
                 open={this.state.modalOpen}
                 onClose={this.handleClose}
             >
             <Modal.Header>{Adapters.usernameLongFormat(this.props.username)}
             </Modal.Header>
-            <Modal.Content image scrolling>
+            <Modal.Content image>
                 <Image 
-                    size='medium' 
+                    size='medium'
+                    wrapped
                     src={
                     this.props.profileImageLink !== undefined
                     ? Adapters.getStandardImageUrl(this.props.profileImageLink) 
                     : `/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
                     } 
-                    wrapped 
                 />
                 <Modal.Description>
                     <Header>About me</Header>
-                    <p>{this.props.bio}</p>
-                    <div className="ui tiny header">{this.props.distance}</div>
+                    {  this.displayBio() }  
+                    {  this.displayDistance() }      
+                    <Header>Interests</Header>
                     {
                         this.props.username === "YOU"
                             ? <UserInterestList 
@@ -79,7 +118,7 @@ class ProfileModal extends Component {
                                 friendInterestArray={this.props.interests}
                                 onClickClose={this.handleClose}
                             />
-                    }      
+                    }       
                 </Modal.Description>
             </Modal.Content>
             <Modal.Actions>

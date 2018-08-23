@@ -49,6 +49,7 @@ class UserList extends Component {
                 <ProfileModal 
                     origin={"userListYou"}
                     username={"YOU"}
+                    active_user={true}
                     bio={this.props.bio}
                     profileImageLink={this.props.profileImageLink}
                 />
