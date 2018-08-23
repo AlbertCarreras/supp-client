@@ -48,6 +48,7 @@ class ProfileModal extends Component {
 
     displayDistance = () => {
         if (this.props.username !== "YOU") {
+            if (!!this.props.distance){
             return ( <div className="ui tiny header">
                         <Icon 
                             color='teal' 
@@ -55,9 +56,10 @@ class ProfileModal extends Component {
                         />
                         {this.props.distance} from you.
                         </div>
-            )
+            )}
         }
     }
+
     displayBio = () => {
         if (this.props.bio) {
             return <p>{this.props.bio}</p>
