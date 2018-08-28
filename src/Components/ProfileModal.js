@@ -5,6 +5,7 @@ import { Icon } from 'semantic-ui-react'
 
 // ADAPTERS
 import Adapters from './../Adapters/Adapters';
+import {GITHUB_URL_ROOT} from './../Adapters/AdapterConstants';
 
 //COMPONENTS
 import UserInterestList from './UserInterestList'
@@ -39,7 +40,7 @@ class ProfileModal extends Component {
                         src={
                             this.props.profileImageLink !== "undefined"
                             ?  Adapters.getStandardImageUrl(this.props.profileImageLink)
-                            : `/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
+                            : GITHUB_URL_ROOT+`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
                         }
                         alt="Mini profile"
                     />
@@ -103,7 +104,7 @@ class ProfileModal extends Component {
                     src={
                     this.props.profileImageLink !== undefined
                     ? Adapters.getStandardImageUrl(this.props.profileImageLink) 
-                    : `/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
+                    : GITHUB_URL_ROOT+`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
                     } 
                 />
                 <Modal.Description>

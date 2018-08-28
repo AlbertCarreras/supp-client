@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 // ADAPTERS
 import AdapterUser from './../Adapters/AdapterUser';
 import Adapters from './../Adapters/Adapters';
+import {GITHUB_URL_ROOT} from './../Adapters/AdapterConstants';
 
 // ACTIONS
 import { logout } from '../actions';
@@ -41,7 +42,7 @@ const ProfileNavBar = (props) => {
                             src={
                                 props.profileImageLink !== undefined 
                                 ? `${props.profileImageLink}` 
-                                : `/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
+                                : GITHUB_URL_ROOT+`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
                             }
                             alt="profile" 
                         />

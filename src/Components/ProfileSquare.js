@@ -3,6 +3,7 @@ import { withRouter} from 'react-router-dom';
 
 // ADAPTERS
 import Adapters from './../Adapters/Adapters';
+import {GITHUB_URL_ROOT} from './../Adapters/AdapterConstants';
 
 // STYLE CONSTANTS
 const divStyleActive = {
@@ -44,10 +45,10 @@ class ProfileSquare extends Component {
                     src={ this.props.user.username === "YOU"
                             ? this.props.user.profileImageLink !== undefined
                                 ? `${this.props.user.profileImageLink}` 
-                                : `/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
+                                : GITHUB_URL_ROOT+`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
                             : this.props.user.profileImageLink !== "undefined"
                                 ? `${this.props.user.profileImageLink}` 
-                                : `/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
+                                : GITHUB_URL_ROOT+`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
                     }
                     alt="profile" 
                 />
