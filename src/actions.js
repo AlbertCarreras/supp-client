@@ -1,3 +1,6 @@
+//CONSTANTS
+import {API_ROOT} from './Adapters/AdapterConstants'
+
 //TYPES
 import {
     JWT, LOGIN, LOGOUT, 
@@ -14,7 +17,7 @@ export const thunkLogin = () => {
 
     return (dispatch) => {
         console.log("thunk action")
-        fetch(`http://localhost:3000/api/v1/user/auth`, {
+        fetch(`${API_ROOT}/user/auth`, {
             method: "GET",
             headers: {
                 "Accept": "application/json",
@@ -44,7 +47,7 @@ export const thunkSaveClosestUsers = () => {
 
     return (dispatch) => {
         console.log("thunk closest users action")
-        fetch(`http://localhost:3000/api/v1/users`, {
+        fetch(`${API_ROOT}/users`, {
             method: 'GET',
             headers: {
                 "Accept": "application/json",
@@ -66,7 +69,7 @@ export const thunkPersistCurrentGeolocation = (userId, latitude, longitude) => {
 
     return (dispatch) => {
         console.log("thunk save location")
-        fetch(`http://localhost:3000/api/v1/user/${userId}`, {
+        fetch(`${API_ROOT}/user/${userId}`, {
             method: 'PATCH',
             headers: {
                 "Accept": "application/json",
@@ -94,7 +97,7 @@ export const thunkSaveFilteredClosestUsers = (filterTermId) => {
 
     return (dispatch) => {
         console.log("thunk filter friends")
-        fetch(`http://localhost:3000/api/v1/users`, {
+        fetch(`${API_ROOT}/users`, {
             method: 'POST',
             headers: {
                 "Accept": "application/json",
@@ -125,7 +128,7 @@ export const thunkUploadProfile = (userId, profileImage) => {
     
     return (dispatch) => {
         console.log("thunk pic upload")
-        fetch(`http://localhost:3000/api/v1/users/uploadProfile`, {
+        fetch(`${API_ROOT}/users/uploadProfile`, {
             method: 'POST',
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
@@ -162,7 +165,7 @@ export const thunkUpdateProfileInfo = (userId, username, bio) => {
     
     return (dispatch) => {
         console.log("thunk update profile info")
-        fetch(`http://localhost:3000/api/v1/user/${userId}`, {
+        fetch(`${API_ROOT}/user/${userId}`, {
             method: 'PATCH',
             headers: {
                 "Accept": "application/json",
@@ -190,7 +193,7 @@ export const thunkSaveUserInterests = (userId, userInterests) => {
 
     return (dispatch) => {
         console.log("thunk user interests")
-        fetch(`http://localhost:3000/api/v1/user/${userId}/interests`, {
+        fetch(`${API_ROOT}/user/${userId}/interests`, {
             method: 'POST',
             headers: {
                 "Accept": "application/json",
@@ -217,7 +220,7 @@ export const thunkRemoveUserInterests = (userInterests) => {
 
     return (dispatch) => {
         console.log("thunk user interests")
-        fetch(`http://localhost:3000/api/v1/user_interests/${userInterests.id}`, {
+        fetch(`${API_ROOT}/user_interests/${userInterests.id}`, {
             method: 'DELETE',
             headers: {
                 "Accept": "application/json",
@@ -240,7 +243,7 @@ export const thunkSaveConversations = () => {
     
     return (dispatch) => {
         console.log("thunk user conversations")
-        fetch(`http://localhost:3000/api/v1/conversations`, {
+        fetch(`${API_ROOT}/conversations`, {
             method: 'GET',
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
@@ -260,7 +263,7 @@ export const thunkCreateNewWord = (userId, newTerm) => {
     
     return (dispatch) => {
         console.log("thunk new word")
-        fetch(`http://localhost:3000/api/v1/interests/create`, {
+        fetch(`${API_ROOT}/interests/create`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
