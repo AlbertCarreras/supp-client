@@ -28,7 +28,32 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
+// STYLE CONSTANTS
+const divStyleUser = {
+  background: 'rgba(92, 219, 149, 0.25)',
+  textAlign: 'right',
+};
+
+const divStyleFriend = {
+  background: 'rgba(55,150,131, 0.25)',
+};
+
 const MessagesArea = (props) => {
+
+  function isUser (userId) {
+    if (userId === props.userId) {
+        return  divStyleUser
+    }
+    else {
+        return divStyleFriend
+    }
+  }
+
+  function getTime (timestamp) {
+      var time = new Date(timestamp)
+      return time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    }
+    
   
   function friendUser () {
       return props.selectedConversation.users.find((u) => u.id !== props.userId)
@@ -42,8 +67,19 @@ const MessagesArea = (props) => {
       return  <div 
                 key={message.id}
                 className="message-box"
+                style={isUser(message.user.id)}
               >
-              <p>{`${Adapters.capitalize(message.user.username)}: ${message.text}`}</p>
+              <div className="message-box-wrapper">
+                <div 
+                  className="message-box-time"
+                >
+                  {getTime(message.created_at)}
+                  {Adapters.capitalize(message.user.username)}
+                </div>
+                <div className="message-box-content">
+                  {message.text}
+                </div>
+              </div>
               </div>;
     });
   };

@@ -72,7 +72,7 @@ class ProfileModal extends Component {
                         <p>You have not written anything yet.</p>
                         <Icon 
                             color='teal' 
-                            name='pencil alternate icon' 
+                            name='pencil alternate' 
                         />
                         <NavLink to="/user/profile" exact>Edit Your Profile</NavLink>
                     </Fragment>

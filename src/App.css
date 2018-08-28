@@ -320,6 +320,7 @@
 .messages-list{
   display: flex;
   flex-direction: column-reverse;
+  text-align: left;
 }
 
 .messages-list > * {
@@ -329,6 +330,19 @@
 
 .message-box {
   display: flex;
+  margin: 5px;
+  width: 200px;
+  border-radius: 5px;
+}
+
+.message-box-time{
+  font-size: 0.60em;
+  width: 200px;
+}
+
+.message-box-content {
+  width: 200px;
+  z-index: 2;
 }
 
 .new-message-form {

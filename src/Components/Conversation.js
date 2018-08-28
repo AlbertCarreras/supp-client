@@ -39,7 +39,7 @@ const Conversation = (props) => {
                         <p>Start a conversation!</p>
                     </div> 
                 :   <div className="conversation-first-message">
-                        {Adapters.capitalize(props.conversation.messages[(props.conversation.messages.length)-1].user.username)}: {`${props.conversation.messages[(props.conversation.messages.length)-1].text.substring(0, 60)}...`}
+                        {Adapters.capitalize(props.conversation.messages[(props.conversation.messages.length)-1].user.username)}: {`${props.conversation.messages[(props.conversation.messages.length)-1].text.substring(0, 15)}...`}
                     </div> 
             }
             
