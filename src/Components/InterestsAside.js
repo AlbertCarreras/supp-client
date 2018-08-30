@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import Search from './Search';
 import InterestsList from './InterestsList';
 
-
 class InterestsAside extends Component {
     render() {
         
