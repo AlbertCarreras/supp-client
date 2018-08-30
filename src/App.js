@@ -9,7 +9,10 @@ import './App.css';
 
 // ADAPTERS
 import AdapterUser from './Adapters/AdapterUser';
-import { API_WS_ROOT } from './Adapters/AdapterConstants';
+import {API_WS_ROOT} from './Adapters/AdapterConstants';
+import {URL_USER_PROFILE} from './../Adapters/AdapterConstants'
+import {URL_HOME} from './../Adapters/AdapterConstants'
+import {URL_ROOT} from './../Adapters/AdapterConstants'
 
 // ACTIONS
 import { thunkLogin, thunkSaveClosestUsers, thunkPersistCurrentGeolocation } from './actions';
@@ -99,21 +102,21 @@ class App extends Component {
               ? <ActionCableProvider url={API_WS_ROOT}>
                   <Switch>
                     <Route
-                      path="/user/profile"
+                      path={URL_USER_PROFILE}
                       component={UpdateProfile}
                     />
                     <Route
-                      path="/home"
+                      path={URL_HOME}
                       component={HomeContainer}
                     />
                     <Route
-                      path="/"
+                      path={URL_ROOT}
                       component={HomeContainer}
                     />
                   </Switch>
                 </ActionCableProvider>
             : <Route
-                  path="/"
+                  path={URL_ROOT}
                   component={WelcomeContainer}
               />
         }

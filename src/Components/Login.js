@@ -8,8 +8,6 @@ import {URL_LOGIN} from './../Adapters/AdapterConstants'
 import {URL_SIGNUP} from './../Adapters/AdapterConstants'
 import {URL_HOME} from './../Adapters/AdapterConstants'
 
-
-
 // ACTIONS
 import { jwtSavedInLocalStorage } from '../actions';
 

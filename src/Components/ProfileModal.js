@@ -6,6 +6,7 @@ import { Icon } from 'semantic-ui-react'
 // ADAPTERS
 import Adapters from './../Adapters/Adapters';
 import {GITHUB_URL_ROOT} from './../Adapters/AdapterConstants';
+import {URL_USER_PROFILE} from './../Adapters/AdapterConstants'
 
 //COMPONENTS
 import UserInterestList from './UserInterestList'
@@ -75,7 +76,7 @@ class ProfileModal extends Component {
                             color='teal' 
                             name='pencil alternate' 
                         />
-                        <NavLink to="/user/profile" exact>Edit Your Profile</NavLink>
+                        <NavLink to={URL_USER_PROFILE} exact>Edit Your Profile</NavLink>
                     </Fragment>
 
                 )

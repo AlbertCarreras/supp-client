@@ -4,7 +4,6 @@ import {Route, Switch} from "react-router-dom";
 //ADAPTERS
 import {GITHUB_URL_ROOT} from './../Adapters/AdapterConstants'
 import {URL_ROOT} from './../Adapters/AdapterConstants'
-import {URL_LOGIN} from './../Adapters/AdapterConstants'
 import {URL_SIGNUP} from './../Adapters/AdapterConstants'
 
 //COMPONENTS

@@ -6,6 +6,9 @@ import { connect } from 'react-redux';
 import AdapterUser from './../Adapters/AdapterUser';
 import Adapters from './../Adapters/Adapters';
 import {GITHUB_URL_ROOT} from './../Adapters/AdapterConstants';
+import {URL_LOGIN} from './../Adapters/AdapterConstants'
+import {URL_USER_PROFILE} from './../Adapters/AdapterConstants'
+import {URL_HOME} from './../Adapters/AdapterConstants'
 
 // ACTIONS
 import { logout } from '../actions';
@@ -29,7 +32,7 @@ const ProfileNavBar = (props) => {
     function handleLogout() {
         AdapterUser.deleteToken();
         props.logout();
-        props.history.push('/login');
+        props.history.push(URL_LOGIN);
     }
 
     function toggleLogin() {
@@ -50,9 +53,9 @@ const ProfileNavBar = (props) => {
                             <div className="dropdown-item">
                                 <p>{props.username}</p>
                             </div>
-                            <NavLink to="/home" exact>Home</NavLink>
-                            <NavLink to="/user/profile" exact>Profile</NavLink>
-                            <NavLink to="/user/profile" exact>Account</NavLink>
+                            <NavLink to={URL_HOME} exact>Home</NavLink>
+                            <NavLink to={URL_USER_PROFILE}  exact>Profile</NavLink>
+                            <NavLink to={URL_USER_PROFILE} exact>Account</NavLink>
                             <button className="logout-btn" onClick={()=>handleLogout()}>Log Out</button> 
                         </div>
                 </div>

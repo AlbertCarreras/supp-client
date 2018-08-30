@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 
 // ADAPTERS
 import AdapterUser from './../Adapters/AdapterUser';
+import {URL_LOGIN} from './../Adapters/AdapterConstants'
+import {URL_SIGNUP} from './../Adapters/AdapterConstants'
+import {URL_HOME} from './../Adapters/AdapterConstants'
 
 // ACTIONS
 import { jwtSavedInLocalStorage } from '../actions';
@@ -50,15 +53,15 @@ class Signup extends Component {
               AdapterUser.setToken(json.jwt);
               AdapterUser.saveTokenAsCookie();
               this.props.jwtSavedInLocalStorage();
-              this.props.history.push('/home')
+              this.props.history.push(URL_HOME)
             })
             .catch(err => {
-              this.props.history.push('/login');
+              this.props.history.push(URL_LOGIN);
             })
           : console.log("error")
         )
         .catch(err => {
-          this.props.history.push('/signup');
+          this.props.history.push(URL_SIGNUP);
         })
     : this.setState({
         error: "red",
@@ -69,7 +72,7 @@ class Signup extends Component {
     return (
       <div className="overlay-box signup">
         <div className="login-signup-form">
-          <h3>Have an account? <NavLink to="/login" exact>Log in</NavLink></h3>
+          <h3>Have an account? <NavLink to={URL_LOGIN} exact>Log in</NavLink></h3>
           <h3 className="login-form-header">SIGN UP</h3>
           <div className="ui tiny form">
             <div className="two fields">
