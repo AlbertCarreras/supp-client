@@ -29,7 +29,7 @@ const ProfileNavBar = (props) => {
     function handleLogout() {
         AdapterUser.deleteToken();
         props.logout();
-        props.history.push('/login');
+        props.history.push('supp-client/login');
     }
 
     function toggleLogin() {
@@ -50,9 +50,9 @@ const ProfileNavBar = (props) => {
                             <div className="dropdown-item">
                                 <p>{props.username}</p>
                             </div>
-                            <NavLink to="/home" exact>Home</NavLink>
-                            <NavLink to="/user/profile" exact>Profile</NavLink>
-                            <NavLink to="/user/profile" exact>Account</NavLink>
+                            <NavLink to="supp-client/home" exact>Home</NavLink>
+                            <NavLink to="supp-client/user/profile" exact>Profile</NavLink>
+                            <NavLink to="supp-client/user/profile" exact>Account</NavLink>
                             <button className="logout-btn" onClick={()=>handleLogout()}>Log Out</button> 
                         </div>
                 </div>

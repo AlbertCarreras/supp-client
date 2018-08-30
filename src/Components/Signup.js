@@ -50,15 +50,15 @@ class Signup extends Component {
               AdapterUser.setToken(json.jwt);
               AdapterUser.saveTokenAsCookie();
               this.props.jwtSavedInLocalStorage();
-              this.props.history.push('/home')
+              this.props.history.push('supp-client/home')
             })
             .catch(err => {
-              this.props.history.push('/login');
+              this.props.history.push('supp-client/login');
             })
           : console.log("error")
         )
         .catch(err => {
-          this.props.history.push('/signup');
+          this.props.history.push('supp-client/signup');
         })
     : this.setState({
         error: "red",
@@ -69,7 +69,7 @@ class Signup extends Component {
     return (
       <div className="overlay-box signup">
         <div className="login-signup-form">
-          <h3>Have an account? <NavLink to="/login" exact>Log in</NavLink></h3>
+          <h3>Have an account? <NavLink to="supp-client/login" exact>Log in</NavLink></h3>
           <h3 className="login-form-header">SIGN UP</h3>
           <div className="ui tiny form">
             <div className="two fields">

@@ -8,7 +8,7 @@ const Header = () => {
 
     return (
             <div className="app-header">
-                <NavLink to="/home" exact>
+                <NavLink to="supp-client/home" exact>
                     <p className="header-logo animated rubberBand delay-2s">Supp</p>
                 </NavLink>
                 <ProfileNavBar />

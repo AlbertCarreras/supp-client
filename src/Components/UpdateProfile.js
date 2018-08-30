@@ -57,7 +57,7 @@ class UpdateProfile extends Component {
             this.props.thunkUpdateProfileInfo(this.props.user_id, this.state.username, this.state.bio)
         }
 
-        this.props.history.push('/home');
+        this.props.history.push('supp-client/home');
     }
 
     render() {

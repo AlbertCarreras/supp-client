@@ -99,21 +99,21 @@ class App extends Component {
               ? <ActionCableProvider url={API_WS_ROOT}>
                   <Switch>
                     <Route
-                      path="/user/profile"
+                      path="supp-client/user/profile"
                       component={UpdateProfile}
                     />
                     <Route
-                      path="/home"
+                      path="supp-client/home"
                       component={HomeContainer}
                     />
                     <Route
-                      path="/"
+                      path="supp-client/"
                       component={HomeContainer}
                     />
                   </Switch>
                 </ActionCableProvider>
             : <Route
-                  path="/"
+                  path="supp-client/"
                   component={WelcomeContainer}
               />
         }
