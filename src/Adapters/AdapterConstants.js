@@ -5,6 +5,11 @@
 // export const GITHUB_URL_ROOT = '';
 
 //ROUTES DEVELOPMENT
+// export const URL_ROOT = '/'
+// export const URL_HOME = '/home'
+// export const URL_LOGIN = '/login'
+// export const URL_SIGNUP = '/signup'
+// export const URL_USER_PROFILE = '/user/profile'
 
 //URLS PRODUCTION
 export const API_SHORT_ROOT = 'https://supp-server.herokuapp.com';
