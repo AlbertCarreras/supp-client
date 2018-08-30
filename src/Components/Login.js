@@ -35,10 +35,10 @@ class Login extends Component {
         AdapterUser.setToken(json.jwt);
         AdapterUser.saveTokenAsCookie();
         this.props.jwtSavedInLocalStorage();
-        this.props.history.push('supp-client/home')
+        this.props.history.push('/home')
       })
       .catch(err => {
-        this.props.history.push('supp-client/login');
+        this.props.history.push('/login');
       })
   }
  
@@ -75,7 +75,7 @@ class Login extends Component {
               </div>      
             </div>      
         </div>
-        <h3>New to Supp? <NavLink to="supp-client/signup" exact>Sign up!</NavLink></h3>
+        <h3>New to Supp? <NavLink to="/signup" exact>Sign up!</NavLink></h3>
 
       </div>
     )
