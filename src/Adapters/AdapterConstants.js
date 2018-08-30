@@ -8,10 +8,10 @@ export const API_SHORT_ROOT = 'https://supp-server.herokuapp.com';
 export const API_ROOT = 'https://supp-server.herokuapp.com/api/v1';
 export const API_WS_ROOT = 'wss://supp-server.herokuapp.com/api/v1/cable';
 export const GITHUB_URL_ROOT = 'https://albertcarreras.github.io/supp-client/';
-export const URL_LOGIN = '/login'
-export const URL_SIGNUP = '/signup'
-export const URL_HOME = '/home'
-export const URL_ROOT = '/'
+export const URL_LOGIN = '/supp-client/login'
+export const URL_SIGNUP = '/supp-client/signup'
+export const URL_HOME = '/supp-client/home'
+export const URL_ROOT = '/supp-client'
 
 
 
