@@ -5,7 +5,6 @@ import { Icon } from 'semantic-ui-react'
 
 // ADAPTERS
 import Adapters from './../Adapters/Adapters';
-import {GITHUB_URL_ROOT} from './../Adapters/AdapterConstants';
 import {URL_USER_PROFILE} from './../Adapters/AdapterConstants'
 
 //COMPONENTS
@@ -38,11 +37,7 @@ class ProfileModal extends Component {
             return  <img 
                         className="chat-header-image"
                         onClick={this.handleOpen}
-                        src={
-                            this.props.profileImageLink !== "undefined"
-                            ?  Adapters.getStandardImageUrl(this.props.profileImageLink)
-                            : GITHUB_URL_ROOT+`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
-                        }
+                        src={Adapters.getStandardImageUrl(this.props.profileImageLink)}
                         alt="Mini profile"
                     />
         }
@@ -102,11 +97,7 @@ class ProfileModal extends Component {
                 <Image 
                     size='medium'
                     wrapped
-                    src={
-                    this.props.profileImageLink !== undefined
-                    ? Adapters.getStandardImageUrl(this.props.profileImageLink) 
-                    : GITHUB_URL_ROOT+`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
-                    } 
+                    src={Adapters.getStandardImageUrl(this.props.profileImageLink)} 
                 />
                 <Modal.Description>
                     <Header>About me</Header>

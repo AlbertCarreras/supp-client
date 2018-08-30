@@ -42,14 +42,7 @@ class ProfileSquare extends Component {
                 ></div>
                 <img 
                     className="profile-image-list animated flipInY" 
-                    src={ this.props.user.username === "YOU"
-                            ? this.props.user.profileImageLink !== undefined
-                                ? `${this.props.user.profileImageLink}` 
-                                : GITHUB_URL_ROOT+`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
-                            : this.props.user.profileImageLink !== "undefined"
-                                ? `${this.props.user.profileImageLink}` 
-                                : GITHUB_URL_ROOT+`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
-                    }
+                    src={Adapters.getStandardImageUrl(this.props.user.profileImageLink)}
                     alt="profile" 
                 />
             </div>

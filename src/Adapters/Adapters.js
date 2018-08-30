@@ -2,6 +2,7 @@
 import {API_ROOT} from './AdapterConstants'
 import {API_SHORT_ROOT} from './AdapterConstants'
 import {AUTH_HEADERS_JSON} from './AdapterConstants'
+import {GITHUB_URL_ROOT} from './../Adapters/AdapterConstants';
 
 class Adapters {
 
@@ -33,8 +34,18 @@ class Adapters {
     }
 
     //IMAGE URL STANDARIZER
+    static  getNotPicAvatar() {
+        return GITHUB_URL_ROOT+`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
+    }
+
     static  getStandardImageUrl(apiUrl) {
-        if (apiUrl.substring(0, 6) === "/rails") {
+        if (apiUrl === "undefined") {
+            return Adapters.getNotPicAvatar()
+        }
+        else if (apiUrl === undefined) {
+            return Adapters.getNotPicAvatar()
+        }
+        else if (apiUrl.substring(0, 6) === "/rails") {
             return `${API_SHORT_ROOT+apiUrl}`
         }
         return apiUrl
