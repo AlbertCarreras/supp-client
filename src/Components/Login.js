@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 
 // ADAPTERS
 import AdapterUser from './../Adapters/AdapterUser';
+import {URL_LOGIN} from './../Adapters/AdapterConstants'
+import {URL_SIGNUP} from './../Adapters/AdapterConstants'
+import {URL_HOME} from './../Adapters/AdapterConstants'
+
+
 
 // ACTIONS
 import { jwtSavedInLocalStorage } from '../actions';
@@ -35,10 +40,10 @@ class Login extends Component {
         AdapterUser.setToken(json.jwt);
         AdapterUser.saveTokenAsCookie();
         this.props.jwtSavedInLocalStorage();
-        this.props.history.push('/home')
+        this.props.history.push(URL_HOME)
       })
       .catch(err => {
-        this.props.history.push('/login');
+        this.props.history.push(URL_LOGIN);
       })
   }
  
@@ -75,7 +80,7 @@ class Login extends Component {
               </div>      
             </div>      
         </div>
-        <h3>New to Supp? <NavLink to="/signup" exact>Sign up!</NavLink></h3>
+        <h3>New to Supp? <NavLink to={URL_SIGNUP} exact>Sign up!</NavLink></h3>
 
       </div>
     )
