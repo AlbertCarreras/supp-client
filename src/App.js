@@ -15,7 +15,7 @@ import {URL_HOME} from './Adapters/AdapterConstants'
 import {URL_ROOT} from './Adapters/AdapterConstants'
 
 // ACTIONS
-import { thunkLogin, thunkSaveClosestUsers, thunkPersistCurrentGeolocation } from './actions';
+import { thunkLogin, thunkSaveClosestUsers, thunkPersistCurrentGeolocation, jwtSavedInLocalStorage } from './actions';
 
 //COMPONENTS
 import Header from './Components/Header'
@@ -40,6 +40,7 @@ const mapDispatchToProps = dispatch => {
   return {
     thunkSaveClosestUsers: () => dispatch(thunkSaveClosestUsers()), 
     thunkLogin: () => dispatch(thunkLogin()), 
+    jwtSavedInLocalStorage: () => dispatch(jwtSavedInLocalStorage()), 
     thunkPersistCurrentGeolocation: (userId, lat, lon) => dispatch(thunkPersistCurrentGeolocation(userId,lat, lon)),
   }
 }
@@ -60,6 +61,7 @@ class App extends Component {
     //token?, then return me the user info & friends. otherwise, do nothing
     if (AdapterUser.getToken()) {
       AdapterUser.saveTokenAsCookie();
+      this.props.jwtSavedInLocalStorage();
       this.props.thunkLogin();
       this.props.thunkSaveClosestUsers();
     }
