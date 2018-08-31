@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 // ADAPTERS
 import AdapterUser from './../Adapters/AdapterUser';
 import Adapters from './../Adapters/Adapters';
-import {GITHUB_URL_ROOT} from './../Adapters/AdapterConstants';
 import {URL_LOGIN} from './../Adapters/AdapterConstants'
 import {URL_USER_PROFILE} from './../Adapters/AdapterConstants'
 import {URL_HOME} from './../Adapters/AdapterConstants'

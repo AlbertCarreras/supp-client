@@ -3,7 +3,6 @@ import { withRouter} from 'react-router-dom';
 
 // ADAPTERS
 import Adapters from './../Adapters/Adapters';
-import {GITHUB_URL_ROOT} from './../Adapters/AdapterConstants';
 
 // STYLE CONSTANTS
 const divStyleActive = {
