@@ -46,9 +46,9 @@ Rails API with with serialization and Postgres
     The server is hosted in Heroku. In order to deploy to Heroku and upload images, you need to create an AWS S3 account to store the files.
     
     Great resources for implementing Active Storage:
-    https://edgeguides.rubyonrails.org/active_storage_overview.html
-    https://devcenter.heroku.com/articles/active-storage-on-heroku
-    https://medium.com/cedarcode/rails-5-2-credentials-9b3324851336
+    * https://edgeguides.rubyonrails.org/active_storage_overview.html
+    * https://devcenter.heroku.com/articles/active-storage-on-heroku
+    * https://medium.com/cedarcode/rails-5-2-credentials-9b3324851336
 
   * **Action Cable** for live private chat feed updating and connected-user indicators
     
@@ -59,21 +59,21 @@ Rails API with with serialization and Postgres
       __Connected users indicators (blue-green dots)__ When a user logs in, they subscribe to a presence channel changing their status to active in the database  -reversely when disconnecting/unsubscribing. 
 
       Great resources for implementing websockets in React-Rails apps:
-      https://medium.com/@dakota.lillie/using-action-cable-with-react-c37df065f296
-      https://blog.heroku.com/real_time_rails_implementing_websockets_in_rails_5_with_action_cable
+      * https://medium.com/@dakota.lillie/using-action-cable-with-react-c37df065f296
+      * https://blog.heroku.com/real_time_rails_implementing_websockets_in_rails_5_with_action_cable
 
   * **Knock** for JSON Web Token authentication and **cookies** for websocket-connection user identification
   
       I followed the __3.1.1 Connection Setup__ implementation guidelines from the Action Cable Overview documentation. However, I used JWT tokens for authorization. In order to pass the required cookies, the front-end generates a cookie containing the JWT token from localStorage and the server authorize the incoming connection if the user is identified in the JWT token.
     
       Great resources for creating cookies in the React front-end:
-      https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
+      * https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
     
   * **Geokit (gem)** for calculating surrounding users to connected user distance
+  
       Users are sorted by distance in the front-end. The server responds with an array of users including the distance to the logged-in user. The gem calculates the distance based on the coordinates of each user obtained via Geolocation Web API.
 
-  * **Database**
-  The following image shows the database tables and relationships.
+  Database. The following image shows the database tables and relationships.
     <img width="698" alt="screen shot 2018-09-07 at 14 22 50" src="https://user-images.githubusercontent.com/10593890/45236338-92fbe900-b2a9-11e8-87f1-dd8a155de961.png">
 
 ## Authors
