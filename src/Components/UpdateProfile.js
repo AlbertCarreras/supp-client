@@ -49,11 +49,13 @@ class UpdateProfile extends Component {
     }
 
 
-    handleSubmit = () => {        
+    handleSubmit = () => {
+        //Check if there is a photo. If so, persisted.
         if (this.state.profile_image) {
             this.props.thunkUploadProfile(this.props.user_id, this.state.profile_image)
         }
-        
+        // Check if there is a username or bio. If so, persisted.
+
         if (this.state.username || this.state.bio) {
             this.props.thunkUpdateProfileInfo(this.props.user_id, this.state.username, this.state.bio)
         }

@@ -4,9 +4,6 @@ import { Route, withRouter, Switch } from "react-router-dom";
 import { ActionCableProvider } from 'react-actioncable-provider';
 import { hot } from 'react-hot-loader';
 
-//STYLING
-import './App.css';
-
 // ADAPTERS
 import AdapterUser from './Adapters/AdapterUser';
 import { API_WS_ROOT } from './Adapters/AdapterConstants';
@@ -47,7 +44,7 @@ const mapDispatchToProps = dispatch => {
 
 class App extends Component {
   
-  // AUTO-LOGIN/LOCATE functionality -if token is present in LocalStorage
+  // Helper function. Contains Geolocation Web API code. Persist the coordinates if there is token in localStorage.
   getCurrentPosition = () => {
     if (AdapterUser.getToken() && navigator.geolocation) {
       return navigator.geolocation.getCurrentPosition(
@@ -57,8 +54,8 @@ class App extends Component {
     }
   }
 
+  // When the component mounts, check if there is token in localStorage. If so, login the user, return the user info & friends.
   componentDidMount(){ 
-    //token?, then return me the user info & friends. otherwise, do nothing
     if (AdapterUser.getToken()) {
       AdapterUser.saveTokenAsCookie();
       this.props.jwtSavedInLocalStorage();
@@ -67,13 +64,14 @@ class App extends Component {
     }
   }
 
+  // When the component updates, check for several conditional statements.
   componentDidUpdate(prevProps){
-    // got new UserId?, then get current position
+    // Check if state has new UserId. If so, get current position.
     if (this.props.userId !== prevProps.userId) {
       this.getCurrentPosition();
     }
 
-    // position changed?, then get new closest friends
+    // Check if state has new coordinates. If so, return closest friends if the user id logged in.
     if (this.props.userId !== null) {
       if (this.props.lat !== prevProps.lat || this.props.lon !== prevProps.lon) {
         return this.props.loggedIn 
@@ -82,7 +80,7 @@ class App extends Component {
       }
     }
 
-    // just logged in and got JWT token saved in localStorage?, then as if   componentDidMount
+    // Check if the user just logged in and the JWT token got saved in localStorage. If so, login the user, return the user info & friends.
     if (prevProps.jwtToken === false && this.props.jwtToken === true) {
       
       if (AdapterUser.getToken()) {
@@ -99,7 +97,9 @@ class App extends Component {
       <div className="app">
         <Header />
         {
-          //if there is token, you're in. If there is not, go to welcome container.
+          // Check if there is token in localStorage. If so, connect to websockets and reroute user.
+          // NOTE >> To be fixed. Only checking for token. If token is incorrect throws error.
+          // If there is not, go to Welcome container.
           !!AdapterUser.getToken()
               ? <ActionCableProvider url={API_WS_ROOT}>
                   <Switch>

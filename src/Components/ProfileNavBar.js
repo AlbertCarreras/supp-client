@@ -28,12 +28,15 @@ const mapDispatchToProps = dispatch => {
   }
   
 const ProfileNavBar = (props) => {
+    
+    //Logout. Deletes JWT token from LocalStorage and cleans state.
     function handleLogout() {
         AdapterUser.deleteToken();
         props.logout();
         props.history.push(URL_LOGIN);
     }
 
+    //Checks if user is logged-in. If so, it displays nanigation bar.
     function toggleLogin() {
         if (props.loggedIn) {
             return (

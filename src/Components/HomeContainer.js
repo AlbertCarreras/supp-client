@@ -9,10 +9,10 @@ import PresenceCable from './PresenceCable'
 const HomeContainer = () => {
     return (
         <div className="home-container">
-            <PresenceCable />
-            <InterestsAside />
-            <UserList />
-            <MessagingAside />
+            <PresenceCable /> {/* PresenceCable connects to websocket that handles connected-user status*/}
+            <InterestsAside /> {/* Components in LeftInterestSection folder*/}
+            <UserList /> {/* Components in CentralUserSection folder*/}
+            <MessagingAside /> {/* Components in RightChatsSection folder*/}
         </div>
     );
 };

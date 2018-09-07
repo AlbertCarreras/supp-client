@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 class PresenceCable extends Component {
-
+  // The server broadcasts when a user (dis)connects. If the user is part of the closest users array, it changes status accordingly.
   handleReceivedActiveUser = (response) => {
     const { type } = response    
     switch(type) {

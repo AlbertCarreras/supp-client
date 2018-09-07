@@ -32,6 +32,8 @@ class Login extends Component {
     })
   }
 
+  // Logs in user and saves token in LocalStorage and cookie. If error response, pushes to Login page.
+  //NOTE: I should add validation messages.
   handleSubmit = () => {
     AdapterUser.login(this.state)
       .then(json => {

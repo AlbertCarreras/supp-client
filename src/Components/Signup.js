@@ -44,6 +44,8 @@ class Signup extends Component {
     })
   }
 
+  // Check if terms and conditions checkbox is selected. If so, signup the user. If not, style  box in red.
+  // Catch error and redirect to Login/Signup
   handleSubmit = () => {
     return this.state.agreedCheckbox
     ?  AdapterUser.signup(this.state)
