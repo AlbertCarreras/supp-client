@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { Icon } from 'semantic-ui-react'
 
 //ADAPTERS
-import Adapters from './../Adapters/Adapters';
+import Adapters from './../../Adapters/Adapters';
 
 // ACTIONS
-import { thunkCreateNewWord } from '../actions';
+import { thunkCreateNewWord } from '../../actions';
 
 // REDUX PROPS 
 const mapStateToProps = state => {

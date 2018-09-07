@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter} from 'react-router-dom';
 
 // ADAPTERS
-import Adapters from './../Adapters/Adapters';
+import Adapters from './../../Adapters/Adapters';
 
 // STYLE CONSTANTS
 const divStyleActive = {

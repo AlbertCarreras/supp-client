@@ -3,15 +3,15 @@ import { connect } from 'react-redux';
 import { Icon } from 'semantic-ui-react'
 
 //ADAPTERS
-import Adapters from './../Adapters/Adapters';
+import Adapters from './../../Adapters/Adapters';
 
 //COMPONENTS
 import NewMessageForm from './NewMessageForm';
-import ProfileModal from './ProfileModal';
+import ProfileModal from './../CentralUsersSection/ProfileModal';
 
 
 // ACTIONS
-import { cleanSelectedConversation } from '../actions'
+import { cleanSelectedConversation } from '../../actions'
 
 // REDUX PROPS 
 const mapStateToProps = state => {

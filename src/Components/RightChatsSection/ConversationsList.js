@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // ACTIONS
-import { thunkSaveConversations, saveSelectedConversation } from '../actions'
+import { thunkSaveConversations, saveSelectedConversation } from '../../actions'
 
 //COMPONENTS
 import MessagesArea from './MessagesArea';

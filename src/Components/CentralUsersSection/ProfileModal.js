@@ -4,8 +4,8 @@ import { Header, Image, Modal } from 'semantic-ui-react'
 import { Icon } from 'semantic-ui-react'
 
 // ADAPTERS
-import Adapters from './../Adapters/Adapters';
-import {URL_USER_PROFILE} from './../Adapters/AdapterConstants'
+import Adapters from './../../Adapters/Adapters';
+import {URL_USER_PROFILE} from './../../Adapters/AdapterConstants'
 
 //COMPONENTS
 import UserInterestList from './UserInterestList'

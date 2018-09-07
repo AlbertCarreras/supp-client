@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { Icon } from 'semantic-ui-react'
 
 // ADAPTERS
-import Adapters from './../Adapters/Adapters';
+import Adapters from './../../Adapters/Adapters';
 
 // ACTIONS
-import { unselectCommonInterests, thunkSaveUserInterests, thunkSaveClosestUsers } from '../actions'
+import { unselectCommonInterests, thunkSaveUserInterests, thunkSaveClosestUsers } from '../../actions'
 
 //COMPONENTS
-import UserInterestList from './UserInterestList'
+import UserInterestList from './../CentralUsersSection/UserInterestList'
 
 // REDUX PROPS 
 const mapStateToProps = state => {

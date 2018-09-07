@@ -4,10 +4,10 @@ import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 
 // ADAPTERS
-import Adapters from './../Adapters/Adapters';
+import Adapters from './../../Adapters/Adapters';
 
 // ACTIONS
-import { selectCommonInterests, thunkSaveFilteredClosestUsers } from '../actions';
+import { selectCommonInterests, thunkSaveFilteredClosestUsers } from '../../actions';
 
 const mapDispatchToProps = dispatch => {
     return {

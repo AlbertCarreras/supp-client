@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Icon } from 'semantic-ui-react'
 
 //ADAPTERS
-import AdapterChats from './../Adapters/AdapterChats';
+import AdapterChats from './../../Adapters/AdapterChats';
 
 const mapStateToProps = state => {
   return {

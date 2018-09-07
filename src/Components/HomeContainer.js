@@ -1,9 +1,9 @@
 import React from 'react';
 
 //COMPONENTS
-import InterestsAside from './InterestsAside'
-import UserList from './UserList'
-import MessagingAside from './MessagingAside'
+import InterestsAside from './LeftInterestsSection/InterestsAside'
+import UserList from './CentralUsersSection/UserList'
+import MessagingAside from './RightChatsSection/MessagingAside'
 import PresenceCable from './PresenceCable'
 
 const HomeContainer = () => {

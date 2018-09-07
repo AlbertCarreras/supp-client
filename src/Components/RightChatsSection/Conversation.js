@@ -2,9 +2,9 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 //ADAPTERS
-import Adapters from './../Adapters/Adapters';
-import {API_SHORT_ROOT} from './../Adapters/AdapterConstants';
-import {GITHUB_URL_ROOT} from './../Adapters/AdapterConstants';
+import Adapters from './../../Adapters/Adapters';
+import {API_SHORT_ROOT} from './../../Adapters/AdapterConstants';
+import {GITHUB_URL_ROOT} from './../../Adapters/AdapterConstants';
 
 // REDUX PROPS 
 const mapStateToProps = state => {

@@ -3,7 +3,7 @@ import { Icon } from 'semantic-ui-react'
 import _ from 'lodash'
 
 // ADAPTERS
-import Adapters from './../Adapters/Adapters';
+import Adapters from './../../Adapters/Adapters';
 
 //COMPONENTS
 import SearchList from './SearchList'

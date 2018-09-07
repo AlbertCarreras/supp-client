@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { ActionCable } from 'react-actioncable-provider';
 
 // ACTIONS
-import { appendNewConversation } from '../actions'
+import { appendNewConversation } from '../../actions'
 
 // REDUX PROPS 
 const mapStateToProps = state => {

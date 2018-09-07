@@ -3,10 +3,10 @@ import { Button } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 
 //ADAPTERS
-import AdapterChats from './../Adapters/AdapterChats';
+import AdapterChats from '../../Adapters/AdapterChats';
 
 // ACTIONS
-import { saveSelectedConversation } from '../actions'
+import { saveSelectedConversation } from '../../actions'
 
 // REDUX PROPS 
 const mapStateToProps = state => {
