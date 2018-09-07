@@ -28,6 +28,7 @@ const UserInterestList = (props) => {
 
     function buildInterestList() {
 
+        //Map over the returned array of interests. Add icons with functionality: remove interests to user list or select interest from which to look for matching people with same interests.
         return props.userInterests.map( (interest) => {
             return  <div key={interest.id}>
                         {Adapters.capitalize(interest.name)}
@@ -55,7 +56,9 @@ const UserInterestList = (props) => {
 
     return (
         <div className="interest-list">
-            { props.userInterests.length > 0
+            { 
+                // Check if user has any interest. If so, display them. Otherwise, display instructions.
+                props.userInterests.length > 0
                 ?   buildInterestList()
                 :   <div className="empty-message">
                         <p>Choose your activities clicking on 

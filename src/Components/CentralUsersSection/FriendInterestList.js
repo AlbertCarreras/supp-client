@@ -20,6 +20,8 @@ const FriendInterestList = (props) => {
 
     function buildInterestList() {
         return props.friendInterestArray.map( (interest) => {
+            
+            //Map over the array of interests. Add icons with functionality: select interest from which to look for matching people with same interests.
             return  <div key={interest.id}>
                         {Adapters.capitalize(interest.name)}
                         <Icon 

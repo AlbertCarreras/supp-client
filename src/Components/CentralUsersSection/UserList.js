@@ -20,6 +20,7 @@ const mapStateToProps = state => {
 
 class UserList extends Component {
 
+    // Get array with the returned closest users, map over it so for each one it's displayed a profile modal component. The origin is userList so the modal can display squared profile images.
     generateUserList = (closestUsers) => {
         return(
             closestUsers.map(
@@ -45,7 +46,7 @@ class UserList extends Component {
         
         return (
             <div className="central-container">
-                {/* USER PROFILE SQUARE */}
+                {/* USER PROFILE SQUARE >> First square in the list.*/}
                 <ProfileModal 
                     origin={"userListYou"}
                     username={"YOU"}

@@ -5,6 +5,7 @@ import { withRouter} from 'react-router-dom';
 import Adapters from './../../Adapters/Adapters';
 
 // STYLE CONSTANTS
+// Style for alternating (dis)connected user-status dot.
 const divStyleActive = {
     background: '#5CDB95'
 };
@@ -15,7 +16,7 @@ const divStyleInactive = {
 
 
 class ProfileSquare extends Component {
-
+    //Check if the user is currently logged in. Display user-status dot color accordingly.  
     isActive = () => {
         if (this.props.user.active_user) {
             return  divStyleActive

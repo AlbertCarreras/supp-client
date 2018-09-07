@@ -5,7 +5,7 @@ import { Icon } from 'semantic-ui-react'
 
 // ADAPTERS
 import Adapters from './../../Adapters/Adapters';
-import {URL_USER_PROFILE} from './../../Adapters/AdapterConstants'
+import { URL_USER_PROFILE } from './../../Adapters/AdapterConstants'
 
 //COMPONENTS
 import UserInterestList from './UserInterestList'
@@ -14,12 +14,17 @@ import StartChatButton from './StartChatButton'
 import ProfileSquare from './ProfileSquare'
 
 class ProfileModal extends Component {
+
+    // Toggle true-false to close-open the modal. 
     state = { modalOpen: false }
 
     handleOpen = () => this.setState({ modalOpen: true })
 
     handleClose = () => this.setState({ modalOpen: false })
 
+    // Helper functions to build the modal
+    // Check the component that is triggering the modal so the correct trigger-component can be selected (square profile image or round chat image).
+    // NOTE: Case conditional statement should be used instead of if.
     selectTrigger = () => {
         if (this.props.origin === "userListYou") {
             return <ProfileSquare 
@@ -83,6 +88,7 @@ class ProfileModal extends Component {
     }
 
     render = () => {
+        //Semantics React UI modal. It gets triggered (opened) with "selectTrigger" helper function.
         return (
             <Modal 
                 dimmer={'inverted'} 
