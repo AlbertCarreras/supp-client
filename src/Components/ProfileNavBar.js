@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 // ADAPTERS
 import AdapterUser from './../Adapters/AdapterUser';
 import Adapters from './../Adapters/Adapters';
-import {URL_LOGIN} from './../Adapters/AdapterConstants'
-import {URL_USER_PROFILE} from './../Adapters/AdapterConstants'
-import {URL_HOME} from './../Adapters/AdapterConstants'
+import { URL_LOGIN } from './../Adapters/AdapterConstants'
+import { URL_USER_PROFILE } from './../Adapters/AdapterConstants'
+import { URL_HOME } from './../Adapters/AdapterConstants'
 
 // ACTIONS
 import { logout } from '../actions';

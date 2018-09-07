@@ -9,10 +9,10 @@ import './App.css';
 
 // ADAPTERS
 import AdapterUser from './Adapters/AdapterUser';
-import {API_WS_ROOT} from './Adapters/AdapterConstants';
-import {URL_USER_PROFILE} from './Adapters/AdapterConstants'
-import {URL_HOME} from './Adapters/AdapterConstants'
-import {URL_ROOT} from './Adapters/AdapterConstants'
+import { API_WS_ROOT } from './Adapters/AdapterConstants';
+import { URL_USER_PROFILE } from './Adapters/AdapterConstants'
+import { URL_HOME } from './Adapters/AdapterConstants'
+import { URL_ROOT } from './Adapters/AdapterConstants'
 
 // ACTIONS
 import { thunkLogin, thunkSaveClosestUsers, thunkPersistCurrentGeolocation, jwtSavedInLocalStorage } from './actions';
