@@ -21,24 +21,24 @@ React with Redux & Redux Thunk
       "Some browsers use IP addresses to detect a user's location. However, it may only provide a rough estimate of a user's location. The W3C approach is the easiest and most fully-supported so it should be prioritized over other geolocation methods."
       https://developers.google.com/maps/documentation/javascript/geolocation
     
-  >> [Custom CSS] and [Semantic UI elements] for front-end design
+  * [Custom CSS] and [Semantic UI elements] for front-end design
     Most of the app is styled using custom CSS. Some elements such as the icons and the modals are Semantic UI elements.
     I decided to use Semantic UI elements because the library facilitated the front-end styling in previous projects. Moreover, I had in mind using modals and liked the examples from the library. However,  
 
-  >> [Bad-words] for filtering profane language
+  * [Bad-words] for filtering profane language
 
 ### Back-end : Rails API with with serialization and Postgres
 Github:
 Back-end >> https://github.com/AlbertCarreras/supp-server
 
-  >> [Active Storage] for photo storage connected to AWS S3 in production
-  >> [Action Cable] for live private chat feed updating and connected-user indicators
+  * [Active Storage] for photo storage connected to AWS S3 in production
+  * [Action Cable] for live private chat feed updating and connected-user indicators
     Action Cable is the built-in websocket implementation in Rails.
     In order to facilitate the websocket connection from the React front-end, I decided to use react-actioncable-provider. 
     Great resources for implementing websockets in React-Rails apps:
     https://medium.com/@dakota.lillie/using-action-cable-with-react-c37df065f296
-  >> [Knock] for JSON Web Token authentication and [cookies] for websocket-connection authentication
-  >> [Geokit] for calculating surrounding users to connected user distance
+  * [Knock] for JSON Web Token authentication and [cookies] for websocket-connection authentication
+  * [Geokit] for calculating surrounding users to connected user distance
 
 ## Authors
 
