@@ -31,12 +31,13 @@ const SearchList = (props) => {
 
     function buildInterestList() {
         let searchTermArray = props.searchTermArray
-    
+        // Filter the returned array of interests so it does not display an interest that has been selected to find matching people.
         if (props.selectedInterest !== undefined) {
             searchTermArray = searchTermArray.filter((term) => term !== props.selectedInterest)
         }
 
         return searchTermArray.map( (term) => {
+            //Map over the returned array of interests. Add icons with functionality: add interests to user list or select interest from which to look for matching people with same interests.
             return  <div key={term.id}>
                         {Adapters.capitalize(term.name)}
                         <Icon 
@@ -47,7 +48,9 @@ const SearchList = (props) => {
                             color='teal' 
                             name='users' 
                         />
-                        { !props.userInterests.find((i)=> i.id === term.id)
+                        { 
+                            //If the user already has interest in their list, don't display icon to add again.
+                            !props.userInterests.find((i)=> i.id === term.id)
                             ?   <Icon 
                                     onClick={() => {
                                         props.thunkSaveUserInterests(props.userId, term)

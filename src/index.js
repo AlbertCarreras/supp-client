@@ -16,7 +16,6 @@ import './App.css'; //custom CSS
 //COMPONENTS
 import App from './App';
 
-
 ReactDOM.render(
     <Provider store={store}>
       <Router>

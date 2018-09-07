@@ -15,7 +15,6 @@ const mapStateToProps = state => {
 }
 
 
-
 const Conversation = (props) => {
     return (
         <Fragment>
