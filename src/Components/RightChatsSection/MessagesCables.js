@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 class MessagesCables extends Component {
-
+  // If a new broadcasted message from websockets is received, find the corresponding conversation and append it.
   handleReceivedMessage = (response) => {
       const { message } = response;
       const conversations = [...this.props.conversations];

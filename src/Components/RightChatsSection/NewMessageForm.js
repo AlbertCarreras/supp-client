@@ -13,14 +13,12 @@ const mapStateToProps = state => {
 }
 
 class NewMessageForm extends Component {
+  // keeping local state for controlled inputs
   state = {
     text: '',
   };
 
-  componentWillReceiveProps = nextProps => {
-    this.setState({ conversation_id: nextProps.conversation_id });
-  };
-
+  //Bad-words functionality
   handleChange = e => {
     var Filter = require('bad-words'),
         filter = new Filter();
@@ -31,6 +29,7 @@ class NewMessageForm extends Component {
 
   //PROPS FUNCTIONALITY: Button handlers
   handleSubmit = () => {
+    // Variable containing new message information to persist  
     let body = {
       text: this.state.text,
       conversation_id: this.props.selectedConversation.id,

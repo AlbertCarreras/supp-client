@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 //ADAPTERS
 import Adapters from './../../Adapters/Adapters';
-import {API_SHORT_ROOT} from './../../Adapters/AdapterConstants';
-import {GITHUB_URL_ROOT} from './../../Adapters/AdapterConstants';
+import { API_SHORT_ROOT } from './../../Adapters/AdapterConstants';
+import { GITHUB_URL_ROOT } from './../../Adapters/AdapterConstants';
 
 // REDUX PROPS 
 const mapStateToProps = state => {
@@ -18,6 +18,8 @@ const mapStateToProps = state => {
 const Conversation = (props) => {
     return (
         <Fragment>
+        {/* Top Conversation List >> Individual box */}
+        {/* Check if user has profile image. If not display animal avatar. */}
         <div className="conversation-image-box">
             <img 
                 className="conversation-image"
@@ -29,6 +31,8 @@ const Conversation = (props) => {
                 alt="Mini profile"
             />
         </div>
+        
+        {/* Display name of last user who send  message and the beginning of the last message or default if none yet. */}
         <div className="conversation-text-box">
 
             <div className="conversation-title">

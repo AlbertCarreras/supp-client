@@ -28,10 +28,12 @@ const mapDispatchToProps = dispatch => {
 
 class ConversationsList extends React.Component {
     
+    // When the components mounts, fetch the user conversations from the server
     componentDidMount = () => {
       this.props.thunkSaveConversations();
     };
-        
+    
+    // Map conversations in state and display a formated list of them. If clicked, the conversation gets selected and displayed in chat box.
     mapConversations = () => {
         return this.props.conversations.map(conversation => {
           return (
@@ -53,18 +55,21 @@ class ConversationsList extends React.Component {
         return (
           <div className="conversations-box">
             
-            {/*cables connected to backend websockets*/}
+            {/* Cables connected to backend websockets */}
             <ConversationsCables />
-            {this.props.conversations.length
+            {
+              // Check if there are conversations in state. If so, connect each conversation to the messages channel and handle received broadcasted messages
+              this.props.conversations.length
               ? <MessagesCables />
               : null
             }
             
             <h2 className="heart-message">Conversations</h2>
             <div className="conversations-list">
-              {this.mapConversations()}
+              { this.mapConversations() }
             </div>
             { 
+              // Check if there is a selected conversations in state. If so, open the chat box with all the conversation messages
               this.props.selectedConversation 
               ? <MessagesArea />
               : null

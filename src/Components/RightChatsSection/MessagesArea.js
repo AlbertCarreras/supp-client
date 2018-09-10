@@ -29,6 +29,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 // STYLE CONSTANTS
+// Style for user message backgrounds to create alternate colors and alignment to identify users.
 const divStyleUser = {
   background: 'rgba(92, 219, 149, 0.25)',
   textAlign: 'right',
@@ -38,8 +39,10 @@ const divStyleFriend = {
   background: 'rgba(55,150,131, 0.25)',
 };
 
-const MessagesArea = (props) => {
 
+const MessagesArea = (props) => {
+  
+  // Check if the message belongs to the logged user in state. Style accordingly.  
   function isUser (userId) {
     if (userId === props.userId) {
         return  divStyleUser
@@ -49,21 +52,27 @@ const MessagesArea = (props) => {
     }
   }
 
+  // Get time message was created and return formated time.  
   function getTime (timestamp) {
       var time = new Date(timestamp)
       return time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
     }
     
-  
+  // Get the users from the serialized data in the conversation. Find and return the user is not the logged user in state.
   function friendUser () {
       return props.selectedConversation.users.find((u) => u.id !== props.userId)
   }
 
-  function orderedMessages () {
-    const sortedMessages = props.selectedConversation.messages.sort(
+  // Get messages from the selected conversation. Sort by the date the message was created.
+  function sortConversations () {
+    return props.selectedConversation.messages.sort(
       (a, b) => new Date(a.created_at) - new Date(b.created_at)
-    );
-    return sortedMessages.map(message => {
+    )
+  }
+
+  // Map over the sorted array of messages in order to build a formatted thread of messages using helper functions.
+  function displayMessages () {
+    return sortConversations().map(message => {
       return  <div 
                 key={message.id}
                 className="message-box"
@@ -85,26 +94,29 @@ const MessagesArea = (props) => {
   };
 
   return (
+    // Build formatted chat box
     <div className="messages-box animated slideInUp delay-5s">
       <div className="messages-header">
           <div className="chat-header-title">
               <Icon 
-              color='teal' 
-              name='chat'
+                color='teal' 
+                name='chat'
               /> 
               with {Adapters.capitalize(friendUser().username)}
           </div>
-          <ProfileModal 
-            origin={"chatHeader"}
-            bio={friendUser().bio}
-            userId={friendUser().id}
-            username={friendUser().username}
-            interests={friendUser().interests}
-            profileImageLink={friendUser().profile_image_url}
-            distance={
-              Adapters.getReadableDistance(friendUser().distance)
-            }
+            {/* Round user profile image that triggers profile modal. Information for modal comes from the serialized user data in the conversation */}
+            <ProfileModal 
+              origin={"chatHeader"}
+              bio={friendUser().bio}
+              userId={friendUser().id}
+              username={friendUser().username}
+              interests={friendUser().interests}
+              profileImageLink={friendUser().profile_image_url}
+              distance={
+                Adapters.getReadableDistance(friendUser().distance)
+              }
           />
+          {/* Round user profile image that triggers profile modal. Information for modal comes from the serialized user data in the conversation */}
           <Icon 
               onClick={props.cleanSelectedConversation}
               color='teal' 
@@ -113,7 +125,7 @@ const MessagesArea = (props) => {
       </div>
       <div className="outer-messages-list">
         <div className="messages-list">
-          {orderedMessages()}
+          {displayMessages()}
         </div>
       </div>
       <NewMessageForm conversation_id={props.selectedConversation.id} />

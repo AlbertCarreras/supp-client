@@ -10,7 +10,7 @@ import SearchList from './SearchList'
 import NewSearchWordForm from './NewSearchWordForm'
 
 class Search extends Component {
-    // keeping local state
+    // keeping local state for controlled inputs
     state = {
         searchTerm: "",
         searchTermArray: [],
@@ -31,7 +31,7 @@ class Search extends Component {
     //SEARCH FUNCTIONALITY
     searchTerm = (searchTerm) =>
         // Check if searched term is valid and shorter than 2 letters. If so, input in state should be an empty array.
-        //If not, use debouce from Lodash to fetch and requests interests based on the input value. 
+        //If not, use debounce from Lodash to fetch and requests interests based on the input value. 
         searchTerm === "" || searchTerm.length < 2
             ? this.setState({
                 searchTermArray: [],

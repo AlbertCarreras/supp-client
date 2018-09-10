@@ -20,6 +20,7 @@ const mapDispatchToProps = dispatch => {
 
 class ConversationsCables extends Component {
 
+  // If a new broadcasted conversation from websockets is received, check if user is one of the user ids to whom the conversation belongs to (users are serialized). If so, appended into the list of conversations.
   handleReceivedConversation = (response) => {
     const { conversation } = response;
     if (conversation.users.map((i)=> i.id).includes(this.props.userId)) {
