@@ -82,7 +82,7 @@ class ProfileModal extends Component {
                 )
             }
             else {
-                return <p>{Adapters.usernameLongFormat(this.props.username)} has not written anything yet.</p>
+                return <p>{Adapters.capitalize(this.props.username)} has not written anything yet.</p>
             }
         }
     }
@@ -97,7 +97,7 @@ class ProfileModal extends Component {
                 open={this.state.modalOpen}
                 onClose={this.handleClose}
             >
-            <Modal.Header>{Adapters.usernameLongFormat(this.props.username)}
+            <Modal.Header>{Adapters.capitalize(this.props.username)}
             </Modal.Header>
             <Modal.Content image>
                 <Image 

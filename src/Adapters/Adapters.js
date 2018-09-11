@@ -1,25 +1,24 @@
 // ADAPTERS
 import {API_ROOT} from './AdapterConstants'
 import {API_SHORT_ROOT} from './AdapterConstants'
-import {AUTH_HEADERS_JSON} from './AdapterConstants'
+import {AUTH_HEADERS_JSON_JWT} from './AdapterConstants'
 import {GITHUB_URL_ROOT} from './../Adapters/AdapterConstants';
 
 class Adapters {
 
     //NAMING
+    // Return name with each words capitalized
     static  capitalize(term) {
         return term.split(" ").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")
     }
-
+    
+    // Return first name capitalized up to 9 characters
     static usernameShortFormat(username) {
         return Adapters.capitalize(username).split(" ")[0].substring(0, 9)
     }
 
-    static usernameLongFormat(username) {
-        return username.split(" ").map((a) => a.charAt(0).toUpperCase() + a.slice(1)).join(" ")
-    }
-
     //DISTANCE
+    // Return human-readable distance in feet or miles
     static  getReadableDistance(dist) {
         
         if (dist !== undefined) {
@@ -34,10 +33,12 @@ class Adapters {
     }
 
     //IMAGE URL STANDARIZER
+    // Return random avatar image
     static  getNotPicAvatar() {
         return GITHUB_URL_ROOT+`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
     }
-
+    
+    // Check if url to profile image exists. If undefined, return avatar image. If valid url, return full server url.
     static  getStandardImageUrl(apiUrl) {
         if (apiUrl === "undefined") {
             return Adapters.getNotPicAvatar()
@@ -53,10 +54,11 @@ class Adapters {
 
 
      //API DATA
+     // Fetch interest search input and return server response.
     static  getSearchMatches(searchTerm) {
         return fetch(`${API_ROOT}/interests`, {
             method: 'POST',
-            headers: AUTH_HEADERS_JSON,
+            headers: AUTH_HEADERS_JSON_JWT,
             body: JSON.stringify({
                 "search": {
                   "searchTerm": searchTerm.toLowerCase(),
@@ -67,4 +69,5 @@ class Adapters {
     }
     
 }
+
 export default Adapters;

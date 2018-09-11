@@ -25,13 +25,13 @@ export const URL_USER_PROFILE = '/user/profile'
 // export const URL_USER_PROFILE = '/supp-client/user/profile'
 
 //HEADERS
-export const AUTH_HEADERS_JSON =  {
+export const AUTH_HEADERS_JSON_JWT =  {
   "Accept": "application/json",
   "Content-Type": "application/json",
   "Authorization": `Bearer ${localStorage.getItem("token")}`
 };
 
-export const AUTH_HEADERS_IMAGE =  {
+export const AUTH_HEADERS_JWT =  {
   "Authorization": `Bearer ${localStorage.getItem("token")}`
 };
 
