@@ -12,7 +12,7 @@ import {
     SAVE_CONVERSATIONS, SAVE_SELECTED_CONVERSATION, CLEAN_SELECTED_CONVERSATION, APPEND_NEW_CONVERSATION,
 } from './types';
 
-//REDUX-THUNK
+//REDUX-THUNK actions
 export const thunkLogin = () => {
 
     return (dispatch) => {
@@ -282,7 +282,7 @@ export const thunkCreateNewWord = (userId, newTerm) => {
     }
 }
 
-//REDUX
+//REDUX actions
 export function jwtSavedInLocalStorage() {
     return {
         type: JWT,
