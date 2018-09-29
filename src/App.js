@@ -2,6 +2,7 @@ import React, { Component} from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter, Switch } from "react-router-dom";
 import { ActionCableProvider } from 'react-actioncable-provider';
+// import ActionCable from 'actioncable';
 import { hot } from 'react-hot-loader';
 
 // ADAPTERS
@@ -15,11 +16,15 @@ import { URL_ROOT } from './Adapters/AdapterConstants'
 import { thunkLogin, thunkSaveClosestUsers, thunkPersistCurrentGeolocation, jwtSavedInLocalStorage } from './actions';
 
 //COMPONENTS
-import Header from './Components/Header'
-import WelcomeContainer from './Components/WelcomeContainer'
-import HomeContainer from './Components/HomeContainer'
-import UpdateProfile from './Components/UpdateProfile'
-import Footer from './Components/Footer'
+import Header from './Components/Header';
+import WelcomeContainer from './Components/WelcomeContainer';
+import HomeContainer from './Components/HomeContainer';
+import UpdateProfile from './Components/UpdateProfile';
+import Footer from './Components/Footer';
+
+// ACTIONCABLE
+// ActionCable.INTERNAL.protocols.push(AdapterUser.getToken());
+// const cable = ActionCable.createConsumer({API_WS_ROOT});
 
 // REDUX PROPS 
 const mapStateToProps = state => {
