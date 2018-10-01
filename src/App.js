@@ -2,7 +2,6 @@ import React, { Component} from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter, Switch } from "react-router-dom";
 import { ActionCableProvider } from 'react-actioncable-provider';
-// import ActionCable from 'actioncable';
 import { hot } from 'react-hot-loader';
 
 // ADAPTERS
@@ -21,10 +20,6 @@ import WelcomeContainer from './Components/WelcomeContainer';
 import HomeContainer from './Components/HomeContainer';
 import UpdateProfile from './Components/UpdateProfile';
 import Footer from './Components/Footer';
-
-// ACTIONCABLE
-// ActionCable.INTERNAL.protocols.push(AdapterUser.getToken());
-// const cable = ActionCable.createConsumer({API_WS_ROOT});
 
 // REDUX PROPS 
 const mapStateToProps = state => {
@@ -106,7 +101,7 @@ class App extends Component {
           // NOTE >> To be fixed. Only checking for token. If token is incorrect throws error.
           // If there is not, go to Welcome container.
           !!AdapterUser.getToken()
-              ? <ActionCableProvider url={API_WS_ROOT}>
+              ? <ActionCableProvider url={API_WS_ROOT+`?user=${AdapterUser.getToken()}`}>
                   <Switch>
                     <Route
                       path={URL_USER_PROFILE}
