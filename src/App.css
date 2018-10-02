@@ -36,6 +36,7 @@
   display: flex;
   height: 800px;
   background-color: white;
+  overflow: auto !important;
 }
 
 .profile-container {
