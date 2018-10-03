@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 // ADAPTERS
 import AdapterUser from './../Adapters/AdapterUser';
-import {URL_LOGIN} from './../Adapters/AdapterConstants'
 import {URL_SIGNUP} from './../Adapters/AdapterConstants'
 import {URL_HOME} from './../Adapters/AdapterConstants'
 
@@ -41,7 +40,10 @@ class Login extends Component {
 
   // Logs in user and saves token in LocalStorage and cookie. If error response, pushes to Login page.
   //NOTE: I should add validation messages.
-  handleSubmit = () => {
+  handleSubmit = (event) => {
+    if (event.key !== "Enter") {
+      return
+    }
     AdapterUser.login(this.state)
     .then(json => { 
         AdapterUser.setToken(json.jwt);
@@ -70,6 +72,7 @@ class Login extends Component {
                     name="email"
                     placeholder="Account Email"
                     onChange={this.handleChange}
+                    onKeyUp={this.handleSubmit}
                     value={this.state.email} />
                 </div>
                 <div className="field">
@@ -78,6 +81,7 @@ class Login extends Component {
                     name="password"
                     placeholder="Password"
                     onChange={this.handleChange}
+                    onKeyUp={this.handleSubmit}
                     value={this.state.password}
                   />
                 </div>
