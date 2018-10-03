@@ -23,6 +23,7 @@ class Login extends Component {
   state = {
     email: "",
     password: "",
+    errorMessage: {},
   };
 
   //PROPS FUNCTIONALITY: Button handlers
@@ -32,19 +33,28 @@ class Login extends Component {
     })
   }
 
+  displayError = (field) => {
+    return this.state.errorMessage[field] 
+    ? <p>{this.state.errorMessage[field]}</p>
+    : null
+  }
+
   // Logs in user and saves token in LocalStorage and cookie. If error response, pushes to Login page.
   //NOTE: I should add validation messages.
   handleSubmit = () => {
     AdapterUser.login(this.state)
-      .then(json => {
+    .then(json => { 
         AdapterUser.setToken(json.jwt);
         AdapterUser.saveTokenAsCookie();
         this.props.jwtSavedInLocalStorage();
         this.props.history.push(URL_HOME)
-      })
-      .catch(err => {
-        this.props.history.push(URL_LOGIN);
-      })
+    })
+    .catch(() => {
+      let errorMessageArray = {"invalid": "The email or password did not match our records."}
+        this.setState({
+          errorMessage: errorMessageArray,
+        })
+    })
   }
  
   render() {
@@ -72,6 +82,7 @@ class Login extends Component {
                   />
                 </div>
               </div>
+              {this.displayError("invalid")}
               <div className="btn-submit">
                 <div 
                   className="ui submit button"

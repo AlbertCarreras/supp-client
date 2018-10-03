@@ -45,12 +45,14 @@ class Signup extends Component {
     })
   }
 
+  // Helper method to display error messages under each field.
   displayError = (field) => {
     return this.state.errorMessage[field] 
     ? <p>{this.state.errorMessage[field]}</p>
     : null
   }
 
+  // Display messages if there are no error messages.
   displayMessages = () => {
     if (Object.keys(this.state.errorMessage).length === 0) {
     return <div>
@@ -61,7 +63,10 @@ class Signup extends Component {
         </div>    
     }
   }
-
+  
+  // Front-end validation of entered fields.
+  // Check if fields meet criteria; otherwise save messages as key:values for each field.
+  // Set state and then handleSubmit making sure state was set. 
   evaluateFields = () => {
     let errorMessageArray = {};
     if (!this.state.username.trim()) {
@@ -89,7 +94,7 @@ class Signup extends Component {
   // Check if terms and conditions checkbox is selected. If so, signup the user. If not, style  box in red.
   // Catch error and redirect to Login/Signup
   handleSubmit = () => {
-    return !Object.keys(this.state.errorMessage).length
+    return (!Object.keys(this.state.errorMessage).length && this.state.agreedCheckbox)
     ?  AdapterUser.signup(this.state)
       .then(json => { 
         if (json.ok) {
@@ -100,8 +105,8 @@ class Signup extends Component {
               this.props.jwtSavedInLocalStorage();
               this.props.history.push(URL_HOME);
             })
-            .catch(err => {
-              this.props.history.push(URL_LOGIN);
+            .catch(() => {
+              this.props.history.push(URL_SIGNUP);
             })
            } 
         else{ 
@@ -114,7 +119,7 @@ class Signup extends Component {
           })
         }
       })
-      .catch(err => {
+      .catch(() => {
         this.props.history.push(URL_SIGNUP);
       })
     : null;
