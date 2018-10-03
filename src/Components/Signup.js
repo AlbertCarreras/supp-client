@@ -67,7 +67,10 @@ class Signup extends Component {
   // Front-end validation of entered fields.
   // Check if fields meet criteria; otherwise save messages as key:values for each field.
   // Set state and then handleSubmit making sure state was set. 
-  evaluateFields = () => {
+  evaluateFields = (event) => {
+    if (event.key !== "Enter") {
+      return
+    }
     let errorMessageArray = {};
     if (!this.state.username.trim()) {
       errorMessageArray["username"] = "Enter a username.";
@@ -139,6 +142,7 @@ class Signup extends Component {
                   name="username"
                   placeholder="Username"
                   onChange={this.handleChange}
+                  onKeyUp={this.evaluateFields}
                   value={this.state.username}
                 /> 
                 {this.displayError("username")}
@@ -149,6 +153,7 @@ class Signup extends Component {
                   name="email"
                   placeholder="Account Email"
                   onChange={this.handleChange}
+                  onKeyUp={this.evaluateFields}
                   value={this.state.email}
                 />
                 {this.displayError("email")}
@@ -161,6 +166,7 @@ class Signup extends Component {
                     name="password"
                     placeholder="Password"
                     onChange={this.handleChange}
+                    onKeyUp={this.evaluateFields}
                     value={this.state.password}
                   />
                   {this.displayError("password")}
@@ -171,6 +177,7 @@ class Signup extends Component {
                     name="confirmPassword"
                     placeholder="Confirm Password"
                     onChange={this.handleChange}
+                    onKeyUp={this.evaluateFields}
                     value={this.state.confirmPassword}
                   />
                   {this.displayError("confirmation")}
