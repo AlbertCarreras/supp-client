@@ -78,13 +78,9 @@ class Signup extends Component {
         errorMessageArray["confirmation"] = "Confirmation password must match password.";
       }
     }
-    if (!this.state.agreedCheckbox) {
-      this.setState({
-        checkboxColor: "red",
-      });
-    }
     this.setState({
       errorMessage: errorMessageArray,
+      checkboxColor: !this.state.agreedCheckbox ? "red" : "black",
     }, () => {
       this.handleSubmit()
     });
@@ -95,8 +91,9 @@ class Signup extends Component {
   handleSubmit = () => {
     return !Object.keys(this.state.errorMessage).length
     ?  AdapterUser.signup(this.state)
-      .then(json => json.ok
-          ? AdapterUser.login(this.state)
+      .then(json => { 
+        if (json.ok) {
+            AdapterUser.login(this.state)
             .then(json => {
               AdapterUser.setToken(json.jwt);
               AdapterUser.saveTokenAsCookie();
@@ -106,11 +103,20 @@ class Signup extends Component {
             .catch(err => {
               this.props.history.push(URL_LOGIN);
             })
-          : console.log("error")
-        )
-        .catch(err => {
-          this.props.history.push(URL_SIGNUP);
-        })
+           } 
+        else{ 
+          json.json()
+          .then(r => {
+            let errorMessageArray = {"email": r.errors[0]}
+            this.setState({
+              errorMessage: errorMessageArray,
+            })
+          })
+        }
+      })
+      .catch(err => {
+        this.props.history.push(URL_SIGNUP);
+      })
     : null;
   }
 
