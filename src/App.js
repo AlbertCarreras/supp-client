@@ -93,7 +93,6 @@ class App extends Component {
   }
 
   render() {
-    debugger;
     return (
       <div className="app">
         <Header />
@@ -121,7 +120,7 @@ class App extends Component {
             : <Route
                   path={URL_ROOT}
                   component={WelcomeContainer}
-              />
+            />
         }
         <Footer />   
       </div>

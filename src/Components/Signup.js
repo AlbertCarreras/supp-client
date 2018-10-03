@@ -28,6 +28,8 @@ class Signup extends Component {
     password: "",
     confirmPassword: "",
     agreedCheckbox: false,
+    checkboxColor: "black",
+    errorMessage: {},
   };
 
   //PROPS FUNCTIONALITY: Button handlers
@@ -40,14 +42,58 @@ class Signup extends Component {
   handleCheckbox = () => {
     this.setState({
       agreedCheckbox: !this.state.agreedCheckbox,
-      error: "black",
     })
+  }
+
+  displayError = (field) => {
+    return this.state.errorMessage[field] 
+    ? <p>{this.state.errorMessage[field]}</p>
+    : null
+  }
+
+  displayMessages = () => {
+    if (Object.keys(this.state.errorMessage).length === 0) {
+    return <div>
+            <h3 className="signup-message">Find people around you</h3>
+            <h3 className="signup-message">Who love what you love</h3>
+            <h3 className="signup-message signup-message-connect">Connect!</h3>
+            <h3 className="signup-message">and make new friends</h3>
+        </div>    
+    }
+  }
+
+  evaluateFields = () => {
+    let errorMessageArray = {};
+    if (!this.state.username.trim()) {
+      errorMessageArray["username"] = "Enter a username.";
+    }
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(this.state.email)) {
+      errorMessageArray["email"] = "Invalid email address.";
+    }
+    if (!(this.state.password.length > 7)) {
+      errorMessageArray["password"] = "Password must be at least 8 characters.";
+    }
+    if (!!(this.state.password.length > 7)) {
+      if (!(this.state.password === this.state.confirmPassword)) {
+        errorMessageArray["confirmation"] = "Confirmation password must match password.";
+      }
+    }
+    if (!this.state.agreedCheckbox) {
+      this.setState({
+        checkboxColor: "red",
+      });
+    }
+    this.setState({
+      errorMessage: errorMessageArray,
+    }, () => {
+      this.handleSubmit()
+    });
   }
 
   // Check if terms and conditions checkbox is selected. If so, signup the user. If not, style  box in red.
   // Catch error and redirect to Login/Signup
   handleSubmit = () => {
-    return this.state.agreedCheckbox
+    return !Object.keys(this.state.errorMessage).length
     ?  AdapterUser.signup(this.state)
       .then(json => json.ok
           ? AdapterUser.login(this.state)
@@ -55,7 +101,7 @@ class Signup extends Component {
               AdapterUser.setToken(json.jwt);
               AdapterUser.saveTokenAsCookie();
               this.props.jwtSavedInLocalStorage();
-              this.props.history.push(URL_HOME)
+              this.props.history.push(URL_HOME);
             })
             .catch(err => {
               this.props.history.push(URL_LOGIN);
@@ -65,9 +111,7 @@ class Signup extends Component {
         .catch(err => {
           this.props.history.push(URL_SIGNUP);
         })
-    : this.setState({
-        error: "red",
-      })
+    : null;
   }
 
   render() {
@@ -86,6 +130,7 @@ class Signup extends Component {
                   onChange={this.handleChange}
                   value={this.state.username}
                 /> 
+                {this.displayError("username")}
               </div>  
               <div className="field">
                 <input
@@ -95,6 +140,7 @@ class Signup extends Component {
                   onChange={this.handleChange}
                   value={this.state.email}
                 />
+                {this.displayError("email")}
               </div>
             </div>  
             <div className="two fields">
@@ -106,6 +152,7 @@ class Signup extends Component {
                     onChange={this.handleChange}
                     value={this.state.password}
                   />
+                  {this.displayError("password")}
                 </div>
                 <div className="field">
                   <input 
@@ -115,6 +162,7 @@ class Signup extends Component {
                     onChange={this.handleChange}
                     value={this.state.confirmPassword}
                   />
+                  {this.displayError("confirmation")}
                 </div>
             </div>
               <div className="btn-submit">
@@ -126,24 +174,19 @@ class Signup extends Component {
                   />
                   <label 
                     className="signup-error"
-                    style={{color: `${this.state.error}`}}
+                    style={{color: `${this.state.checkboxColor}`}}
                     >I agree to the Terms and Conditions
                   </label>
                 </div>
                 <div 
                   className="ui submit button"
-                  onClick={this.handleSubmit}
+                  onClick={this.evaluateFields}
                 >Create Account
                 </div>
               </div>
             </div>
           </div>  
-          <div>
-            <h3 className="signup-message">Find people around you</h3>
-            <h3 className="signup-message">Who love what you love</h3>
-            <h3 className="signup-message signup-message-connect">Connect!</h3>
-            <h3 className="signup-message">and make new friends</h3>
-          </div>
+          {this.displayMessages()}
         </div>
     )
   }
