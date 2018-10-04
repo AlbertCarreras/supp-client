@@ -175,7 +175,7 @@ export const thunkUpdateProfileInfo = (userId, username, bio) => {
             body: JSON.stringify(bodyUpdateProfileInfo)
             })
         .then(resp=>resp.json())
-        .then(resp => dispatch( { 
+        .then(() => dispatch( { 
             type: SAVE_PROFILE,
             payload: {
                 username: username,
