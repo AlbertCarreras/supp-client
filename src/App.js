@@ -100,7 +100,6 @@ class App extends Component {
           // Check if there is a userId in localStorage. If so, connect to websockets and reroute user.
           // NOTE >> Added wss uri query param .for identifying user on websocket connection.
           // If there is not, go to Welcome container.
-         
 
           !!this.props.userId
               ? <ActionCableProvider url={API_WS_ROOT+`?user=${AdapterUser.getToken()}`}>
