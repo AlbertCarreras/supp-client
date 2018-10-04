@@ -40,10 +40,14 @@ class Login extends Component {
 
   // Logs in user and saves token in LocalStorage and cookie. If error response, pushes to Login page.
   //NOTE: I should add validation messages.
-  handleSubmit = (event) => {
-    if (event.key !== "Enter") {
-      return
+
+  pressedEnter = (event) => {
+    if (event.key === "Enter" ) {
+      this.handleSubmit();
     }
+  }
+
+  handleSubmit = (event) => {
     AdapterUser.login(this.state)
     .then(json => { 
         AdapterUser.setToken(json.jwt);
@@ -72,7 +76,7 @@ class Login extends Component {
                     name="email"
                     placeholder="Account Email"
                     onChange={this.handleChange}
-                    onKeyUp={this.handleSubmit}
+                    onKeyUp={this.pressedEnter}
                     value={this.state.email} />
                 </div>
                 <div className="field">
@@ -81,7 +85,7 @@ class Login extends Component {
                     name="password"
                     placeholder="Password"
                     onChange={this.handleChange}
-                    onKeyUp={this.handleSubmit}
+                    onKeyUp={this.pressedEnter}
                     value={this.state.password}
                   />
                 </div>

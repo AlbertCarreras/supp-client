@@ -28,11 +28,14 @@ class NewMessageForm extends Component {
   };
 
   //PROPS FUNCTIONALITY: Button handlers
-  handleSubmit = (event) => {
-    if (event.key !== "Enter") {
-      return
+
+  pressedEnter = (event) => {
+    if (event.key === "Enter" ) {
+      this.handleSubmit();
     }
-    
+  }
+
+  handleSubmit = () => {    
     // Variable containing new message information to persist  
     let body = {
       text: this.state.text,
@@ -51,7 +54,7 @@ class NewMessageForm extends Component {
             type="text"
             value={this.state.text}
             onChange={this.handleChange}
-            onKeyDown={this.handleSubmit}
+            onKeyDown={this.pressedEnter}
             placeholder="Enter new message"
           />
           <div 
