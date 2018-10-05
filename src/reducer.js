@@ -59,7 +59,7 @@ export default function reducer(state = initialState, action) {
                 profileImageLink: undefined,
                 lat: undefined,
                 lon: undefined,
-                prevGeolocationLat: undefined, 
+                prevGeolocationLat: undefined,
                 prevGeolocationLon: undefined,
                 userInterests: [],
                 closestUsers: [],
