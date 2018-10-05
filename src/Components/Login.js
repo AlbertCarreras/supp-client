@@ -51,7 +51,7 @@ class Login extends Component {
     AdapterUser.login(this.state)
     .then(json => { 
         AdapterUser.setToken(json.jwt);
-        AdapterUser.saveTokenAsCookie();
+        //AdapterUser.saveTokenAsCookie();
         this.props.jwtSavedInLocalStorage();
         this.props.history.push(URL_HOME)
     })

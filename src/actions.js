@@ -62,6 +62,7 @@ export const thunkSaveClosestUsers = () => {
                 closestUsers: resp,
             }
         }))
+        .catch(() => console.log("No closest users yet"))
     }
 }
 

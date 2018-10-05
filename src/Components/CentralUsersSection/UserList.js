@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Loader } from 'semantic-ui-react'
 
 //ADAPTERS
 import Adapters from './../../Adapters/Adapters';
@@ -55,7 +56,13 @@ class UserList extends Component {
                     profileImageLink={this.props.profileImageLink}
                 />
                 {/* CLOSEST USERS PROFILE SQUARES */}
-                {this.generateUserList(this.props.closestUsers)}
+                {this.props.closestUsers.length !== 0
+                    ? this.generateUserList(this.props.closestUsers) 
+                    :   <div>
+                          <Loader active />
+                          <p> Finding you location and people around you... </p>
+                        </div>
+                }
             </div>
         );
     }

@@ -19,6 +19,8 @@ const initialState = {
     profileImageLink: undefined,
     lat: undefined,
     lon: undefined,
+    prevGeolocationLat: undefined,
+    prevGeolocationLon: undefined,
     userInterests: [],
     closestUsers: [],
     selectedCommonInterest: undefined,

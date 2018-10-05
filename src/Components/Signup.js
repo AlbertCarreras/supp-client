@@ -102,18 +102,20 @@ class Signup extends Component {
   // Catch error and redirect to Login/Signup
   handleSubmit = () => {
     return (!Object.keys(this.state.errorMessage).length && this.state.agreedCheckbox)
+    // Signup and get confirmation user was created.
     ?  AdapterUser.signup(this.state)
       .then(json => { 
         if (json.ok) {
+            // Login with same user and password and get JWT token.
             AdapterUser.login(this.state)
             .then(json => {
               AdapterUser.setToken(json.jwt);
-              AdapterUser.saveTokenAsCookie();
+              //AdapterUser.saveTokenAsCookie();
               this.props.jwtSavedInLocalStorage();
               this.props.history.push(URL_HOME);
             })
             .catch(() => {
-              this.props.history.push(URL_SIGNUP);
+              this.props.history.push(URL_LOGIN);
             })
            } 
         else{ 
