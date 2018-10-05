@@ -2,28 +2,39 @@ import React, {Fragment} from 'react';
 import {Route, Switch} from "react-router-dom";
 
 //ADAPTERS
+import AdapterUser from './../Adapters/AdapterUser';
 import {GITHUB_URL_ROOT} from './../Adapters/AdapterConstants'
 import {URL_ROOT} from './../Adapters/AdapterConstants'
 import {URL_LOGIN} from './../Adapters/AdapterConstants'
 
 //COMPONENTS
 import Login from './Login'
-import Signup from './Signup'
+import Signup from './Signup' 
+import Loading from './Loading' 
+
 
 const WelcomeContainer = () => {
+
+    function displayCentralBox () {
+        if (AdapterUser.getToken()) {
+            return <Loading />
+        }
+        return   <Switch>
+                    <Route
+                        exact path={URL_LOGIN}
+                        component={Login}
+                    />
+                    <Route
+                        path={URL_ROOT}
+                        component={Signup}
+                    />    
+                </Switch>
+    }
+
     return (
         <Fragment>
 
-            <Switch>
-                <Route
-                    exact path={URL_LOGIN}
-                    component={Login}
-                />
-                <Route
-                    path={URL_ROOT}
-                    component={Signup}
-                />    
-            </Switch>
+           {displayCentralBox()}
             
             {/* Background images collage */}
             <div className="welcome-container">

@@ -92,40 +92,47 @@ class App extends Component {
     }
   }
 
+  // Check if there is a userId in localStorage. If so, check if the userId is already in state. Then, connect to websockets and reroute user.
+  // There is a wss uri query param for identifying user on websocket connection.
+  // In any other case, go to Welcome container.
+  routerFunction = () => {
+
+      return AdapterUser.getToken()
+      ? !!this.props.userId
+          ? <ActionCableProvider url={API_WS_ROOT+`?user=${this.props.userId}`}>
+              <Switch>
+                <Route
+                  path={URL_USER_PROFILE}
+                  component={UpdateProfile}
+                />
+                <Route
+                  path={URL_HOME}
+                  component={HomeContainer}
+                />
+                <Route
+                  path={URL_ROOT}
+                  component={HomeContainer}
+                />
+              </Switch>
+            </ActionCableProvider>
+        : <Route
+            path={URL_ROOT}
+            component={WelcomeContainer}
+          />
+    : <Route
+          path={URL_ROOT}
+          component={WelcomeContainer}
+      />
+  }
+
   render() {
     return (
       <div className="app">
         <Header />
-        {
-          // Check if there is a userId in localStorage. If so, connect to websockets and reroute user.
-          // NOTE >> Added wss uri query param .for identifying user on websocket connection.
-          // If there is not, go to Welcome container.
-
-          !!this.props.userId
-              ? <ActionCableProvider url={API_WS_ROOT+`?user=${AdapterUser.getToken()}`}>
-                  <Switch>
-                    <Route
-                      path={URL_USER_PROFILE}
-                      component={UpdateProfile}
-                    />
-                    <Route
-                      path={URL_HOME}
-                      component={HomeContainer}
-                    />
-                    <Route
-                      path={URL_ROOT}
-                      component={HomeContainer}
-                    />
-                  </Switch>
-                </ActionCableProvider>
-            : <Route
-                  path={URL_ROOT}
-                  component={WelcomeContainer}
-            />
-        }
+        {this.routerFunction()}
         <Footer />   
       </div>
-    );
+    )
   }
 }
 
