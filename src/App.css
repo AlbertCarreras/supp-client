@@ -172,6 +172,14 @@
   color: #05386B;
 }
 
+/* USER LIST. */
+.loading-message {
+  margin: 10px;
+  font-family: 'Sniglet', cursive;
+  font-weight: 400;
+  color: white;
+}
+
 /* UPDATE PROFILE. */
 .user-account-container {
   background: #379683;
