@@ -22,7 +22,7 @@ export const URL_ROOT = '/supp-client'
 export const URL_HOME = '/supp-client/home'
 export const URL_LOGIN = '/supp-client/login'
 export const URL_SIGNUP = '/supp-client/signup'
-// export const URL_USER_PROFILE = '/supp-client/user/profile'
+export const URL_USER_PROFILE = '/supp-client/user/profile'
 
 //HEADERS
 export const AUTH_HEADERS_JSON_JWT =  {
