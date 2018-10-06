@@ -47,7 +47,7 @@ class Login extends Component {
     }
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = () => {
     AdapterUser.login(this.state)
     .then(json => { 
         AdapterUser.setToken(json.jwt);

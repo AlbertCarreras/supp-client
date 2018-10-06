@@ -60,7 +60,7 @@ class UserList extends Component {
                     ? this.generateUserList(this.props.closestUsers) 
                     :   <div>
                           <Loader active />
-                          <p class="loading-message"> Finding you location and people around you... </p>
+                          <p className="loading-message"> Finding you location and people around you... </p>
                         </div>
                 }
             </div>

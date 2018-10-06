@@ -1,5 +1,6 @@
 //CONSTANTS
 import {API_ROOT} from './Adapters/AdapterConstants'
+import AdapterUser from './Adapters/AdapterUser';
 
 //TYPES
 import {
@@ -25,7 +26,7 @@ export const thunkLogin = () => {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
               }
           })
-        .then(r=>r.json())
+        .then(r=> r.json())
         .then(resp => dispatch( { 
             type: LOGIN,
             payload: {
@@ -40,6 +41,11 @@ export const thunkLogin = () => {
                 prevGeolocationLon: resp.lon, 
             }
         }))
+        .catch(() => {
+            AdapterUser.deleteToken();
+            return dispatch( { 
+            type: LOGOUT,
+        })})
     }
 }
 
@@ -91,6 +97,11 @@ export const thunkPersistCurrentGeolocation = (userId, latitude, longitude) => {
                 lon: resp.lon,
             }
         }))
+        .catch(() => {
+            AdapterUser.deleteToken();
+            return dispatch( { 
+            type: LOGOUT,
+        })})
     }
 }
 
@@ -118,6 +129,11 @@ export const thunkSaveFilteredClosestUsers = (filterTermId) => {
                 closestUsers: resp,
             }
         }))
+        .catch(() => {
+            AdapterUser.deleteToken();
+            return dispatch( { 
+            type: LOGOUT,
+        })})
     }
 }
 
@@ -143,6 +159,11 @@ export const thunkUploadProfile = (userId, profileImage) => {
                 profileImageLink: resp.url,
             }
         }))
+        .catch(() => {
+            AdapterUser.deleteToken();
+            return dispatch( { 
+            type: LOGOUT,
+        })})
     }
 }
 
@@ -183,6 +204,11 @@ export const thunkUpdateProfileInfo = (userId, username, bio) => {
                 bio: bio,
             }
         }))
+        .catch(() => {
+            AdapterUser.deleteToken();
+            return dispatch( { 
+            type: LOGOUT,
+        })})
     }
 }
 
@@ -210,6 +236,11 @@ export const thunkSaveUserInterests = (userId, userInterests) => {
                 userInterestArray: resp.interests,
             }
         }))
+        .catch(() => {
+            AdapterUser.deleteToken();
+            return dispatch( { 
+            type: LOGOUT,
+        })})
     }
 }
 
@@ -237,6 +268,11 @@ export const thunkRemoveUserInterests = (userInterests) => {
                 userInterestArray: resp.interests,
             }
         }))
+        .catch(() => {
+            AdapterUser.deleteToken();
+            return dispatch( { 
+            type: LOGOUT,
+        })})
     }
 }
 
@@ -257,6 +293,11 @@ export const thunkSaveConversations = () => {
                 conversations: resp,
             }
         }))
+        .catch(() => {
+            AdapterUser.deleteToken();
+            return dispatch( { 
+            type: LOGOUT,
+        })})
     }
 }
 
@@ -280,6 +321,11 @@ export const thunkCreateNewWord = (userId, newTerm) => {
         .then(resp => dispatch(
             thunkSaveUserInterests(userId, resp)
         ))
+        .catch(() => {
+            AdapterUser.deleteToken();
+            return dispatch( { 
+            type: LOGOUT,
+        })})
     }
 }
 

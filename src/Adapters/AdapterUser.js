@@ -25,6 +25,8 @@ class AdapterUser {
     localStorage.removeItem("token")
   }
 
+  
+
   // Fetch email/password to login and receive JWT token as a response. JWT is then used in getCurrentUser -Thunk action- ro retrieve user information
   static login(loginState) {
     return fetch(`${API_ROOT}/user_token`, {
