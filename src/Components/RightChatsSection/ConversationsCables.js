@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => {
 
 class ConversationsCables extends Component {
 
-  // If a new broadcasted conversation from websockets is received, check if user is one of the user ids to whom the conversation belongs to (users are serialized). If so, appended into the list of conversations.
+  // If a new broadcasted conversation from websockets is received, check if user is one of the user ids to whom the conversation belongs to (users are serialized). If so, appended into the list of conversations. Channels are private but this double-checks subscribers on the client-side.
   handleReceivedConversation = (response) => {
     const { conversation } = response;
     if (conversation.users.map((i)=> i.id).includes(this.props.userId)) {
@@ -30,12 +30,14 @@ class ConversationsCables extends Component {
 
   render() {
     return (
-            <ActionCable
-                channel={{ 
-                  channel: 'ConversationsChannel'
-                }}
-                onReceived={(response) => this.handleReceivedConversation(response)}
-            />
+      this.props.userId 
+      ? <ActionCable
+            channel={{ 
+              channel: 'ConversationsChannel'
+            }}
+            onReceived={(response) => this.handleReceivedConversation(response)}
+        />
+      : null
     );
   }
 };
