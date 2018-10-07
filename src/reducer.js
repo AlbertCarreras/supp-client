@@ -81,6 +81,8 @@ export default function reducer(state = initialState, action) {
             return { ...state,
                     lat: action.payload.lat,
                     lon: action.payload.lon,
+                    prevGeolocationLat: action.payload.lat,
+                    prevGeolocationLon: action.payload.lon,    
             }
         case SAVE_CLOSEST_USERS:
             return { ...state,

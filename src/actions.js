@@ -95,6 +95,8 @@ export const thunkPersistCurrentGeolocation = (userId, latitude, longitude) => {
             payload: {
                 lat: resp.lat,
                 lon: resp.lon,
+                prevGeolocationLat: resp.lat,
+                prevGeolocationLon: resp.lon,
             }
         }))
         .catch(() => {

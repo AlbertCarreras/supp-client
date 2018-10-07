@@ -16,6 +16,7 @@ const mapStateToProps = state => {
         loggedIn: state.loggedIn,
         profileImageLink: state.profileImageLink,
         closestUsers: state.closestUsers,
+        prevGeolocationLat: state.prevGeolocationLat,
     }
 }
 
@@ -56,11 +57,15 @@ class UserList extends Component {
                     profileImageLink={this.props.profileImageLink}
                 />
                 {/* CLOSEST USERS PROFILE SQUARES */}
-                {this.props.closestUsers.length !== 0
-                    ? this.generateUserList(this.props.closestUsers) 
+                {this.props.prevGeolocationLat
+                    ?   this.props.closestUsers.length !== 0
+                        ?   this.generateUserList(this.props.closestUsers) 
+                        :   <div>
+                                <p className="loading-message"> Ups! It looks like there's nobody with that interest around. Try another one!</p>
+                            </div>
                     :   <div>
-                          <Loader active />
-                          <p className="loading-message"> Finding you location and people around you... </p>
+                            <Loader active />
+                            <p className="loading-message"> Finding you location and people around you... </p>
                         </div>
                 }
             </div>
