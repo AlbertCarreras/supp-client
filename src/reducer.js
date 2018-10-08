@@ -5,7 +5,8 @@ import {
     SAVE_USER_INTERESTS,
     SAVE_FILTERED_CLOSEST_USERS,
     SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS,
-    SAVE_CONVERSATIONS, SAVE_SELECTED_CONVERSATION, CLEAN_SELECTED_CONVERSATION, APPEND_NEW_CONVERSATION,
+    SAVE_CONVERSATIONS, SAVE_SELECTED_CONVERSATION, CLEAN_SELECTED_CONVERSATION, APPEND_NEW_CONVERSATION, 
+    ADD_ERROR_MESSAGE, CLEAN_ERROR_MESSAGES,
 } from './types';
 
 //Default App State - REDUX
@@ -26,6 +27,7 @@ const initialState = {
     selectedCommonInterest: undefined,
     conversations: [],
     selectedConversation: undefined,
+    errorMessages: {},
   }
   
 export default function reducer(state = initialState, action) {
@@ -132,6 +134,17 @@ export default function reducer(state = initialState, action) {
         case CLEAN_SELECTED_CONVERSATION:
         return { ...state,
             selectedConversation: undefined,
+        }
+
+        case ADD_ERROR_MESSAGE:  
+        return { ...state,
+            // errorMessages: Object.assign({}, state.errorMessages, {[action.payload.key]: action.payload.value}),
+            errorMessages: {...state.errorMessages, [action.payload.key]: action.payload.value},
+        }
+
+        case CLEAN_ERROR_MESSAGES:
+        return { ...state,
+            errorMessages: {},
         }
   
         default:

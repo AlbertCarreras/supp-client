@@ -5,7 +5,7 @@ import {Route, Switch} from "react-router-dom";
 import AdapterUser from './../Adapters/AdapterUser';
 import {GITHUB_URL_ROOT} from './../Adapters/AdapterConstants'
 import {URL_ROOT} from './../Adapters/AdapterConstants'
-import {URL_LOGIN} from './../Adapters/AdapterConstants'
+import {URL_SIGNUP} from './../Adapters/AdapterConstants'
 
 //COMPONENTS
 import Login from './Login'
@@ -21,12 +21,12 @@ const WelcomeContainer = () => {
         }
         return   <Switch>
                     <Route
-                        exact path={URL_LOGIN}
-                        component={Login}
+                        exact path={URL_SIGNUP}
+                        component={Signup}
                     />
                     <Route
                         path={URL_ROOT}
-                        component={Signup}
+                        component={Login}
                     />    
                 </Switch>
     }

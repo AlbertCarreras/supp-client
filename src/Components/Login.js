@@ -8,12 +8,20 @@ import {URL_SIGNUP} from './../Adapters/AdapterConstants'
 import {URL_HOME} from './../Adapters/AdapterConstants'
 
 // ACTIONS
-import { jwtSavedInLocalStorage } from '../actions';
+import { jwtSavedInLocalStorage, addErrorMessage, cleanErrorMessages } from '../actions';
 
 // REDUX PROPS 
 const mapDispatchToProps = dispatch => {
   return {
     jwtSavedInLocalStorage: () => dispatch(jwtSavedInLocalStorage()),
+    addErrorMessage: (key, value) => dispatch(addErrorMessage(key, value)),
+    cleanErrorMessages: () => dispatch(cleanErrorMessages()),
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+      errorMessages: state.errorMessages,
   }
 }
 
@@ -22,7 +30,6 @@ class Login extends Component {
   state = {
     email: "",
     password: "",
-    errorMessage: {},
   };
 
   //PROPS FUNCTIONALITY: Button handlers
@@ -32,15 +39,14 @@ class Login extends Component {
     })
   }
 
-  displayError = (field) => {
-    return this.state.errorMessage[field] 
-    ? <p>{this.state.errorMessage[field]}</p>
+  displayErrors = (field) => {
+    return this.props.errorMessages[field] 
+    ? <p>{this.props.errorMessages[field]}</p>
     : null
   }
 
   // Logs in user and saves token in LocalStorage and cookie. If error response, pushes to Login page.
   //NOTE: I should add validation messages.
-
   pressedEnter = (event) => {
     if (event.key === "Enter" ) {
       this.handleSubmit();
@@ -48,18 +54,15 @@ class Login extends Component {
   }
 
   handleSubmit = () => {
+    this.props.cleanErrorMessages();
     AdapterUser.login(this.state)
     .then(json => { 
         AdapterUser.setToken(json.jwt);
-        //AdapterUser.saveTokenAsCookie();
         this.props.jwtSavedInLocalStorage();
         this.props.history.push(URL_HOME)
     })
     .catch(() => {
-      let errorMessageArray = {"invalid": "The email or password did not match our records."}
-        this.setState({
-          errorMessage: errorMessageArray,
-        })
+      this.props.addErrorMessage("invalidCredentials", "The email or password did not match our records.")
     })
   }
  
@@ -67,6 +70,7 @@ class Login extends Component {
     return (
       <div className="overlay-box login">
         <div className="login-signup-form">
+        {this.displayErrors("unauthorizedToken")}
           <h3 className="login-form-header">LOG IN</h3>
             <div className="ui tiny form">
               <div className="two fields">
@@ -90,7 +94,7 @@ class Login extends Component {
                   />
                 </div>
               </div>
-              {this.displayError("invalid")}
+              {this.displayErrors("invalidCredentials")}
               <div className="btn-submit">
                 <div 
                   className="ui submit button"
@@ -106,4 +110,4 @@ class Login extends Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login));

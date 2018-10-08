@@ -11,9 +11,11 @@ import {
     SAVE_FILTERED_CLOSEST_USERS,
     SELECT_COMMON_INTERESTS, UNSELECT_COMMON_INTERESTS,
     SAVE_CONVERSATIONS, SAVE_SELECTED_CONVERSATION, CLEAN_SELECTED_CONVERSATION, APPEND_NEW_CONVERSATION,
+    ADD_ERROR_MESSAGE, CLEAN_ERROR_MESSAGES,
 } from './types';
 
 //REDUX-THUNK actions
+// Login, currentGeolocation and closestUsers happen sequentially.
 export const thunkLogin = () => {
 
     return (dispatch) => {
@@ -42,6 +44,13 @@ export const thunkLogin = () => {
             }
         }))
         .catch(() => {
+            dispatch( { 
+                type: ADD_ERROR_MESSAGE,
+                payload: {
+                    key: "unauthorizedToken",
+                    value: "Unauthorized credentials. Please, log in again.",
+                }
+            })
             AdapterUser.deleteToken();
             return dispatch( { 
             type: LOGOUT,
@@ -100,6 +109,13 @@ export const thunkPersistCurrentGeolocation = (userId, latitude, longitude) => {
             }
         }))
         .catch(() => {
+            dispatch( { 
+                type: ADD_ERROR_MESSAGE,
+                payload: {
+                    key: "unauthorizedToken",
+                    value: "Unauthorized credentials. Please, log in again.",
+                }
+            })
             AdapterUser.deleteToken();
             return dispatch( { 
             type: LOGOUT,
@@ -107,6 +123,7 @@ export const thunkPersistCurrentGeolocation = (userId, latitude, longitude) => {
     }
 }
 
+// When an interest is selected, an array with users matching that interest gets returned.
 export const thunkSaveFilteredClosestUsers = (filterTermId) => {
 
     return (dispatch) => {
@@ -132,6 +149,13 @@ export const thunkSaveFilteredClosestUsers = (filterTermId) => {
             }
         }))
         .catch(() => {
+            dispatch( { 
+                type: ADD_ERROR_MESSAGE,
+                payload: {
+                    key: "unauthorizedToken",
+                    value: "Unauthorized credentials. Please, log in again.",
+                }
+            })
             AdapterUser.deleteToken();
             return dispatch( { 
             type: LOGOUT,
@@ -139,6 +163,7 @@ export const thunkSaveFilteredClosestUsers = (filterTermId) => {
     }
 }
 
+// Users update profile photo and text.
 export const thunkUploadProfile = (userId, profileImage) => {
 
     let formData = new FormData();
@@ -162,6 +187,13 @@ export const thunkUploadProfile = (userId, profileImage) => {
             }
         }))
         .catch(() => {
+            dispatch( { 
+                type: ADD_ERROR_MESSAGE,
+                payload: {
+                    key: "unauthorizedToken",
+                    value: "Unauthorized credentials. Please, log in again.",
+                }
+            })
             AdapterUser.deleteToken();
             return dispatch( { 
             type: LOGOUT,
@@ -207,6 +239,13 @@ export const thunkUpdateProfileInfo = (userId, username, bio) => {
             }
         }))
         .catch(() => {
+            dispatch( { 
+                type: ADD_ERROR_MESSAGE,
+                payload: {
+                    key: "unauthorizedToken",
+                    value: "Unauthorized credentials. Please, log in again.",
+                }
+            })
             AdapterUser.deleteToken();
             return dispatch( { 
             type: LOGOUT,
@@ -214,6 +253,7 @@ export const thunkUpdateProfileInfo = (userId, username, bio) => {
     }
 }
 
+// Users add interests from list persisting changes.
 export const thunkSaveUserInterests = (userId, userInterests) => {
 
     let bodyPersistAddInterests = {"user": {
@@ -239,6 +279,13 @@ export const thunkSaveUserInterests = (userId, userInterests) => {
             }
         }))
         .catch(() => {
+            dispatch( { 
+                type: ADD_ERROR_MESSAGE,
+                payload: {
+                    key: "unauthorizedToken",
+                    value: "Unauthorized credentials. Please, log in again.",
+                }
+            })
             AdapterUser.deleteToken();
             return dispatch( { 
             type: LOGOUT,
@@ -246,6 +293,7 @@ export const thunkSaveUserInterests = (userId, userInterests) => {
     }
 }
 
+// Users remove interests from list persisting changes.
 export const thunkRemoveUserInterests = (userInterests) => {
     
     let bodyPersistRemoveInterests = {"user": {
@@ -271,6 +319,13 @@ export const thunkRemoveUserInterests = (userInterests) => {
             }
         }))
         .catch(() => {
+            dispatch( { 
+                type: ADD_ERROR_MESSAGE,
+                payload: {
+                    key: "unauthorizedToken",
+                    value: "Unauthorized credentials. Please, log in again.",
+                }
+            })
             AdapterUser.deleteToken();
             return dispatch( { 
             type: LOGOUT,
@@ -278,6 +333,7 @@ export const thunkRemoveUserInterests = (userInterests) => {
     }
 }
 
+// Users start a new conversation. Conversations get persisted and broadcasted from server.
 export const thunkSaveConversations = () => {
     
     return (dispatch) => {
@@ -296,6 +352,13 @@ export const thunkSaveConversations = () => {
             }
         }))
         .catch(() => {
+            dispatch( { 
+                type: ADD_ERROR_MESSAGE,
+                payload: {
+                    key: "unauthorizedToken",
+                    value: "Unauthorized credentials. Please, log in again.",
+                }
+            })
             AdapterUser.deleteToken();
             return dispatch( { 
             type: LOGOUT,
@@ -303,6 +366,7 @@ export const thunkSaveConversations = () => {
     }
 }
 
+// If users look for  word that does not exist yet in the database, they can click on the new word an persisted.
 export const thunkCreateNewWord = (userId, newTerm) => {
     
     return (dispatch) => {
@@ -324,6 +388,13 @@ export const thunkCreateNewWord = (userId, newTerm) => {
             thunkSaveUserInterests(userId, resp)
         ))
         .catch(() => {
+            dispatch( { 
+                type: ADD_ERROR_MESSAGE,
+                payload: {
+                    key: "unauthorizedToken",
+                    value: "Sorry, there was an error processing the information. Please, log in again.",
+                }
+            })
             AdapterUser.deleteToken();
             return dispatch( { 
             type: LOGOUT,
@@ -397,6 +468,25 @@ export function updateClosestUsers(closestUsers) {
         type: UPDATE_ACTIVE_CLOSEST_USERS,
         payload: {
             closestUsers: closestUsers,
+        }
+    }
+}
+
+export function addErrorMessage(key, value) {
+    return {
+        type: ADD_ERROR_MESSAGE,
+        payload: {
+            key: key,
+            value: value,
+        }
+    }
+}
+
+export function cleanErrorMessages() {
+    return {
+        type: CLEAN_ERROR_MESSAGES,
+        payload: {
+            errorMessages: {},
         }
     }
 }
