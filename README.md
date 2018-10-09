@@ -4,13 +4,18 @@
 
 Supp is a user-friendly app that sorts users by distance and filters them by common interests/hobbies. Users connect with each other via private chats. 
 
-## Demo video
+## Demo video (How to use)
 
 https://www.youtube.com/watch?v=yG3gEc1bC60&feature=youtu.be
 
 ## Technologies
 
 ### Front-end
+#### Set up
+1. Clone repo.
+1. Install dependencies `npm install`.
+1. Start your server `npm start`.
+
 Github:
 Front-end 
 https://github.com/AlbertCarreras/supp-client
@@ -30,13 +35,21 @@ React with Redux & Redux Thunk
   * **Custom CSS** and **Semantic UI elements** for front-end design
   
     Most of the app is styled using custom CSS. Some elements such as the icons and the modals are Semantic UI elements.
-    I decided to use Semantic UI elements because the library facilitated the front-end styling in previous projects. Moreover, I had in mind using modals and liked the examples from the library. However, I would refactor the modals and use custom CSS. 
+    I decided to use Semantic UI elements because the library facilitated the front-end styling in previous projects. Moreover, I had in mind using modals and liked the examples from the library. However, I would refactor the modals, use custom CSS with LESS.
 
   * **Bad-words (package)** for filtering profane language
   
     The search bar and the chat input bar do not allow to look for profane language. It is a very simple package but easily offers functionality to prevent some user behaviors.
 
 ### Back-end 
+#### Setup
+1. Clone repo.
+1. Install Gems `bundle install`.
+1. Set up Database `rake db:create`, then run `rake db:migrate`.
+1. Seed Database `rake db:seed` (>10 Lines).
+1. Create master.key file with 32 characters in it within config folder.
+1. Start your server `rails s`.
+
 Github:
 Back-end
 https://github.com/AlbertCarreras/supp-server
@@ -69,10 +82,7 @@ Rails API with with serialization and Postgres
 
   * **Knock** for JSON Web Token authentication and **cookies** for websocket-connection user identification
   
-      I followed the __3.1.1 Connection Setup__ implementation guidelines from the Action Cable Overview documentation. However, I used JWT tokens for authorization. In order to pass the required cookies, the front-end generates a cookie containing the JWT token from localStorage and the server authorize the incoming connection if the user is identified in the JWT token.
-    
-      Great resources for creating cookies in the React front-end:
-      * https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
+      I followed the __3.1.1 Connection Setup__ implementation guidelines from the Action Cable Overview documentation. However, I used JWT tokens for authorization. See Notes on technologies for further implementation details and thoughts.
     
   * **Geokit (gem)** for calculating surrounding users to connected user distance
   
@@ -86,18 +96,19 @@ As I was building the app, I made some decisions that down the project happen to
 
 Another decision was to use "React-actioncable-provider" to facilitate the implementation of Actioncable in the front end.
 
-When implementing the websockets for live active-user indicator, I found out that Actioncable uses cookies to identify the user in the server (channels folder) and does not have access to the controllers folder. At first, I made the front-end create a cookie container the token so it could be picked up in the server and identify the user which works in local/development. However, this solution does not work in production. I deployed front-end and backend in different domains and cookies don't work cross-domain. 
+When implementing the websockets for live active-user indicator, I found out that Actioncable uses cookies to identify the user in the server (channels folder) and does not have access to the controllers folder. At first, I made the front-end create a cookie (https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie)containing the token so it could be picked up in the server and identify the user which works in local/development. However, this solution does not work in production. I deployed front-end and backend in different domains and cookies don't work cross-domain. 
 
 Having used Devise, I could have scoped warden (https://www.sitepoint.com/create-a-chat-app-with-rails-5-actioncable-and-devise/).
 
 Having not used "React-actioncable-provider", instead hard-coding all the action cable implementation, I could have passed some user information in the headers. 
 
-The quickest -and not safe solution- was to pass the actual userId as a query parameter.
+The quickest -and not optimal solution- was to pass the actual userId as a query parameter.
 
 ### Notes on next steps
 - Implementing some tests (Rspec in the back end and Mocha in the front end) 
 - Organizing the CSS code implementing LESS or new CSS3 functionality. Fixing some CSS issues.
 - Improving the algorithm for returning users by proximity and interests so it works with large datasets.
+-Refactor the actions and reducers into different files by work scope.
 
 ## Authors
 
