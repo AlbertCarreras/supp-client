@@ -55,7 +55,7 @@ class App extends Component {
   }
 
   // When the component mounts, check if there is token in localStorage. If so, login the user, return the user info & friends.
-  componentDidMount(){ 
+  componentDidMount() { 
     if (AdapterUser.getToken()) {
       //AdapterUser.saveTokenAsCookie();
       this.props.jwtSavedInLocalStorage();
