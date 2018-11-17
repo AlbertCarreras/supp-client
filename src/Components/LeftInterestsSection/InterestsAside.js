@@ -8,7 +8,7 @@ class InterestsAside extends Component {
     render() {
         
         return (
-            <div className="aside-container">
+            <div className="aside-interest-container">
                 <Search />
                 <InterestsList />
             </div>
