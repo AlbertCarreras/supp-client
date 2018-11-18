@@ -432,9 +432,6 @@
   color: #05386B;
   padding: 10px;
 }
-.signup {
-  height: 480px;/*height needs to be set*/
-}
 
 .btn-submit {
   display: flex;
@@ -448,6 +445,10 @@
 
 .login-signup-form {
   padding: 20px;
+}
+
+.signup {
+  height: 480px;/*height needs to be set*/
 }
 
 .signup-message {
@@ -464,6 +465,18 @@
   font-weight: 800;
 }
 
+/* RESPONSIVENESS. Resizes signup containers */
+@media (max-width: 767px) {
+  
+  .signup-message, .signup-message-connect  {  
+    display: none;
+  }
+
+  .signup {
+    height: 400px;/*height needs to be set*/
+  }
+}
+
 .signup-error {
   margin-bottom: 10px;
 }
@@ -473,7 +486,7 @@
   border: 4px solid  #379683;
   border-radius: 25px;
   text-align:center;
-  width: 450px;
+  width: 400px;
   margin: auto;
   position: fixed;
   top: 0;
