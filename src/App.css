@@ -42,18 +42,24 @@
 }
 
 .home-container {
-  display: flex;
-  height: 700px;
-  justify-content: center;
+  height: 600px;
   background-color: white;
   overflow: auto !important;
+}
+
+/* RESPONSIVENESS. It gives responsiveness to website when resizing window. Above min size for 3 components, adds flex and justify content which removes horizontal scrolling. */
+@media (min-width: 1040px) {
+  
+  .home-container {  
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .inner-home-container {
   display: flex;
   height: 700px;
   background-color: white;
-  overflow: auto !important;
 }
 
 .home-container > * {
@@ -90,6 +96,33 @@
   position: relative;
   width: 440px;
   min-width: 440px;
+}
+
+/* RESPONSIVENESS. It gives responsiveness to website when resizing min window. It displays components in block and only 3 user profiles in central container. */
+@media screen and (max-width: 400px) {
+
+  .app-header{
+    padding: 0px 10px;
+  }
+
+  .inner-home-container {  
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .central-container { 
+    /* display:none; */
+    justify-content: center;
+    width: 400px;
+    height: 600px;
+    min-width: 400px;
+  }
+
+  .home-container::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
 }
 
 .profile-image-list {
@@ -346,17 +379,19 @@
 .message-box {
   display: flex;
   margin: 5px;
-  width: 200px;
   border-radius: 5px;
 }
+.message-box > * {
+  width: 240px;
+  padding: 0px 5px;
+}
+
 
 .message-box-time{
   font-size: 0.60em;
-  width: 200px;
 }
 
 .message-box-content {
-  width: 200px;
   z-index: 2;
 }
 

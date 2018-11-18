@@ -78,10 +78,8 @@ const MessagesArea = (props) => {
                 className="message-box"
                 style={isUser(message.user.id)}
               >
-              <div className="message-box-wrapper">
-                <div 
-                  className="message-box-time"
-                >
+              <div>
+                <div className="message-box-time">
                   {getTime(message.created_at)}
                   {Adapters.capitalize(message.user.username)}
                 </div>
