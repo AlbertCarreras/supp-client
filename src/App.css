@@ -42,7 +42,7 @@
 }
 
 .home-container {
-  height: 600px;
+  height: 800px;
   background-color: white;
   overflow: auto !important;
 }
@@ -112,7 +112,6 @@
   }
 
   .central-container { 
-    /* display:none; */
     justify-content: center;
     width: 400px;
     height: 600px;
@@ -278,7 +277,6 @@
   width: fit-content;
   padding: 5px;
 }
-
 
 /* MESSAGING CONTAINER. Responsive Image Grid*/
 
