@@ -1,7 +1,7 @@
 import {
     JWT, 
-    LOGIN, 
-    LOGOUT, 
+    LOGIN,
+    LOGOUT_AUTH, 
     ADD_ERROR_MESSAGE, 
     CLEAN_ERROR_MESSAGES,
 } from '../types';
@@ -28,7 +28,7 @@ export default function userAuthReducer(state = initialState, action) {
                 userInterests: action.payload.userInterests,
                 selectedCommonInterest: action.payload.selectedCommonInterest,
             }
-        case LOGOUT:
+        case LOGOUT_AUTH:
             return { ...state,
                 jwtToken: false,
                 username: "",
