@@ -521,6 +521,9 @@ img {
     flex: 50%;
     max-width: 50%;
   }
+  .column-3, .column-4 {
+    display: none;
+  }
 }
 
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
@@ -529,6 +532,11 @@ img {
     flex: 100%;
     max-width: 100%;
   }
+
+  .column-2, .column-3, .column-4 {
+    display: none;
+  }
+
 }
 
 /* MENU */
