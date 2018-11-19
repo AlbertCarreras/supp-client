@@ -469,6 +469,32 @@
   }
 }
 
+/* RESPONSIVENESS. Resizes elements for responsiveness in phones */
+@media screen and (max-width: 320px) {
+  .central-container { 
+    width: 300px;
+    height: 500px;
+    min-width: 300px;
+  }
+
+  .profile-image-list {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-image-username {
+    margin: 62.5px 0px 0px 12.5px;
+  }
+  
+  .profile-image-distance {
+    margin: 10px 0px 0px 50px;
+  }
+
+  .profile-image-logged {
+    margin: 15px 0px 0px 15px;
+  }
+}
+
 .signup-error {
   margin-bottom: 10px;
 }
