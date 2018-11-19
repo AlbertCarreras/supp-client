@@ -8,7 +8,7 @@ import { saveUpdatedConversations } from '../../actions'
 // REDUX PROPS 
 const mapStateToProps = state => {
   return {
-      conversations: state.conversations,
+      conversations: state.userConversations.conversations,
   }
 }
 

@@ -17,8 +17,8 @@ import { cleanSelectedConversation } from '../../actions'
 const mapStateToProps = state => {
   return {
       userId: state.userId,
-      conversations: state.conversations,
-      selectedConversation: state.selectedConversation,
+      conversations: state.userConversations.conversations,
+      selectedConversation: state.userConversations.selectedConversation,
   }
 }
 

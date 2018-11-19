@@ -14,8 +14,8 @@ import UserInterestList from './../CentralUsersSection/UserInterestList'
 // REDUX PROPS 
 const mapStateToProps = state => {
     return {
-        selectedCommonInterest: state.selectedCommonInterest,
-        userInterests: state.userInterests
+        selectedCommonInterest: state.userInterests.selectedCommonInterest,
+        userInterests: state.userInterests.userInterests
     }
 }
 

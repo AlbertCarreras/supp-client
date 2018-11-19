@@ -8,7 +8,7 @@ import { updateClosestUsers } from '../actions'
 //REDUX PROPS 
 const mapStateToProps = state => {
   return {
-    closestUsers: state.closestUsers,
+    closestUsers: state.userFriends.closestUsers,
   }
 }
 

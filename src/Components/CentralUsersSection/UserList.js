@@ -11,12 +11,12 @@ import ProfileModal from "./ProfileModal"
 // REDUX PROPS 
 const mapStateToProps = state => {
     return {
-        username: state.username,
-        bio: state.bio,
-        loggedIn: state.loggedIn,
-        profileImageLink: state.profileImageLink,
-        closestUsers: state.closestUsers,
-        prevGeolocationLat: state.prevGeolocationLat,
+        username: state.userProfile.username,
+        bio: state.userProfile.bio,
+        loggedIn: state.userAuth.loggedIn,
+        profileImageLink: state.userProfile.profileImageLink,
+        closestUsers: state.userFriends.closestUsers,
+        prevGeolocationLat: state.userProfile.prevGeolocationLat,
     }
 }
 

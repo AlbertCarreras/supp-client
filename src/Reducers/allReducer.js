@@ -9,28 +9,9 @@ import {
     ADD_ERROR_MESSAGE, CLEAN_ERROR_MESSAGES,
 } from './types';
 
-//Default App State - REDUX
-const initialState = {
-    jwtToken: false,
-    username: "",
-    email: "",
-    userId: null,
-    loggedIn: false,
-    bio: "",
-    profileImageLink: undefined,
-    lat: undefined,
-    lon: undefined,
-    prevGeolocationLat: undefined,
-    prevGeolocationLon: undefined,
-    userInterests: [],
-    closestUsers: [],
-    selectedCommonInterest: undefined,
-    conversations: [],
-    selectedConversation: undefined,
-    errorMessages: {},
-  }
-  
-export default function reducer(state = initialState, action) {
+import initialState from './state';
+    
+export default function allReducer(state = initialState, action) {
     switch(action.type) {
         case JWT: {
             return { ...state,

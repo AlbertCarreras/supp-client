@@ -12,10 +12,10 @@ import { thunkUpdateProfileInfo, thunkUploadProfile } from '../actions';
 // REDUX PROPS 
 const mapStateToProps = state => {
     return {
-        user_id: state.userId,
-        username: state.username,
-        bio: state.bio,
-        profileImageLink: state.profileImageLink
+        user_id: state.userAuth.userId,
+        username: state.userProfile.username,
+        bio: state.userProfile.bio,
+        profileImageLink: state.userProfile.profileImageLink
     }
 }
 

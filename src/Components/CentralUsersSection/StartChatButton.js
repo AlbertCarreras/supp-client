@@ -11,8 +11,8 @@ import { saveSelectedConversation } from '../../actions'
 // REDUX PROPS 
 const mapStateToProps = state => {
     return {
-        user_sender_id: state.userId,
-        conversations: state.conversations,
+        user_sender_id: state.userAuth.userId,
+        conversations: state.userConversations.conversations,
     }
 }
 

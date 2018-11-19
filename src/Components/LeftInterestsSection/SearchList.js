@@ -12,9 +12,9 @@ import { selectCommonInterests, thunkSaveUserInterests, thunkSaveFilteredClosest
 // REDUX PROPS 
 const mapStateToProps = state => {
     return {
-        selectedInterest: state.selectedCommonInterest,
-        userInterests: state.userInterests,
-        userId: state.userId
+        selectedInterest: state.userInterests.selectedCommonInterest,
+        userInterests: state.userInterests.userInterests,
+        userId: state.userAuth.userId
     }
 }
 

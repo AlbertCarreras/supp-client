@@ -7,8 +7,8 @@ import AdapterChats from './../../Adapters/AdapterChats';
 
 const mapStateToProps = state => {
   return {
-      userId: state.userId,
-      selectedConversation: state.selectedConversation,
+      userId: state.userAuth.userId,
+      selectedConversation: state.userConversations.selectedConversation,
   }
 }
 

@@ -9,8 +9,8 @@ import { GITHUB_URL_ROOT } from './../../Adapters/AdapterConstants';
 // REDUX PROPS 
 const mapStateToProps = state => {
     return {
-        userId: state.userId,
-        conversations: state.conversations,
+        userId: state.userAuth.userId,
+        conversations: state.userConversations.conversations,
     }
 }
 

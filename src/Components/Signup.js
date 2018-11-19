@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-      errorMessages: state.errorMessages,
+      errorMessages: state.userAuth.errorMessages,
   }
 }
 

@@ -15,9 +15,9 @@ import { logout } from '../actions';
 // REDUX PROPS 
 const mapStateToProps = state => {
     return {
-        username: Adapters.capitalize(state.username),
-        loggedIn: state.loggedIn,
-        profileImageLink: state.profileImageLink,
+        username: Adapters.capitalize(state.userProfile.username),
+        loggedIn: state.userAuth.loggedIn,
+        profileImageLink: state.userProfile.profileImageLink
     }
 }
 

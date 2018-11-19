@@ -11,7 +11,7 @@ import { thunkCreateNewWord } from '../../actions';
 // REDUX PROPS 
 const mapStateToProps = state => {
   return {
-      userId: state.userId,
+      userId: state.userAuth.userId,
   }
 }
 

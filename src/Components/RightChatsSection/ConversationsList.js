@@ -13,9 +13,9 @@ import Conversation from './Conversation';
 // REDUX PROPS 
 const mapStateToProps = state => {
   return {
-      userId: state.userId,
-      conversations: state.conversations,
-      selectedConversation: state.selectedConversation,
+      userId: state.userAuth.userId,
+      conversations: state.userConversations.conversations,
+      selectedConversation: state.userConversations.selectedConversation,
   }
 }
 

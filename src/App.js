@@ -24,12 +24,12 @@ import Footer from './Components/Footer';
 // REDUX PROPS 
 const mapStateToProps = state => {
   return {
-      jwtToken: state.jwtToken,
-      userId: state.userId,
-      loggedIn: state.loggedIn,
-      closestUsers: state.closestUsers,
-      lat: state.lat,
-      lon: state.lon,
+      jwtToken: state.userAuth.jwtToken,
+      userId: state.userAuth.userId,
+      loggedIn: state.userAuth.loggedIn,
+      closestUsers: state.userFriends.closestUsers,
+      lat: state.userProfile.lat,
+      lon: state.userProfile.lon,
   }
 }
 
