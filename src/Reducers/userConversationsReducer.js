@@ -5,8 +5,11 @@ import {
     APPEND_NEW_CONVERSATION, 
 } from '../types';
   
-import initialState from './state';
-  
+const initialState = {
+    conversations: [],
+    selectedConversation: undefined
+}
+
 export default function userConversationsReducer(state = initialState, action) {
     switch(action.type) {
         

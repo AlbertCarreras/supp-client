@@ -4,8 +4,10 @@ import {
     SAVE_FILTERED_CLOSEST_USERS
 } from '../types';
   
-import initialState from './state';
-  
+const initialState = {
+    closestUsers: []
+}
+
 export default function userFriendsReducer(state = initialState, action) {
     switch(action.type) {
             
