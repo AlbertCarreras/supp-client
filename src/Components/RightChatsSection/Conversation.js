@@ -16,6 +16,33 @@ const mapStateToProps = state => {
 
 
 const Conversation = (props) => {
+
+    function findConversationUser () {
+        return props.conversation.users.find((u) => u.id !== props.userId)
+    }
+
+    function returnImage () {
+        var conversationUser = findConversationUser()
+        console.log("uy", conversationUser)
+        if ( conversationUser.profile_image_url !== "undefined" ) {
+            return `${API_SHORT_ROOT+props.conversation.users.find((u) => u.id !== props.userId).profile_image_url}`
+        } 
+        else {
+            return GITHUB_URL_ROOT+`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
+        }
+    }
+
+    function returnFirstLine () {
+        return props.conversation.messages.length === 0
+        ?   <div className="conversation-first-message">
+                <p>Start a conversation!</p>
+            </div> 
+        :   <div className="conversation-first-message">
+                {Adapters.capitalize(props.conversation.messages[(props.conversation.messages.length)-1].user.username)}: {`${props.conversation.messages[(props.conversation.messages.length)-1].text.substring(0, 15)}...`}
+            </div> 
+    }
+
+
     return (
         <Fragment>
         {/* Top Conversation List >> Individual box */}
@@ -23,11 +50,7 @@ const Conversation = (props) => {
         <div className="conversation-image-box">
             <img 
                 className="conversation-image"
-                src={
-                    props.conversation.users.find((u) => u.id !== props.userId).profile_image_url !== "undefined"
-                ? `${API_SHORT_ROOT+props.conversation.users.find((u) => u.id !== props.userId).profile_image_url}` 
-                : GITHUB_URL_ROOT+`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
-                }
+                src={returnImage()}
                 alt="Mini profile"
             />
         </div>
@@ -36,17 +59,12 @@ const Conversation = (props) => {
         <div className="conversation-text-box">
 
             <div className="conversation-title">
-                {Adapters.capitalize(props.conversation.users.find((u) => u.id !== props.userId).username)}
-            </div>
-            { props.conversation.messages.length === 0
-                ?   <div className="conversation-first-message">
-                        <p>Start a conversation!</p>
-                    </div> 
-                :   <div className="conversation-first-message">
-                        {Adapters.capitalize(props.conversation.messages[(props.conversation.messages.length)-1].user.username)}: {`${props.conversation.messages[(props.conversation.messages.length)-1].text.substring(0, 15)}...`}
-                    </div> 
-            }
+                
+                {Adapters.capitalize(findConversationUser().username)}
             
+                </div>
+
+            { returnFirstLine()}
 
         </div>
         </Fragment>
