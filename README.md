@@ -108,13 +108,10 @@ The quickest -and not optimal solution- was to pass the actual userId as a query
 ## Improvements
 - Implementing some tests (Rspec in the back end and Mocha in the front end)
 - Organizing the CSS code implementing SASS.
-- Improving the front-end code to make a more responsive application.
 - Improving the algorithm for returning users by proximity and interests so it works with large user datasets.
-- Refactor the actions and reducers into different files by work scope.
+- Refactor the actions into different files by work scope.
 - Adjusting CSS on:
   - Fix footer position on Login page so it's stays visible.
-  - Fix Signup container so it's displays well when reducing screen.
-  - Fix left and right containers (interests and chats) so they keep fixed width. Central container (users) should adjust with minimal width.
   - Fixing chat scrolling so it appends in the last line and automatically scrolls to the bottom of the conversation.
 ## Potential next features
 - Pinned users in the central containers as a way of saving friends.

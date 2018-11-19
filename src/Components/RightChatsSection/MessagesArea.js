@@ -16,7 +16,7 @@ import { cleanSelectedConversation } from '../../actions'
 // REDUX PROPS 
 const mapStateToProps = state => {
   return {
-      userId: state.userId,
+      userId: state.userAuth.userId,
       conversations: state.userConversations.conversations,
       selectedConversation: state.userConversations.selectedConversation,
   }
@@ -91,6 +91,7 @@ const MessagesArea = (props) => {
     });
   };
 
+  console.log(props.selectedConversation, props.userId)
   return (
     // Build formatted chat box
     <div className="messages-box animated slideInUp delay-5s">

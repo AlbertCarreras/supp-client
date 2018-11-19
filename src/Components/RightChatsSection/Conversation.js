@@ -23,7 +23,6 @@ const Conversation = (props) => {
 
     function returnImage () {
         var conversationUser = findConversationUser()
-        console.log("uy", conversationUser)
         if ( conversationUser.profile_image_url !== "undefined" ) {
             return `${API_SHORT_ROOT+props.conversation.users.find((u) => u.id !== props.userId).profile_image_url}`
         } 
