@@ -16,7 +16,6 @@ import {
 export const thunkLogin = () => {
 
     return (dispatch) => {
-        console.log("thunk action")
         fetch(`${API_ROOT}/user/auth`, {
             method: "GET",
             headers: {

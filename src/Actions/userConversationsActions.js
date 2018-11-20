@@ -17,7 +17,6 @@ import {
 export const thunkSaveConversations = () => {
     
     return (dispatch) => {
-        console.log("thunk user conversations")
         fetch(`${API_ROOT}/conversations`, {
             method: 'GET',
             headers: {

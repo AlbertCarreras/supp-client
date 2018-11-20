@@ -20,7 +20,6 @@ export const thunkSaveUserInterests = (userId, userInterests) => {
       }};
 
     return (dispatch) => {
-        console.log("thunk user interests")
         fetch(`${API_ROOT}/user/${userId}/interests`, {
             method: 'POST',
             headers: {
@@ -60,7 +59,6 @@ export const thunkRemoveUserInterests = (userInterests) => {
       }};
 
     return (dispatch) => {
-        console.log("thunk user interests")
         fetch(`${API_ROOT}/user_interests/${userInterests.id}`, {
             method: 'DELETE',
             headers: {
@@ -96,7 +94,6 @@ export const thunkRemoveUserInterests = (userInterests) => {
 export const thunkCreateNewWord = (userId, newTerm) => {
     
     return (dispatch) => {
-        console.log("thunk new word")
         fetch(`${API_ROOT}/interests/create`, {
             method: 'POST',
             headers: {

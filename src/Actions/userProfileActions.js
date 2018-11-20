@@ -15,7 +15,6 @@ import {
 export const thunkPersistCurrentGeolocation = (userId, latitude, longitude) => {
 
     return (dispatch) => {
-        console.log("thunk save location")
         fetch(`${API_ROOT}/user/${userId}`, {
             method: 'PATCH',
             headers: {
@@ -62,7 +61,6 @@ export const thunkUploadProfile = (userId, profileImage) => {
     formData.append('profile_image', profileImage);
     
     return (dispatch) => {
-        console.log("thunk pic upload")
         fetch(`${API_ROOT}/users/uploadProfile`, {
             method: 'POST',
             headers: {
@@ -111,7 +109,6 @@ export const thunkUpdateProfileInfo = (userId, username, bio) => {
     })}
     
     return (dispatch) => {
-        console.log("thunk update profile info")
         fetch(`${API_ROOT}/user/${userId}`, {
             method: 'PATCH',
             headers: {

@@ -15,7 +15,6 @@ import {
 export const thunkSaveClosestUsers = () => {
 
     return (dispatch) => {
-        console.log("thunk closest users action")
         fetch(`${API_ROOT}/users`, {
             method: 'GET',
             headers: {
@@ -40,7 +39,6 @@ export const thunkSaveClosestUsers = () => {
 export const thunkSaveFilteredClosestUsers = (filterTermId) => {
 
     return (dispatch) => {
-        console.log("thunk filter friends")
         fetch(`${API_ROOT}/users`, {
             method: 'POST',
             headers: {
