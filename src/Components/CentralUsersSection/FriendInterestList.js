@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import Adapters from './../../Adapters/Adapters';
 
 // ACTIONS
-import { selectCommonInterests, thunkSaveFilteredClosestUsers } from '../../actions';
+import { selectCommonInterests } from './../../Actions/userInterestsActions';
+import { thunkSaveFilteredClosestUsers } from './../../Actions/userFriendsActions';
 
 const mapDispatchToProps = dispatch => {
     return {

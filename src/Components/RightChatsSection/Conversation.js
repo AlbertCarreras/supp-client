@@ -14,7 +14,6 @@ const mapStateToProps = state => {
     }
 }
 
-
 const Conversation = (props) => {
 
     function findConversationUser () {

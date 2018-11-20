@@ -9,7 +9,7 @@ import {URL_SIGNUP} from './../Adapters/AdapterConstants'
 import {URL_HOME} from './../Adapters/AdapterConstants'
 
 // ACTIONS
-import { jwtSavedInLocalStorage, addErrorMessage, cleanErrorMessages } from '../actions';
+import { jwtSavedInLocalStorage, addErrorMessage, cleanErrorMessages } from './../Actions/userAuthActions';
 
 // REDUX PROPS 
 const mapDispatchToProps = dispatch => {

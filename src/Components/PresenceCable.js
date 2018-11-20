@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { ActionCable } from 'react-actioncable-provider';
 
 // ACTIONS
-import { updateClosestUsers } from '../actions'
+import { updateClosestUsers } from './../Actions/userFriendsActions'
 
 //REDUX PROPS 
 const mapStateToProps = state => {

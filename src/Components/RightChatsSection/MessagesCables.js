@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { ActionCable } from 'react-actioncable-provider';
 
 // ACTIONS
-import { saveUpdatedConversations } from '../../actions'
+import { saveUpdatedConversations } from './../../Actions/userConversationsActions'
 
 // REDUX PROPS 
 const mapStateToProps = state => {

@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import Adapters from './../../Adapters/Adapters';
 
 // ACTIONS
-import { selectCommonInterests, thunkSaveUserInterests, thunkSaveFilteredClosestUsers } from '../../actions';
+import { selectCommonInterests, thunkSaveUserInterests } from './../../Actions/userInterestsActions';
+import { thunkSaveFilteredClosestUsers } from './../../Actions/userFriendsActions';
 
 // REDUX PROPS 
 const mapStateToProps = state => {

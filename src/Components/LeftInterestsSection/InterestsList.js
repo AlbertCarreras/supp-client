@@ -6,7 +6,8 @@ import { Icon } from 'semantic-ui-react'
 import Adapters from './../../Adapters/Adapters';
 
 // ACTIONS
-import { unselectCommonInterests, thunkSaveUserInterests, thunkSaveClosestUsers } from '../../actions'
+import { unselectCommonInterests, thunkSaveUserInterests } from './../../Actions/userInterestsActions';
+import { thunkSaveClosestUsers } from './../../Actions/userFriendsActions';
 
 //COMPONENTS
 import UserInterestList from './../CentralUsersSection/UserInterestList'

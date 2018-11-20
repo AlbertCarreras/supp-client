@@ -6,7 +6,7 @@ import { Icon } from 'semantic-ui-react'
 import Adapters from './../../Adapters/Adapters';
 
 // ACTIONS
-import { thunkCreateNewWord } from '../../actions';
+import { thunkCreateNewWord } from './../../Actions/userInterestsActions';
 
 // REDUX PROPS 
 const mapStateToProps = state => {

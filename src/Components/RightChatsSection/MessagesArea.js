@@ -9,9 +9,8 @@ import Adapters from './../../Adapters/Adapters';
 import NewMessageForm from './NewMessageForm';
 import ProfileModal from './../CentralUsersSection/ProfileModal';
 
-
 // ACTIONS
-import { cleanSelectedConversation } from '../../actions'
+import { cleanSelectedConversation } from './../../Actions/userConversationsActions'
 
 // REDUX PROPS 
 const mapStateToProps = state => {

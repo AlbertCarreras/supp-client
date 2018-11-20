@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import AdapterChats from '../../Adapters/AdapterChats';
 
 // ACTIONS
-import { saveSelectedConversation } from '../../actions'
+import { saveSelectedConversation } from './../../Actions/userConversationsActions'
 
 // REDUX PROPS 
 const mapStateToProps = state => {

@@ -10,7 +10,7 @@ import { URL_USER_PROFILE } from './../Adapters/AdapterConstants'
 import { URL_HOME } from './../Adapters/AdapterConstants'
 
 // ACTIONS
-import { logout } from '../actions';
+import { logout } from './../Actions/userAuthActions';
 
 // REDUX PROPS 
 const mapStateToProps = state => {

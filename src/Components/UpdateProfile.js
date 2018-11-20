@@ -7,7 +7,7 @@ import Adapters from './../Adapters/Adapters';
 import {URL_HOME} from './../Adapters/AdapterConstants'
 
 // ACTIONS
-import { thunkUpdateProfileInfo, thunkUploadProfile } from '../actions';
+import { thunkUpdateProfileInfo, thunkUploadProfile } from './../Actions/userProfileActions';
 
 // REDUX PROPS 
 const mapStateToProps = state => {

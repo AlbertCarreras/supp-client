@@ -12,7 +12,9 @@ import { URL_HOME } from './Adapters/AdapterConstants'
 import { URL_ROOT } from './Adapters/AdapterConstants'
 
 // ACTIONS
-import { thunkLogin, thunkSaveClosestUsers, thunkPersistCurrentGeolocation, jwtSavedInLocalStorage } from './actions';
+import { thunkLogin, jwtSavedInLocalStorage } from './Actions/userAuthActions';
+import { thunkSaveClosestUsers } from './Actions/userFriendsActions';
+import { thunkPersistCurrentGeolocation } from './Actions/userProfileActions';
 
 //COMPONENTS
 import Header from './Components/Header';
