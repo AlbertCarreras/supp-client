@@ -21,7 +21,12 @@ Front-end
 https://github.com/AlbertCarreras/supp-client
 
 React with Redux & Redux Thunk
-    
+
+  * **App Structure** The app has 4 major subfolders: Adapters, Actions, Reducers, and Components. 
+  - Adapters folder has files that act as reusable libraries.
+  - Actions & Reducers has subactions and subreducers files that work together in Redux.
+  - Components has all React components organized by major functional section (interests, user list, and conversations).
+
   * **Redux and Redux Thunk** are key for all the asynchronous requests happening at a time. Redux helps keep and handle all the state from a single place while Thunk is indispensable to allow the app to work.
 
   * **Geolocation Web API** for obtaining user’s current location coordinates
