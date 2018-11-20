@@ -114,7 +114,6 @@ The quickest -and not optimal solution- was to pass the actual userId as a query
 - Implementing some tests (Rspec in the back end and Mocha in the front end)
 - Organizing the CSS code implementing SASS.
 - Improving the algorithm for returning users by proximity and interests so it works with large user datasets.
-- Refactor the actions into different files by work scope.
 - Adjusting CSS on:
   - Fix footer position on Login page so it's stays visible.
   - Fixing chat scrolling so it appends in the last line and automatically scrolls to the bottom of the conversation.
