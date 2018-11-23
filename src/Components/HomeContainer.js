@@ -10,6 +10,9 @@ const HomeContainer = () => {
     return (
         <div className="home-container">
             <PresenceCable /> {/* PresenceCable connects to websocket that handles connected-user status*/}
+            <div className="screen-inner-home-container">
+                <UserList /> {/* Components in CentralUserSection folder*/}
+            </div>
             <div className="inner-home-container">
                 <InterestsAside /> {/* Components in LeftInterestSection folder*/}
                 <UserList /> {/* Components in CentralUserSection folder*/}

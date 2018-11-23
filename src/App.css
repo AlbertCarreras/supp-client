@@ -7,6 +7,10 @@
   padding: 20px;
 }
 
+.screen-app-icon-header, .screen-inner-home-container{
+  display: none;   
+}
+
 .header-logo {
   font-family: 'Sniglet', cursive;
   font-weight: 800;
@@ -99,10 +103,39 @@
     padding: 0px 10px;
   }
 
-  .inner-home-container {  
+  .aside-interest-container {
+    position: fixed;
+    left: 0px;
+    z-index: 3;
+    background: white;  
+  }
+
+  .aside-container-messaging {
+    position: fixed;
+    right: 0px;
+    z-index: 3;
+    background: white;
+  }
+
+  .screen-inner-home-container{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .home-container {
+    height: 600px;
+  }
+
+  .inner-home-container {
+    display: none;
+  }
+
+  .screen-app-icon-header{
+    width: 100%;
+    align-self: center;
+    display: flex;
+    justify-content: space-evenly;
   }
 
   .central-container { 
@@ -110,6 +143,7 @@
     width: 400px;
     height: 600px;
     min-width: 400px;
+    border-radius: 0px 0px 0px 0px;
   }
 
   .home-container::-webkit-scrollbar {
@@ -470,11 +504,23 @@
 }
 
 /* RESPONSIVENESS. Resizes elements for responsiveness in phones */
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 415px) {
+
+  .header-logo {
+    font-size: 2em;
+  }
   .central-container { 
-    width: 300px;
-    height: 500px;
+    width: auto;
+    height: auto;
     min-width: 300px;
+  }
+
+  .user-profile-bar {
+    width: auto;
+  }
+  .profile-image {
+    width: 30px;
+    height: 30px;
   }
 
   .profile-image-list {

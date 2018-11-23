@@ -6,6 +6,7 @@ import {URL_HOME} from './../Adapters/AdapterConstants'
 
 //COMPONENTS
 import ProfileNavBar from './ProfileNavBar'
+import IconMenuHeader from './IconMenuHeader';
 
 const Header = () => {
 
@@ -14,6 +15,12 @@ const Header = () => {
                 <NavLink to={URL_HOME} exact>
                     <p className="header-logo animated rubberBand delay-2s">Supp</p>
                 </NavLink>
+                <div className="app-screen-icons">
+                
+                </div>
+                <div className="screen-app-icon-header">
+                    <IconMenuHeader />
+                </div>
                 <ProfileNavBar />
             </div>
     );
