@@ -14,7 +14,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     showChatContainer: state.containerDisplay.showChatContainer,
-    showInterestsContainer: state.containerDisplay.showInterestsContainer
+    showInterestsContainer: state.containerDisplay.showInterestsContainer, 
+    loggedIn: state.userAuth.loggedIn
   }
 }
 
@@ -44,18 +45,20 @@ const IconMenuHeader = (props) => {
     }
 
     return (
-        <Fragment>
-            <Icon 
-                color='teal' 
-                name='list alternate'
-                onClick={() => handleClick("interest")}
-            />
-            <Icon 
-                color='teal' 
-                name='chat' 
-                onClick={() => handleClick("chat")}
-            />
-        </Fragment>
+        props.loggedIn 
+            ? <Fragment>
+                <Icon 
+                    color='teal' 
+                    name='list alternate'
+                    onClick={() => handleClick("interest")}
+                />
+                <Icon 
+                    color='teal' 
+                    name='chat' 
+                    onClick={() => handleClick("chat")}
+                />
+            </Fragment>
+            : null
     );
 };
 
