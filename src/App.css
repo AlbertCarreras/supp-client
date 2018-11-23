@@ -136,6 +136,7 @@
     align-self: center;
     display: flex;
     justify-content: space-evenly;
+    font-size: 1.5em;
   }
 
   .central-container { 

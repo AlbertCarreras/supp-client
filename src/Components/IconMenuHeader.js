@@ -1,21 +1,62 @@
-import React, { Component, Fragment } from 'react';
-import { Icon } from 'semantic-ui-react'
+import React, { Fragment } from 'react';
+import { Icon } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
-class IconMenuHeader extends Component {
-    render() {
-        return (
-            <Fragment>
-                    <Icon 
-                        color='teal' 
-                        name='list alternate' 
-                    />
-                    <Icon 
-                        color='teal' 
-                        name='chat' 
-                    />
-            </Fragment>
-        );
-    }
+// ACTIONS
+import { displayScreenContainers } from './../Actions/containerDisplayActions';
+
+// REDUX PROPS 
+const mapDispatchToProps = dispatch => {
+  return {
+    displayScreenContainers: (chatAction, interestAction) => dispatch(displayScreenContainers(chatAction, interestAction))  
+}}
+
+const mapStateToProps = state => {
+  return {
+    showChatContainer: state.containerDisplay.showChatContainer,
+    showInterestsContainer: state.containerDisplay.showInterestsContainer
+  }
 }
 
-export default IconMenuHeader;
+const IconMenuHeader = (props) => {
+
+    function handleClick(iconSelected) {
+        var chatAction;
+        var interestAction;
+        if (iconSelected === "interest") {
+            if ((!props.showChatContainer && !props.showInterestsContainer) || (props.showChatContainer && !props.showInterestsContainer)) {
+                chatAction = false;
+                interestAction = true;          
+            } else {
+                chatAction = false;
+                interestAction = false;          
+            }
+        } else if (iconSelected === "chat") {
+            if ((!props.showChatContainer && !props.showInterestsContainer) || (!props.showChatContainer && props.showInterestsContainer)) {
+                chatAction = true;
+                interestAction = false;          
+            } else {
+                chatAction = false;
+                interestAction = false;          
+            }
+        }
+        props.displayScreenContainers(chatAction, interestAction)
+    }
+
+    return (
+        <Fragment>
+            <Icon 
+                color='teal' 
+                name='list alternate'
+                onClick={() => handleClick("interest")}
+            />
+            <Icon 
+                color='teal' 
+                name='chat' 
+                onClick={() => handleClick("chat")}
+            />
+        </Fragment>
+    );
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(IconMenuHeader);

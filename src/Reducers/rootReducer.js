@@ -6,13 +6,15 @@ import userProfile from "./userProfileReducer";
 import userInterests from "./userInterestsReducer";
 import userFriends from "./userFriendsReducer";
 import userConversations from "./userConversationsReducer";
+import containerDisplay from "./containerDisplayReducer";
 
 const combinedReducers = combineReducers({
     userAuth,
     userProfile,
     userInterests,
     userFriends,
-    userConversations
+    userConversations,
+    containerDisplay
 });
 
 const reducer = (state, action) => {
