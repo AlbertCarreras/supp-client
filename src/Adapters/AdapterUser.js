@@ -32,7 +32,7 @@ class AdapterUser {
     headers: INIT_HEADERS,
     body: JSON.stringify({
       "auth": {
-        "email": loginState.email,
+        "email": loginState.email.toLowerCase(),
         "password": loginState.password
       }})
     })
@@ -46,7 +46,7 @@ class AdapterUser {
     headers: INIT_HEADERS,
     body: JSON.stringify({
       "user": {
-        "email": signupState.email,
+        "email": signupState.email.toLowerCase(),
         "password": signupState.password,
         "password_confirmation": signupState.confirmPassword,
         "username": signupState.username

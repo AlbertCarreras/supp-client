@@ -38,8 +38,8 @@ React with Redux & Redux Thunk
       >> https://developers.google.com/maps/documentation/javascript/geolocation
     
   * **Custom CSS** and **Semantic UI elements** for front-end design
-  
-    Most of the app is styled using custom CSS. Some elements such as the icons and the modals are Semantic UI elements.
+    App responsiveness but website first design. 
+    Most of the app is styled using custom CSS. Some elements such as the icons and the modals are Semantic UI elements. 
     I decided to use Semantic UI elements because the library facilitated the front-end styling in previous projects. Moreover, I had in mind using modals and liked the examples from the library. However, I would refactor the modals, use custom CSS.
 
   * **Bad-words (package)** for filtering profane language
