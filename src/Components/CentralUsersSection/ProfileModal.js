@@ -97,7 +97,15 @@ class ProfileModal extends Component {
                 open={this.state.modalOpen}
                 onClose={this.handleClose}
             >
-            <Modal.Header>{Adapters.capitalize(this.props.username)}
+            <Modal.Header>
+                <div className="right">
+                    {Adapters.capitalize(this.props.username) }
+                    <Icon 
+                        color='teal' 
+                        name='close' 
+                        onClick={this.handleClose}
+                    />
+                </div>  
             </Modal.Header>
             <Modal.Content image>
                 <Image 

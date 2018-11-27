@@ -21,7 +21,9 @@ const HomeContainer = (props) => {
             <PresenceCable /> {/* PresenceCable connects to websocket that handles connected-user status*/}
             <div className="screen-inner-home-container">
                 {console.log(props.showChatContainer, props.showInterestsContainer)}
-                {props.showChatContainer ? <MessagingAside /> : null}
+                {props.showChatContainer 
+                    ? <MessagingAside />
+                    : null}
                 {props.showInterestsContainer ? <InterestsAside /> : null}
                 <UserList /> {/* Components in CentralUserSection folder*/}
             </div>
