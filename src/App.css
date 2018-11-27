@@ -115,10 +115,8 @@
   .aside-container-messaging {
     position: fixed;
     right: 0px;
-    height: 600px;
     z-index: 3;
     background: white;
-    overflow-y: scroll; 
   }
 
   .screen-inner-home-container{
@@ -418,7 +416,6 @@
   padding: 0px 5px;
 }
 
-
 .message-box-time{
   font-size: 0.60em;
 }
@@ -454,6 +451,20 @@
   padding: 5px;
   margin-bottom: 5px;
   background: white;
+}
+
+/* RESPONSIVENESS. It gives responsiveness to website when resizing min window. It displays components in block and only 3 user profiles in central container. */
+@media screen and (max-width: 400px) {
+  .conversations-list {
+    height: 200px;
+  }
+
+  .messages-box {
+    position: fixed;
+    bottom: 0px;
+    width: 250px;
+  }
+  
 }
 
 /* WELCOME CONTAINER. Responsive Image Grid*/
