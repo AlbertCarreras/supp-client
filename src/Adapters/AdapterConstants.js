@@ -56,9 +56,9 @@ const dev = {
   }
 };
 
-export const config = process.env.REACT_APP_STAGE === 'production'
-  ? prod
-  : dev;
+export const config = process.env.REACT_APP_STAGE === 'dev'
+  ? dev
+  : prod;
 
 //HEADERS
 export const AUTH_HEADERS_JSON_JWT =  {
