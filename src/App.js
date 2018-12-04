@@ -125,6 +125,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(config)
     return (
       <div>
         <Header />
