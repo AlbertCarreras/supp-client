@@ -7,7 +7,6 @@ import { thunkSaveConversations, saveSelectedConversation } from './../../Action
 //COMPONENTS
 import MessagesArea from './MessagesArea';
 import MessagesCables from './MessagesCables';
-import ConversationsCables from './ConversationsCables';
 import Conversation from './Conversation';
 
 // REDUX PROPS 
@@ -54,9 +53,6 @@ class ConversationsList extends React.Component {
     render = () => {
         return (
           <div className="conversations-box">
-            
-            {/* Cables connected to backend websockets */}
-            <ConversationsCables />
             {
               // Check if there are conversations in state. If so, connect each conversation to the messages channel and handle received broadcasted messages
               this.props.conversations.length

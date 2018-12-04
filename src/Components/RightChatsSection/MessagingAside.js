@@ -7,6 +7,7 @@ class MessagingAside extends Component {
     render() {
         return (
             <div className="aside-container-messaging">
+                
                 <ConversationsList />
             </div>
         );

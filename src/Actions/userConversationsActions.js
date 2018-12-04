@@ -71,6 +71,7 @@ export function saveUpdatedConversations(conversations) {
 }
 
 export function appendNewConversation(receivedNewConversation) {
+    console.log("appending one")
     return {
         type: APPEND_NEW_CONVERSATION,
         payload: {

@@ -6,6 +6,7 @@ import InterestsAside from './LeftInterestsSection/InterestsAside'
 import UserList from './CentralUsersSection/UserList'
 import MessagingAside from './RightChatsSection/MessagingAside'
 import PresenceCable from './PresenceCable'
+import ConversationsCables from './RightChatsSection/ConversationsCables';
 
 // REDUX PROPS   
 const mapStateToProps = state => {
@@ -19,8 +20,9 @@ const HomeContainer = (props) => {
     return (
         <div className="home-container">
             <PresenceCable /> {/* PresenceCable connects to websocket that handles connected-user status*/}
+            {/* Cables connected to backend websockets */}
+            <ConversationsCables />
             <div className="screen-inner-home-container">
-                {console.log(props.showChatContainer, props.showInterestsContainer)}
                 {props.showChatContainer 
                     ? <MessagingAside />
                     : null}
