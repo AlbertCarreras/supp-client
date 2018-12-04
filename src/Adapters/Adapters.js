@@ -1,8 +1,6 @@
 // ADAPTERS
-import {API_ROOT} from './AdapterConstants'
-import {API_SHORT_ROOT} from './AdapterConstants'
+import {config} from './AdapterConstants'
 import {AUTH_HEADERS_JSON_JWT} from './AdapterConstants'
-import {GITHUB_URL_ROOT} from './../Adapters/AdapterConstants';
 
 class Adapters {
 
@@ -35,7 +33,7 @@ class Adapters {
     //IMAGE URL STANDARIZER
     // Return random avatar image
     static  getNotPicAvatar() {
-        return GITHUB_URL_ROOT+`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
+        return config.route.GITHUB_URL_ROOT+`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
     }
     
     // Check if url to profile image exists. If undefined, return avatar image. If valid url, return full server url.
@@ -47,7 +45,7 @@ class Adapters {
             return Adapters.getNotPicAvatar()
         }
         else if (apiUrl.substring(0, 6) === "/rails") {
-            return `${API_SHORT_ROOT+apiUrl}`
+            return `${config.url.API_SHORT_ROOT+apiUrl}`
         }
         return apiUrl
     }
@@ -56,7 +54,7 @@ class Adapters {
      //API DATA
      // Fetch interest search input and return server response.
     static  getSearchMatches(searchTerm) {
-        return fetch(`${API_ROOT}/interests`, {
+        return fetch(`${config.url.API_ROOT}/interests`, {
             method: 'POST',
             headers: AUTH_HEADERS_JSON_JWT,
             body: JSON.stringify({

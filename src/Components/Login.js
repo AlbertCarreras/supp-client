@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 
 // ADAPTERS
 import AdapterUser from './../Adapters/AdapterUser';
-import {URL_SIGNUP} from './../Adapters/AdapterConstants'
-import {URL_HOME} from './../Adapters/AdapterConstants'
+import {config} from './../Adapters/AdapterConstants'
 
 // ACTIONS
 import { jwtSavedInLocalStorage, addErrorMessage, cleanErrorMessages } from './../Actions/userAuthActions';
@@ -59,7 +58,7 @@ class Login extends Component {
     .then(json => { 
         AdapterUser.setToken(json.jwt);
         this.props.jwtSavedInLocalStorage();
-        this.props.history.push(URL_HOME)
+        this.props.history.push(config.route.URL_HOME)
     })
     .catch(() => {
       this.props.addErrorMessage("invalidCredentials", "The email or password did not match our records.")
@@ -103,7 +102,7 @@ class Login extends Component {
               </div>      
             </div>      
         </div>
-        <h3>New to Supp? <NavLink to={URL_SIGNUP} exact>Sign up!</NavLink></h3>
+        <h3>New to Supp? <NavLink to={config.route.URL_SIGNUP} exact>Sign up!</NavLink></h3>
 
       </div>
     )

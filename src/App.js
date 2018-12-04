@@ -6,10 +6,7 @@ import { hot } from 'react-hot-loader';
 
 // ADAPTERS
 import AdapterUser from './Adapters/AdapterUser';
-import { API_WS_ROOT } from './Adapters/AdapterConstants';
-import { URL_USER_PROFILE } from './Adapters/AdapterConstants'
-import { URL_HOME } from './Adapters/AdapterConstants'
-import { URL_ROOT } from './Adapters/AdapterConstants'
+import { config } from './Adapters/AdapterConstants';
 
 // ACTIONS
 import { thunkLogin, jwtSavedInLocalStorage } from './Actions/userAuthActions';
@@ -101,28 +98,28 @@ class App extends Component {
 
       return AdapterUser.getToken()
       ? !!this.props.userId
-          ? <ActionCableProvider url={API_WS_ROOT+`?user=${this.props.userId}`}>
+          ? <ActionCableProvider url={config.url.API_WS_ROOT+`?user=${this.props.userId}`}>
               <Switch>
                 <Route
-                  path={URL_USER_PROFILE}
+                  path={config.url.URL_USER_PROFILE}
                   component={UpdateProfile}
                 />
                 <Route
-                  path={URL_HOME}
+                  path={config.url.URL_HOME}
                   component={HomeContainer}
                 />
                 <Route
-                  path={URL_ROOT}
+                  path={config.url.URL_ROOT}
                   component={HomeContainer}
                 />
               </Switch>
             </ActionCableProvider>
         : <Route
-            path={URL_ROOT}
+            path={config.url.URL_ROOT}
             component={WelcomeContainer}
           />
     : <Route
-          path={URL_ROOT}
+          path={config.url.URL_ROOT}
           component={WelcomeContainer}
       />
   }

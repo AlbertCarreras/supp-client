@@ -1,5 +1,5 @@
 //CONSTANTS
-import {API_ROOT} from './../Adapters/AdapterConstants'
+import {config} from './../Adapters/AdapterConstants'
 import AdapterUser from './../Adapters/AdapterUser';
 
 //TYPES
@@ -16,7 +16,7 @@ import {
 export const thunkLogin = () => {
 
     return (dispatch) => {
-        fetch(`${API_ROOT}/user/auth`, {
+        fetch(`${config.url.API_ROOT}/user/auth`, {
             method: "GET",
             headers: {
                 "Accept": "application/json",

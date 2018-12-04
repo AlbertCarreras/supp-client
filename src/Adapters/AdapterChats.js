@@ -1,12 +1,12 @@
 // ADAPTERS
-import {API_ROOT} from './AdapterConstants'
+import {config} from './AdapterConstants'
 import {AUTH_HEADERS_JWT} from './AdapterConstants'
 
 class AdapterChats {
 
     //Request user conversation from server. 
     static getConversations(){
-        return fetch(`${API_ROOT}/conversations`, {
+        return fetch(`${config.url.API_ROOT}/conversations`, {
             method: 'GET',
             headers: AUTH_HEADERS_JWT
         })
@@ -15,7 +15,7 @@ class AdapterChats {
 
     //Fetch new conversation or message to server. route will be "conversation" or "message" determining the server route 
     static  fetchToWebsocket(route, bodyData) {
-        fetch(`${API_ROOT}/${route}`, {
+        fetch(`${config.url.API_ROOT}/${route}`, {
             method: 'POST',
             headers: {
                 "Accept": "application/json",

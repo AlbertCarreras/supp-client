@@ -1,5 +1,5 @@
 //CONSTANTS
-import {API_ROOT} from './../Adapters/AdapterConstants'
+import {config} from './../Adapters/AdapterConstants'
 import AdapterUser from './../Adapters/AdapterUser';
 
 //TYPES
@@ -15,7 +15,7 @@ import {
 export const thunkPersistCurrentGeolocation = (userId, latitude, longitude) => {
 
     return (dispatch) => {
-        fetch(`${API_ROOT}/user/${userId}`, {
+        fetch(`${config.url.API_ROOT}/user/${userId}`, {
             method: 'PATCH',
             headers: {
                 "Accept": "application/json",
@@ -61,7 +61,7 @@ export const thunkUploadProfile = (userId, profileImage) => {
     formData.append('profile_image', profileImage);
     
     return (dispatch) => {
-        fetch(`${API_ROOT}/users/uploadProfile`, {
+        fetch(`${config.url.API_ROOT}/users/uploadProfile`, {
             method: 'POST',
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
@@ -109,7 +109,7 @@ export const thunkUpdateProfileInfo = (userId, username, bio) => {
     })}
     
     return (dispatch) => {
-        fetch(`${API_ROOT}/user/${userId}`, {
+        fetch(`${config.url.API_ROOT}/user/${userId}`, {
             method: 'PATCH',
             headers: {
                 "Accept": "application/json",

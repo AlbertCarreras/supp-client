@@ -1,5 +1,5 @@
 //CONSTANTS
-import {API_ROOT} from './../Adapters/AdapterConstants'
+import {config} from './../Adapters/AdapterConstants'
 import AdapterUser from './../Adapters/AdapterUser';
 
 //TYPES
@@ -20,7 +20,7 @@ export const thunkSaveUserInterests = (userId, userInterests) => {
       }};
 
     return (dispatch) => {
-        fetch(`${API_ROOT}/user/${userId}/interests`, {
+        fetch(`${config.url.API_ROOT}/user/${userId}/interests`, {
             method: 'POST',
             headers: {
                 "Accept": "application/json",
@@ -59,7 +59,7 @@ export const thunkRemoveUserInterests = (userInterests) => {
       }};
 
     return (dispatch) => {
-        fetch(`${API_ROOT}/user_interests/${userInterests.id}`, {
+        fetch(`${config.url.API_ROOT}/user_interests/${userInterests.id}`, {
             method: 'DELETE',
             headers: {
                 "Accept": "application/json",
@@ -94,7 +94,7 @@ export const thunkRemoveUserInterests = (userInterests) => {
 export const thunkCreateNewWord = (userId, newTerm) => {
     
     return (dispatch) => {
-        fetch(`${API_ROOT}/interests/create`, {
+        fetch(`${config.url.API_ROOT}/interests/create`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",

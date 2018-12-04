@@ -5,9 +5,7 @@ import { connect } from 'react-redux';
 // ADAPTERS
 import AdapterUser from './../Adapters/AdapterUser';
 import Adapters from './../Adapters/Adapters';
-import { URL_LOGIN } from './../Adapters/AdapterConstants'
-import { URL_USER_PROFILE } from './../Adapters/AdapterConstants'
-import { URL_HOME } from './../Adapters/AdapterConstants'
+import { config } from './../Adapters/AdapterConstants'
 
 // ACTIONS
 import { logout } from './../Actions/userAuthActions';
@@ -33,7 +31,7 @@ const ProfileNavBar = (props) => {
     function handleLogout() {
         AdapterUser.deleteToken();
         props.logout();
-        props.history.push(URL_LOGIN);
+        props.history.push(config.route.URL_LOGIN);
     }
 
     //Checks if user is logged-in. If so, it displays nanigation bar.
@@ -51,9 +49,9 @@ const ProfileNavBar = (props) => {
                             <div className="dropdown-item">
                                 <p>{props.username}</p>
                             </div>
-                            <NavLink to={URL_HOME} exact>Home</NavLink>
-                            <NavLink to={URL_USER_PROFILE}  exact>Profile</NavLink>
-                            <NavLink to={URL_USER_PROFILE} exact>Account</NavLink>
+                            <NavLink to={config.route.URL_HOME} exact>Home</NavLink>
+                            <NavLink to={config.route.URL_USER_PROFILE}  exact>Profile</NavLink>
+                            <NavLink to={config.route.URL_USER_PROFILE} exact>Account</NavLink>
                             <button className="logout-btn" onClick={()=>handleLogout()}>Log Out</button> 
                         </div>
                 </div>

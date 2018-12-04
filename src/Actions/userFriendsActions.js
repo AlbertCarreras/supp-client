@@ -1,5 +1,5 @@
 //CONSTANTS
-import {API_ROOT} from './../Adapters/AdapterConstants'
+import {config} from './../Adapters/AdapterConstants'
 import AdapterUser from './../Adapters/AdapterUser';
 
 //TYPES
@@ -15,7 +15,7 @@ import {
 export const thunkSaveClosestUsers = () => {
 
     return (dispatch) => {
-        fetch(`${API_ROOT}/users`, {
+        fetch(`${config.url.API_ROOT}/users`, {
             method: 'GET',
             headers: {
                 "Accept": "application/json",
@@ -39,7 +39,7 @@ export const thunkSaveClosestUsers = () => {
 export const thunkSaveFilteredClosestUsers = (filterTermId) => {
 
     return (dispatch) => {
-        fetch(`${API_ROOT}/users`, {
+        fetch(`${config.url.API_ROOT}/users`, {
             method: 'POST',
             headers: {
                 "Accept": "application/json",

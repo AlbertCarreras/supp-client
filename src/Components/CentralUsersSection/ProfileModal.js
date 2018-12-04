@@ -5,7 +5,7 @@ import { Icon } from 'semantic-ui-react'
 
 // ADAPTERS
 import Adapters from './../../Adapters/Adapters';
-import { URL_USER_PROFILE } from './../../Adapters/AdapterConstants'
+import { config } from './../../Adapters/AdapterConstants'
 
 //COMPONENTS
 import UserInterestList from './UserInterestList'
@@ -76,7 +76,7 @@ class ProfileModal extends Component {
                             color='teal' 
                             name='pencil alternate' 
                         />
-                        <NavLink to={URL_USER_PROFILE} exact>Edit Your Profile</NavLink>
+                        <NavLink to={config.route.URL_USER_PROFILE} exact>Edit Your Profile</NavLink>
                     </Fragment>
 
                 )

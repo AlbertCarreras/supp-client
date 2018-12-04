@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 
 //ADAPTERS
 import Adapters from './../../Adapters/Adapters';
-import { API_SHORT_ROOT } from './../../Adapters/AdapterConstants';
-import { GITHUB_URL_ROOT } from './../../Adapters/AdapterConstants';
+import { config } from './../../Adapters/AdapterConstants';
 
 // REDUX PROPS 
 const mapStateToProps = state => {
@@ -23,10 +22,10 @@ const Conversation = (props) => {
     function returnImage () {
         var conversationUser = findConversationUser()
         if ( conversationUser.profile_image_url !== "undefined" ) {
-            return `${API_SHORT_ROOT+props.conversation.users.find((u) => u.id !== props.userId).profile_image_url}`
+            return `${config.url.API_SHORT_ROOT+props.conversation.users.find((u) => u.id !== props.userId).profile_image_url}`
         } 
         else {
-            return GITHUB_URL_ROOT+`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
+            return config.url.GITHUB_URL_ROOT+`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
         }
     }
 

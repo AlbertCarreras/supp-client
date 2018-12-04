@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 
 // ADAPTERS
 import AdapterUser from './../Adapters/AdapterUser';
-import {URL_LOGIN} from './../Adapters/AdapterConstants'
-import {URL_SIGNUP} from './../Adapters/AdapterConstants'
-import {URL_HOME} from './../Adapters/AdapterConstants'
+import {config} from './../Adapters/AdapterConstants'
 
 // ACTIONS
 import { jwtSavedInLocalStorage, addErrorMessage, cleanErrorMessages } from './../Actions/userAuthActions';
@@ -121,10 +119,10 @@ class Signup extends Component {
             .then(json => {
               AdapterUser.setToken(json.jwt);
               this.props.jwtSavedInLocalStorage();
-              this.props.history.push(URL_HOME);
+              this.props.history.push(config.route.URL_HOME);
             })
             .catch(() => {
-              this.props.history.push(URL_LOGIN);
+              this.props.history.push(config.route.URL_LOGIN);
             })
            } 
         else{ 
@@ -135,7 +133,7 @@ class Signup extends Component {
         }
       })
       .catch(() => {
-        this.props.history.push(URL_SIGNUP);
+        this.props.history.push(config.route.URL_SIGNUP);
       })
   }
 
@@ -143,7 +141,7 @@ class Signup extends Component {
     return (
       <div className="overlay-box signup">
         <div className="login-signup-form">
-          <h3>Have an account? <NavLink to={URL_LOGIN} exact>Log in</NavLink></h3>
+          <h3>Have an account? <NavLink to={config.route.URL_LOGIN} exact>Log in</NavLink></h3>
           <h3 className="login-form-header">SIGN UP</h3>
           <div className="ui tiny form">
             <div className="two fields">

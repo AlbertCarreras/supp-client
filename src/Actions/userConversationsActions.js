@@ -1,5 +1,5 @@
 //CONSTANTS
-import {API_ROOT} from './../Adapters/AdapterConstants'
+import {config} from './../Adapters/AdapterConstants'
 import AdapterUser from './../Adapters/AdapterUser';
 
 //TYPES
@@ -17,7 +17,7 @@ import {
 export const thunkSaveConversations = () => {
     
     return (dispatch) => {
-        fetch(`${API_ROOT}/conversations`, {
+        fetch(`${config.url.API_ROOT}/conversations`, {
             method: 'GET',
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`

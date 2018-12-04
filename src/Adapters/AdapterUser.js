@@ -1,5 +1,5 @@
 // ADAPTERS
-import {API_ROOT} from './AdapterConstants'
+import {config} from './AdapterConstants'
 import {INIT_HEADERS} from './AdapterConstants'
 
 class AdapterUser {
@@ -27,7 +27,7 @@ class AdapterUser {
 
   // Fetch email/password to login and receive JWT token as a response. JWT is then used in getCurrentUser -Thunk action- ro retrieve user information
   static login(loginState) {
-    return fetch(`${API_ROOT}/user_token`, {
+    return fetch(`${config.url.API_ROOT}/user_token`, {
     method: 'POST',
     headers: INIT_HEADERS,
     body: JSON.stringify({
@@ -41,7 +41,7 @@ class AdapterUser {
 
   // Fetch sing-up information to signup and receive JWT token as a response. JWT is then used in getCurrentUser -Thunk action- ro retrieve user information
   static signup(signupState) {
-    return fetch(`${API_ROOT}/users/create`, {
+    return fetch(`${config.url.API_ROOT}/users/create`, {
     method: 'POST',
     headers: INIT_HEADERS,
     body: JSON.stringify({

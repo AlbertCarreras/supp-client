@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 // ADAPTERS
 import Adapters from './../Adapters/Adapters';
-import {URL_HOME} from './../Adapters/AdapterConstants'
+import {config} from './../Adapters/AdapterConstants'
 
 // ACTIONS
 import { thunkUpdateProfileInfo, thunkUploadProfile } from './../Actions/userProfileActions';
@@ -60,7 +60,7 @@ class UpdateProfile extends Component {
             this.props.thunkUpdateProfileInfo(this.props.user_id, this.state.username, this.state.bio)
         }
 
-        this.props.history.push(URL_HOME);
+        this.props.history.push(config.route.URL_HOME);
     }
 
     render() {

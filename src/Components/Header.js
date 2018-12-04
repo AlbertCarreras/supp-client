@@ -2,17 +2,16 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 // ADAPTERS
-import {URL_HOME} from './../Adapters/AdapterConstants'
+import {config} from './../Adapters/AdapterConstants'
 
 //COMPONENTS
 import ProfileNavBar from './ProfileNavBar'
 import IconMenuHeader from './IconMenuHeader';
 
 const Header = () => {
-
     return (
             <div className="app-header">
-                <NavLink to={URL_HOME} exact>
+                <NavLink to={config.route.URL_HOME} exact>
                     <p className="header-logo animated rubberBand delay-2s">Supp</p>
                 </NavLink>
                 <div className="app-screen-icons">
