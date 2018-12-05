@@ -60,7 +60,7 @@
     "start": "REACT_APP_STAGE=dev node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "predeploy": "REACT_APP_STAGE=dev npm run build",
+    "predeploy": "REACT_APP_STAGE=production npm run build",
     "deploy": "REACT_APP_STAGE=production gh-pages -d build"
   },
   "jest": {
