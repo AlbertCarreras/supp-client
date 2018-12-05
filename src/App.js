@@ -101,25 +101,25 @@ class App extends Component {
           ? <ActionCableProvider url={config.url.API_WS_ROOT+`?user=${this.props.userId}`}>
               <Switch>
                 <Route
-                  path={config.url.URL_USER_PROFILE}
+                  path={config.route.URL_USER_PROFILE}
                   component={UpdateProfile}
                 />
                 <Route
-                  path={config.url.URL_HOME}
+                  path={config.route.URL_HOME}
                   component={HomeContainer}
                 />
                 <Route
-                  path={config.url.URL_ROOT}
+                  path={config.route.URL_ROOT}
                   component={HomeContainer}
                 />
               </Switch>
             </ActionCableProvider>
         : <Route
-            path={config.url.URL_ROOT}
+            path={config.route.URL_ROOT}
             component={WelcomeContainer}
           />
     : <Route
-          path={config.url.URL_ROOT}
+          path={config.route.URL_ROOT}
           component={WelcomeContainer}
       />
   }

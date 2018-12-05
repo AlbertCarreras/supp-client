@@ -33,7 +33,7 @@ class Adapters {
     //IMAGE URL STANDARIZER
     // Return random avatar image
     static  getNotPicAvatar() {
-        return config.route.GITHUB_URL_ROOT+`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
+        return config.url.GITHUB_URL_ROOT+`/assets/avatars/avatar${Math.ceil(Math.random() * Math.floor(4))}.gif`
     }
     
     // Check if url to profile image exists. If undefined, return avatar image. If valid url, return full server url.
