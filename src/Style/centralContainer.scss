@@ -1,0 +1,27 @@
+//IMPORTS
+@import 'variables';
+
+/* USER LIST. */
+.loading-message {
+  margin: 10px;
+  font-family: $font-stack;
+  font-weight: 400;
+  color: white;
+}
+
+.central-container::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.central-container  { 
+  background: $color-dark-green;
+  display: flex;
+  border-radius: 15px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  overflow: scroll;
+  position: relative;
+  width: 440px;
+  min-width: 440px;
+}

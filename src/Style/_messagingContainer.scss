@@ -1,0 +1,167 @@
+//IMPORTS
+@import 'variables';
+
+.aside-container-messaging  { 
+  flex: initial;
+  width: 300px;
+  min-width: 300px;
+  padding: 20px 20px 0px 20px;
+}
+
+/* MESSAGING CONTAINER. Responsive Image Grid*/
+
+.conversations-list {
+  height: 300px;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.conversation-box {
+  display: flex;
+  border-radius: 10px;
+  width:100%;
+  max-width: 450px;
+  background: $color-dark-blue;
+  margin: 5px 0px;
+}
+.conversation-image-box {
+  margin: 2.5px 2.5px 2.5px 10px;
+  height: 35px;
+  max-height: 35px;
+}
+.conversation-image {
+  border: 2px solid $color-light-green;
+  height: 35px;
+  width:35px;
+  border-radius: 25px;
+}
+
+.conversation-text-box {
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 100%;
+  text-align: left;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.conversation-first-message {
+  font-style: italic;
+}
+
+.chat-header-image {
+  border: 2px solid $color-dark-green;
+  height: 25px;
+  width: 25px;
+  border-radius: 25px;
+  margin-left: 5px;
+  margin-top: 7px;
+}
+
+.messages-header {
+  justify-content: center;
+  display: flex;
+  align-items: left;
+}
+
+.chat-header-title {
+  font-family: $font-stack;
+  font-weight: 400;
+  font-size: 1.5em;
+  color: $color-dark-blue;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.messages-box {
+  height: 423px;
+  width: 100%;
+  max-width: 450px;
+  position: relative;
+  background: $color-light-green;
+  border-radius: 10px 10px 0px 0px;
+  border-bottom: 2px solid  $color-dark-green;
+}
+
+.outer-messages-list {
+  flex-direction: column;
+  height: 270px;
+  overflow-y: auto;
+  background: white;
+  border: 5px solid $color-light-green;
+  border-radius: 10px;
+}
+
+.messages-list{
+  display: flex;
+  flex-direction: column-reverse;
+  text-align: left;
+}
+
+.messages-list > * {
+  margin: 0px 0px -10px 10px;
+  min-height: 30px;
+}
+
+.message-box {
+  display: flex;
+  margin: 5px;
+  border-radius: 5px;
+}
+.message-box > * {
+  width: 240px;
+  padding: 0px 5px;
+}
+
+.message-box-time{
+  font-size: 0.60em;
+}
+
+.message-box-content {
+  z-index: 2;
+}
+
+.new-message-form {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.new-message-input {
+  width: 100%;
+  flex-grow: 2;
+  min-width: 150px;
+  margin: 5px 5px; 
+  padding: 10px;
+  border: none; 
+  border-bottom: 1px solid  $color-light-green;
+  border-radius: 10px;
+}
+
+.chat-submit-btn {
+  display: flex;
+  border: 1px solid  $color-light-green;
+  border-radius: 15px;
+  padding: 5px;
+  margin-bottom: 5px;
+  background: white;
+}
+
+/* RESPONSIVENESS. It gives responsiveness to website when resizing min window. It displays components in block and only 3 user profiles in central container. */
+
+@media screen and (max-width: 400px) {
+  .conversations-list {
+    height: 200px;
+  }
+
+  .messages-box {
+    position: fixed;
+    bottom: 0px;
+    width: 250px;
+  }
+  
+}

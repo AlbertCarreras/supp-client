@@ -9,9 +9,9 @@ import registerServiceWorker from './registerServiceWorker';
 import store from './store';
 
 //STYLING
-import './index.scss';
+import './Style/index.scss';
 import 'semantic-ui/dist/semantic.min.css'; //CSS Semantics library
-import './App.scss'; //custom CSS
+import './Style/App.scss'; //custom CSS
 
 //COMPONENTS
 import App from './App';

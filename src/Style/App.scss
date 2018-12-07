@@ -1,0 +1,109 @@
+//IMPORTS
+@import 'variables';
+@import 'logo';
+@import 'header';
+@import 'dropdownMenu';
+@import 'welcomeContainer';
+@import 'profileContainer';
+@import 'homeContainer';
+@import 'centralContainer';
+@import 'interestContainer';
+@import 'messagingContainer';
+@import 'userProfile';
+@import 'footer';
+
+/* RESPONSIVENESS. It gives responsiveness to website when resizing min window. It displays components in block and only 3 user profiles in central container. */
+@media screen and (max-width: 400px) {
+
+  .app-header{
+    padding: 0px 10px;
+  }
+
+  .aside-interest-container {
+    position: fixed;
+    left: 0px;
+    z-index: 3;
+    background: white;
+  }
+
+  .aside-container-messaging {
+    position: fixed;
+    right: 0px;
+    z-index: 3;
+    background: white;
+  }
+
+  .screen-inner-home-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .home-container {
+    height: 600px;
+  }
+
+  .inner-home-container {
+    display: none;
+  }
+
+  .screen-app-icon-header{
+    width: 100%;
+    align-self: center;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 1.5em;
+  }
+
+  .central-container { 
+    justify-content: center;
+    width: 400px;
+    height: 600px;
+    min-width: 400px;
+    border-radius: 0px 0px 0px 0px;
+  }
+
+  .home-container::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+  
+}
+
+/* RESPONSIVENESS. Resizes elements for responsiveness in phones */
+@media screen and (max-width: 415px) {
+
+  .header-logo {
+    font-size: 2em;
+  }
+  .central-container { 
+    width: auto;
+    height: auto;
+    min-width: 300px;
+  }
+
+  .user-profile-bar {
+    width: auto;
+  }
+  .profile-image {
+    width: 30px;
+    height: 30px;
+  }
+
+  .profile-image-list {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-image-username {
+    margin: 62.5px 0px 0px 12.5px;
+  }
+  
+  .profile-image-distance {
+    margin: 10px 0px 0px 50px;
+  }
+
+  .profile-image-logged {
+    margin: 15px 0px 0px 15px;
+  }
+}

@@ -1,0 +1,34 @@
+//IMPORTS
+@import 'variables';
+
+.app-footer {
+  display: flex;
+  background-color: $color-light-green;
+  padding: 20px;
+  box-shadow: 0 50vh 0 50vh $color-light-green;
+}
+
+.app-footer-right {
+  font-size: 0.75em;
+  width: 100%;
+  display: flex;
+  align-self: center;
+  justify-content: flex-end;
+}
+
+.app-footer-right > * {
+  margin: 0px 10px;
+}
+
+.app-footer-left {
+  justify-content: flex-start;
+}
+
+.footer-logo {
+  font-family: $font-stack;
+  font-weight: 800;
+  font-size: 1em;
+  color: $color-dark-blue;
+  margin: 0px;
+  text-align: left;
+}

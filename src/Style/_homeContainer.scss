@@ -1,0 +1,28 @@
+//IMPORTS
+@import 'variables';
+
+.home-container {
+  height: 800px;
+  background-color: white;
+  overflow: auto !important;
+}
+
+.inner-home-container {
+  display: flex;
+  height: 700px;
+  background-color: white;
+}
+
+.home-container > * {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* RESPONSIVENESS. It gives responsiveness to website when resizing window. Above min size for 3 components, adds flex and justify content which removes horizontal scrolling. */
+@media (min-width: 1040px) {
+  
+  .home-container {  
+    display: flex;
+    justify-content: center;
+  }
+}

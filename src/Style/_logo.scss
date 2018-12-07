@@ -1,0 +1,17 @@
+//IMPORTS
+@import 'variables';
+
+.logo {
+  font-family: $font-stack;
+  font-weight: 800;
+  color: $color-dark-blue;
+}
+
+.btn-logo {
+  font-family: $font-stack;
+  font-weight: 800;
+  font-size: 1.5em;
+  color: white;
+  margin: 0px;
+  text-align: left;
+}
