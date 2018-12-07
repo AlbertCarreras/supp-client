@@ -37,10 +37,11 @@ React with Redux & Redux Thunk
       >> "Some browsers use IP addresses to detect a user's location. However, it may only provide a rough estimate of a user's location. The W3C >> approach is the easiest and most fully-supported so it should be prioritized over other geolocation methods."
       >> https://developers.google.com/maps/documentation/javascript/geolocation
     
-  * **Custom CSS** and **Semantic UI elements** for front-end design
+  * **Custom CSS**, **SASS**  and **Semantic UI elements** for front-end design
     App responsiveness but website first design. 
     Most of the app is styled using custom CSS. Some elements such as the icons and the modals are Semantic UI elements. 
     I decided to use Semantic UI elements because the library facilitated the front-end styling in previous projects. Moreover, I had in mind using modals and liked the examples from the library. However, I would refactor the modals, use custom CSS.
+    The app uses SASS as CSS preprocessor. CSS code has been organized in different files and imported in a single app.scss file. 
 
   * **Bad-words (package)** for filtering profane language
   
@@ -112,11 +113,7 @@ The quickest -and not optimal solution- was to pass the actual userId as a query
 ### Notes on next steps
 ## Improvements
 - Implementing some tests (Rspec in the back end and Mocha in the front end)
-- Organizing the CSS code implementing SASS.
 - Improving the algorithm for returning users by proximity and interests so it works with large user datasets.
-- Adjusting CSS on:
-  - Fix footer position on Login page so it's stays visible.
-  - Fixing chat scrolling so it appends in the last line and automatically scrolls to the bottom of the conversation.
 ## Potential next features
 - Pinned users in the central containers as a way of saving friends.
 - Blocking users.
