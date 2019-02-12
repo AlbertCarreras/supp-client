@@ -30,7 +30,7 @@ const dev = {
   }
 };
 
-export const config = process.env.REACT_APP_STAGE === 'dev' ? dev : prod;
+export const config = process.env.NODE_ENV === 'development' ? dev : prod;
 
 //HEADERS
 export const AUTH_HEADERS_JSON_JWT =  {
