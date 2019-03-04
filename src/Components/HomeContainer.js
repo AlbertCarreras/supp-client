@@ -16,7 +16,7 @@ return {
 }}
 
 const HomeContainer = (props) => {
-
+    window.Appcues.track("Entered site");
     return (
         <div className="home-container">
             <PresenceCable /> {/* PresenceCable connects to websocket that handles connected-user status*/}

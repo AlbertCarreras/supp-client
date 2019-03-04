@@ -89,6 +89,14 @@ class App extends Component {
       }
 
     }
+
+    //APPCUES CODE
+    const { location: { pathname } } = this.props;
+    const previousLocation = prevProps.location.pathname;
+
+    if (pathname !== previousLocation) {
+      window.Appcues.page();
+    }
   }
 
   // Check if there is a userId in localStorage. If so, check if the userId is already in state. Then, connect to websockets and reroute user.

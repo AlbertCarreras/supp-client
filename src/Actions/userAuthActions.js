@@ -25,20 +25,28 @@ export const thunkLogin = () => {
               }
           })
         .then(r=> r.json())
-        .then(resp => dispatch( { 
-            type: LOGIN,
-            payload: {
-                username: resp.username,
-                email: resp.email,
-                userId: resp.id,
-                bio: resp.bio === null ? "" : resp.bio,
-                loggedIn: true,
-                userInterests: resp.userInterests,
-                profileImageLink: resp.profile_image,
-                prevGeolocationLat: resp.lat, 
-                prevGeolocationLon: resp.lon, 
-            }
-        }))
+        .then(resp => {
+            
+            dispatch( { 
+                type: LOGIN,
+                payload: {
+                    username: resp.username,
+                    email: resp.email,
+                    userId: resp.id,
+                    bio: resp.bio === null ? "" : resp.bio,
+                    loggedIn: true,
+                    userInterests: resp.userInterests,
+                    profileImageLink: resp.profile_image,
+                    prevGeolocationLat: resp.lat, 
+                    prevGeolocationLon: resp.lon, 
+                }
+            }) 
+
+            window.Appcues.identify(`${resp.id}`, {
+                name: resp.username,
+                email: resp.email
+            })
+        })
         .catch(() => {
             dispatch( { 
                 type: ADD_ERROR_MESSAGE,
