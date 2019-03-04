@@ -1,6 +1,5 @@
 //CONSTANTS
 import {config} from './../Adapters/AdapterConstants'
-import AdapterUser from './../Adapters/AdapterUser';
 
 //TYPES
 import {
@@ -11,12 +10,13 @@ import {
     CLEAN_ERROR_MESSAGES
 } from './../types';
 
-//REDUX-THUNK actions
+//REDUX-THUNK actions with ASYNC/AWAIT
 // Login, currentGeolocation and closestUsers happen sequentially.
 export const thunkLogin = () => {
 
-    return (dispatch) => {
-        fetch(`${config.url.API_ROOT}/user/auth`, {
+    return async function (dispatch) {
+
+        let response = await fetch(`${config.url.API_ROOT}/user/auth`, {
             method: "GET",
             headers: {
                 "Accept": "application/json",
@@ -24,9 +24,8 @@ export const thunkLogin = () => {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
               }
           })
-        .then(r=> r.json())
-        .then(resp => {
-            
+        
+        let dispatchLogin = (resp) => {
             dispatch( { 
                 type: LOGIN,
                 payload: {
@@ -46,19 +45,9 @@ export const thunkLogin = () => {
                 name: resp.username,
                 email: resp.email
             })
-        })
-        .catch(() => {
-            dispatch( { 
-                type: ADD_ERROR_MESSAGE,
-                payload: {
-                    key: "unauthorizedToken",
-                    value: "Unauthorized credentials. Please, log in again.",
-                }
-            })
-            AdapterUser.deleteToken();
-            return dispatch( { 
-            type: LOGOUT,
-        })})
+        }
+
+        return dispatchLogin( await response.json() )
     }
 }
 
