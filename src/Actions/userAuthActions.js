@@ -24,6 +24,8 @@ export const thunkLogin = () => {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
               }
           })
+
+        let responseJSON = await response.json()
         
         let dispatchLogin = (resp) => {
             dispatch( { 
@@ -47,7 +49,7 @@ export const thunkLogin = () => {
             })
         }
 
-        return dispatchLogin( await response.json() )
+        dispatchLogin( responseJSON )
     }
 }
 
