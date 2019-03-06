@@ -55,7 +55,7 @@ class Adapters {
      // Fetch interest search input and return server response.
     static async getSearchMatches(searchTerm) {
         try {
-            let response = fetch(`${config.url.API_ROOT}/interests`, {
+            let response = await fetch(`${config.url.API_ROOT}/interests`, {
                 method: 'POST',
                 headers: AUTH_HEADERS_JSON_JWT,
                 body: JSON.stringify({
@@ -64,8 +64,9 @@ class Adapters {
                     }
                 })
             })
-
-            return await response.json()
+            
+            let responseJSON = await response.json()
+            return responseJSON
         
         } catch (err) {
             console.log(err)
