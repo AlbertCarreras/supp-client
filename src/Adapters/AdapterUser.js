@@ -37,14 +37,15 @@ class AdapterUser {
           "password": loginState.password
         }})
     })
+    let responseJSON = await response.json()
 
-    return await response.json()
+    return responseJSON
   }
 
   // Fetch sing-up information to signup and receive JWT token as a response. JWT is then used in getCurrentUser -Thunk action- ro retrieve user information
   static async signup(signupState) {
 
-    return await fetch(`${config.url.API_ROOT}/users/create`, {
+    let response = await fetch(`${config.url.API_ROOT}/users/create`, {
       method: 'POST',
       headers: INIT_HEADERS,
       body: JSON.stringify({
@@ -55,6 +56,8 @@ class AdapterUser {
           "username": signupState.username
         }})
     })
+
+    return response
   }        
 }
 

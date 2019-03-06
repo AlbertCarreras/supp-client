@@ -66,6 +66,7 @@ class Adapters {
             })
             
             let responseJSON = await response.json()
+            
             return responseJSON
         
         } catch (err) {
