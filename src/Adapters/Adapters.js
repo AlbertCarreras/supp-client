@@ -53,17 +53,23 @@ class Adapters {
 
      //API DATA
      // Fetch interest search input and return server response.
-    static  getSearchMatches(searchTerm) {
-        return fetch(`${config.url.API_ROOT}/interests`, {
-            method: 'POST',
-            headers: AUTH_HEADERS_JSON_JWT,
-            body: JSON.stringify({
-                "search": {
-                  "searchTerm": searchTerm.toLowerCase(),
-                }
+    static async getSearchMatches(searchTerm) {
+        try {
+            let response = fetch(`${config.url.API_ROOT}/interests`, {
+                method: 'POST',
+                headers: AUTH_HEADERS_JSON_JWT,
+                body: JSON.stringify({
+                    "search": {
+                    "searchTerm": searchTerm.toLowerCase(),
+                    }
+                })
             })
-        })
-        .then(resp => resp.json())
+
+            return await response.json()
+        
+        } catch (err) {
+            console.log(err)
+        }  
     }
     
 }

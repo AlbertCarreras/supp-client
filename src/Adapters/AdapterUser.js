@@ -29,13 +29,13 @@ class AdapterUser {
   static async login(loginState) {
 
     let response = await fetch(`${config.url.API_ROOT}/user_token`, {
-    method: 'POST',
-    headers: INIT_HEADERS,
-    body: JSON.stringify({
-      "auth": {
-        "email": loginState.email.toLowerCase(),
-        "password": loginState.password
-      }})
+      method: 'POST',
+      headers: INIT_HEADERS,
+      body: JSON.stringify({
+        "auth": {
+          "email": loginState.email.toLowerCase(),
+          "password": loginState.password
+        }})
     })
 
     return await response.json()
@@ -45,15 +45,15 @@ class AdapterUser {
   static async signup(signupState) {
 
     return await fetch(`${config.url.API_ROOT}/users/create`, {
-    method: 'POST',
-    headers: INIT_HEADERS,
-    body: JSON.stringify({
-      "user": {
-        "email": signupState.email.toLowerCase(),
-        "password": signupState.password,
-        "password_confirmation": signupState.confirmPassword,
-        "username": signupState.username
-      }})
+      method: 'POST',
+      headers: INIT_HEADERS,
+      body: JSON.stringify({
+        "user": {
+          "email": signupState.email.toLowerCase(),
+          "password": signupState.password,
+          "password_confirmation": signupState.confirmPassword,
+          "username": signupState.username
+        }})
     })
   }        
 }
