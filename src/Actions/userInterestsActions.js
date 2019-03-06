@@ -19,24 +19,31 @@ export const thunkSaveUserInterests = (userId, userInterests) => {
         "interests": userInterests
       }};
 
-    return (dispatch) => {
-        fetch(`${config.url.API_ROOT}/user/${userId}/interests`, {
-            method: 'POST',
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
-            },
-            body: JSON.stringify(bodyPersistAddInterests)
-        })
-        .then(resp=>resp.json())
-        .then(resp => dispatch( { 
-            type: SAVE_USER_INTERESTS,
-            payload: {
-                userInterestArray: resp.interests,
-            }
-        }))
-        .catch(() => {
+    return async function (dispatch) {
+
+        try {
+            let response = await fetch(`${config.url.API_ROOT}/user/${userId}/interests`, {
+                method: 'POST',
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify(bodyPersistAddInterests)
+            })
+    
+            let responseJSON = await response.json()
+    
+            let  dispatchSaveUserInterests = (resp) => dispatch( { 
+                type: SAVE_USER_INTERESTS,
+                payload: {
+                    userInterestArray: resp.interests,
+                }
+            })
+    
+            return dispatchSaveUserInterests(responseJSON)    
+
+        } catch (err) {
             dispatch( { 
                 type: ADD_ERROR_MESSAGE,
                 payload: {
@@ -44,11 +51,14 @@ export const thunkSaveUserInterests = (userId, userInterests) => {
                     value: "Unauthorized credentials. Please, log in again.",
                 }
             })
+
             AdapterUser.deleteToken();
+
             return dispatch( { 
-            type: LOGOUT,
-        })})
-    }
+                type: LOGOUT,
+            })
+        }  
+    }     
 }
 
 // Users remove interests from list persisting changes.
@@ -58,24 +68,31 @@ export const thunkRemoveUserInterests = (userInterests) => {
         "interests": userInterests
       }};
 
-    return (dispatch) => {
-        fetch(`${config.url.API_ROOT}/user_interests/${userInterests.id}`, {
-            method: 'DELETE',
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
-            },
-            body: JSON.stringify(bodyPersistRemoveInterests)
-        })
-        .then(resp=>resp.json())
-        .then(resp => dispatch( { 
-            type: SAVE_USER_INTERESTS,
-            payload: {
-                userInterestArray: resp.interests,
-            }
-        }))
-        .catch(() => {
+    return async function (dispatch)  {
+        try {
+
+            let response = await fetch(`${config.url.API_ROOT}/user_interests/${userInterests.id}`, {
+                method: 'DELETE',
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify(bodyPersistRemoveInterests)
+            })
+
+            let responseJSON = await response.json()
+            
+            let dispatchRemoveUserInterests = (resp) => dispatch( { 
+                type: SAVE_USER_INTERESTS,
+                payload: {
+                    userInterestArray: resp.interests,
+                }
+            })
+
+            return dispatchRemoveUserInterests(responseJSON)
+
+        } catch (err) {
             dispatch( { 
                 type: ADD_ERROR_MESSAGE,
                 payload: {
@@ -84,33 +101,41 @@ export const thunkRemoveUserInterests = (userInterests) => {
                 }
             })
             AdapterUser.deleteToken();
+
             return dispatch( { 
-            type: LOGOUT,
-        })})
+                type: LOGOUT,
+            })
+        }
     }
 }
 
 // If users look for  word that does not exist yet in the database, they can click on the new word an persisted.
 export const thunkCreateNewWord = (userId, newTerm) => {
     
-    return (dispatch) => {
-        fetch(`${config.url.API_ROOT}/interests/create`, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
-              },
-            body: JSON.stringify({
-                "interest": {
-                    "newTerm": newTerm,
-                }
+    return async function(dispatch) {
+        try {
+            let response = fetch(`${config.url.API_ROOT}/interests/create`, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify({
+                    "interest": {
+                        "newTerm": newTerm,
+                    }
+                })
             })
-        })
-        .then(resp => resp.json())
-        .then(resp => dispatch(
-            thunkSaveUserInterests(userId, resp)
-        ))
-        .catch(() => {
+
+            let responseJSON = await response.json()
+
+            let dispatchCreateNewWord = (resp) => dispatch(
+                thunkSaveUserInterests(userId, resp)
+            )
+
+            return dispatchCreateNewWord(responseJSON)
+
+        } catch (err) {
             dispatch( { 
                 type: ADD_ERROR_MESSAGE,
                 payload: {
@@ -118,10 +143,13 @@ export const thunkCreateNewWord = (userId, newTerm) => {
                     value: "Sorry, there was an error processing the information. Please, log in again.",
                 }
             })
+
             AdapterUser.deleteToken();
+            
             return dispatch( { 
-            type: LOGOUT,
-        })})
+                type: LOGOUT,
+            })
+        }
     }
 }
 

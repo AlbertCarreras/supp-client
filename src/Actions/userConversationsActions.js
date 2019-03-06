@@ -16,32 +16,42 @@ import {
 // Users start a new conversation. Conversations get persisted and broadcasted from server.
 export const thunkSaveConversations = () => {
     
-    return (dispatch) => {
-        fetch(`${config.url.API_ROOT}/conversations`, {
-            method: 'GET',
-            headers: {
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
-            }
-        })
-        .then(resp=>resp.json())
-        .then(resp => dispatch( { 
-            type: SAVE_CONVERSATIONS,
-            payload: {
-                conversations: resp,
-            }
-        }))
-        .catch(() => {
-            dispatch( { 
+    return async function (dispatch) {
+
+        try {
+            let response = await fetch(`${config.url.API_ROOT}/conversations`, {
+                method: 'GET',
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                }
+            })
+            
+            let responseJSON = await response.json()
+
+            let dispatchSaveConversations = (resp) => dispatch( { 
+                    type: SAVE_CONVERSATIONS,
+                    payload: {
+                        conversations: resp,
+                    }
+            })
+            
+            return dispatchSaveConversations( responseJSON )
+
+        } catch (err) {
+            dispatch({ 
                 type: ADD_ERROR_MESSAGE,
                 payload: {
                     key: "unauthorizedToken",
                     value: "Unauthorized credentials. Please, log in again.",
                 }
             })
+            
             AdapterUser.deleteToken();
-            return dispatch( { 
-            type: LOGOUT,
-        })})
+            
+            return dispatch({ 
+                type: LOGOUT,
+            })
+        }
     }
 }
 
@@ -71,7 +81,6 @@ export function saveUpdatedConversations(conversations) {
 }
 
 export function appendNewConversation(receivedNewConversation) {
-    console.log("appending one")
     return {
         type: APPEND_NEW_CONVERSATION,
         payload: {

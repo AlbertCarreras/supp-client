@@ -14,31 +14,37 @@ import {
 //REDUX-THUNK actions
 export const thunkPersistCurrentGeolocation = (userId, latitude, longitude) => {
 
-    return (dispatch) => {
-        fetch(`${config.url.API_ROOT}/user/${userId}`, {
-            method: 'PATCH',
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
-            },
-            body: JSON.stringify({
-                "user": {
-                    "last_location_lat": latitude,
-                    "last_location_lon": longitude,
-                }})
-        })
-        .then(r=>r.json())
-        .then(resp => dispatch({ 
-            type: SAVE_CURRENT_GEOLOCATION,
-            payload: {
-                lat: resp.lat,
-                lon: resp.lon,
-                prevGeolocationLat: resp.lat,
-                prevGeolocationLon: resp.lon,
-            }
-        }))
-        .catch(() => {
+    return async function (dispatch) {
+
+        try {
+            let response = await fetch(`${config.url.API_ROOT}/user/${userId}`, {
+                method: 'PATCH',
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify({
+                    "user": {
+                        "last_location_lat": latitude,
+                        "last_location_lon": longitude,
+                    }})
+            })
+            let responseJSON = await response.json()
+
+            let dispatchPersistCurrentGeolocation = (resp) => dispatch({ 
+                type: SAVE_CURRENT_GEOLOCATION,
+                payload: {
+                    lat: resp.lat,
+                    lon: resp.lon,
+                    prevGeolocationLat: resp.lat,
+                    prevGeolocationLon: resp.lon,
+                }
+            })
+
+            return dispatchPersistCurrentGeolocation(responseJSON)
+
+        } catch (err) {
             dispatch( { 
                 type: ADD_ERROR_MESSAGE,
                 payload: {
@@ -46,10 +52,13 @@ export const thunkPersistCurrentGeolocation = (userId, latitude, longitude) => {
                     value: "Unauthorized credentials. Please, log in again.",
                 }
             })
+
             AdapterUser.deleteToken();
+            
             return dispatch( { 
-            type: LOGOUT,
-        })})
+                type: LOGOUT,
+            })
+        }
     }
 }
 
@@ -60,22 +69,29 @@ export const thunkUploadProfile = (userId, profileImage) => {
     formData.append('user_id', userId);
     formData.append('profile_image', profileImage);
     
-    return (dispatch) => {
-        fetch(`${config.url.API_ROOT}/users/uploadProfile`, {
-            method: 'POST',
-            headers: {
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
-              },
-            body: formData
+    return async function (dispatch) {
+
+        try {
+            let response = await fetch(`${config.url.API_ROOT}/users/uploadProfile`, {
+                method: 'POST',
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                body: formData
+                })
+            
+            let responseJSON = await response.json()
+
+            let dispatchUploadProfile = (resp) => dispatch( { 
+                type: SAVE_PROFILE_IMAGE,
+                payload: {
+                    profileImageLink: resp.url,
+                }
             })
-        .then(resp=>resp.json())
-        .then(resp => dispatch( { 
-            type: SAVE_PROFILE_IMAGE,
-            payload: {
-                profileImageLink: resp.url,
-            }
-        }))
-        .catch(() => {
+
+            return dispatchUploadProfile(responseJSON)
+
+        } catch (err) {
             dispatch( { 
                 type: ADD_ERROR_MESSAGE,
                 payload: {
@@ -83,10 +99,13 @@ export const thunkUploadProfile = (userId, profileImage) => {
                     value: "Unauthorized credentials. Please, log in again.",
                 }
             })
+
             AdapterUser.deleteToken();
+
             return dispatch( { 
-            type: LOGOUT,
-        })})
+                type: LOGOUT,
+            })
+        }
     }
 }
 
@@ -108,25 +127,31 @@ export const thunkUpdateProfileInfo = (userId, username, bio) => {
       }
     })}
     
-    return (dispatch) => {
-        fetch(`${config.url.API_ROOT}/user/${userId}`, {
-            method: 'PATCH',
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
-            },
-            body: JSON.stringify(bodyUpdateProfileInfo)
+    return async function (dispatch)  {
+        try {
+            let response = await fetch(`${config.url.API_ROOT}/user/${userId}`, {
+                method: 'PATCH',
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify(bodyUpdateProfileInfo)
+                })
+
+            let responseJSON = await response.json()
+            
+            let dispatchUpdateProfileInfo = (resp) => dispatch( { 
+                type: SAVE_PROFILE,
+                payload: {
+                    username: username,
+                    bio: bio,
+                }
             })
-        .then(resp=>resp.json())
-        .then(() => dispatch( { 
-            type: SAVE_PROFILE,
-            payload: {
-                username: username,
-                bio: bio,
-            }
-        }))
-        .catch(() => {
+
+            return dispatchUpdateProfileInfo(responseJSON)
+
+        } catch (err) {
             dispatch( { 
                 type: ADD_ERROR_MESSAGE,
                 payload: {
@@ -134,9 +159,12 @@ export const thunkUpdateProfileInfo = (userId, username, bio) => {
                     value: "Unauthorized credentials. Please, log in again.",
                 }
             })
+
             AdapterUser.deleteToken();
+            
             return dispatch( { 
-            type: LOGOUT,
-        })})
+                type: LOGOUT,
+            })
+        }
     }
 }

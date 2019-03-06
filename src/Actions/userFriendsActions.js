@@ -14,23 +14,32 @@ import {
 //REDUX-THUNK actions
 export const thunkSaveClosestUsers = () => {
 
-    return (dispatch) => {
-        fetch(`${config.url.API_ROOT}/users`, {
-            method: 'GET',
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
+    return async function (dispatch) {
+
+        try {
+            let response = await fetch(`${config.url.API_ROOT}/users`, {
+                method: 'GET',
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    }
+            })
+
+            let responseJSON = await response.json()
+
+            let dispatchSaveClosestUsers = (resp) => dispatch( { 
+                type: SAVE_CLOSEST_USERS,
+                payload: {
+                    closestUsers: resp,
                 }
-        })
-        .then(r=>r.json())
-        .then(resp => dispatch( { 
-            type: SAVE_CLOSEST_USERS,
-            payload: {
-                closestUsers: resp,
-            }
-        }))
-        .catch(() => console.log("No closest users yet"))
+            })
+
+            return dispatchSaveClosestUsers(responseJSON) 
+        
+        } catch (err) {
+            console.log("No closest users yet")
+        }
     }
 }
 
@@ -38,28 +47,33 @@ export const thunkSaveClosestUsers = () => {
 // When an interest is selected, an array with users matching that interest gets returned.
 export const thunkSaveFilteredClosestUsers = (filterTermId) => {
 
-    return (dispatch) => {
-        fetch(`${config.url.API_ROOT}/users`, {
-            method: 'POST',
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
-            },
-            body: JSON.stringify({
-                "filter": {
-                  "filterId": filterTermId,
+    return async function (dispatch) {
+        try {
+            let response = await fetch(`${config.url.API_ROOT}/users`, {
+                method: 'POST',
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify({
+                    "filter": {
+                    "filterId": filterTermId,
+                    }
+                })
+            })
+            let responseJSON = await response.json()
+
+            let dispatchSaveFilteredClosestUsers = (resp) => dispatch( { 
+                type: SAVE_FILTERED_CLOSEST_USERS,
+                payload: {
+                    closestUsers: resp,
                 }
             })
-        })
-        .then(r=>r.json())
-        .then(resp => dispatch( { 
-            type: SAVE_FILTERED_CLOSEST_USERS,
-            payload: {
-                closestUsers: resp,
-            }
-        }))
-        .catch(() => {
+
+            return dispatchSaveFilteredClosestUsers(responseJSON)
+        
+        } catch (err) {
             dispatch( { 
                 type: ADD_ERROR_MESSAGE,
                 payload: {
@@ -67,10 +81,13 @@ export const thunkSaveFilteredClosestUsers = (filterTermId) => {
                     value: "Unauthorized credentials. Please, log in again.",
                 }
             })
+            
             AdapterUser.deleteToken();
+            
             return dispatch( { 
             type: LOGOUT,
-        })})
+            })
+        }
     }
 }
 

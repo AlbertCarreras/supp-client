@@ -49,7 +49,7 @@ export const thunkLogin = () => {
             })
         }
 
-        dispatchLogin( responseJSON )
+        return dispatchLogin( responseJSON )
     }
 }
 
